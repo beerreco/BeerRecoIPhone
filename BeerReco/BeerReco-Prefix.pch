@@ -1,0 +1,47 @@
+//
+// Prefix header for all source files of the 'BeerReco' target in the 'BeerReco' project
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_5_0
+#warning "This project uses features only available in iOS SDK 5.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+#endif
+
+#import <SystemConfiguration/SystemConfiguration.h>
+#import <MobileCoreServices/MobileCoreServices.h>
+
+#import "BeerRecoAPIClient.h"
+#import "ComServices.h"
+#import "GeneralDataStore.h"
+#import "LocalizeHelper.h"
+
+#define GlobalMessage_NetworkStatusChanged @"GlobalMessage_NetworkStatusChanged"
+
+#define GlobalMessage_ApplicationDidEnterBackground @"GlobalMessage_ApplicationDidEnterBackground"
+#define GlobalMessage_ApplicationWillEnterForeground @"GlobalMessage_ApplicationWillEnterForeground"
+#define GlobalMessage_ApplicationWillResignActive @"GlobalMessage_ApplicationWillResignActive"
+#define GlobalMessage_ApplicationDidBecomeActive @"GlobalMessage_ApplicationDidBecomeActive"
+
+#define TrueStr @"true"
+#define FalseStr @"false"
+#define YesStr @"Yes"
+#define NoStr @"No"
+
+#define FailureString @"Failure"
+
+#define GlobalCommunicationError_NotFound404 -1011
+#define GlobalCommunicationError_ReuqestTimeOut -1001
+#define GlobalCommunicationError_CouldNotConnectToServer -1004
+
+#ifdef DEBUG
+#define NSLog(fmt,...) NSLog ((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#else
+#define NSLog(...)
+#endif
+

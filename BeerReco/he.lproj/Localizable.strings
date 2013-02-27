@@ -1,0 +1,17 @@
+/* English - English */
+
+/* for debugging */
+"languageOfBundle" = "Hebrew - עברית";
+
+/* Pull To Refresh */
+"PullToRefresh_NeverUpdated" = "לא עודכן";
+"PullToRefresh_ReleaseToRefresh" = "שחרר לרענון המידע";
+"PullToRefresh_PullToRefresh" = "משוך למטה לרענון";
+"PullToRefresh_LoadingData" = "טוען מידע";
+"PullToRefresh_DataUpToDate" = "המידע מעודכן";
+"PullToRefresh_LastUpdatedAt-1" = "עודכן לאחרונה ב: %@";
+
+/* Recent Beers */
+"RecentBeers_Title" = "אחרונים";
+
+"label_text" = "ששששש";

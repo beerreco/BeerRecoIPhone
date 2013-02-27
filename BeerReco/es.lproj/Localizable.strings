@@ -1,0 +1,17 @@
+/* English - English */
+
+/* for debugging */
+"languageOfBundle" = "English - English";
+
+/* Pull To Refresh */
+"PullToRefresh_NeverUpdated" = "Never updated";
+"PullToRefresh_ReleaseToRefresh" = "Release to refresh";
+"PullToRefresh_PullToRefresh" = "Pull to refresh";
+"PullToRefresh_LoadingData" = "Loading data";
+"PullToRefresh_DataUpToDate" = "Data is up to date";
+"PullToRefresh_LastUpdatedAt-1" = "Last updated at: %@";
+
+/* Recent Beers */
+"RecentBeers_Title" = "BBB";
+
+"label_text" = "BBB ";
