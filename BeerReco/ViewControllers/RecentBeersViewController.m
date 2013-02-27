@@ -19,7 +19,7 @@
     [super viewDidLoad];
 
     [self visualSetup];
-    
+    //sss
     [self setup];
 }
 
