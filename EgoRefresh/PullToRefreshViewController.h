@@ -27,9 +27,8 @@
 
 #import <UIKit/UIKit.h>
 #import "EGORefreshTableHeaderView.h"
-#import "BaseSearchableViewController.h"
 
-@interface PullToRefreshViewController : BaseSearchableViewController
+@interface PullToRefreshViewController : UIViewController
 {
     BOOL _loading;
 }
@@ -37,5 +36,8 @@
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, assign) BOOL loading;
 
--(void) doRefresh;
+-(void)doRefresh;
+-(void)reloading;
+-(void)reloaded;
+
 @end

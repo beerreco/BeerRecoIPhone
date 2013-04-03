@@ -41,7 +41,6 @@
 
 -(void)visualSetup
 {
-    [super visualSetup];
 }
 
 -(void)setup

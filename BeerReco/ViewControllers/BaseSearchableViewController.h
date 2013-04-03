@@ -19,6 +19,5 @@
 
 #pragma mark - Action Handlers
 -(void)btnSearchClicked:(UIBarButtonItem*)sender;
--(void)btbAddNewClicked:(UIBarButtonItem*)sender;
 
 @end

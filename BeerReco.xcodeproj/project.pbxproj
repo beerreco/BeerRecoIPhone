@@ -17,13 +17,14 @@
 		84377F2416D92B9400B44D99 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84377F2316D92B9400B44D99 /* Default@2x.png */; };
 		84377F2616D92B9400B44D99 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84377F2516D92B9400B44D99 /* Default-568h@2x.png */; };
 		84377F2916D92B9400B44D99 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84377F2716D92B9400B44D99 /* MainStoryboard.storyboard */; };
+		84A58FA3170C6AD400A46E9F /* BeerM.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A58FA2170C6AD400A46E9F /* BeerM.m */; };
 		84B58C6E16DB8DB60097CD67 /* 37x-Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 84B58C6816DB8DB60097CD67 /* 37x-Checkmark.png */; };
 		84B58C6F16DB8DB60097CD67 /* 37x-Checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84B58C6916DB8DB60097CD67 /* 37x-Checkmark@2x.png */; };
 		84B58C7016DB8DB60097CD67 /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = 84B58C6A16DB8DB60097CD67 /* first.png */; };
 		84B58C7116DB8DB60097CD67 /* first@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84B58C6B16DB8DB60097CD67 /* first@2x.png */; };
 		84B58C7216DB8DB60097CD67 /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 84B58C6C16DB8DB60097CD67 /* second.png */; };
 		84B58C7316DB8DB60097CD67 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84B58C6D16DB8DB60097CD67 /* second@2x.png */; };
-		84B58C7816DB8DC30097CD67 /* RecentBeersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B58C7516DB8DC30097CD67 /* RecentBeersViewController.m */; };
+		84B58C7816DB8DC30097CD67 /* FavoriteBeersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B58C7516DB8DC30097CD67 /* FavoriteBeersViewController.m */; };
 		84B58C7916DB8DC30097CD67 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B58C7716DB8DC30097CD67 /* SecondViewController.m */; };
 		84B58C9416DB8E460097CD67 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B58C8216DB8E460097CD67 /* AFHTTPClient.m */; };
 		84B58C9516DB8E460097CD67 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B58C8416DB8E460097CD67 /* AFHTTPRequestOperation.m */; };
@@ -53,7 +54,6 @@
 		84B58CDC16DD0A8E0097CD67 /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 84B58CD816DD0A8E0097CD67 /* whiteArrow.png */; };
 		84B58CDD16DD0A8E0097CD67 /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84B58CD916DD0A8E0097CD67 /* whiteArrow@2x.png */; };
 		84B58CE016DD0E720097CD67 /* BeerDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B58CDF16DD0E720097CD67 /* BeerDetailsViewController.m */; };
-		84B58CE716DD1C350097CD67 /* BaseSearchableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B58CE616DD1C350097CD67 /* BaseSearchableViewController.m */; };
 		84B58CED16DD42AA0097CD67 /* LocalizeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B58CEC16DD42AA0097CD67 /* LocalizeHelper.m */; };
 		84B58CF416DD45820097CD67 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 84B58CF216DD45820097CD67 /* Localizable.strings */; };
 /* End PBXBuildFile section */
@@ -71,14 +71,16 @@
 		84377F2116D92B9400B44D99 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		84377F2316D92B9400B44D99 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		84377F2516D92B9400B44D99 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		84A58FA1170C6AD400A46E9F /* BeerM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeerM.h; path = Models/BeerM.h; sourceTree = "<group>"; };
+		84A58FA2170C6AD400A46E9F /* BeerM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BeerM.m; path = Models/BeerM.m; sourceTree = "<group>"; };
 		84B58C6816DB8DB60097CD67 /* 37x-Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "37x-Checkmark.png"; path = "Resources/Images/37x-Checkmark.png"; sourceTree = "<group>"; };
 		84B58C6916DB8DB60097CD67 /* 37x-Checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "37x-Checkmark@2x.png"; path = "Resources/Images/37x-Checkmark@2x.png"; sourceTree = "<group>"; };
 		84B58C6A16DB8DB60097CD67 /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = first.png; path = Resources/Images/first.png; sourceTree = "<group>"; };
 		84B58C6B16DB8DB60097CD67 /* first@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "first@2x.png"; path = "Resources/Images/first@2x.png"; sourceTree = "<group>"; };
 		84B58C6C16DB8DB60097CD67 /* second.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = second.png; path = Resources/Images/second.png; sourceTree = "<group>"; };
 		84B58C6D16DB8DB60097CD67 /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "second@2x.png"; path = "Resources/Images/second@2x.png"; sourceTree = "<group>"; };
-		84B58C7416DB8DC30097CD67 /* RecentBeersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RecentBeersViewController.h; path = ViewControllers/RecentBeersViewController.h; sourceTree = "<group>"; };
-		84B58C7516DB8DC30097CD67 /* RecentBeersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RecentBeersViewController.m; path = ViewControllers/RecentBeersViewController.m; sourceTree = "<group>"; };
+		84B58C7416DB8DC30097CD67 /* FavoriteBeersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavoriteBeersViewController.h; path = ViewControllers/FavoriteBeersViewController.h; sourceTree = "<group>"; };
+		84B58C7516DB8DC30097CD67 /* FavoriteBeersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FavoriteBeersViewController.m; path = ViewControllers/FavoriteBeersViewController.m; sourceTree = "<group>"; };
 		84B58C7616DB8DC30097CD67 /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SecondViewController.h; path = ViewControllers/SecondViewController.h; sourceTree = "<group>"; };
 		84B58C7716DB8DC30097CD67 /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SecondViewController.m; path = ViewControllers/SecondViewController.m; sourceTree = "<group>"; };
 		84B58C8116DB8E460097CD67 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
@@ -128,8 +130,6 @@
 		84B58CD916DD0A8E0097CD67 /* whiteArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "whiteArrow@2x.png"; path = "Resources/Images/whiteArrow@2x.png"; sourceTree = "<group>"; };
 		84B58CDE16DD0E720097CD67 /* BeerDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeerDetailsViewController.h; path = ViewControllers/BeerDetailsViewController.h; sourceTree = "<group>"; };
 		84B58CDF16DD0E720097CD67 /* BeerDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BeerDetailsViewController.m; path = ViewControllers/BeerDetailsViewController.m; sourceTree = "<group>"; };
-		84B58CE516DD1C350097CD67 /* BaseSearchableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseSearchableViewController.h; path = ViewControllers/BaseSearchableViewController.h; sourceTree = "<group>"; };
-		84B58CE616DD1C350097CD67 /* BaseSearchableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseSearchableViewController.m; path = ViewControllers/BaseSearchableViewController.m; sourceTree = "<group>"; };
 		84B58CEB16DD42AA0097CD67 /* LocalizeHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocalizeHelper.h; path = Helpers/LocalizeHelper.h; sourceTree = "<group>"; };
 		84B58CEC16DD42AA0097CD67 /* LocalizeHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocalizeHelper.m; path = Helpers/LocalizeHelper.m; sourceTree = "<group>"; };
 		84B58CF016DD44DD0097CD67 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
@@ -238,14 +238,12 @@
 		84B58C6516DB8CEA0097CD67 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				84B58C7416DB8DC30097CD67 /* RecentBeersViewController.h */,
-				84B58C7516DB8DC30097CD67 /* RecentBeersViewController.m */,
+				84B58C7416DB8DC30097CD67 /* FavoriteBeersViewController.h */,
+				84B58C7516DB8DC30097CD67 /* FavoriteBeersViewController.m */,
 				84B58C7616DB8DC30097CD67 /* SecondViewController.h */,
 				84B58C7716DB8DC30097CD67 /* SecondViewController.m */,
 				84B58CDE16DD0E720097CD67 /* BeerDetailsViewController.h */,
 				84B58CDF16DD0E720097CD67 /* BeerDetailsViewController.m */,
-				84B58CE516DD1C350097CD67 /* BaseSearchableViewController.h */,
-				84B58CE616DD1C350097CD67 /* BaseSearchableViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -307,6 +305,8 @@
 		84B58C7D16DB8DE60097CD67 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				84A58FA1170C6AD400A46E9F /* BeerM.h */,
+				84A58FA2170C6AD400A46E9F /* BeerM.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -498,7 +498,7 @@
 			files = (
 				84377F1C16D92B9400B44D99 /* main.m in Sources */,
 				84377F2016D92B9400B44D99 /* AppDelegate.m in Sources */,
-				84B58C7816DB8DC30097CD67 /* RecentBeersViewController.m in Sources */,
+				84B58C7816DB8DC30097CD67 /* FavoriteBeersViewController.m in Sources */,
 				84B58C7916DB8DC30097CD67 /* SecondViewController.m in Sources */,
 				84B58C9416DB8E460097CD67 /* AFHTTPClient.m in Sources */,
 				84B58C9516DB8E460097CD67 /* AFHTTPRequestOperation.m in Sources */,
@@ -517,8 +517,8 @@
 				84B58CD416DCEA030097CD67 /* EGORefreshTableHeaderView.m in Sources */,
 				84B58CD516DCEA030097CD67 /* PullToRefreshViewController.m in Sources */,
 				84B58CE016DD0E720097CD67 /* BeerDetailsViewController.m in Sources */,
-				84B58CE716DD1C350097CD67 /* BaseSearchableViewController.m in Sources */,
 				84B58CED16DD42AA0097CD67 /* LocalizeHelper.m in Sources */,
+				84A58FA3170C6AD400A46E9F /* BeerM.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

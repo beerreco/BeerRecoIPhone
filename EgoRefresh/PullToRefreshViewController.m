@@ -136,6 +136,16 @@
     NSLog(@"Override doRefresh in subclass. This line should not appear on console");
 }
 
+-(void)reloading
+{
+    
+}
+
+-(void)reloaded
+{
+    
+}
+
 -(void) setLoading:(BOOL)loading
 {
     _loading = loading;
@@ -147,6 +157,8 @@
         [self.refreshHeaderView setState:EGOOPullRefreshLoading];
         [UIView setAnimationDuration:0.2];
 		self.tableView.contentInset = UIEdgeInsetsMake(60.0f, 0.0f, 0.0f, 0.0f);
+        
+        [self reloading];
     }
     else
     {        
@@ -154,7 +166,9 @@
         [self.refreshHeaderView setCurrentDate];	
 
         [UIView setAnimationDuration:.3];
-        [self.tableView setContentInset:UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f)];        
+        [self.tableView setContentInset:UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f)];
+        
+        [self reloaded];
     }
     
     [UIView commitAnimations];    

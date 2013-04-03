@@ -40,9 +40,8 @@
 -(void)visualSetup
 {
     self.barBtbSearch = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(btnSearchClicked:)];
-    self.barBtbAddNew = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(btbAddNewClicked:)];
     
-    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:self.barBtbSearch, self.barBtbAddNew, nil];
+    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:self.barBtbSearch, nil];
 }
 
 #pragma mark - Action Handlers
