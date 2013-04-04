@@ -18,6 +18,12 @@
 		84377F2616D92B9400B44D99 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84377F2516D92B9400B44D99 /* Default-568h@2x.png */; };
 		84377F2916D92B9400B44D99 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84377F2716D92B9400B44D99 /* MainStoryboard.storyboard */; };
 		84A58FA3170C6AD400A46E9F /* BeerM.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A58FA2170C6AD400A46E9F /* BeerM.m */; };
+		84A58FAA170DAE4300A46E9F /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A58FA9170DAE4300A46E9F /* FacebookSDK.framework */; };
+		84A58FAC170DAE8800A46E9F /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 84A58FAB170DAE8800A46E9F /* FacebookSDKResources.bundle */; };
+		84A58FAE170DAEA800A46E9F /* FBUserSettingsViewResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 84A58FAD170DAEA800A46E9F /* FBUserSettingsViewResources.bundle */; };
+		84A58FB0170DAEBC00A46E9F /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A58FAF170DAEBC00A46E9F /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		84A58FB2170DAEC300A46E9F /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A58FB1170DAEC300A46E9F /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		84A58FB4170DAECB00A46E9F /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A58FB3170DAECB00A46E9F /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		84B58C6E16DB8DB60097CD67 /* 37x-Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 84B58C6816DB8DB60097CD67 /* 37x-Checkmark.png */; };
 		84B58C6F16DB8DB60097CD67 /* 37x-Checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84B58C6916DB8DB60097CD67 /* 37x-Checkmark@2x.png */; };
 		84B58C7016DB8DB60097CD67 /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = 84B58C6A16DB8DB60097CD67 /* first.png */; };
@@ -73,6 +79,13 @@
 		84377F2516D92B9400B44D99 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		84A58FA1170C6AD400A46E9F /* BeerM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeerM.h; path = Models/BeerM.h; sourceTree = "<group>"; };
 		84A58FA2170C6AD400A46E9F /* BeerM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BeerM.m; path = Models/BeerM.m; sourceTree = "<group>"; };
+		84A58FA7170DADF900A46E9F /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../Users/admin/Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		84A58FA9170DAE4300A46E9F /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../Users/admin/Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		84A58FAB170DAE8800A46E9F /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = ../../../Users/admin/Documents/FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle; sourceTree = "<group>"; };
+		84A58FAD170DAEA800A46E9F /* FBUserSettingsViewResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FBUserSettingsViewResources.bundle; path = ../../../Users/admin/Documents/FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FBUserSettingsViewResources.bundle; sourceTree = "<group>"; };
+		84A58FAF170DAEBC00A46E9F /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		84A58FB1170DAEC300A46E9F /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		84A58FB3170DAECB00A46E9F /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		84B58C6816DB8DB60097CD67 /* 37x-Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "37x-Checkmark.png"; path = "Resources/Images/37x-Checkmark.png"; sourceTree = "<group>"; };
 		84B58C6916DB8DB60097CD67 /* 37x-Checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "37x-Checkmark@2x.png"; path = "Resources/Images/37x-Checkmark@2x.png"; sourceTree = "<group>"; };
 		84B58C6A16DB8DB60097CD67 /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = first.png; path = Resources/Images/first.png; sourceTree = "<group>"; };
@@ -148,6 +161,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84A58FB4170DAECB00A46E9F /* Social.framework in Frameworks */,
+				84A58FB2170DAEC300A46E9F /* Accounts.framework in Frameworks */,
+				84A58FB0170DAEBC00A46E9F /* AdSupport.framework in Frameworks */,
 				84B58CBD16DBA4930097CD67 /* Crashlytics.framework in Frameworks */,
 				84377F1016D92B9400B44D99 /* UIKit.framework in Frameworks */,
 				84B58CB816DB92590097CD67 /* CoreData.framework in Frameworks */,
@@ -158,6 +174,7 @@
 				84377F1416D92B9400B44D99 /* CoreGraphics.framework in Frameworks */,
 				84377F1216D92B9400B44D99 /* Foundation.framework in Frameworks */,
 				84B58CA016DB8E540097CD67 /* libFlurry.a in Frameworks */,
+				84A58FAA170DAE4300A46E9F /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,6 +184,10 @@
 		84377F0316D92B9400B44D99 = {
 			isa = PBXGroup;
 			children = (
+				84A58FB3170DAECB00A46E9F /* Social.framework */,
+				84A58FB1170DAEC300A46E9F /* Accounts.framework */,
+				84A58FAF170DAEBC00A46E9F /* AdSupport.framework */,
+				84A58FA7170DADF900A46E9F /* FacebookSDK.framework */,
 				84B58CCF16DCEA030097CD67 /* EgoRefresh */,
 				84B58CA516DB8E7D0097CD67 /* MBProgressHUD */,
 				84B58CA116DB8E740097CD67 /* MSLabel */,
@@ -190,6 +211,9 @@
 		84377F0E16D92B9400B44D99 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				84A58FAD170DAEA800A46E9F /* FBUserSettingsViewResources.bundle */,
+				84A58FAB170DAE8800A46E9F /* FacebookSDKResources.bundle */,
+				84A58FA9170DAE4300A46E9F /* FacebookSDK.framework */,
 				84B58CBC16DBA4930097CD67 /* Crashlytics.framework */,
 				84B58CB716DB92590097CD67 /* CoreData.framework */,
 				84B58CB516DB92530097CD67 /* SystemConfiguration.framework */,
@@ -470,6 +494,8 @@
 				84B58CDC16DD0A8E0097CD67 /* whiteArrow.png in Resources */,
 				84B58CDD16DD0A8E0097CD67 /* whiteArrow@2x.png in Resources */,
 				84B58CF416DD45820097CD67 /* Localizable.strings in Resources */,
+				84A58FAC170DAE8800A46E9F /* FacebookSDKResources.bundle in Resources */,
+				84A58FAE170DAEA800A46E9F /* FBUserSettingsViewResources.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -626,6 +652,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					/Users/admin/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BeerReco/BeerReco-Prefix.pch";
@@ -634,6 +661,10 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Flurry\"",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lsqlite3.0",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
@@ -646,6 +677,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
+					/Users/admin/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BeerReco/BeerReco-Prefix.pch";
@@ -654,6 +686,10 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Flurry\"",
+				);
+				OTHER_LDFLAGS = (
+					"-ObjC",
+					"-lsqlite3.0",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
