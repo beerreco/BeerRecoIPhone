@@ -28,6 +28,9 @@
 #define GlobalMessage_ApplicationWillResignActive @"GlobalMessage_ApplicationWillResignActive"
 #define GlobalMessage_ApplicationDidBecomeActive @"GlobalMessage_ApplicationDidBecomeActive"
 
+#define GlobalMessage_FB_LoggedOut @"GlobalMessage_FB_LoggedOut"
+#define GlobalMessage_FB_LoggedIn @"GlobalMessage_FB_LoggedIn"
+
 #define TrueStr @"true"
 #define FalseStr @"false"
 #define YesStr @"Yes"

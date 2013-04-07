@@ -10,12 +10,16 @@
 
 @interface FavoriteBeersViewController ()
 
+@property (strong, nonatomic) FBLoginView *fbLoginView;
+
 @end
 
 @implementation FavoriteBeersViewController
 
-@synthesize candyArray = _candyArray;
-@synthesize filteredCandyArray = _filteredCandyArray;
+@synthesize fbLoginView = _fbLoginView;
+
+@synthesize favoritesArray = _favoritesArray;
+@synthesize filteredFavoritesArray = _filteredFavoritesArray;
 @synthesize SegFavoriteListType = _SegFavoriteListType;
 @synthesize favoritesSearchBar = _favoritesSearchBar;
 
@@ -42,6 +46,7 @@
 {
     [self setSegFavoriteListType:nil];
     [self setFavoritesSearchBar:nil];
+    [self setFbLoginView:nil];
     [super viewDidUnload];
 }
 
@@ -73,7 +78,7 @@
 {    
     if (self.SegFavoriteListType.selectedSegmentIndex == 0)
     {
-        self.candyArray = [NSArray arrayWithObjects:
+        self.favoritesArray = [NSArray arrayWithObjects:
                            [BeerM beerOfCategory:@"chocolate" name:@"chocolate bar"],
                            [BeerM beerOfCategory:@"chocolate" name:@"chocolate chip"],
                            [BeerM beerOfCategory:@"chocolate" name:@"dark chocolate"],
@@ -87,21 +92,63 @@
     }
     else
     {
-        self.candyArray = [NSArray arrayWithObjects:
+        self.favoritesArray = [NSArray arrayWithObjects:
                            [BeerM beerOfCategory:@"chocolate" name:@"kaka"],
                            [BeerM beerOfCategory:@"chocolate" name:@"kaka 2"],
                            [BeerM beerOfCategory:@"chocolate" name:@"kaka 3"], nil];
     }    
     
     // Initialize the filteredCandyArray with a capacity equal to the candyArray's capacity
-    self.filteredCandyArray = [NSMutableArray arrayWithCapacity:self.candyArray.count];
+    self.filteredFavoritesArray = [NSMutableArray arrayWithCapacity:self.favoritesArray.count];
     
-    [self.tableView reloadData];    
+    [self.tableView reloadData];
+    
+    if (self.loading == YES)
+    {
+        self.loading = NO;
+    }
 }
 
--(void)stopLoading
+#pragma mark - Action Handlers
+
+- (IBAction)showSearchClicked:(UIBarButtonItem *)sender
 {
-    self.loading = NO;
+    // If you're worried that your users might not catch on to the fact that a search bar is available if they scroll to reveal it, a search icon will help them
+    // Note that if you didn't hide your search bar, you should probably not include this, as it would be redundant
+    [self.favoritesSearchBar becomeFirstResponder];
+}
+
+- (IBAction)favoriteListTypeChanged:(UISegmentedControl *)sender forEvent:(UIEvent *)event
+{
+    if (self.fbLoginView == nil)
+    {
+        // Create Login View so that the app will be granted "status_update" permission.
+        self.fbLoginView = [[FBLoginView alloc] init];
+        
+        self.fbLoginView.frame =  CGRectMake(self.view.center.x - (self.fbLoginView.frame.size.width / 2), self.view.center.y - (self.fbLoginView.frame.size.height / 2), self.fbLoginView.frame.size.width, self.fbLoginView.frame.size.height);
+        //CGRectOffset(self.fbLoginView.frame, 5, 5);
+
+        self.fbLoginView.delegate = self;
+        
+        [self.view addSubview:self.fbLoginView];
+        
+        [self.fbLoginView sizeToFit];
+    }
+    else
+    {
+        if (self.SegFavoriteListType.selectedSegmentIndex == 1 && !FBSession.activeSession.isOpen)
+        {
+            [self.tableView setHidden:YES];
+            [self.fbLoginView setHidden:NO];
+        }
+        else
+        {
+            [self.tableView setHidden:NO];
+            [self.fbLoginView setHidden:YES];
+            
+            [self loadData];
+        }
+    }    
 }
 
 #pragma mark Content Filtering
@@ -111,13 +158,13 @@
 	// Update the filtered array based on the search text and scope.
 	
     // Remove all objects from the filtered search array
-	[self.filteredCandyArray removeAllObjects];
+	[self.filteredFavoritesArray removeAllObjects];
     
 	// Filter the array using NSPredicate
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.name contains[c] %@",searchText];
-    NSArray *tempArray = [self.candyArray filteredArrayUsingPredicate:predicate];
+    NSArray *tempArray = [self.favoritesArray filteredArrayUsingPredicate:predicate];
     
-    self.filteredCandyArray = [NSMutableArray arrayWithArray:tempArray];
+    self.filteredFavoritesArray = [NSMutableArray arrayWithArray:tempArray];
 }
 
 #pragma mark - Segue
@@ -126,20 +173,20 @@
 {
     if ([segue.identifier isEqualToString:@"beerDetails"])
     {
-        UIViewController *candyDetailViewController = [segue destinationViewController];
+        UIViewController *beerDetailsViewController = [segue destinationViewController];
         
         // In order to manipulate the destination view controller, another check on which table (search or normal) is displayed is needed
         if(sender == self.searchDisplayController.searchResultsTableView)
         {
             NSIndexPath *indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
-            NSString *destinationTitle = [[self.filteredCandyArray objectAtIndex:[indexPath row]] name];
-            [candyDetailViewController setTitle:destinationTitle];
+            NSString *destinationTitle = [[self.filteredFavoritesArray objectAtIndex:indexPath.row] name];
+            [beerDetailsViewController setTitle:destinationTitle];
         }
         else
         {
             NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-            NSString *destinationTitle = [[self.candyArray objectAtIndex:[indexPath row]] name];
-            [candyDetailViewController setTitle:destinationTitle];
+            NSString *destinationTitle = [[self.favoritesArray objectAtIndex:indexPath.row] name];
+            [beerDetailsViewController setTitle:destinationTitle];
         }
     }
 }
@@ -149,10 +196,8 @@
 -(void)doRefresh
 {
     self.loading = YES;
-    
-    [self loadData];
-    
-    [self performSelector:@selector(stopLoading) withObject:nil afterDelay:1];
+
+    [self performSelector:@selector(loadData) withObject:nil afterDelay:1];
 }
 
 -(void)reloading
@@ -167,7 +212,6 @@
 
 #pragma mark - UITableViewDataSource
 
-// Default is 1 if not implemented
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     return 1;
@@ -178,16 +222,13 @@
     // Check to see whether the normal table or search results table is being displayed and return the count from the appropriate array
     if (tableView == self.searchDisplayController.searchResultsTableView)
 	{
-        return [self.filteredCandyArray count];
+        return [self.filteredFavoritesArray count];
     }
 	else
 	{
-        return [self.candyArray count];
+        return [self.favoritesArray count];
     }
 }
-
-// Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
-// Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -203,15 +244,15 @@
     // Check to see whether the normal table or search results table is being displayed and set the Candy object from the appropriate array
     if (tableView == self.searchDisplayController.searchResultsTableView)
 	{
-        beer = [self.filteredCandyArray objectAtIndex:[indexPath row]];
+        beer = [self.filteredFavoritesArray objectAtIndex:[indexPath row]];
     }
 	else
 	{
-        beer = [self.candyArray objectAtIndex:[indexPath row]];
+        beer = [self.favoritesArray objectAtIndex:[indexPath row]];
     }
     
     // Configure the cell
-    [[cell textLabel] setText:[beer name]];
+    [cell.textLabel setText:beer.name];
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     
     return cell;
@@ -223,7 +264,6 @@
     return 44;
 }
 
-// fixed font style. use custom view (UILabel) if you want something different
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     return @"";
@@ -236,12 +276,11 @@
 
 #pragma mark - UITableViewDelegate
 
-// Called after the user changes the selection.
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Perform segue to candy detail
-    [self performSegueWithIdentifier:@"beerDetails" sender:tableView];
-    //[self.cellTable deselectRowAtIndexPath:indexPath animated:YES];
+    // Perform segue to beer detail
+    [self performSegueWithIdentifier:@"beerDetailsSegue" sender:tableView];
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
@@ -267,18 +306,83 @@
     return YES;
 }
 
-#pragma mark - Action Handlers
+#pragma mark - FBLoginViewDelegate
 
-- (IBAction)showSearchClicked:(UIBarButtonItem *)sender
+- (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView
 {
-    // If you're worried that your users might not catch on to the fact that a search bar is available if they scroll to reveal it, a search icon will help them
-    // Note that if you didn't hide your search bar, you should probably not include this, as it would be redundant
-    [self.favoritesSearchBar becomeFirstResponder];
+    if (self.SegFavoriteListType.selectedSegmentIndex == 1 && FBSession.activeSession.isOpen)
+    {
+        [self.tableView setHidden:NO];
+        [self.fbLoginView setHidden:YES];
+        
+        [self loadData];
+    }
 }
 
-- (IBAction)favoriteListTypeChanged:(UISegmentedControl *)sender forEvent:(UIEvent *)event
+- (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
+                            user:(id<FBGraphUser>)user
 {
-    [self loadData];
+}
+
+- (void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView
+{
+    if (self.SegFavoriteListType.selectedSegmentIndex == 1 && !FBSession.activeSession.isOpen)
+    {
+        [self.tableView setHidden:YES];
+        [self.fbLoginView setHidden:NO];
+    }
+}
+
+- (void)loginView:(FBLoginView *)loginView
+      handleError:(NSError *)error
+{
+    NSString *alertMessage, *alertTitle;
+    
+    // Facebook SDK * error handling *
+    // Error handling is an important part of providing a good user experience.
+    // Since this sample uses the FBLoginView, this delegate will respond to
+    // login failures, or other failures that have closed the session (such
+    // as a token becoming invalid). Please see the [- postOpenGraphAction:]
+    // and [- requestPermissionAndPost] on `SCViewController` for further
+    // error handling on other operations.
+    
+    if (error.fberrorShouldNotifyUser)
+    {
+        // If the SDK has a message for the user, surface it. This conveniently
+        // handles cases like password change or iOS6 app slider state.
+        alertTitle = @"Something Went Wrong";
+        alertMessage = error.fberrorUserMessage;
+    }
+    else if (error.fberrorCategory == FBErrorCategoryAuthenticationReopenSession)
+    {
+        // It is important to handle session closures as mentioned. You can inspect
+        // the error for more context but this sample generically notifies the user.
+        alertTitle = @"Session Error";
+        alertMessage = @"Your current session is no longer valid. Please log in again.";
+    }
+    else if (error.fberrorCategory == FBErrorCategoryUserCancelled)
+    {
+        // The user has cancelled a login. You can inspect the error
+        // for more context. For this sample, we will simply ignore it.
+        NSLog(@"user cancelled login");
+    }
+    else
+    {
+        // For simplicity, this sample treats other errors blindly, but you should
+        // refer to https://developers.facebook.com/docs/technical-guides/iossdk/errors/ for more information.
+        alertTitle  = @"Unknown Error";
+        alertMessage = @"Error. Please try again later.";
+        NSLog(@"Unexpected error:%@", error);
+    }
+    
+    if (alertMessage)
+    {
+        [[[UIAlertView alloc] initWithTitle:alertTitle
+                                    message:alertMessage
+                                   delegate:nil
+                          cancelButtonTitle:@"OK"
+                          otherButtonTitles:nil] show];
+    }
 }
 
 @end

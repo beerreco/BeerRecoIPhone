@@ -10,12 +10,14 @@
 #import "BaseSearchableViewController.h"
 #import "PullToRefreshViewController.h"
 
+#import <FacebookSDK/FacebookSDK.h>
+
 #import "BeerM.h"
 
-@interface FavoriteBeersViewController : PullToRefreshViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate>
+@interface FavoriteBeersViewController : PullToRefreshViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate, FBLoginViewDelegate>
 
-@property (strong,nonatomic) NSArray *candyArray;
-@property (strong,nonatomic) NSMutableArray *filteredCandyArray;
+@property (strong,nonatomic) NSArray *favoritesArray;
+@property (strong,nonatomic) NSMutableArray *filteredFavoritesArray;
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *SegFavoriteListType;
 @property (weak, nonatomic) IBOutlet UISearchBar *favoritesSearchBar;

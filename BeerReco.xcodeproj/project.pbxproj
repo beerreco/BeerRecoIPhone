@@ -24,6 +24,8 @@
 		84A58FB0170DAEBC00A46E9F /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A58FAF170DAEBC00A46E9F /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		84A58FB2170DAEC300A46E9F /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A58FB1170DAEC300A46E9F /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		84A58FB4170DAECB00A46E9F /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A58FB3170DAECB00A46E9F /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		84A58FB71711BCC900A46E9F /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A58FB61711BCC900A46E9F /* SettingsViewController.m */; };
+		84A58FBA1711D60000A46E9F /* FBUserSettingsContainerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A58FB91711D60000A46E9F /* FBUserSettingsContainerViewController.m */; };
 		84B58C6E16DB8DB60097CD67 /* 37x-Checkmark.png in Resources */ = {isa = PBXBuildFile; fileRef = 84B58C6816DB8DB60097CD67 /* 37x-Checkmark.png */; };
 		84B58C6F16DB8DB60097CD67 /* 37x-Checkmark@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84B58C6916DB8DB60097CD67 /* 37x-Checkmark@2x.png */; };
 		84B58C7016DB8DB60097CD67 /* first.png in Resources */ = {isa = PBXBuildFile; fileRef = 84B58C6A16DB8DB60097CD67 /* first.png */; };
@@ -86,6 +88,10 @@
 		84A58FAF170DAEBC00A46E9F /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		84A58FB1170DAEC300A46E9F /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		84A58FB3170DAECB00A46E9F /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		84A58FB51711BCC900A46E9F /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SettingsViewController.h; path = ViewControllers/SettingsViewController.h; sourceTree = "<group>"; };
+		84A58FB61711BCC900A46E9F /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SettingsViewController.m; path = ViewControllers/SettingsViewController.m; sourceTree = "<group>"; };
+		84A58FB81711D60000A46E9F /* FBUserSettingsContainerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBUserSettingsContainerViewController.h; path = ViewControllers/FBUserSettingsContainerViewController.h; sourceTree = "<group>"; };
+		84A58FB91711D60000A46E9F /* FBUserSettingsContainerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FBUserSettingsContainerViewController.m; path = ViewControllers/FBUserSettingsContainerViewController.m; sourceTree = "<group>"; };
 		84B58C6816DB8DB60097CD67 /* 37x-Checkmark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "37x-Checkmark.png"; path = "Resources/Images/37x-Checkmark.png"; sourceTree = "<group>"; };
 		84B58C6916DB8DB60097CD67 /* 37x-Checkmark@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "37x-Checkmark@2x.png"; path = "Resources/Images/37x-Checkmark@2x.png"; sourceTree = "<group>"; };
 		84B58C6A16DB8DB60097CD67 /* first.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = first.png; path = Resources/Images/first.png; sourceTree = "<group>"; };
@@ -259,6 +265,17 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		84A58FBB1711D76E00A46E9F /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				84A58FB51711BCC900A46E9F /* SettingsViewController.h */,
+				84A58FB61711BCC900A46E9F /* SettingsViewController.m */,
+				84A58FB81711D60000A46E9F /* FBUserSettingsContainerViewController.h */,
+				84A58FB91711D60000A46E9F /* FBUserSettingsContainerViewController.m */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
 		84B58C6516DB8CEA0097CD67 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
@@ -268,6 +285,7 @@
 				84B58C7716DB8DC30097CD67 /* SecondViewController.m */,
 				84B58CDE16DD0E720097CD67 /* BeerDetailsViewController.h */,
 				84B58CDF16DD0E720097CD67 /* BeerDetailsViewController.m */,
+				84A58FBB1711D76E00A46E9F /* Settings */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -545,6 +563,8 @@
 				84B58CE016DD0E720097CD67 /* BeerDetailsViewController.m in Sources */,
 				84B58CED16DD42AA0097CD67 /* LocalizeHelper.m in Sources */,
 				84A58FA3170C6AD400A46E9F /* BeerM.m in Sources */,
+				84A58FB71711BCC900A46E9F /* SettingsViewController.m in Sources */,
+				84A58FBA1711D60000A46E9F /* FBUserSettingsContainerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
