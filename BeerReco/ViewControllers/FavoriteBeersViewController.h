@@ -16,7 +16,7 @@
 
 @interface FavoriteBeersViewController : PullToRefreshViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate, FBLoginViewDelegate>
 
-@property (strong,nonatomic) NSArray *favoritesArray;
+@property (strong,nonatomic) NSMutableArray *favoritesArray;
 @property (strong,nonatomic) NSMutableArray *filteredFavoritesArray;
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *SegFavoriteListType;

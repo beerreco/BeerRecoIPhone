@@ -11,12 +11,14 @@
 @interface FavoriteBeersViewController ()
 
 @property (strong, nonatomic) FBLoginView *fbLoginView;
+@property (strong, nonatomic) UIBarButtonItem *btnEditFaforites;
 
 @end
 
 @implementation FavoriteBeersViewController
 
 @synthesize fbLoginView = _fbLoginView;
+@synthesize btnEditFaforites = _btnEditFaforites;
 
 @synthesize favoritesArray = _favoritesArray;
 @synthesize filteredFavoritesArray = _filteredFavoritesArray;
@@ -53,7 +55,12 @@
 #pragma mark - Private Methods
 
 -(void)visualSetup
-{    
+{
+    if (self.btnEditFaforites == nil)
+    {
+        self.btnEditFaforites = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStyleBordered target:self action:@selector(editPrivateFavoritesTable:)];
+    }
+    
     // Don't show the scope bar or cancel button until editing begins
     [self.favoritesSearchBar setShowsScopeBar:NO];
     [self.favoritesSearchBar sizeToFit];
@@ -77,8 +84,15 @@
 -(void)loadData
 {    
     if (self.SegFavoriteListType.selectedSegmentIndex == 0)
-    {
-        self.favoritesArray = [NSArray arrayWithObjects:
+    {        
+        [self.navigationItem setLeftBarButtonItem:nil];
+        
+        if (self.editing)
+        {
+            [self setEditing:NO animated:NO reload:NO];
+        }
+        
+        self.favoritesArray = [NSMutableArray arrayWithObjects:
                            [BeerM beerOfCategory:@"chocolate" name:@"chocolate bar"],
                            [BeerM beerOfCategory:@"chocolate" name:@"chocolate chip"],
                            [BeerM beerOfCategory:@"chocolate" name:@"dark chocolate"],
@@ -91,8 +105,10 @@
                            [BeerM beerOfCategory:@"other" name:@"gummi bear"], nil];
     }
     else
-    {
-        self.favoritesArray = [NSArray arrayWithObjects:
+    {        
+        [self.navigationItem setLeftBarButtonItem:self.btnEditFaforites];
+        
+        self.favoritesArray = [NSMutableArray arrayWithObjects:
                            [BeerM beerOfCategory:@"chocolate" name:@"kaka"],
                            [BeerM beerOfCategory:@"chocolate" name:@"kaka 2"],
                            [BeerM beerOfCategory:@"chocolate" name:@"kaka 3"], nil];
@@ -106,6 +122,44 @@
     if (self.loading == YES)
     {
         self.loading = NO;
+    }
+}
+
+-(void)removeFromFavorites:(BeerM*)beer
+{
+    [self.favoritesArray removeObject:beer];
+    [self.filteredFavoritesArray removeObject:beer];
+}
+
+-(void)setEditing:(BOOL)editing animated:(BOOL)animated
+{
+    [self setEditing:editing animated:animated reload:YES];
+}
+
+-(void)setEditing:(BOOL)editing animated:(BOOL)animated reload:(BOOL)reload
+{
+    if (self.editing != editing)
+    {
+        [super setEditing:editing animated:animated];
+        
+        [self.tableView setEditing:editing animated:YES];
+        
+        if (reload)
+        {
+            [self.tableView reloadData];
+        }
+        
+        if (editing)
+        {
+            [self.btnEditFaforites setTitle:@"Done"];
+            [self.btnEditFaforites setStyle:UIBarButtonItemStyleDone];
+            
+        }
+        else
+        {
+            [self.btnEditFaforites setTitle:@"Edit"];
+            [self.btnEditFaforites setStyle:UIBarButtonItemStylePlain];
+        }
     }
 }
 
@@ -126,7 +180,6 @@
         self.fbLoginView = [[FBLoginView alloc] init];
         
         self.fbLoginView.frame =  CGRectMake(self.view.center.x - (self.fbLoginView.frame.size.width / 2), self.view.center.y - (self.fbLoginView.frame.size.height / 2), self.fbLoginView.frame.size.width, self.fbLoginView.frame.size.height);
-        //CGRectOffset(self.fbLoginView.frame, 5, 5);
 
         self.fbLoginView.delegate = self;
         
@@ -151,6 +204,18 @@
     }    
 }
 
+-(void)editPrivateFavoritesTable:(id)sender
+{
+	if (self.editing)
+	{
+		[self setEditing:NO animated:YES];
+	}
+	else
+	{
+		[self setEditing:YES animated:YES];
+	}
+}
+
 #pragma mark Content Filtering
 
 - (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
@@ -171,12 +236,12 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"beerDetails"])
+    if ([segue.identifier isEqualToString:@"beerDetailsSegue"])
     {
         UIViewController *beerDetailsViewController = [segue destinationViewController];
         
         // In order to manipulate the destination view controller, another check on which table (search or normal) is displayed is needed
-        if(sender == self.searchDisplayController.searchResultsTableView)
+        if (sender == self.searchDisplayController.searchResultsTableView)
         {
             NSIndexPath *indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
             NSString *destinationTitle = [[self.filteredFavoritesArray objectAtIndex:indexPath.row] name];
@@ -234,7 +299,8 @@
 {
     static NSString *CellIdentifier = @"Cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if ( cell == nil ) {
+    if ( cell == nil )
+    {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
@@ -244,16 +310,18 @@
     // Check to see whether the normal table or search results table is being displayed and set the Candy object from the appropriate array
     if (tableView == self.searchDisplayController.searchResultsTableView)
 	{
-        beer = [self.filteredFavoritesArray objectAtIndex:[indexPath row]];
+        beer = [self.filteredFavoritesArray objectAtIndex:indexPath.row];
     }
 	else
 	{
-        beer = [self.favoritesArray objectAtIndex:[indexPath row]];
+        beer = [self.favoritesArray objectAtIndex:indexPath.row];
     }
     
     // Configure the cell
     [cell.textLabel setText:beer.name];
+    
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+    [cell setEditingAccessoryType:UITableViewCellAccessoryNone];
     
     return cell;
 
@@ -262,6 +330,11 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {    
     return 44;
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)aTableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{    
+    return self.editing ? UITableViewCellEditingStyleDelete : UITableViewCellEditingStyleNone;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -280,11 +353,36 @@
 {
     // Perform segue to beer detail
     [self performSegueWithIdentifier:@"beerDetailsSegue" sender:tableView];
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+}
+
+- (void)tableView:(UITableView *)aTableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle
+forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete)
+    {
+        NSIndexPath* beerIndex;
+        if (aTableView == self.searchDisplayController.searchResultsTableView)
+        {
+            BeerM* beer = [self.filteredFavoritesArray objectAtIndex:indexPath.row];
+            [self removeFromFavorites:beer];
+            
+            beerIndex = [NSIndexPath indexPathForItem:[self.favoritesArray indexOfObject:beer] inSection:indexPath.section];
+            
+            [self.searchDisplayController.searchResultsTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+        }
+        else
+        {
+            beerIndex = indexPath;
+        }
+        
+        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:beerIndex] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
 }
 
 #pragma mark - UISearchBarDelegate
