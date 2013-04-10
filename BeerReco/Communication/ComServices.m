@@ -10,4 +10,19 @@
 
 @implementation ComServices
 
++ (ComServices *)sharedComServices
+{
+    static ComServices *_sharedComServices = nil;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _sharedComServices = [[ComServices alloc] init];
+        
+        _sharedComServices.beersService = [[BeersService alloc] init];
+        _sharedComServices.favoriteBeersService = [[FavoriteBeersService alloc] init];
+    });
+    
+    return _sharedComServices;
+}
+
 @end

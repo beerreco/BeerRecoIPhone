@@ -1,18 +1,18 @@
 //
-//  BeerDetailsViewController.m
+//  BeersViewController.m
 //  BeerReco
 //
-//  Created by RLemberg on 2/26/13.
+//  Created by RLemberg on 4/10/13.
 //  Copyright (c) 2013 Colman. All rights reserved.
 //
 
-#import "BeerDetailsViewController.h"
+#import "BeersViewController.h"
 
-@interface BeerDetailsViewController ()
+@interface BeersViewController ()
 
 @end
 
-@implementation BeerDetailsViewController
+@implementation BeersViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -41,7 +41,7 @@
 
 -(void)visualSetup
 {
-    [self setTitle:@"Beer Details"];
+    [self setTitle:@"Beers In Category"];
 }
 
 -(void)setup

@@ -33,7 +33,7 @@
 		84B58C7216DB8DB60097CD67 /* second.png in Resources */ = {isa = PBXBuildFile; fileRef = 84B58C6C16DB8DB60097CD67 /* second.png */; };
 		84B58C7316DB8DB60097CD67 /* second@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84B58C6D16DB8DB60097CD67 /* second@2x.png */; };
 		84B58C7816DB8DC30097CD67 /* FavoriteBeersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B58C7516DB8DC30097CD67 /* FavoriteBeersViewController.m */; };
-		84B58C7916DB8DC30097CD67 /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B58C7716DB8DC30097CD67 /* SecondViewController.m */; };
+		84B58C7916DB8DC30097CD67 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B58C7716DB8DC30097CD67 /* SearchViewController.m */; };
 		84B58C9416DB8E460097CD67 /* AFHTTPClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B58C8216DB8E460097CD67 /* AFHTTPClient.m */; };
 		84B58C9516DB8E460097CD67 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B58C8416DB8E460097CD67 /* AFHTTPRequestOperation.m */; };
 		84B58C9616DB8E460097CD67 /* AFImageRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B58C8616DB8E460097CD67 /* AFImageRequestOperation.m */; };
@@ -64,6 +64,14 @@
 		84B58CE016DD0E720097CD67 /* BeerDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B58CDF16DD0E720097CD67 /* BeerDetailsViewController.m */; };
 		84B58CED16DD42AA0097CD67 /* LocalizeHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 84B58CEC16DD42AA0097CD67 /* LocalizeHelper.m */; };
 		84B58CF416DD45820097CD67 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 84B58CF216DD45820097CD67 /* Localizable.strings */; };
+		84D14A411715C53A00F0660C /* BeerCategoriesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D14A401715C53A00F0660C /* BeerCategoriesViewController.m */; };
+		84D14A441715C58300F0660C /* BeersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D14A431715C58300F0660C /* BeersViewController.m */; };
+		84D14A471715C59800F0660C /* PlacesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D14A461715C59800F0660C /* PlacesViewController.m */; };
+		84D14A4A1715C5C300F0660C /* PlaceM.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D14A491715C5C300F0660C /* PlaceM.m */; };
+		84D14A4D1715C5E400F0660C /* BeerCategoryM.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D14A4C1715C5E400F0660C /* BeerCategoryM.m */; };
+		84D14A501715C65400F0660C /* BeersService.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D14A4F1715C65400F0660C /* BeersService.m */; };
+		84D14A531715C7D900F0660C /* FavoriteBeersService.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D14A521715C7D900F0660C /* FavoriteBeersService.m */; };
+		84D14A561715C99800F0660C /* PlaceDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D14A551715C99800F0660C /* PlaceDetailsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,8 +108,8 @@
 		84B58C6D16DB8DB60097CD67 /* second@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "second@2x.png"; path = "Resources/Images/second@2x.png"; sourceTree = "<group>"; };
 		84B58C7416DB8DC30097CD67 /* FavoriteBeersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavoriteBeersViewController.h; path = ViewControllers/FavoriteBeersViewController.h; sourceTree = "<group>"; };
 		84B58C7516DB8DC30097CD67 /* FavoriteBeersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FavoriteBeersViewController.m; path = ViewControllers/FavoriteBeersViewController.m; sourceTree = "<group>"; };
-		84B58C7616DB8DC30097CD67 /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SecondViewController.h; path = ViewControllers/SecondViewController.h; sourceTree = "<group>"; };
-		84B58C7716DB8DC30097CD67 /* SecondViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SecondViewController.m; path = ViewControllers/SecondViewController.m; sourceTree = "<group>"; };
+		84B58C7616DB8DC30097CD67 /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SearchViewController.h; path = ViewControllers/SearchViewController.h; sourceTree = "<group>"; };
+		84B58C7716DB8DC30097CD67 /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SearchViewController.m; path = ViewControllers/SearchViewController.m; sourceTree = "<group>"; };
 		84B58C8116DB8E460097CD67 /* AFHTTPClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPClient.h; sourceTree = "<group>"; };
 		84B58C8216DB8E460097CD67 /* AFHTTPClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPClient.m; sourceTree = "<group>"; };
 		84B58C8316DB8E460097CD67 /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
@@ -160,6 +168,22 @@
 		84B58CF916DE00140097CD67 /* he */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = he; path = he.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		84B58CFA16DE00140097CD67 /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/Localizable.strings; sourceTree = "<group>"; };
 		84B58CFB16DE00140097CD67 /* he */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = he; path = he.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		84D14A3F1715C53A00F0660C /* BeerCategoriesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeerCategoriesViewController.h; path = ViewControllers/BeerCategoriesViewController.h; sourceTree = "<group>"; };
+		84D14A401715C53A00F0660C /* BeerCategoriesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BeerCategoriesViewController.m; path = ViewControllers/BeerCategoriesViewController.m; sourceTree = "<group>"; };
+		84D14A421715C58300F0660C /* BeersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeersViewController.h; path = ViewControllers/BeersViewController.h; sourceTree = "<group>"; };
+		84D14A431715C58300F0660C /* BeersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BeersViewController.m; path = ViewControllers/BeersViewController.m; sourceTree = "<group>"; };
+		84D14A451715C59800F0660C /* PlacesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlacesViewController.h; path = ViewControllers/PlacesViewController.h; sourceTree = "<group>"; };
+		84D14A461715C59800F0660C /* PlacesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlacesViewController.m; path = ViewControllers/PlacesViewController.m; sourceTree = "<group>"; };
+		84D14A481715C5C300F0660C /* PlaceM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlaceM.h; path = Models/PlaceM.h; sourceTree = "<group>"; };
+		84D14A491715C5C300F0660C /* PlaceM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlaceM.m; path = Models/PlaceM.m; sourceTree = "<group>"; };
+		84D14A4B1715C5E400F0660C /* BeerCategoryM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeerCategoryM.h; path = Models/BeerCategoryM.h; sourceTree = "<group>"; };
+		84D14A4C1715C5E400F0660C /* BeerCategoryM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BeerCategoryM.m; path = Models/BeerCategoryM.m; sourceTree = "<group>"; };
+		84D14A4E1715C65400F0660C /* BeersService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeersService.h; path = Communication/Services/BeersService.h; sourceTree = "<group>"; };
+		84D14A4F1715C65400F0660C /* BeersService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BeersService.m; path = Communication/Services/BeersService.m; sourceTree = "<group>"; };
+		84D14A511715C7D900F0660C /* FavoriteBeersService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavoriteBeersService.h; path = Communication/Services/FavoriteBeersService.h; sourceTree = "<group>"; };
+		84D14A521715C7D900F0660C /* FavoriteBeersService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FavoriteBeersService.m; path = Communication/Services/FavoriteBeersService.m; sourceTree = "<group>"; };
+		84D14A541715C99800F0660C /* PlaceDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlaceDetailsViewController.h; path = ViewControllers/PlaceDetailsViewController.h; sourceTree = "<group>"; };
+		84D14A551715C99800F0660C /* PlaceDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlaceDetailsViewController.m; path = ViewControllers/PlaceDetailsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -281,11 +305,13 @@
 			children = (
 				84B58C7416DB8DC30097CD67 /* FavoriteBeersViewController.h */,
 				84B58C7516DB8DC30097CD67 /* FavoriteBeersViewController.m */,
-				84B58C7616DB8DC30097CD67 /* SecondViewController.h */,
-				84B58C7716DB8DC30097CD67 /* SecondViewController.m */,
+				84B58C7616DB8DC30097CD67 /* SearchViewController.h */,
+				84B58C7716DB8DC30097CD67 /* SearchViewController.m */,
 				84B58CDE16DD0E720097CD67 /* BeerDetailsViewController.h */,
 				84B58CDF16DD0E720097CD67 /* BeerDetailsViewController.m */,
 				84A58FBB1711D76E00A46E9F /* Settings */,
+				84D14A581715C9DD00F0660C /* Beers */,
+				84D14A571715C9BC00F0660C /* Places */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -340,6 +366,10 @@
 		84B58C7C16DB8DE00097CD67 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				84D14A4E1715C65400F0660C /* BeersService.h */,
+				84D14A4F1715C65400F0660C /* BeersService.m */,
+				84D14A511715C7D900F0660C /* FavoriteBeersService.h */,
+				84D14A521715C7D900F0660C /* FavoriteBeersService.m */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -349,6 +379,10 @@
 			children = (
 				84A58FA1170C6AD400A46E9F /* BeerM.h */,
 				84A58FA2170C6AD400A46E9F /* BeerM.m */,
+				84D14A481715C5C300F0660C /* PlaceM.h */,
+				84D14A491715C5C300F0660C /* PlaceM.m */,
+				84D14A4B1715C5E400F0660C /* BeerCategoryM.h */,
+				84D14A4C1715C5E400F0660C /* BeerCategoryM.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -438,6 +472,28 @@
 				84B58CEC16DD42AA0097CD67 /* LocalizeHelper.m */,
 			);
 			name = Helpers;
+			sourceTree = "<group>";
+		};
+		84D14A571715C9BC00F0660C /* Places */ = {
+			isa = PBXGroup;
+			children = (
+				84D14A451715C59800F0660C /* PlacesViewController.h */,
+				84D14A461715C59800F0660C /* PlacesViewController.m */,
+				84D14A541715C99800F0660C /* PlaceDetailsViewController.h */,
+				84D14A551715C99800F0660C /* PlaceDetailsViewController.m */,
+			);
+			name = Places;
+			sourceTree = "<group>";
+		};
+		84D14A581715C9DD00F0660C /* Beers */ = {
+			isa = PBXGroup;
+			children = (
+				84D14A3F1715C53A00F0660C /* BeerCategoriesViewController.h */,
+				84D14A401715C53A00F0660C /* BeerCategoriesViewController.m */,
+				84D14A421715C58300F0660C /* BeersViewController.h */,
+				84D14A431715C58300F0660C /* BeersViewController.m */,
+			);
+			name = Beers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -543,7 +599,7 @@
 				84377F1C16D92B9400B44D99 /* main.m in Sources */,
 				84377F2016D92B9400B44D99 /* AppDelegate.m in Sources */,
 				84B58C7816DB8DC30097CD67 /* FavoriteBeersViewController.m in Sources */,
-				84B58C7916DB8DC30097CD67 /* SecondViewController.m in Sources */,
+				84B58C7916DB8DC30097CD67 /* SearchViewController.m in Sources */,
 				84B58C9416DB8E460097CD67 /* AFHTTPClient.m in Sources */,
 				84B58C9516DB8E460097CD67 /* AFHTTPRequestOperation.m in Sources */,
 				84B58C9616DB8E460097CD67 /* AFImageRequestOperation.m in Sources */,
@@ -565,6 +621,14 @@
 				84A58FA3170C6AD400A46E9F /* BeerM.m in Sources */,
 				84A58FB71711BCC900A46E9F /* SettingsViewController.m in Sources */,
 				84A58FBA1711D60000A46E9F /* FBUserSettingsContainerViewController.m in Sources */,
+				84D14A411715C53A00F0660C /* BeerCategoriesViewController.m in Sources */,
+				84D14A441715C58300F0660C /* BeersViewController.m in Sources */,
+				84D14A471715C59800F0660C /* PlacesViewController.m in Sources */,
+				84D14A4A1715C5C300F0660C /* PlaceM.m in Sources */,
+				84D14A4D1715C5E400F0660C /* BeerCategoryM.m in Sources */,
+				84D14A501715C65400F0660C /* BeersService.m in Sources */,
+				84D14A531715C7D900F0660C /* FavoriteBeersService.m in Sources */,
+				84D14A561715C99800F0660C /* PlaceDetailsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

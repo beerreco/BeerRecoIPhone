@@ -6,24 +6,37 @@
 //  Copyright (c) 2013 Colman. All rights reserved.
 //
 
-#import "SecondViewController.h"
+#import "SearchViewController.h"
 
-@interface SecondViewController ()
+@interface SearchViewController ()
 
 @end
 
-@implementation SecondViewController
+@implementation SearchViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    
+    [self visualSetup];
+    
+    [self setup];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Private Methods
+
+-(void)visualSetup
+{
+    [self setTitle:@"Search"];
+}
+
+-(void)setup
+{
 }
 
 @end

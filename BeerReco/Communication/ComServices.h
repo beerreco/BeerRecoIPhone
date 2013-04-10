@@ -8,6 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+#import "BeersService.h"
+#import "FavoriteBeersService.h"
+
 @interface ComServices : NSObject
+
++ (ComServices*)sharedComServices;
+
+@property (nonatomic, strong) BeersService* beersService;
+@property (nonatomic, strong) FavoriteBeersService* favoriteBeersService;
 
 @end

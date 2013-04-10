@@ -13,6 +13,22 @@
 @synthesize category = _category;
 @synthesize name = _name;
 
+#pragma mark - Instance Methods
+
+-(id)initWithJson:(NSDictionary*)json
+{
+    self = [super init];
+    
+    if (self)
+    {
+        
+    }
+    
+    return self;
+}
+
+#pragma mark - Class Methods
+
 + (BeerM*)beerOfCategory:(NSString *)category name:(NSString *)name
 {
     BeerM *newBeer = [[self alloc] init];

@@ -13,6 +13,8 @@
 @property (nonatomic, strong) NSString *category;
 @property (nonatomic, strong) NSString *name;
 
+-(id)initWithJson:(NSDictionary*)json;
+
 + (BeerM*)beerOfCategory:(NSString*)category name:(NSString*)name;
 
 @end
