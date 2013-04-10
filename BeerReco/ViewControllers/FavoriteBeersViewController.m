@@ -367,17 +367,22 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
         NSIndexPath* beerIndex;
+        BeerM* beer;
+        
         if (aTableView == self.searchDisplayController.searchResultsTableView)
         {
-            BeerM* beer = [self.filteredFavoritesArray objectAtIndex:indexPath.row];
-            [self removeFromFavorites:beer];
-            
+            beer = [self.filteredFavoritesArray objectAtIndex:indexPath.row];
             beerIndex = [NSIndexPath indexPathForItem:[self.favoritesArray indexOfObject:beer] inSection:indexPath.section];
+            
+            [self removeFromFavorites:beer];
             
             [self.searchDisplayController.searchResultsTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
         }
         else
         {
+            beer = [self.favoritesArray objectAtIndex:indexPath.row];
+            [self removeFromFavorites:beer];
+            
             beerIndex = indexPath;
         }
         
