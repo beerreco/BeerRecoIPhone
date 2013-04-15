@@ -562,6 +562,8 @@
 				84377F0916D92B9400B44D99 /* Frameworks */,
 				84377F0A16D92B9400B44D99 /* Resources */,
 				84B58CBE16DBB4060097CD67 /* ShellScript */,
+				844316D1171C168800D227D2 /* ShellScript */,
+				844316D2171C16A600D227D2 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -631,6 +633,32 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		844316D1171C168800D227D2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# \"${PROJECT_DIR}/\" may be required in the path for the info plist\n#increases every (local) build\n#buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${INFOPLIST_FILE}\")\n#buildNumber=$(($buildNumber + 1))\n\n# I'd like to use the Git commit hash for CFBundleVersion.\n# VERSION=$(git --git-dir=\"${PROJECT_DIR}/.git\" --work-tree=\"${PROJECT_DIR}\" rev-parse --short HEAD)\n\n# But Apple wants this value to be a monotonically increasing integer, so\n# instead use the number of commits on the master branch. If you like to\n# play fast and loose with your Git history, this may cause you problems.\n# Thanks to @amrox for pointing out the issue and fix.\nVERSION=$(git --git-dir=\"${PROJECT_DIR}/.git\" --work-tree=\"${PROJECT_DIR}\" rev-list master | wc -l)\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $VERSION\" \"${INFOPLIST_FILE}\"";
+		};
+		844316D2171C16A600D227D2 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 8;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+			shellPath = /bin/sh;
+			shellScript = "# This splits a two-decimal version string, such as \"0.45.123\", allowing us to increment the third position.\nVERSIONNUM=$(/usr/libexec/PlistBuddy -c \"Print CFBundleShortVersionString\" \"${INFOPLIST_FILE}\")\nNEWSUBVERSION=`echo $VERSIONNUM | awk -F \".\" '{print $3}'`\nNEWSUBVERSION=$(($NEWSUBVERSION + 1))\nNEWVERSIONSTRING=`echo $VERSIONNUM | awk -F \".\" '{print $1 \".\" $2 \".'$NEWSUBVERSION'\" }'`\n/usr/libexec/PlistBuddy -c \"Set :CFBundleShortVersionString $NEWVERSIONSTRING\" \"${INFOPLIST_FILE}\"";
+		};
 		84B58CBE16DBB4060097CD67 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

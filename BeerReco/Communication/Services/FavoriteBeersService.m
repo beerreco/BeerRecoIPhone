@@ -101,7 +101,7 @@
     NSDictionary* params = @{QueryParam_UserID:[GeneralDataStore sharedDataStore].FBUserID, QueryParam_BeerID:beerId};
     NSString* path = [NSString stringWithFormat:@"%@/%@", ServicePath_Favorites, PathParam_Add];
     
-    [[BeerRecoAPIClient sharedClient] getPath:path parameters:params success:^(AFHTTPRequestOperation *operation, id JSON)
+    [[BeerRecoAPIClient sharedClient] postPath:path parameters:params success:^(AFHTTPRequestOperation *operation, id JSON)
      {         
          if (onComplete)
          {
@@ -131,7 +131,7 @@
     NSDictionary* params = @{QueryParam_UserID:[GeneralDataStore sharedDataStore].FBUserID, QueryParam_BeerID:beerId};
     NSString* path = [NSString stringWithFormat:@"%@/%@", ServicePath_Favorites, PathParam_Delete];
     
-    [[BeerRecoAPIClient sharedClient] getPath:path parameters:params success:^(AFHTTPRequestOperation *operation, id JSON)
+    [[BeerRecoAPIClient sharedClient] deletePath:path parameters:params success:^(AFHTTPRequestOperation *operation, id JSON)
      {
          if (onComplete)
          {
