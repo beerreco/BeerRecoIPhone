@@ -11,13 +11,28 @@
 
 @interface BeerRecoAPIClient : AFHTTPClient
 
-#define NetworkConfig_ShouldUseCache NO
+#define TrustedServerHost @"beerreco.appspot.com"
 
-#define BaseIphonePathPrefix @""
+#define DateFromServerFormat @"MMM dd, yyyy hh':'mm':'ss a"
 
-// Server
-#define BaseURL @"http://85.119.5.11:9888/"
-#define BaseURL_FileServer @"http://85.119.5.11/Files/"
+#define NetworkConfig_ShouldUseCache 0
+#define NetworkConfig_UseSSLAuthorization 0
+#define NetworkConfig_MenualSSLAuthorization 0
+
+#define ServerReacabilityDefaultTimeout 30
+
+#define HTTPHeaderParam_Sandbox @"sandbox"
+#define HTTPHeaderParam_PreProd @"preprod"
+
+#define BaseIpadPathPrefix @"rest"
+
+#if NetworkConfig_UseSSLAuthorization
+#define BaseURL [NSString stringWithFormat:@"https://%@/", TrustedServerHost]
+#else
+#define BaseURL [NSString stringWithFormat:@"http://%@/", TrustedServerHost]
+#endif
+
+#define BaseURL_FileServer [NSString stringWithFormat:@"http://%@/Files/", TrustedServerHost]
 
 + (BeerRecoAPIClient*)sharedClient;
 
@@ -25,13 +40,38 @@
 
 + (BOOL) serverDownCode:(int)code;
 
+#pragma Mark - Properties
+
 @property (nonatomic) AFNetworkReachabilityStatus networkReachabilityStatus;
 
+#pragma Mark - Instance Methods
+
 -(BOOL)isNetworkReachable;
+
+#pragma mark - Overrides With Diff
 
 - (void)getPath:(NSString *)path
      parameters:(NSDictionary *)parameters
    withInterval:(NSTimeInterval)interval
+        success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+        failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
+- (void)getPath:(NSString *)path
+     parameters:(NSDictionary *)parameters
+withCompletionBlockQueue:(dispatch_queue_t)completionQueue
+        success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+        failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
+- (void)putPath:(NSString *)path
+     parameters:(NSDictionary *)parameters
+withCompletionBlockQueue:(dispatch_queue_t)completionQueue
+        success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+        failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
+
+- (void)getPath:(NSString *)path
+     parameters:(NSDictionary *)parameters
+   withInterval:(NSTimeInterval)interval
+withCompletionBlockQueue:(dispatch_queue_t)completionQueue
         success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
         failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 

@@ -13,12 +13,24 @@
 @property (strong, nonatomic) FBLoginView *fbLoginView;
 @property (strong, nonatomic) UIBarButtonItem *btnEditFaforites;
 
+@property (nonatomic, strong) MBProgressHUD *HUD;
+
+@property (strong,nonatomic) NSMutableArray *publicFavoritesArray;
+@property (strong,nonatomic) NSMutableArray *privateFavoritesArray;
+@property (strong,nonatomic) NSMutableArray *favoritesArray;
+@property (strong,nonatomic) NSMutableArray *filteredFavoritesArray;
+
 @end
 
 @implementation FavoriteBeersViewController
 
+@synthesize HUD = _HUD;
+
 @synthesize fbLoginView = _fbLoginView;
 @synthesize btnEditFaforites = _btnEditFaforites;
+
+@synthesize publicFavoritesArray = _publicFavoritesArray;
+@synthesize privateFavoritesArray = _privateFavoritesArray;
 
 @synthesize favoritesArray = _favoritesArray;
 @synthesize filteredFavoritesArray = _filteredFavoritesArray;
@@ -65,7 +77,7 @@
     [self.favoritesSearchBar setShowsScopeBar:NO];
     [self.favoritesSearchBar sizeToFit];
     
-    [self hideSearchBar];
+    [self performSelector:@selector(hideSearchBar) withObject:nil afterDelay:0.1];
 }
 
 -(void)setup
@@ -78,11 +90,15 @@
     // Hide the search bar until user scrolls up
     CGRect newBounds = [[self tableView] bounds];
     newBounds.origin.y = newBounds.origin.y + self.favoritesSearchBar.bounds.size.height;
-    [[self tableView] setBounds:newBounds];
+    [self.tableView setBounds:newBounds];
 }
 
 -(void)loadData
-{    
+{
+    self.HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.HUD.delegate = self;
+    self.HUD.dimBackground = YES;
+    
     if (self.SegFavoriteListType.selectedSegmentIndex == 0)
     {        
         [self.navigationItem setLeftBarButtonItem:nil];
@@ -92,28 +108,50 @@
             [self setEditing:NO animated:NO reload:NO];
         }
         
-        self.favoritesArray = [NSMutableArray arrayWithObjects:
-                           [BeerM beerOfCategory:@"chocolate" name:@"chocolate bar"],
-                           [BeerM beerOfCategory:@"chocolate" name:@"chocolate chip"],
-                           [BeerM beerOfCategory:@"chocolate" name:@"dark chocolate"],
-                           [BeerM beerOfCategory:@"hard" name:@"lollipop"],
-                           [BeerM beerOfCategory:@"hard" name:@"candy cane"],
-                           [BeerM beerOfCategory:@"hard" name:@"jaw breaker"],
-                           [BeerM beerOfCategory:@"other" name:@"caramel"],
-                           [BeerM beerOfCategory:@"other" name:@"sour chew"],
-                           [BeerM beerOfCategory:@"other" name:@"peanut butter cup"],
-                           [BeerM beerOfCategory:@"other" name:@"gummi bear"], nil];
+        [[ComServices sharedComServices].favoriteBeersService getPublicFavoriteBeers:^(NSMutableArray *beers, NSError *error)
+        {
+            if (error == nil && beers != nil)
+            {
+                self.publicFavoritesArray = beers;
+            }
+            else
+            {
+                
+            }
+            
+            self.favoritesArray = [NSMutableArray arrayWithArray:self.publicFavoritesArray];
+            
+            [self dataLoaded];
+            
+            [self.HUD hide:YES];
+        }];
     }
     else
     {        
         [self.navigationItem setLeftBarButtonItem:self.btnEditFaforites];
         
-        self.favoritesArray = [NSMutableArray arrayWithObjects:
-                           [BeerM beerOfCategory:@"chocolate" name:@"kaka"],
-                           [BeerM beerOfCategory:@"chocolate" name:@"kaka 2"],
-                           [BeerM beerOfCategory:@"chocolate" name:@"kaka 3"], nil];
-    }    
-    
+        [[ComServices sharedComServices].favoriteBeersService getFavoriteBeersForUser:^(NSMutableArray *beers, NSError *error)
+         {
+             if (error == nil && beers != nil)
+             {
+                 self.privateFavoritesArray = beers;
+             }
+             else
+             {
+                 
+             }
+             
+             self.favoritesArray = [NSMutableArray arrayWithArray:self.privateFavoritesArray];
+             
+             [self dataLoaded];
+             
+             [self.HUD hide:YES];
+         }];
+    }
+}
+
+-(void)dataLoaded
+{
     // Initialize the filteredCandyArray with a capacity equal to the candyArray's capacity
     self.filteredFavoritesArray = [NSMutableArray arrayWithCapacity:self.favoritesArray.count];
     
@@ -125,10 +163,27 @@
     }
 }
 
--(void)removeFromFavorites:(BeerM*)beer
+-(void)removeFromFavorites:(BeerM*)beer onComplete:(void (^)(NSError *error))onComplete
 {
-    [self.favoritesArray removeObject:beer];
-    [self.filteredFavoritesArray removeObject:beer];
+    self.HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.HUD.delegate = self;
+    self.HUD.dimBackground = YES;
+    
+    [[ComServices sharedComServices].favoriteBeersService removeBeerFromFavorites:beer.id onComplete:^(NSError *error)
+    {
+        if (error == nil)
+        {
+            [self.favoritesArray removeObject:beer];
+            [self.filteredFavoritesArray removeObject:beer];
+        }
+        
+        [self.HUD hide:YES];
+        
+        if (onComplete)
+        {
+            onComplete(error);
+        }
+    }];
 }
 
 -(void)setEditing:(BOOL)editing animated:(BOOL)animated
@@ -374,19 +429,29 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
             beer = [self.filteredFavoritesArray objectAtIndex:indexPath.row];
             beerIndex = [NSIndexPath indexPathForItem:[self.favoritesArray indexOfObject:beer] inSection:indexPath.section];
             
-            [self removeFromFavorites:beer];
-            
-            [self.searchDisplayController.searchResultsTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self removeFromFavorites:beer onComplete:^(NSError *error)
+            {
+                if (error == nil)
+                {
+                    [self.searchDisplayController.searchResultsTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                    
+                    [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:beerIndex] withRowAnimation:UITableViewRowAnimationAutomatic];
+                }
+            }];
         }
         else
         {
             beer = [self.favoritesArray objectAtIndex:indexPath.row];
-            [self removeFromFavorites:beer];
-            
-            beerIndex = indexPath;
+            [self removeFromFavorites:beer onComplete:^(NSError *error)
+             {
+                 if (error == nil)
+                 {
+                     [self.searchDisplayController.searchResultsTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                     
+                     [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                 }
+             }];
         }
-        
-        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:beerIndex] withRowAnimation:UITableViewRowAnimationAutomatic];
     }
 }
 
@@ -395,6 +460,18 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 - (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar
 {
     [self hideSearchBar];
+}
+
+#pragma mark - MBProgressHUDDelegate methods
+
+- (void)hudWasHidden:(MBProgressHUD *)hud
+{
+	// Remove HUD from screen when the HUD was hidded
+	[hud removeFromSuperview];
+	if (self.HUD == hud)
+    {
+        self.HUD = nil;
+    }
 }
 
 #pragma mark - UISearchDisplayController Delegate Methods
@@ -413,22 +490,42 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
 
 - (void)loginViewShowingLoggedInUser:(FBLoginView *)loginView
 {
-    if (self.SegFavoriteListType.selectedSegmentIndex == 1 && FBSession.activeSession.isOpen)
-    {
-        [self.tableView setHidden:NO];
-        [self.fbLoginView setHidden:YES];
-        
-        [self loadData];
-    }
 }
 
 - (void)loginViewFetchedUserInfo:(FBLoginView *)loginView
                             user:(id<FBGraphUser>)user
 {
+    if (self.SegFavoriteListType.selectedSegmentIndex == 1 && FBSession.activeSession.isOpen)
+    {
+        [self.tableView setHidden:NO];
+        [self.fbLoginView setHidden:YES];
+    }
+    
+    if (self.isViewLoaded && self.view.window)
+    {
+        if ([NSString isNullOrEmpty:[GeneralDataStore sharedDataStore].FBUserID])
+        {
+            NSDictionary* param = @{@"userId": user.id};
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:GlobalMessage_FB_LoggedIn object:nil userInfo:param];
+        
+        }        
+        
+        [self loadData];
+    }
+    else
+    {
+        [self performSelector:@selector(loadData) withObject:nil afterDelay:1];
+    }
 }
 
 - (void)loginViewShowingLoggedOutUser:(FBLoginView *)loginView
 {
+    if (self.isViewLoaded && self.view.window)
+    {
+        [[NSNotificationCenter defaultCenter] postNotificationName:GlobalMessage_FB_LoggedOut object:nil userInfo:nil];
+    }
+    
     if (self.SegFavoriteListType.selectedSegmentIndex == 1 && !FBSession.activeSession.isOpen)
     {
         [self.tableView setHidden:YES];

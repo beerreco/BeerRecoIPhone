@@ -17,6 +17,17 @@
 		84377F2416D92B9400B44D99 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84377F2316D92B9400B44D99 /* Default@2x.png */; };
 		84377F2616D92B9400B44D99 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84377F2516D92B9400B44D99 /* Default-568h@2x.png */; };
 		84377F2916D92B9400B44D99 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 84377F2716D92B9400B44D99 /* MainStoryboard.storyboard */; };
+		844316C3171BF06100D227D2 /* NSNull+ValueProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 844316B0171BF06100D227D2 /* NSNull+ValueProvider.m */; };
+		844316C4171BF06100D227D2 /* NSObject+Blocks.m in Sources */ = {isa = PBXBuildFile; fileRef = 844316B2171BF06100D227D2 /* NSObject+Blocks.m */; };
+		844316C5171BF06100D227D2 /* NSString+IsEmpty.m in Sources */ = {isa = PBXBuildFile; fileRef = 844316B4171BF06100D227D2 /* NSString+IsEmpty.m */; };
+		844316C6171BF06100D227D2 /* NSString+UniqueId.m in Sources */ = {isa = PBXBuildFile; fileRef = 844316B6171BF06100D227D2 /* NSString+UniqueId.m */; };
+		844316C7171BF06100D227D2 /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 844316B8171BF06100D227D2 /* NSString+URLEncoding.m */; };
+		844316C8171BF06100D227D2 /* NSString+ValueProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 844316BA171BF06100D227D2 /* NSString+ValueProvider.m */; };
+		844316C9171BF06100D227D2 /* NSThread+SendBlockToBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 844316BC171BF06100D227D2 /* NSThread+SendBlockToBackground.m */; };
+		844316CA171BF06100D227D2 /* UIColor-Expanded.m in Sources */ = {isa = PBXBuildFile; fileRef = 844316BE171BF06100D227D2 /* UIColor-Expanded.m */; };
+		844316CB171BF06100D227D2 /* UIViewController+ModalPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 844316C0171BF06100D227D2 /* UIViewController+ModalPresenter.m */; };
+		844316CC171BF06100D227D2 /* UIWindow+InnerViewControllers.m in Sources */ = {isa = PBXBuildFile; fileRef = 844316C2171BF06100D227D2 /* UIWindow+InnerViewControllers.m */; };
+		844316D0171BF08200D227D2 /* NSDateFormatter+FormatingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 844316CE171BF08200D227D2 /* NSDateFormatter+FormatingHelper.m */; };
 		84A58FA3170C6AD400A46E9F /* BeerM.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A58FA2170C6AD400A46E9F /* BeerM.m */; };
 		84A58FAA170DAE4300A46E9F /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A58FA9170DAE4300A46E9F /* FacebookSDK.framework */; };
 		84A58FAC170DAE8800A46E9F /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 84A58FAB170DAE8800A46E9F /* FacebookSDKResources.bundle */; };
@@ -87,9 +98,31 @@
 		84377F2116D92B9400B44D99 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		84377F2316D92B9400B44D99 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		84377F2516D92B9400B44D99 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		844316B0171BF06100D227D2 /* NSNull+ValueProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNull+ValueProvider.m"; sourceTree = "<group>"; };
+		844316B1171BF06100D227D2 /* NSObject+Blocks.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+Blocks.h"; sourceTree = "<group>"; };
+		844316B2171BF06100D227D2 /* NSObject+Blocks.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+Blocks.m"; sourceTree = "<group>"; };
+		844316B3171BF06100D227D2 /* NSString+IsEmpty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+IsEmpty.h"; sourceTree = "<group>"; };
+		844316B4171BF06100D227D2 /* NSString+IsEmpty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+IsEmpty.m"; sourceTree = "<group>"; };
+		844316B5171BF06100D227D2 /* NSString+UniqueId.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+UniqueId.h"; sourceTree = "<group>"; };
+		844316B6171BF06100D227D2 /* NSString+UniqueId.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+UniqueId.m"; sourceTree = "<group>"; };
+		844316B7171BF06100D227D2 /* NSString+URLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLEncoding.h"; sourceTree = "<group>"; };
+		844316B8171BF06100D227D2 /* NSString+URLEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+URLEncoding.m"; sourceTree = "<group>"; };
+		844316B9171BF06100D227D2 /* NSString+ValueProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+ValueProvider.h"; sourceTree = "<group>"; };
+		844316BA171BF06100D227D2 /* NSString+ValueProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+ValueProvider.m"; sourceTree = "<group>"; };
+		844316BB171BF06100D227D2 /* NSThread+SendBlockToBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSThread+SendBlockToBackground.h"; sourceTree = "<group>"; };
+		844316BC171BF06100D227D2 /* NSThread+SendBlockToBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSThread+SendBlockToBackground.m"; sourceTree = "<group>"; };
+		844316BD171BF06100D227D2 /* UIColor-Expanded.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor-Expanded.h"; sourceTree = "<group>"; };
+		844316BE171BF06100D227D2 /* UIColor-Expanded.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor-Expanded.m"; sourceTree = "<group>"; };
+		844316BF171BF06100D227D2 /* UIViewController+ModalPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+ModalPresenter.h"; sourceTree = "<group>"; };
+		844316C0171BF06100D227D2 /* UIViewController+ModalPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+ModalPresenter.m"; sourceTree = "<group>"; };
+		844316C1171BF06100D227D2 /* UIWindow+InnerViewControllers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIWindow+InnerViewControllers.h"; sourceTree = "<group>"; };
+		844316C2171BF06100D227D2 /* UIWindow+InnerViewControllers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIWindow+InnerViewControllers.m"; sourceTree = "<group>"; };
+		844316CD171BF08200D227D2 /* NSDateFormatter+FormatingHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+FormatingHelper.h"; sourceTree = "<group>"; };
+		844316CE171BF08200D227D2 /* NSDateFormatter+FormatingHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+FormatingHelper.m"; sourceTree = "<group>"; };
+		844316CF171BF08200D227D2 /* NSNull+ValueProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNull+ValueProvider.h"; sourceTree = "<group>"; };
 		84A58FA1170C6AD400A46E9F /* BeerM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeerM.h; path = Models/BeerM.h; sourceTree = "<group>"; };
 		84A58FA2170C6AD400A46E9F /* BeerM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BeerM.m; path = Models/BeerM.m; sourceTree = "<group>"; };
-		84A58FA7170DADF900A46E9F /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../Users/admin/Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		84A58FA7170DADF900A46E9F /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = /Users/admin/Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<absolute>"; };
 		84A58FA9170DAE4300A46E9F /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../Users/admin/Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		84A58FAB170DAE8800A46E9F /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = ../../../Users/admin/Documents/FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle; sourceTree = "<group>"; };
 		84A58FAD170DAEA800A46E9F /* FBUserSettingsViewResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FBUserSettingsViewResources.bundle; path = ../../../Users/admin/Documents/FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FBUserSettingsViewResources.bundle; sourceTree = "<group>"; };
@@ -214,10 +247,6 @@
 		84377F0316D92B9400B44D99 = {
 			isa = PBXGroup;
 			children = (
-				84A58FB3170DAECB00A46E9F /* Social.framework */,
-				84A58FB1170DAEC300A46E9F /* Accounts.framework */,
-				84A58FAF170DAEBC00A46E9F /* AdSupport.framework */,
-				84A58FA7170DADF900A46E9F /* FacebookSDK.framework */,
 				84B58CCF16DCEA030097CD67 /* EgoRefresh */,
 				84B58CA516DB8E7D0097CD67 /* MBProgressHUD */,
 				84B58CA116DB8E740097CD67 /* MSLabel */,
@@ -241,6 +270,10 @@
 		84377F0E16D92B9400B44D99 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				84A58FB3170DAECB00A46E9F /* Social.framework */,
+				84A58FB1170DAEC300A46E9F /* Accounts.framework */,
+				84A58FAF170DAEBC00A46E9F /* AdSupport.framework */,
+				84A58FA7170DADF900A46E9F /* FacebookSDK.framework */,
 				84A58FAD170DAEA800A46E9F /* FBUserSettingsViewResources.bundle */,
 				84A58FAB170DAE8800A46E9F /* FacebookSDKResources.bundle */,
 				84A58FA9170DAE4300A46E9F /* FacebookSDK.framework */,
@@ -390,6 +423,28 @@
 		84B58C7E16DB8DEC0097CD67 /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				844316CD171BF08200D227D2 /* NSDateFormatter+FormatingHelper.h */,
+				844316CE171BF08200D227D2 /* NSDateFormatter+FormatingHelper.m */,
+				844316CF171BF08200D227D2 /* NSNull+ValueProvider.h */,
+				844316B0171BF06100D227D2 /* NSNull+ValueProvider.m */,
+				844316B1171BF06100D227D2 /* NSObject+Blocks.h */,
+				844316B2171BF06100D227D2 /* NSObject+Blocks.m */,
+				844316B3171BF06100D227D2 /* NSString+IsEmpty.h */,
+				844316B4171BF06100D227D2 /* NSString+IsEmpty.m */,
+				844316B5171BF06100D227D2 /* NSString+UniqueId.h */,
+				844316B6171BF06100D227D2 /* NSString+UniqueId.m */,
+				844316B7171BF06100D227D2 /* NSString+URLEncoding.h */,
+				844316B8171BF06100D227D2 /* NSString+URLEncoding.m */,
+				844316B9171BF06100D227D2 /* NSString+ValueProvider.h */,
+				844316BA171BF06100D227D2 /* NSString+ValueProvider.m */,
+				844316BB171BF06100D227D2 /* NSThread+SendBlockToBackground.h */,
+				844316BC171BF06100D227D2 /* NSThread+SendBlockToBackground.m */,
+				844316BD171BF06100D227D2 /* UIColor-Expanded.h */,
+				844316BE171BF06100D227D2 /* UIColor-Expanded.m */,
+				844316BF171BF06100D227D2 /* UIViewController+ModalPresenter.h */,
+				844316C0171BF06100D227D2 /* UIViewController+ModalPresenter.m */,
+				844316C1171BF06100D227D2 /* UIWindow+InnerViewControllers.h */,
+				844316C2171BF06100D227D2 /* UIWindow+InnerViewControllers.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -629,6 +684,17 @@
 				84D14A501715C65400F0660C /* BeersService.m in Sources */,
 				84D14A531715C7D900F0660C /* FavoriteBeersService.m in Sources */,
 				84D14A561715C99800F0660C /* PlaceDetailsViewController.m in Sources */,
+				844316C3171BF06100D227D2 /* NSNull+ValueProvider.m in Sources */,
+				844316C4171BF06100D227D2 /* NSObject+Blocks.m in Sources */,
+				844316C5171BF06100D227D2 /* NSString+IsEmpty.m in Sources */,
+				844316C6171BF06100D227D2 /* NSString+UniqueId.m in Sources */,
+				844316C7171BF06100D227D2 /* NSString+URLEncoding.m in Sources */,
+				844316C8171BF06100D227D2 /* NSString+ValueProvider.m in Sources */,
+				844316C9171BF06100D227D2 /* NSThread+SendBlockToBackground.m in Sources */,
+				844316CA171BF06100D227D2 /* UIColor-Expanded.m in Sources */,
+				844316CB171BF06100D227D2 /* UIViewController+ModalPresenter.m in Sources */,
+				844316CC171BF06100D227D2 /* UIWindow+InnerViewControllers.m in Sources */,
+				844316D0171BF08200D227D2 /* NSDateFormatter+FormatingHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -680,8 +746,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Three Mind (82S9J2S5DJ)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Three Mind (82S9J2S5DJ)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Rony Paikin (HQK8M76JR6)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Rony Paikin (HQK8M76JR6)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -696,8 +762,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "BBBFABB0-56F3-4A41-9E9B-E776528DF250";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BBBFABB0-56F3-4A41-9E9B-E776528DF250";
+				PROVISIONING_PROFILE = "55BA60BD-24C0-497A-9346-750F29DCB7FB";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "55BA60BD-24C0-497A-9346-750F29DCB7FB";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -714,8 +780,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: Three Mind (82S9J2S5DJ)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Three Mind (82S9J2S5DJ)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Rony Paikin (HQK8M76JR6)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Rony Paikin (HQK8M76JR6)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -723,8 +789,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "BBBFABB0-56F3-4A41-9E9B-E776528DF250";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "BBBFABB0-56F3-4A41-9E9B-E776528DF250";
+				PROVISIONING_PROFILE = "55BA60BD-24C0-497A-9346-750F29DCB7FB";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "55BA60BD-24C0-497A-9346-750F29DCB7FB";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

@@ -9,7 +9,15 @@
 #import "BeerRecoAPIClient.h"
 #import "AFJSONRequestOperation.h"
 
+@interface BeerRecoAPIClient ()
+
+@property (nonatomic, strong) NSSet* trustedHosts;
+
+@end
+
 @implementation BeerRecoAPIClient
+
+@synthesize trustedHosts = _trustedHosts;
 
 @synthesize networkReachabilityStatus = _networkReachabilityStatus;
 
@@ -86,6 +94,10 @@
     // Accept HTTP Header; see http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.1
 	[self setDefaultHeader:@"Accept" value:@"application/json"];
     
+    self.parameterEncoding = AFJSONParameterEncoding;
+    
+    self.trustedHosts = [[NSSet alloc] initWithObjects:TrustedServerHost, nil];
+    
     return self;
 }
 
@@ -94,30 +106,44 @@
     return self.networkReachabilityStatus == AFNetworkReachabilityStatusReachableViaWWAN || self.networkReachabilityStatus == AFNetworkReachabilityStatusReachableViaWiFi;
 }
 
+- (void) setSessionTypeHeaderVariablesOnRequest:(NSMutableURLRequest*)request
+{
+    /*
+    NSLog(@"User Public Key is: %@", [GeneralDataStore sharedDataStore].UserPublicKey);
+    [request setValue:[GeneralDataStore sharedDataStore].UserPublicKey forHTTPHeaderField:HTTPHeaderParam_UserIdAuth];
+    
+    [request setValue:[GeneralDataStore sharedDataStore].isInSystemMode ? TrueStr : FalseStr forHTTPHeaderField:HTTPHeaderParam_Sandbox];
+    
+    if ([GeneralDataStore sharedDataStore].isInSystemMode)
+    {
+        NSLog(@"preprod mode: '%@'", [GeneralDataStore sharedDataStore].isInPreProdMode ? TrueStr : FalseStr);
+        [request setValue:[GeneralDataStore sharedDataStore].isInPreProdMode ? TrueStr : FalseStr forHTTPHeaderField:HTTPHeaderParam_PreProd];
+    }
+     */
+}
+
 - (void)performRequestMethod:(NSString*)method
                         path:(NSString *)path
                   parameters:(NSDictionary *)parameters
                      success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                      failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
-    [self performRequestMethod:method path:path parameters:parameters withInterval:0 success:success failure:failure];
+    [self performRequestMethod:method path:path parameters:parameters withInterval:0 withCompletionBlockQueue:nil success:success failure:failure];
 }
 
 - (void)performRequestMethod:(NSString*)method
                         path:(NSString *)path
                   parameters:(NSDictionary *)parameters
                 withInterval:(NSTimeInterval)interval
+    withCompletionBlockQueue:(dispatch_queue_t)completionQueue
                      success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                      failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
-    
-    NSString* fixedPath = [NSString stringWithFormat:@"%@%@", BaseIphonePathPrefix, path];
+    NSString* fixedPath = [NSString stringWithFormat:@"%@%@", BaseIpadPathPrefix, path];
     NSMutableURLRequest *request = [self requestWithMethod:method path:fixedPath parameters:parameters];
+    [self setSessionTypeHeaderVariablesOnRequest:request];
     
-    if (interval > 0)
-    {
-        [request setTimeoutInterval:interval];
-    }
+    [request setTimeoutInterval:(interval > 0) ? interval : ServerReacabilityDefaultTimeout];
     
     NSLog(@"request [%@]",request);
     
@@ -140,9 +166,42 @@
     
     if (!NetworkConfig_ShouldUseCache)
     {
-        [operation setCacheResponseBlock:^NSCachedURLResponse *(NSURLConnection *connection, NSCachedURLResponse *cachedResponse) {
-            return nil;
-        }];
+        [operation setCacheResponseBlock:^NSCachedURLResponse *(NSURLConnection *connection, NSCachedURLResponse *cachedResponse)
+         {
+             return nil;
+         }];
+    }
+    
+    if (NetworkConfig_MenualSSLAuthorization)
+    {
+        [operation setAuthenticationAgainstProtectionSpaceBlock:^BOOL(NSURLConnection *connection, NSURLProtectionSpace *protectionSpace)
+         {
+             return [protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust];
+         }];
+        
+        [operation setAuthenticationChallengeBlock:^(NSURLConnection *connection, NSURLAuthenticationChallenge *challenge)
+         {
+             if ([challenge.protectionSpace.authenticationMethod isEqualToString:NSURLAuthenticationMethodServerTrust])
+             {
+                 
+                 NSLog(@"%@", challenge.protectionSpace.host);
+                 
+                 if ([self.trustedHosts containsObject:challenge.protectionSpace.host])
+                 {
+                     [challenge.sender useCredential:[NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust] forAuthenticationChallenge:challenge];
+                     
+                     return;
+                 }
+             }
+             
+             [challenge.sender continueWithoutCredentialForAuthenticationChallenge:challenge];
+         }];
+    }
+    
+    if (completionQueue != nil)
+    {
+        [operation setFailureCallbackQueue:(completionQueue)];
+        [operation setSuccessCallbackQueue:(completionQueue)];
     }
     
     [self enqueueHTTPRequestOperation:operation];
@@ -197,8 +256,36 @@
    withInterval:(NSTimeInterval)interval
         success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
         failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
-{    
-	[self performRequestMethod:@"GET" path:path parameters:parameters withInterval:interval success:success failure:failure];
+{
+	[self performRequestMethod:@"GET" path:path parameters:parameters withInterval:interval withCompletionBlockQueue:nil success:success failure:failure];
+}
+
+- (void)getPath:(NSString *)path
+     parameters:(NSDictionary *)parameters
+withCompletionBlockQueue:(dispatch_queue_t)completionQueue
+        success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+        failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+	[self performRequestMethod:@"GET" path:path parameters:parameters withInterval:0 withCompletionBlockQueue:completionQueue success:success failure:failure];
+}
+
+- (void)putPath:(NSString *)path
+     parameters:(NSDictionary *)parameters
+withCompletionBlockQueue:(dispatch_queue_t)completionQueue
+        success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+        failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+	[self performRequestMethod:@"PUT" path:path parameters:parameters withInterval:0 withCompletionBlockQueue:completionQueue success:success failure:failure];
+}
+
+- (void)getPath:(NSString *)path
+     parameters:(NSDictionary *)parameters
+   withInterval:(NSTimeInterval)interval
+withCompletionBlockQueue:(dispatch_queue_t)completionQueue
+        success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+        failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+{
+	[self performRequestMethod:@"GET" path:path parameters:parameters withInterval:interval withCompletionBlockQueue:completionQueue success:success failure:failure];
 }
 
 /*

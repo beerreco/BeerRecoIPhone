@@ -91,6 +91,7 @@ void uncaughtExceptionHandler(NSException *exception);
     //LocalizationSetLanguage(@"he-IL");
     
     [BeerRecoAPIClient sharedClient];
+    [GeneralDataStore sharedDataStore];
     
     //[Flurry startSession:FlurryKey];
     [Crashlytics startWithAPIKey:CrashlyticsKey];

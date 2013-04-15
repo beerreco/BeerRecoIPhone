@@ -12,4 +12,6 @@
 
 + (GeneralDataStore*)sharedDataStore;
 
+@property (nonatomic, strong) NSString* FBUserID;
+
 @end

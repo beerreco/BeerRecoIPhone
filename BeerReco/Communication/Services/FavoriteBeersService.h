@@ -10,12 +10,12 @@
 
 @interface FavoriteBeersService : NSObject
 
--(void)getPublicFavoriteBeers:(void (^)(NSArray* beers, NSError *error))onComplete;
+-(void)getPublicFavoriteBeers:(void (^)(NSMutableArray* beers, NSError *error))onComplete;
 
--(void)getFavoriteBeersForUser:(NSString*)userId onComplete:(void (^)(NSArray* beers, NSError *error))onComplete;
+-(void)getFavoriteBeersForUser:(void (^)(NSMutableArray* beers, NSError *error))onComplete;
 
--(void)addBeerToFavorites:(NSString*)beerId forUser:(NSString*)userId onComplete:(void (^)(NSError *error))onComplete;
+-(void)addBeerToFavorites:(NSString*)beerId onComplete:(void (^)(NSError *error))onComplete;
 
--(void)removeBeerFromFavorites:(NSString*)beerId forUser:(NSString*)userId onComplete:(void (^)(NSError *error))onComplete;
+-(void)removeBeerFromFavorites:(NSString*)beerId onComplete:(void (^)(NSError *error))onComplete;
 
 @end

@@ -148,6 +148,8 @@
 
 -(void) setLoading:(BOOL)loading
 {
+    BOOL wasChanged = _loading != loading;
+    
     _loading = loading;
     
     [UIView beginAnimations:nil context:NULL];
@@ -158,7 +160,10 @@
         [UIView setAnimationDuration:0.2];
 		self.tableView.contentInset = UIEdgeInsetsMake(60.0f, 0.0f, 0.0f, 0.0f);
         
-        [self reloading];
+        if (wasChanged)
+        {
+            [self reloading];
+        }
     }
     else
     {        
@@ -168,7 +173,10 @@
         [UIView setAnimationDuration:.3];
         [self.tableView setContentInset:UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f)];
         
-        [self reloaded];
+        if (wasChanged)
+        {            
+            [self reloaded];
+        }
     }
     
     [UIView commitAnimations];    

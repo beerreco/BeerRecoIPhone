@@ -10,6 +10,9 @@
 
 @interface BeerCategoryM : NSObject
 
+@property (nonatomic, strong) NSString* id;
+@property (nonatomic, strong) NSString* name;
+
 -(id)initWithJson:(NSDictionary*)json;
 
 @end
