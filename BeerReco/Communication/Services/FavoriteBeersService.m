@@ -23,8 +23,8 @@
 @implementation FavoriteBeersService
 
 -(void)getPublicFavoriteBeers:(void (^)(NSMutableArray* beers, NSError *error))onComplete
-{
-     NSString* path = [NSString stringWithFormat:@"%@/%@", ServicePath_Favorites, PathParam_All];
+{    
+    NSString* path = [NSString stringWithFormat:@"%@/%@", ServicePath_Favorites, PathParam_All];
     
     [[BeerRecoAPIClient sharedClient] getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id JSON)
      {
@@ -50,7 +50,7 @@
 }
 
 -(void)getFavoriteBeersForUser:(void (^)(NSMutableArray* beers, NSError *error))onComplete
-{
+{    
     if ([NSString isNullOrEmpty:[GeneralDataStore sharedDataStore].FBUserID])
     {
         if (onComplete)

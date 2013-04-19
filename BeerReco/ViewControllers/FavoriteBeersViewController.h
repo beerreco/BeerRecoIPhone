@@ -11,11 +11,13 @@
 #import "PullToRefreshViewController.h"
 #import "MBProgressHUD.h"
 
+#import "LoadErrorViewController.h"
+
 #import <FacebookSDK/FacebookSDK.h>
 
 #import "BeerM.h"
 
-@interface FavoriteBeersViewController : PullToRefreshViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate, FBLoginViewDelegate, MBProgressHUDDelegate>
+@interface FavoriteBeersViewController : PullToRefreshViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate, FBLoginViewDelegate, MBProgressHUDDelegate, LoadErrorDelegate>
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *SegFavoriteListType;
 @property (weak, nonatomic) IBOutlet UISearchBar *favoritesSearchBar;

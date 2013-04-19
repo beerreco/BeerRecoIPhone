@@ -10,6 +10,8 @@
 
 @interface FavoriteBeersViewController ()
 
+@property (nonatomic, strong) LoadErrorViewController* loadErrorViewController;
+
 @property (strong, nonatomic) FBLoginView *fbLoginView;
 @property (strong, nonatomic) UIBarButtonItem *btnEditFaforites;
 
@@ -23,6 +25,8 @@
 @end
 
 @implementation FavoriteBeersViewController
+
+@synthesize loadErrorViewController = _loadErrorViewController;
 
 @synthesize HUD = _HUD;
 
@@ -93,6 +97,33 @@
     [self.tableView setBounds:newBounds];
 }
 
+-(LoadErrorViewController*)getErrorViewController
+{
+    if (self.loadErrorViewController == nil)
+    {
+        self.loadErrorViewController = [[LoadErrorViewController alloc] initWithNibName:@"LoadErrorViewController" bundle:nil];
+        self.loadErrorViewController.delegate = self;
+    }
+    
+    return self.loadErrorViewController;
+}
+
+-(void)showErrorView
+{
+    if (self.loadErrorViewController)
+    {
+        return;
+    }
+    
+    CGRect endFrame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    CGRect startFrame = CGRectMake(endFrame.origin.x, endFrame.size.height, endFrame.size.width, endFrame.size.height);
+    
+    [self presentFloatingViewController:[self getErrorViewController] startFrame:startFrame endFrame:endFrame completion:^(BOOL finished)
+     {
+         
+     }];
+}
+
 -(void)loadData
 {
     self.HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -113,15 +144,15 @@
             if (error == nil && beers != nil)
             {
                 self.publicFavoritesArray = beers;
+                
+                self.favoritesArray = [NSMutableArray arrayWithArray:self.publicFavoritesArray];
+                
+                [self dataLoaded];
             }
             else
             {
-                
+                [self showErrorView];
             }
-            
-            self.favoritesArray = [NSMutableArray arrayWithArray:self.publicFavoritesArray];
-            
-            [self dataLoaded];
             
             [self.HUD hide:YES];
         }];
@@ -135,15 +166,15 @@
              if (error == nil && beers != nil)
              {
                  self.privateFavoritesArray = beers;
+                 
+                 self.favoritesArray = [NSMutableArray arrayWithArray:self.privateFavoritesArray];
+                 
+                 [self dataLoaded];
              }
              else
              {
-                 
+                 [self showErrorView];
              }
-             
-             self.favoritesArray = [NSMutableArray arrayWithArray:self.privateFavoritesArray];
-             
-             [self dataLoaded];
              
              [self.HUD hide:YES];
          }];
@@ -222,6 +253,11 @@
 
 - (IBAction)showSearchClicked:(UIBarButtonItem *)sender
 {
+    if (self.loadErrorViewController != nil)
+    {
+        return;
+    }
+    
     // If you're worried that your users might not catch on to the fact that a search bar is available if they scroll to reveal it, a search icon will help them
     // Note that if you didn't hide your search bar, you should probably not include this, as it would be redundant
     [self.favoritesSearchBar becomeFirstResponder];
@@ -229,38 +265,55 @@
 
 - (IBAction)favoriteListTypeChanged:(UISegmentedControl *)sender forEvent:(UIEvent *)event
 {
-    if (self.fbLoginView == nil)
+    if (self.loadErrorViewController)
     {
-        // Create Login View so that the app will be granted "status_update" permission.
-        self.fbLoginView = [[FBLoginView alloc] init];
-        
-        self.fbLoginView.frame =  CGRectMake(self.view.center.x - (self.fbLoginView.frame.size.width / 2), self.view.center.y - (self.fbLoginView.frame.size.height / 2), self.fbLoginView.frame.size.width, self.fbLoginView.frame.size.height);
-
-        self.fbLoginView.delegate = self;
-        
-        [self.view addSubview:self.fbLoginView];
-        
-        [self.fbLoginView sizeToFit];
+        [self.loadErrorViewController removeFloatingViewControllerFromParent:^(BOOL finished)
+         {
+             [self setLoadErrorViewController:nil];
+             
+             [self favoriteListTypeChanged:self.SegFavoriteListType forEvent:nil];
+         }];
     }
     else
     {
-        if (self.SegFavoriteListType.selectedSegmentIndex == 1 && !FBSession.activeSession.isOpen)
+        if (self.fbLoginView == nil)
         {
-            [self.tableView setHidden:YES];
-            [self.fbLoginView setHidden:NO];
+            // Create Login View so that the app will be granted "status_update" permission.
+            self.fbLoginView = [[FBLoginView alloc] init];
+            
+            self.fbLoginView.frame =  CGRectMake(self.view.center.x - (self.fbLoginView.frame.size.width / 2), self.view.center.y - (self.fbLoginView.frame.size.height / 2), self.fbLoginView.frame.size.width, self.fbLoginView.frame.size.height);
+            
+            self.fbLoginView.delegate = self;
+            
+            [self.view addSubview:self.fbLoginView];
+            
+            [self.fbLoginView sizeToFit];
         }
         else
         {
-            [self.tableView setHidden:NO];
-            [self.fbLoginView setHidden:YES];
-            
-            [self loadData];
+            if (self.SegFavoriteListType.selectedSegmentIndex == 1 && !FBSession.activeSession.isOpen)
+            {
+                [self.tableView setHidden:YES];
+                [self.fbLoginView setHidden:NO];
+            }
+            else
+            {
+                [self.tableView setHidden:NO];
+                [self.fbLoginView setHidden:YES];
+                
+                [self loadData];
+            }
         }
-    }    
+    }
 }
 
 -(void)editPrivateFavoritesTable:(id)sender
 {
+    if (self.loadErrorViewController != nil)
+    {
+        return;
+    }
+    
 	if (self.editing)
 	{
 		[self setEditing:NO animated:YES];
@@ -328,6 +381,18 @@
 -(void)reloaded
 {
     [self hideSearchBar];
+}
+
+#pragma mark - LoadErrorDelegate
+
+-(void)reloadRequested
+{
+    [self.loadErrorViewController removeFloatingViewControllerFromParent:^(BOOL finished)
+    {
+        [self setLoadErrorViewController:nil];
+        
+        [self loadData];
+    }];
 }
 
 #pragma mark - UITableViewDataSource

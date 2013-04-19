@@ -28,6 +28,8 @@
 		844316CB171BF06100D227D2 /* UIViewController+ModalPresenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 844316C0171BF06100D227D2 /* UIViewController+ModalPresenter.m */; };
 		844316CC171BF06100D227D2 /* UIWindow+InnerViewControllers.m in Sources */ = {isa = PBXBuildFile; fileRef = 844316C2171BF06100D227D2 /* UIWindow+InnerViewControllers.m */; };
 		844316D0171BF08200D227D2 /* NSDateFormatter+FormatingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 844316CE171BF08200D227D2 /* NSDateFormatter+FormatingHelper.m */; };
+		844316D6172152FB00D227D2 /* LoadErrorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844316D4172152FB00D227D2 /* LoadErrorViewController.m */; };
+		844316D7172152FB00D227D2 /* LoadErrorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 844316D5172152FB00D227D2 /* LoadErrorViewController.xib */; };
 		84A58FA3170C6AD400A46E9F /* BeerM.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A58FA2170C6AD400A46E9F /* BeerM.m */; };
 		84A58FAA170DAE4300A46E9F /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A58FA9170DAE4300A46E9F /* FacebookSDK.framework */; };
 		84A58FAC170DAE8800A46E9F /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 84A58FAB170DAE8800A46E9F /* FacebookSDKResources.bundle */; };
@@ -120,6 +122,9 @@
 		844316CD171BF08200D227D2 /* NSDateFormatter+FormatingHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDateFormatter+FormatingHelper.h"; sourceTree = "<group>"; };
 		844316CE171BF08200D227D2 /* NSDateFormatter+FormatingHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDateFormatter+FormatingHelper.m"; sourceTree = "<group>"; };
 		844316CF171BF08200D227D2 /* NSNull+ValueProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNull+ValueProvider.h"; sourceTree = "<group>"; };
+		844316D3172152FB00D227D2 /* LoadErrorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadErrorViewController.h; path = ViewControllers/LoadErrorViewController.h; sourceTree = "<group>"; };
+		844316D4172152FB00D227D2 /* LoadErrorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoadErrorViewController.m; path = ViewControllers/LoadErrorViewController.m; sourceTree = "<group>"; };
+		844316D5172152FB00D227D2 /* LoadErrorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoadErrorViewController.xib; path = ViewControllers/LoadErrorViewController.xib; sourceTree = "<group>"; };
 		84A58FA1170C6AD400A46E9F /* BeerM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeerM.h; path = Models/BeerM.h; sourceTree = "<group>"; };
 		84A58FA2170C6AD400A46E9F /* BeerM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BeerM.m; path = Models/BeerM.m; sourceTree = "<group>"; };
 		84A58FA7170DADF900A46E9F /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = /Users/admin/Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<absolute>"; };
@@ -322,6 +327,16 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		844316D81721530200D227D2 /* LoadError */ = {
+			isa = PBXGroup;
+			children = (
+				844316D3172152FB00D227D2 /* LoadErrorViewController.h */,
+				844316D4172152FB00D227D2 /* LoadErrorViewController.m */,
+				844316D5172152FB00D227D2 /* LoadErrorViewController.xib */,
+			);
+			name = LoadError;
+			sourceTree = "<group>";
+		};
 		84A58FBB1711D76E00A46E9F /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -345,6 +360,7 @@
 				84A58FBB1711D76E00A46E9F /* Settings */,
 				84D14A581715C9DD00F0660C /* Beers */,
 				84D14A571715C9BC00F0660C /* Places */,
+				844316D81721530200D227D2 /* LoadError */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -627,6 +643,7 @@
 				84B58CF416DD45820097CD67 /* Localizable.strings in Resources */,
 				84A58FAC170DAE8800A46E9F /* FacebookSDKResources.bundle in Resources */,
 				84A58FAE170DAEA800A46E9F /* FBUserSettingsViewResources.bundle in Resources */,
+				844316D7172152FB00D227D2 /* LoadErrorViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -723,6 +740,7 @@
 				844316CB171BF06100D227D2 /* UIViewController+ModalPresenter.m in Sources */,
 				844316CC171BF06100D227D2 /* UIWindow+InnerViewControllers.m in Sources */,
 				844316D0171BF08200D227D2 /* NSDateFormatter+FormatingHelper.m in Sources */,
+				844316D6172152FB00D227D2 /* LoadErrorViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
