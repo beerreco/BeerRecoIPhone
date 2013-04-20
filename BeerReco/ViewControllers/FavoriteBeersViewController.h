@@ -7,15 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BaseSearchableViewController.h"
 #import "PullToRefreshViewController.h"
 #import "MBProgressHUD.h"
 
 #import "LoadErrorViewController.h"
 
-#import <FacebookSDK/FacebookSDK.h>
-
 #import "BeerM.h"
+
+#import <FacebookSDK/FacebookSDK.h>
 
 @interface FavoriteBeersViewController : PullToRefreshViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate, FBLoginViewDelegate, MBProgressHUDDelegate, LoadErrorDelegate>
 

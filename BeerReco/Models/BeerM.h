@@ -24,5 +24,6 @@
 @property (nonatomic, strong) NSString *beerIconUrl;
 
 -(id)initWithJson:(NSDictionary*)json;
+-(NSDictionary*)ToDictionary;
 
 @end

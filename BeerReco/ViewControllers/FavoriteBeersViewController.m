@@ -126,9 +126,12 @@
 
 -(void)loadData
 {
-    self.HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    self.HUD.delegate = self;
-    self.HUD.dimBackground = YES;
+    if (self.HUD == nil)
+    {
+        self.HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        self.HUD.delegate = self;
+        self.HUD.dimBackground = YES;
+    }
     
     if (self.SegFavoriteListType.selectedSegmentIndex == 0)
     {        
@@ -417,11 +420,11 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    static NSString *CellIdentifier = @"cell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if ( cell == nil )
     {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
     // Create a new Candy Object
@@ -439,6 +442,8 @@
     
     // Configure the cell
     [cell.textLabel setText:beer.name];
+    [cell.detailTextLabel setText:@"Beer Category"];
+    [cell.imageView setImage:[UIImage imageNamed:@"weihenstephaner_hefe_icon"]];
     
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     [cell setEditingAccessoryType:UITableViewCellAccessoryNone];

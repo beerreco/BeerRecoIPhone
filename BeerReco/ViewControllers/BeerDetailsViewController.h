@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BaseSearchableViewController.h"
 
 @interface BeerDetailsViewController : UIViewController
 

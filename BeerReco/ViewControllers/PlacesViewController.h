@@ -7,7 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PullToRefreshViewController.h"
+#import "MBProgressHUD.h"
 
-@interface PlacesViewController : UIViewController
+#import "LoadErrorViewController.h"
+
+#import "BeerM.h"
+
+@interface PlacesViewController : PullToRefreshViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate, MBProgressHUDDelegate, LoadErrorDelegate>
+
+@property (weak, nonatomic) IBOutlet UISearchBar *placesSearchBar;
+
+- (IBAction)showSearchClicked:(id)sender;
 
 @end

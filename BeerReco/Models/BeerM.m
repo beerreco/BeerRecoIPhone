@@ -8,6 +8,9 @@
 
 #import "BeerM.h"
 
+#define PropertyName_Id @"id"
+#define PropertyName_Name @"name"
+
 @implementation BeerM
 
 @synthesize id = _id;
@@ -59,13 +62,36 @@
 
 #pragma mark - Class Methods
 
-+ (BeerM*)beerOfCategory:(NSString *)category name:(NSString *)name
+-(NSDictionary*)ToDictionary
 {
-    BeerM *newBeer = [[self alloc] init];
-    [newBeer setCategory:category];
-    [newBeer setName:name];
+    NSMutableDictionary* propertyDict = [[NSMutableDictionary alloc] init];
+    [propertyDict setObject:self.id forKey:PropertyName_Id];
+    [propertyDict setObject:self.name forKey:PropertyName_Name];
+    /*
+    NSNumber* dateNumber = [NSDateFormatter getWindowsTimestampFromDate:self.created];
+    [propertyDict setObject:dateNumber forKey:PropertyName_created];
     
-    return newBeer;
+    if (![NSString isNullOrEmpty:self.resourceId])
+    {
+        [propertyDict setObject:self.resourceId forKey:PropertyName_resourceId];
+    }
+    
+    if (self.screen != -1)
+    {
+        [propertyDict setValue:[NSNumber numberWithInt:self.screen] forKey:PropertyName_screen];
+    }
+    
+    if (self.action != -1)
+    {
+        [propertyDict setValue:[NSNumber numberWithInt:self.action] forKey:PropertyName_action];
+    }
+    
+    if (self.resourceType != -1)
+    {
+        [propertyDict setValue:[NSNumber numberWithInt:self.resourceType] forKey:PropertyName_resourceType];
+    }
+    */
+    return propertyDict;
 }
 
 @end

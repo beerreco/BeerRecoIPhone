@@ -30,6 +30,14 @@
 		844316D0171BF08200D227D2 /* NSDateFormatter+FormatingHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 844316CE171BF08200D227D2 /* NSDateFormatter+FormatingHelper.m */; };
 		844316D6172152FB00D227D2 /* LoadErrorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844316D4172152FB00D227D2 /* LoadErrorViewController.m */; };
 		844316D7172152FB00D227D2 /* LoadErrorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 844316D5172152FB00D227D2 /* LoadErrorViewController.xib */; };
+		844316DB17215EBC00D227D2 /* weihenstephaner_hefe_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 844316DA17215EBC00D227D2 /* weihenstephaner_hefe_icon.png */; };
+		844316E21721893C00D227D2 /* beerreco_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 844316E01721893C00D227D2 /* beerreco_icon.png */; };
+		844316E31721893C00D227D2 /* beerreco_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 844316E11721893C00D227D2 /* beerreco_icon@2x.png */; };
+		844316E71722E2DA00D227D2 /* 19-gear.png in Resources */ = {isa = PBXBuildFile; fileRef = 844316E41722E2DA00D227D2 /* 19-gear.png */; };
+		844316E81722E2DA00D227D2 /* 88-beer-mug.png in Resources */ = {isa = PBXBuildFile; fileRef = 844316E51722E2DA00D227D2 /* 88-beer-mug.png */; };
+		844316E91722E2DA00D227D2 /* 178-city.png in Resources */ = {isa = PBXBuildFile; fileRef = 844316E61722E2DA00D227D2 /* 178-city.png */; };
+		844316EC1722FE7B00D227D2 /* CategoriesService.m in Sources */ = {isa = PBXBuildFile; fileRef = 844316EB1722FE7B00D227D2 /* CategoriesService.m */; };
+		844316EF1722FE8D00D227D2 /* PlacesService.m in Sources */ = {isa = PBXBuildFile; fileRef = 844316EE1722FE8D00D227D2 /* PlacesService.m */; };
 		84A58FA3170C6AD400A46E9F /* BeerM.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A58FA2170C6AD400A46E9F /* BeerM.m */; };
 		84A58FAA170DAE4300A46E9F /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A58FA9170DAE4300A46E9F /* FacebookSDK.framework */; };
 		84A58FAC170DAE8800A46E9F /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 84A58FAB170DAE8800A46E9F /* FacebookSDKResources.bundle */; };
@@ -125,6 +133,16 @@
 		844316D3172152FB00D227D2 /* LoadErrorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadErrorViewController.h; path = ViewControllers/LoadErrorViewController.h; sourceTree = "<group>"; };
 		844316D4172152FB00D227D2 /* LoadErrorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoadErrorViewController.m; path = ViewControllers/LoadErrorViewController.m; sourceTree = "<group>"; };
 		844316D5172152FB00D227D2 /* LoadErrorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoadErrorViewController.xib; path = ViewControllers/LoadErrorViewController.xib; sourceTree = "<group>"; };
+		844316DA17215EBC00D227D2 /* weihenstephaner_hefe_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = weihenstephaner_hefe_icon.png; path = Resources/ContentImages/weihenstephaner_hefe_icon.png; sourceTree = "<group>"; };
+		844316E01721893C00D227D2 /* beerreco_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = beerreco_icon.png; sourceTree = "<group>"; };
+		844316E11721893C00D227D2 /* beerreco_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "beerreco_icon@2x.png"; sourceTree = "<group>"; };
+		844316E41722E2DA00D227D2 /* 19-gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "19-gear.png"; path = "Resources/Images/19-gear.png"; sourceTree = "<group>"; };
+		844316E51722E2DA00D227D2 /* 88-beer-mug.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "88-beer-mug.png"; path = "Resources/Images/88-beer-mug.png"; sourceTree = "<group>"; };
+		844316E61722E2DA00D227D2 /* 178-city.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "178-city.png"; path = "Resources/Images/178-city.png"; sourceTree = "<group>"; };
+		844316EA1722FE7B00D227D2 /* CategoriesService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoriesService.h; path = Communication/Services/CategoriesService.h; sourceTree = "<group>"; };
+		844316EB1722FE7B00D227D2 /* CategoriesService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CategoriesService.m; path = Communication/Services/CategoriesService.m; sourceTree = "<group>"; };
+		844316ED1722FE8C00D227D2 /* PlacesService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlacesService.h; path = Communication/Services/PlacesService.h; sourceTree = "<group>"; };
+		844316EE1722FE8D00D227D2 /* PlacesService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlacesService.m; path = Communication/Services/PlacesService.m; sourceTree = "<group>"; };
 		84A58FA1170C6AD400A46E9F /* BeerM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeerM.h; path = Models/BeerM.h; sourceTree = "<group>"; };
 		84A58FA2170C6AD400A46E9F /* BeerM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BeerM.m; path = Models/BeerM.m; sourceTree = "<group>"; };
 		84A58FA7170DADF900A46E9F /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = /Users/admin/Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<absolute>"; };
@@ -337,6 +355,14 @@
 			name = LoadError;
 			sourceTree = "<group>";
 		};
+		844316D917215EA900D227D2 /* ContentImages */ = {
+			isa = PBXGroup;
+			children = (
+				844316DA17215EBC00D227D2 /* weihenstephaner_hefe_icon.png */,
+			);
+			name = ContentImages;
+			sourceTree = "<group>";
+		};
 		84A58FBB1711D76E00A46E9F /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -368,6 +394,7 @@
 		84B58C6616DB8DA00097CD67 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				844316D917215EA900D227D2 /* ContentImages */,
 				84B58C6716DB8DA60097CD67 /* Images */,
 			);
 			name = Resources;
@@ -376,6 +403,11 @@
 		84B58C6716DB8DA60097CD67 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				844316E41722E2DA00D227D2 /* 19-gear.png */,
+				844316E51722E2DA00D227D2 /* 88-beer-mug.png */,
+				844316E61722E2DA00D227D2 /* 178-city.png */,
+				844316E01721893C00D227D2 /* beerreco_icon.png */,
+				844316E11721893C00D227D2 /* beerreco_icon@2x.png */,
 				84B58CD616DD0A8E0097CD67 /* RefreshArrow.png */,
 				84B58CD716DD0A8E0097CD67 /* RefreshArrow@2x.png */,
 				84B58CD816DD0A8E0097CD67 /* whiteArrow.png */,
@@ -419,6 +451,10 @@
 				84D14A4F1715C65400F0660C /* BeersService.m */,
 				84D14A511715C7D900F0660C /* FavoriteBeersService.h */,
 				84D14A521715C7D900F0660C /* FavoriteBeersService.m */,
+				844316EA1722FE7B00D227D2 /* CategoriesService.h */,
+				844316EB1722FE7B00D227D2 /* CategoriesService.m */,
+				844316ED1722FE8C00D227D2 /* PlacesService.h */,
+				844316EE1722FE8D00D227D2 /* PlacesService.m */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -644,6 +680,12 @@
 				84A58FAC170DAE8800A46E9F /* FacebookSDKResources.bundle in Resources */,
 				84A58FAE170DAEA800A46E9F /* FBUserSettingsViewResources.bundle in Resources */,
 				844316D7172152FB00D227D2 /* LoadErrorViewController.xib in Resources */,
+				844316DB17215EBC00D227D2 /* weihenstephaner_hefe_icon.png in Resources */,
+				844316E21721893C00D227D2 /* beerreco_icon.png in Resources */,
+				844316E31721893C00D227D2 /* beerreco_icon@2x.png in Resources */,
+				844316E71722E2DA00D227D2 /* 19-gear.png in Resources */,
+				844316E81722E2DA00D227D2 /* 88-beer-mug.png in Resources */,
+				844316E91722E2DA00D227D2 /* 178-city.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -741,6 +783,8 @@
 				844316CC171BF06100D227D2 /* UIWindow+InnerViewControllers.m in Sources */,
 				844316D0171BF08200D227D2 /* NSDateFormatter+FormatingHelper.m in Sources */,
 				844316D6172152FB00D227D2 /* LoadErrorViewController.m in Sources */,
+				844316EC1722FE7B00D227D2 /* CategoriesService.m in Sources */,
+				844316EF1722FE8D00D227D2 /* PlacesService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
