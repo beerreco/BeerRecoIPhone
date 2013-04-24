@@ -68,7 +68,6 @@
     }
     
     NSDictionary* params = @{QueryParam_Beer:[beer ToDictionary]};
-    //NSDictionary* dict = @{@"id": @"id", @"name": @"name"};
     
     NSString* path = [NSString stringWithFormat:@"%@/%@", ServicePath_Beers, PathParam_Add];
     

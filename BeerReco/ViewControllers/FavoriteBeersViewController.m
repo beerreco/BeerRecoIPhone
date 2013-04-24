@@ -49,14 +49,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    BeerM* beer = [[BeerM alloc] init];
-    beer.id = [NSString uuid];
-    beer.name = @"beer1";
-    
-    [[ComServices sharedComServices].beersService addBeer:beer onComplete:^(NSError *error) {
-        
-    }];
     
     [self visualSetup];
 
