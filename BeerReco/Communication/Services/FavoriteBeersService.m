@@ -12,13 +12,13 @@
 #define ServicePath_Favorites @"/favorite"
 
 #define PathParam_All @"all"
-#define PathParam_Delete @"Delete"
-#define PathParam_Add @"Add"
+#define PathParam_Delete @"delete"
+#define PathParam_Add @"add"
 
 #define QueryParam_UserID @"userId"
 #define QueryParam_BeerID @"beerId"
 
-#define ResultPath_Beers @"beer"
+#define ResultPath_Beers @"beers"
 
 @implementation FavoriteBeersService
 

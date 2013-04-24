@@ -11,7 +11,8 @@
 
 @interface BeerRecoAPIClient : AFHTTPClient
 
-#define TrustedServerHost @"beerreco.appspot.com"
+//#define TrustedServerHost @"beerreco.appspot.com"
+#define TrustedServerHost @"localhost:8888"
 
 #define DateFromServerFormat @"MMM dd, yyyy hh':'mm':'ss a"
 

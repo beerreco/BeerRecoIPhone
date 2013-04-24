@@ -10,7 +10,7 @@
 
 #define ServicePath_Beers @"/beers"
 
-#define PathParam_Add @"Add"
+#define PathParam_Add @"add"
 
 #define QueryParam_Beer @"beer"
 
@@ -68,6 +68,7 @@
     }
     
     NSDictionary* params = @{QueryParam_Beer:[beer ToDictionary]};
+    //NSDictionary* dict = @{@"id": @"id", @"name": @"name"};
     
     NSString* path = [NSString stringWithFormat:@"%@/%@", ServicePath_Beers, PathParam_Add];
     
