@@ -117,7 +117,7 @@
         self.HUD.dimBackground = YES;
     }
     
-    [[ComServices sharedComServices].favoriteBeersService getPublicFavoriteBeers:^(NSMutableArray *beers, NSError *error)
+    [[ComServices sharedComServices].categoriesService getBeersByCatergory:@"category" oncComplete:^(NSMutableArray *beers, NSError *error)
      {
          if (error == nil && beers != nil)
          {
@@ -189,13 +189,17 @@
         if (sender == self.searchDisplayController.searchResultsTableView)
         {
             NSIndexPath *indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
-            NSString *destinationTitle = [[self.filteredItemArray objectAtIndex:indexPath.row] name];
+            BeerViewM* beerView = [self.filteredItemArray objectAtIndex:indexPath.row];
+            
+            NSString *destinationTitle = [beerView.beer name];
             [beerDetailsViewController setTitle:destinationTitle];
         }
         else
         {
             NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-            NSString *destinationTitle = [[self.itemsArray objectAtIndex:indexPath.row] name];
+            BeerViewM* beerView = [self.itemsArray objectAtIndex:indexPath.row];
+            
+            NSString *destinationTitle = [beerView.beer name];
             [beerDetailsViewController setTitle:destinationTitle];
         }
     }
@@ -262,21 +266,21 @@
     }
     
     // Create a new Candy Object
-    BeerM *beer = nil;
+    BeerViewM *beerView = nil;
     
     // Check to see whether the normal table or search results table is being displayed and set the Candy object from the appropriate array
     if (tableView == self.searchDisplayController.searchResultsTableView)
 	{
-        beer = [self.filteredItemArray objectAtIndex:indexPath.row];
+        beerView = [self.filteredItemArray objectAtIndex:indexPath.row];
     }
 	else
 	{
-        beer = [self.itemsArray objectAtIndex:indexPath.row];
+        beerView = [self.itemsArray objectAtIndex:indexPath.row];
     }
     
     // Configure the cell
-    [cell.textLabel setText:beer.name];
-    [cell.detailTextLabel setText:@"Beer Category"];
+    [cell.textLabel setText:beerView.beer.name];
+    [cell.detailTextLabel setText:beerView.beerCategory.name];
     [cell.imageView setImage:[UIImage imageNamed:@"weihenstephaner_hefe_icon"]];
     
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];

@@ -20,7 +20,7 @@
 @property (nonatomic, strong) NSString *brewery;
 @property (nonatomic, strong) NSString *madeOf;
 @property (nonatomic) float alchoholPrecent;
-@property (nonatomic, strong) BeerCategoryM *category;
+@property (nonatomic, strong) NSString *beerTypeId;
 @property (nonatomic, strong) NSString *beerIconUrl;
 
 -(id)initWithJson:(NSDictionary*)json;

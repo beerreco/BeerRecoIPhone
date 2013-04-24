@@ -12,8 +12,6 @@
 
 @interface BeersService : NSObject
 
--(void)getBeersByCatergory:(NSString*)categoryId oncComplete:(void (^)(NSMutableArray* beers, NSError *error))onComplete;
-
 -(void)addBeer:(BeerM*)beer onComplete:(void (^)(NSError *error))onComplete;
 
 @end

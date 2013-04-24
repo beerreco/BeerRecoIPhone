@@ -93,6 +93,7 @@
 		84D14A501715C65400F0660C /* BeersService.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D14A4F1715C65400F0660C /* BeersService.m */; };
 		84D14A531715C7D900F0660C /* FavoriteBeersService.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D14A521715C7D900F0660C /* FavoriteBeersService.m */; };
 		84D14A561715C99800F0660C /* PlaceDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D14A551715C99800F0660C /* PlaceDetailsViewController.m */; };
+		84DB4F711728968600875ACA /* BeerViewM.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DB4F701728968600875ACA /* BeerViewM.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -240,6 +241,8 @@
 		84D14A521715C7D900F0660C /* FavoriteBeersService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FavoriteBeersService.m; path = Communication/Services/FavoriteBeersService.m; sourceTree = "<group>"; };
 		84D14A541715C99800F0660C /* PlaceDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlaceDetailsViewController.h; path = ViewControllers/PlaceDetailsViewController.h; sourceTree = "<group>"; };
 		84D14A551715C99800F0660C /* PlaceDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlaceDetailsViewController.m; path = ViewControllers/PlaceDetailsViewController.m; sourceTree = "<group>"; };
+		84DB4F6F1728968600875ACA /* BeerViewM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeerViewM.h; path = Models/BeerViewM.h; sourceTree = "<group>"; };
+		84DB4F701728968600875ACA /* BeerViewM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BeerViewM.m; path = Models/BeerViewM.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -468,6 +471,8 @@
 				84D14A491715C5C300F0660C /* PlaceM.m */,
 				84D14A4B1715C5E400F0660C /* BeerCategoryM.h */,
 				84D14A4C1715C5E400F0660C /* BeerCategoryM.m */,
+				84DB4F6F1728968600875ACA /* BeerViewM.h */,
+				84DB4F701728968600875ACA /* BeerViewM.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -785,6 +790,7 @@
 				844316D6172152FB00D227D2 /* LoadErrorViewController.m in Sources */,
 				844316EC1722FE7B00D227D2 /* CategoriesService.m in Sources */,
 				844316EF1722FE8D00D227D2 /* PlacesService.m in Sources */,
+				84DB4F711728968600875ACA /* BeerViewM.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -852,8 +858,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				ONLY_ACTIVE_ARCH = YES;
-				PROVISIONING_PROFILE = "55BA60BD-24C0-497A-9346-750F29DCB7FB";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "55BA60BD-24C0-497A-9346-750F29DCB7FB";
+				PROVISIONING_PROFILE = "8BC739C9-AAFB-470D-9D49-54024B198AB1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8BC739C9-AAFB-470D-9D49-54024B198AB1";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -879,8 +885,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "55BA60BD-24C0-497A-9346-750F29DCB7FB";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "55BA60BD-24C0-497A-9346-750F29DCB7FB";
+				PROVISIONING_PROFILE = "8BC739C9-AAFB-470D-9D49-54024B198AB1";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "8BC739C9-AAFB-470D-9D49-54024B198AB1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};

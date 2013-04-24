@@ -19,8 +19,8 @@
 
 @property (strong,nonatomic) NSMutableArray *publicFavoritesArray;
 @property (strong,nonatomic) NSMutableArray *privateFavoritesArray;
-@property (strong,nonatomic) NSMutableArray *favoritesArray;
-@property (strong,nonatomic) NSMutableArray *filteredFavoritesArray;
+@property (strong,nonatomic) NSMutableArray *itemsArray;
+@property (strong,nonatomic) NSMutableArray *filteredItemsArray;
 
 @end
 
@@ -36,8 +36,8 @@
 @synthesize publicFavoritesArray = _publicFavoritesArray;
 @synthesize privateFavoritesArray = _privateFavoritesArray;
 
-@synthesize favoritesArray = _favoritesArray;
-@synthesize filteredFavoritesArray = _filteredFavoritesArray;
+@synthesize itemsArray = _itemsArray;
+@synthesize filteredItemsArray = _filteredItemsArray;
 @synthesize SegFavoriteListType = _SegFavoriteListType;
 @synthesize favoritesSearchBar = _favoritesSearchBar;
 
@@ -148,7 +148,7 @@
             {
                 self.publicFavoritesArray = beers;
                 
-                self.favoritesArray = [NSMutableArray arrayWithArray:self.publicFavoritesArray];
+                self.itemsArray = [NSMutableArray arrayWithArray:self.publicFavoritesArray];
                 
                 [self dataLoaded];
             }
@@ -170,7 +170,7 @@
              {
                  self.privateFavoritesArray = beers;
                  
-                 self.favoritesArray = [NSMutableArray arrayWithArray:self.privateFavoritesArray];
+                 self.itemsArray = [NSMutableArray arrayWithArray:self.privateFavoritesArray];
                  
                  [self dataLoaded];
              }
@@ -187,7 +187,7 @@
 -(void)dataLoaded
 {
     // Initialize the filteredCandyArray with a capacity equal to the candyArray's capacity
-    self.filteredFavoritesArray = [NSMutableArray arrayWithCapacity:self.favoritesArray.count];
+    self.filteredItemsArray = [NSMutableArray arrayWithCapacity:self.itemsArray.count];
     
     [self.tableView reloadData];
     
@@ -207,8 +207,8 @@
     {
         if (error == nil)
         {
-            [self.favoritesArray removeObject:beer];
-            [self.filteredFavoritesArray removeObject:beer];
+            [self.itemsArray removeObject:beer];
+            [self.filteredItemsArray removeObject:beer];
         }
         
         [self.HUD hide:YES];
@@ -334,13 +334,13 @@
 	// Update the filtered array based on the search text and scope.
 	
     // Remove all objects from the filtered search array
-	[self.filteredFavoritesArray removeAllObjects];
+	[self.filteredItemsArray removeAllObjects];
     
 	// Filter the array using NSPredicate
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.name contains[c] %@",searchText];
-    NSArray *tempArray = [self.favoritesArray filteredArrayUsingPredicate:predicate];
+    NSArray *tempArray = [self.itemsArray filteredArrayUsingPredicate:predicate];
     
-    self.filteredFavoritesArray = [NSMutableArray arrayWithArray:tempArray];
+    self.filteredItemsArray = [NSMutableArray arrayWithArray:tempArray];
 }
 
 #pragma mark - Segue
@@ -355,13 +355,17 @@
         if (sender == self.searchDisplayController.searchResultsTableView)
         {
             NSIndexPath *indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
-            NSString *destinationTitle = [[self.filteredFavoritesArray objectAtIndex:indexPath.row] name];
+            BeerViewM* beerView = [self.filteredItemsArray objectAtIndex:indexPath.row];
+            
+            NSString *destinationTitle = [beerView.beer name];
             [beerDetailsViewController setTitle:destinationTitle];
         }
         else
         {
             NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-            NSString *destinationTitle = [[self.favoritesArray objectAtIndex:indexPath.row] name];
+            BeerViewM* beerView = [self.itemsArray objectAtIndex:indexPath.row];
+            
+            NSString *destinationTitle = [beerView.beer name];
             [beerDetailsViewController setTitle:destinationTitle];
         }
     }
@@ -410,11 +414,11 @@
     // Check to see whether the normal table or search results table is being displayed and return the count from the appropriate array
     if (tableView == self.searchDisplayController.searchResultsTableView)
 	{
-        return [self.filteredFavoritesArray count];
+        return [self.filteredItemsArray count];
     }
 	else
 	{
-        return [self.favoritesArray count];
+        return [self.itemsArray count];
     }
 }
 
@@ -428,21 +432,21 @@
     }
     
     // Create a new Candy Object
-    BeerM *beer = nil;
+    BeerViewM *beerView = nil;
     
     // Check to see whether the normal table or search results table is being displayed and set the Candy object from the appropriate array
     if (tableView == self.searchDisplayController.searchResultsTableView)
 	{
-        beer = [self.filteredFavoritesArray objectAtIndex:indexPath.row];
+        beerView = [self.filteredItemsArray objectAtIndex:indexPath.row];
     }
 	else
 	{
-        beer = [self.favoritesArray objectAtIndex:indexPath.row];
+        beerView = [self.itemsArray objectAtIndex:indexPath.row];
     }
     
     // Configure the cell
-    [cell.textLabel setText:beer.name];
-    [cell.detailTextLabel setText:@"Beer Category"];
+    [cell.textLabel setText:beerView.beer.name];
+    [cell.detailTextLabel setText:beerView.beerCategory.name];
     [cell.imageView setImage:[UIImage imageNamed:@"weihenstephaner_hefe_icon"]];
     
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
@@ -496,8 +500,8 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
         
         if (aTableView == self.searchDisplayController.searchResultsTableView)
         {
-            beer = [self.filteredFavoritesArray objectAtIndex:indexPath.row];
-            beerIndex = [NSIndexPath indexPathForItem:[self.favoritesArray indexOfObject:beer] inSection:indexPath.section];
+            beer = [self.filteredItemsArray objectAtIndex:indexPath.row];
+            beerIndex = [NSIndexPath indexPathForItem:[self.itemsArray indexOfObject:beer] inSection:indexPath.section];
             
             [self removeFromFavorites:beer onComplete:^(NSError *error)
             {
@@ -511,7 +515,7 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
         }
         else
         {
-            beer = [self.favoritesArray objectAtIndex:indexPath.row];
+            beer = [self.itemsArray objectAtIndex:indexPath.row];
             [self removeFromFavorites:beer onComplete:^(NSError *error)
              {
                  if (error == nil)

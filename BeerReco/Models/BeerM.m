@@ -16,7 +16,7 @@
 #define PropertyName_Origin @"origin"
 #define PropertyName_Brewery @"brewery"
 #define PropertyName_MadeOf @"madeOf"
-#define PropertyName_Type @"type"
+#define PropertyName_BeerTypeId @"beerTypeId"
 #define PropertyName_AlchoholPrecent @"alchoholPrecent"
 #define PropertyName_BeerIconUrl @"beerIconUrl"
 
@@ -30,7 +30,7 @@
 @synthesize origin = _origin;
 @synthesize brewery = _brewery;
 @synthesize madeOf = _madeOf;
-@synthesize category = _category;
+@synthesize beerTypeId = _beerTypeId;
 @synthesize alchoholPrecent = _alchoholPrecent;
 @synthesize beerIconUrl = _beerIconUrl;
 
@@ -56,7 +56,7 @@
     self.brewery = [[json valueForKeyPath:@"brewery"] stringValue];
     self.madeOf = [[json valueForKeyPath:@"madeOf"] stringValue];
     self.alchoholPrecent = [[json valueForKeyPath:@"alchoholPrecent"] floatValue];
-    self.category = [[BeerCategoryM alloc] initWithJson:[json valueForKeyPath:@"type"]];
+    self.beerTypeId = [[[json valueForKeyPath:@"beerTypeId"] stringValue] URLEncodedString];
     
     self.beerIconUrl = [[[json valueForKeyPath:@"beerIconUrl"] stringValue] URLEncodedString];
     
@@ -108,9 +108,9 @@
         [propertyDict setObject:self.madeOf forKey:PropertyName_MadeOf];
     }
     
-    if (self.category != nil)
+    if (![NSString isNullOrEmpty:self.beerTypeId])
     {
-        [propertyDict setObject:[self.category ToDictionary] forKey:PropertyName_Type];
+        [propertyDict setObject:self.beerTypeId forKey:PropertyName_BeerTypeId];
     }
     
     if (self.alchoholPrecent != 0)

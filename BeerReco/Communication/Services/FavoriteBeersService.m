@@ -7,7 +7,6 @@
 //
 
 #import "FavoriteBeersService.h"
-#import "BeerM.h"
 
 #define ServicePath_Favorites @"/favorite"
 
@@ -32,7 +31,7 @@
          NSMutableArray *mutableItems = [NSMutableArray arrayWithCapacity:[itemsFromResponse count]];
          for (NSDictionary *json in itemsFromResponse)
          {
-             BeerM *item = [[BeerM alloc] initWithJson:json];
+             BeerViewM *item = [[BeerViewM alloc] initWithJson:json];
              [mutableItems addObject:item];
          }
          
@@ -69,7 +68,7 @@
          NSMutableArray *mutableItems = [NSMutableArray arrayWithCapacity:[itemsFromResponse count]];
          for (NSDictionary *json in itemsFromResponse)
          {
-             BeerM *item = [[BeerM alloc] initWithJson:json];
+             BeerViewM *item = [[BeerViewM alloc] initWithJson:json];
              [mutableItems addObject:item];
          }
          

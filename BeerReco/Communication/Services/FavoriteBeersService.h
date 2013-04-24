@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "BeerViewM.h"
+
 @interface FavoriteBeersService : NSObject
 
 -(void)getPublicFavoriteBeers:(void (^)(NSMutableArray* beers, NSError *error))onComplete;

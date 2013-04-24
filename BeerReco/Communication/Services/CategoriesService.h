@@ -9,9 +9,12 @@
 #import <Foundation/Foundation.h>
 
 #import "BeerCategoryM.h"
+#import "BeerViewM.h"
 
 @interface CategoriesService : NSObject
 
 -(void)getAllCategories:(void (^)(NSMutableArray* categories, NSError *error))onComplete;
+
+-(void)getBeersByCatergory:(NSString*)categoryId oncComplete:(void (^)(NSMutableArray* beers, NSError *error))onComplete;
 
 @end
