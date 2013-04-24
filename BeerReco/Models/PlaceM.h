@@ -11,14 +11,15 @@
 @interface PlaceM : NSObject
 
 @property (nonatomic, strong) NSString *id;
+@property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSDate *creationDate;
 @property (nonatomic, strong) NSDate *updateDate;
 @property (nonatomic, strong) NSString *type;
 @property (nonatomic, strong) NSString *address;
 @property (nonatomic, strong) NSString *geoLocation;
-@property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *placeIconUrl;
 
 -(id)initWithJson:(NSDictionary*)json;
+-(NSDictionary*)ToDictionary;
 
 @end

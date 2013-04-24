@@ -311,7 +311,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Perform segue to beer detail
-    [self performSegueWithIdentifier:@"beerDetailsSegue" sender:tableView];
+    [self performSegueWithIdentifier:@"PlaceDetailsSegue" sender:tableView];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

@@ -12,6 +12,7 @@
 @interface BeerM : NSObject
 
 @property (nonatomic, strong) NSString *id;
+@property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSDate *creationDate;
 @property (nonatomic, strong) NSDate *updateDate;
 @property (nonatomic, strong) NSString *drinkType;
@@ -20,7 +21,6 @@
 @property (nonatomic, strong) NSString *madeOf;
 @property (nonatomic) float alchoholPrecent;
 @property (nonatomic, strong) BeerCategoryM *category;
-@property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *beerIconUrl;
 
 -(id)initWithJson:(NSDictionary*)json;

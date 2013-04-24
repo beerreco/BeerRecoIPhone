@@ -10,19 +10,28 @@
 
 #define PropertyName_Id @"id"
 #define PropertyName_Name @"name"
+#define PropertyName_CreationDate @"creationDate"
+#define PropertyName_UpdateDate @"updateDate"
+#define PropertyName_DrinkType @"drinkType"
+#define PropertyName_Origin @"origin"
+#define PropertyName_Brewery @"brewery"
+#define PropertyName_MadeOf @"madeOf"
+#define PropertyName_Type @"type"
+#define PropertyName_AlchoholPrecent @"alchoholPrecent"
+#define PropertyName_BeerIconUrl @"beerIconUrl"
 
 @implementation BeerM
 
 @synthesize id = _id;
+@synthesize name = _name;
 @synthesize creationDate = _creationDate;
 @synthesize updateDate = _updateDate;
 @synthesize drinkType = _drinkType;
 @synthesize origin = _origin;
 @synthesize brewery = _brewery;
 @synthesize madeOf = _madeOf;
-@synthesize alchoholPrecent = _alchoholPrecent;
 @synthesize category = _category;
-@synthesize name = _name;
+@synthesize alchoholPrecent = _alchoholPrecent;
 @synthesize beerIconUrl = _beerIconUrl;
 
 #pragma mark - Instance Methods
@@ -37,10 +46,7 @@
     }
     
     self.id = [[json valueForKeyPath:@"id"] stringValue];
-    if ([NSString isNullOrEmpty:self.id])
-    {
-        self.id = [NSString uuid];
-    }
+    self.name = [[json valueForKeyPath:@"name"] stringValue];
     
     self.creationDate = [NSDateFormatter getDateFromWindowsTimestamp:[json valueForKeyPath:@"creationDate"]];
     self.updateDate = [NSDateFormatter getDateFromWindowsTimestamp:[json valueForKeyPath:@"updateDate"]];
@@ -51,44 +57,73 @@
     self.madeOf = [[json valueForKeyPath:@"madeOf"] stringValue];
     self.alchoholPrecent = [[json valueForKeyPath:@"alchoholPrecent"] floatValue];
     self.category = [[BeerCategoryM alloc] initWithJson:[json valueForKeyPath:@"type"]];
-    self.name = [[json valueForKeyPath:@"name"] stringValue];
     
     self.beerIconUrl = [[[json valueForKeyPath:@"beerIconUrl"] stringValue] URLEncodedString];
     
     return self;
 }
 
-#pragma mark - Class Methods
+#pragma mark - Public Methods
 
 -(NSDictionary*)ToDictionary
 {
     NSMutableDictionary* propertyDict = [[NSMutableDictionary alloc] init];
-    [propertyDict setObject:self.id forKey:PropertyName_Id];
-    [propertyDict setObject:self.name forKey:PropertyName_Name];
-    /*
-    NSNumber* dateNumber = [NSDateFormatter getWindowsTimestampFromDate:self.created];
-    [propertyDict setObject:dateNumber forKey:PropertyName_created];
-    
-    if (![NSString isNullOrEmpty:self.resourceId])
+    if (![NSString isNullOrEmpty:self.id])
     {
-        [propertyDict setObject:self.resourceId forKey:PropertyName_resourceId];
+        [propertyDict setObject:self.id forKey:PropertyName_Id];
     }
     
-    if (self.screen != -1)
+    if (![NSString isNullOrEmpty:self.name])
     {
-        [propertyDict setValue:[NSNumber numberWithInt:self.screen] forKey:PropertyName_screen];
+        [propertyDict setObject:self.name forKey:PropertyName_Name];
+    }
+
+    if (self.creationDate != nil)
+    {
+        [propertyDict setObject:self.creationDate forKey:PropertyName_CreationDate];
     }
     
-    if (self.action != -1)
+    if (self.updateDate != nil)
     {
-        [propertyDict setValue:[NSNumber numberWithInt:self.action] forKey:PropertyName_action];
+        [propertyDict setObject:self.updateDate forKey:PropertyName_UpdateDate];
     }
     
-    if (self.resourceType != -1)
+    if (![NSString isNullOrEmpty:self.drinkType])
     {
-        [propertyDict setValue:[NSNumber numberWithInt:self.resourceType] forKey:PropertyName_resourceType];
+        [propertyDict setObject:self.drinkType forKey:PropertyName_DrinkType];
     }
-    */
+    
+    if (![NSString isNullOrEmpty:self.origin])
+    {
+        [propertyDict setObject:self.origin forKey:PropertyName_Origin];
+    }
+    
+    if (![NSString isNullOrEmpty:self.brewery])
+    {
+        [propertyDict setObject:self.brewery forKey:PropertyName_Brewery];
+    }
+    
+    if (![NSString isNullOrEmpty:self.madeOf])
+    {
+        [propertyDict setObject:self.madeOf forKey:PropertyName_MadeOf];
+    }
+    
+    if (self.category != nil)
+    {
+        [propertyDict setObject:[self.category ToDictionary] forKey:PropertyName_Type];
+    }
+    
+    if (self.alchoholPrecent != 0)
+    {
+        NSNumber* num = [NSNumber numberWithFloat:self.alchoholPrecent];
+        [propertyDict setObject:num forKey:PropertyName_AlchoholPrecent];
+    }
+    
+    if (![NSString isNullOrEmpty:self.beerIconUrl])
+    {
+        [propertyDict setObject:self.beerIconUrl forKey:PropertyName_BeerIconUrl];
+    }
+    
     return propertyDict;
 }
 
