@@ -16,7 +16,6 @@
 @synthesize type = _type;
 @synthesize address = _address;
 @synthesize geoLocation = _geoLocation;
-@synthesize price = _price;
 @synthesize name = _name;
 @synthesize placeIconUrl = _placeIconUrl;
 
@@ -37,7 +36,6 @@
     self.type = [[json valueForKeyPath:@"type"] stringValue];
     self.address = [[json valueForKeyPath:@"address"] stringValue];
     self.geoLocation = [[json valueForKeyPath:@"geoLocation"] stringValue];
-    self.price = [[json valueForKeyPath:@"price"] floatValue];
     self.name = [[json valueForKeyPath:@"name"] stringValue];
     
     self.placeIconUrl = [[[json valueForKeyPath:@"placeIconUrl"] stringValue] URLEncodedString];

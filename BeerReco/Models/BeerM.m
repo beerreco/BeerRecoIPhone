@@ -19,7 +19,6 @@
 @synthesize drinkType = _drinkType;
 @synthesize origin = _origin;
 @synthesize brewery = _brewery;
-@synthesize type = _type;
 @synthesize madeOf = _madeOf;
 @synthesize alchoholPrecent = _alchoholPrecent;
 @synthesize category = _category;
@@ -49,10 +48,9 @@
     self.drinkType = [[json valueForKeyPath:@"drinkType"] stringValue];
     self.origin = [[json valueForKeyPath:@"origin"] stringValue];
     self.brewery = [[json valueForKeyPath:@"brewery"] stringValue];
-    self.type = [[json valueForKeyPath:@"type"] stringValue];
     self.madeOf = [[json valueForKeyPath:@"madeOf"] stringValue];
     self.alchoholPrecent = [[json valueForKeyPath:@"alchoholPrecent"] floatValue];
-    self.category = [[json valueForKeyPath:@"category"] stringValue];
+    self.category = [[BeerCategoryM alloc] initWithJson:[json valueForKeyPath:@"type"]];
     self.name = [[json valueForKeyPath:@"name"] stringValue];
     
     self.beerIconUrl = [[[json valueForKeyPath:@"beerIconUrl"] stringValue] URLEncodedString];

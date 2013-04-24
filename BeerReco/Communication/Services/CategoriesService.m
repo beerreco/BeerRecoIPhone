@@ -15,7 +15,7 @@
 #define QueryParam_UserID @"userId"
 #define QueryParam_BeerID @"beerId"
 
-#define ResultPath_Categories @"categories"
+#define ResultPath_Categories @"beerTypes"
 
 @implementation CategoriesService
 

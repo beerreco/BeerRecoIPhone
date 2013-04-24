@@ -16,7 +16,6 @@
 @property (nonatomic, strong) NSString *type;
 @property (nonatomic, strong) NSString *address;
 @property (nonatomic, strong) NSString *geoLocation;
-@property (nonatomic) float price;
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *placeIconUrl;
 
