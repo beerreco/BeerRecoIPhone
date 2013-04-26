@@ -11,6 +11,7 @@
 #define ServicePath_Beers @"/beers"
 
 #define PathParam_Add @"add"
+#define PathParam_Update @"update"
 
 #define QueryParam_Beer @"beer"
 
@@ -18,13 +19,13 @@
 
 @implementation BeersService
 
--(void)addBeer:(BeerM*)beer onComplete:(void (^)(NSError *error))onComplete
+-(void)addBeer:(BeerM*)beer onComplete:(void (^)(BeerM* beer, NSError *error))onComplete
 {
     if (beer == nil)
     {
         if (onComplete)
         {
-            onComplete([NSError errorWithDomain:@"" code:-1 userInfo:nil]);
+            onComplete(nil, [NSError errorWithDomain:@"" code:-1 userInfo:nil]);
         }
         
         return;
@@ -36,15 +37,50 @@
     
     [[BeerRecoAPIClient sharedClient] postPath:path parameters:params success:^(AFHTTPRequestOperation *operation, id JSON)
      {
+         BeerM* item = [[BeerM alloc] initWithJson:JSON];
+         
          if (onComplete)
          {
-             onComplete(nil);
+             onComplete(item, nil);
          }
      } failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
          if (onComplete)
          {
-             onComplete(error);
+             onComplete(nil, error);
+         }
+     }];
+}
+
+-(void)updateBeer:(BeerM*)beer onComplete:(void (^)(BeerM* beer, NSError *error))onComplete
+{
+    if (beer == nil)
+    {
+        if (onComplete)
+        {
+            onComplete(nil, [NSError errorWithDomain:@"" code:-1 userInfo:nil]);
+        }
+        
+        return;
+    }
+    
+    NSDictionary* params = @{QueryParam_Beer:[beer ToDictionary]};
+    
+    NSString* path = [NSString stringWithFormat:@"%@/%@", ServicePath_Beers, PathParam_Update];
+    
+    [[BeerRecoAPIClient sharedClient] putPath:path parameters:params success:^(AFHTTPRequestOperation *operation, id JSON)
+     {
+         BeerM* item = [[BeerM alloc] initWithJson:JSON];
+         
+         if (onComplete)
+         {
+             onComplete(item, nil);
+         }
+     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         if (onComplete)
+         {
+             onComplete(nil, error);
          }
      }];
 }

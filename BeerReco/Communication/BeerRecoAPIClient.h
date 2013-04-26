@@ -11,8 +11,8 @@
 
 @interface BeerRecoAPIClient : AFHTTPClient
 
-#define TrustedServerHost @"beerreco.appspot.com"
-//#define TrustedServerHost @"localhost:8888"
+//#define TrustedServerHost @"beerreco.appspot.com"
+#define TrustedServerHost @"localhost:8888"
 
 #define DateFromServerFormat @"MMM dd, yyyy hh':'mm':'ss a"
 
@@ -33,7 +33,7 @@
 #define BaseURL [NSString stringWithFormat:@"http://%@/", TrustedServerHost]
 #endif
 
-#define BaseURL_FileServer [NSString stringWithFormat:@"http://%@/Files/", TrustedServerHost]
+#define BaseURL_FileServer @"http://db.cs.colman.ac.il/beerreco/"
 
 + (BeerRecoAPIClient*)sharedClient;
 

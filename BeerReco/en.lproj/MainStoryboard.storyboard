@@ -15,7 +15,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="2mX-0C-4xu">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <searchBar key="tableHeaderView" contentMode="redraw" showsCancelButton="YES" id="jid-Ya-d1F">
-                                    <rect key="frame" x="0.0" y="0.0" width="640" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="960" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <textInputTraits key="textInputTraits"/>
                                     <connections>
@@ -179,7 +179,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="lPB-pD-Qhj">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <searchBar key="tableHeaderView" contentMode="redraw" showsCancelButton="YES" id="XsO-MN-Gyq">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="640" height="44"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                     <textInputTraits key="textInputTraits"/>
                                     <connections>
@@ -587,76 +587,6 @@
         <image name="19-gear.png" width="26" height="26"/>
         <image name="88-beer-mug.png" width="22" height="27"/>
     </resources>
-    <classes>
-        <class className="BeerCategoriesViewController" superclassName="PullToRefreshViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/BeerCategoriesViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="showSearchClicked:"/>
-                <relationship kind="outlet" name="categoriesSearchBar" candidateClass="UISearchBar"/>
-            </relationships>
-        </class>
-        <class className="BeerDetailsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/BeerDetailsViewController.h"/>
-        </class>
-        <class className="BeersViewController" superclassName="PullToRefreshViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/BeersViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="showSearchClicked:"/>
-                <relationship kind="outlet" name="beersSearchBar" candidateClass="UISearchBar"/>
-            </relationships>
-        </class>
-        <class className="FBUserSettingsContainerViewController" superclassName="FBUserSettingsViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FBUserSettingsContainerViewController.h"/>
-        </class>
-        <class className="FBUserSettingsViewController" superclassName="FBViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FBUserSettingsViewController.h"/>
-        </class>
-        <class className="FBViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FBViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="cancelButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="delegate"/>
-                <relationship kind="outlet" name="doneButton" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-        <class className="FavoriteBeersViewController" superclassName="PullToRefreshViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FavoriteBeersViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="favoriteListTypeChanged:forEvent:" candidateClass="UISegmentedControl"/>
-                <relationship kind="action" name="showSearchClicked:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="SegFavoriteListType" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="favoritesSearchBar" candidateClass="UISearchBar"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="PlaceDetailsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlaceDetailsViewController.h"/>
-        </class>
-        <class className="PlacesViewController" superclassName="PullToRefreshViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlacesViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="showSearchClicked:"/>
-                <relationship kind="outlet" name="placesSearchBar" candidateClass="UISearchBar"/>
-            </relationships>
-        </class>
-        <class className="PullToRefreshViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PullToRefreshViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="SearchViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchViewController.h"/>
-        </class>
-        <class className="SettingsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="tbSettings" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

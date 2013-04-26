@@ -16,6 +16,8 @@
 
 @interface BeersViewController : PullToRefreshViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate, MBProgressHUDDelegate, LoadErrorDelegate>
 
+@property (nonatomic, strong) BeerCategoryM* parentBeerCategory;
+
 @property (weak, nonatomic) IBOutlet UISearchBar *beersSearchBar;
 
 - (IBAction)showSearchClicked:(id)sender;

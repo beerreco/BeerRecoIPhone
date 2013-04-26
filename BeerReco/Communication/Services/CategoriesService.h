@@ -17,4 +17,8 @@
 
 -(void)getBeersByCatergory:(NSString*)categoryId oncComplete:(void (^)(NSMutableArray* beers, NSError *error))onComplete;
 
+-(void)addBeerCategory:(BeerCategoryM*)beer onComplete:(void (^)(BeerCategoryM* beerCategory, NSError *error))onComplete;
+
+-(void)updateBeerCategory:(BeerCategoryM*)beer onComplete:(void (^)(BeerCategoryM* beerCategory, NSError *error))onComplete;
+
 @end

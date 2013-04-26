@@ -94,6 +94,7 @@
 		84D14A531715C7D900F0660C /* FavoriteBeersService.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D14A521715C7D900F0660C /* FavoriteBeersService.m */; };
 		84D14A561715C99800F0660C /* PlaceDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D14A551715C99800F0660C /* PlaceDetailsViewController.m */; };
 		84DB4F711728968600875ACA /* BeerViewM.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DB4F701728968600875ACA /* BeerViewM.m */; };
+		84DB4F7417293C1E00875ACA /* FileManagementService.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DB4F7317293C1E00875ACA /* FileManagementService.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -243,6 +244,8 @@
 		84D14A551715C99800F0660C /* PlaceDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlaceDetailsViewController.m; path = ViewControllers/PlaceDetailsViewController.m; sourceTree = "<group>"; };
 		84DB4F6F1728968600875ACA /* BeerViewM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeerViewM.h; path = Models/BeerViewM.h; sourceTree = "<group>"; };
 		84DB4F701728968600875ACA /* BeerViewM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BeerViewM.m; path = Models/BeerViewM.m; sourceTree = "<group>"; };
+		84DB4F7217293C1E00875ACA /* FileManagementService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileManagementService.h; path = Communication/Services/FileManagementService.h; sourceTree = "<group>"; };
+		84DB4F7317293C1E00875ACA /* FileManagementService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileManagementService.m; path = Communication/Services/FileManagementService.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -458,6 +461,8 @@
 				844316EB1722FE7B00D227D2 /* CategoriesService.m */,
 				844316ED1722FE8C00D227D2 /* PlacesService.h */,
 				844316EE1722FE8D00D227D2 /* PlacesService.m */,
+				84DB4F7217293C1E00875ACA /* FileManagementService.h */,
+				84DB4F7317293C1E00875ACA /* FileManagementService.m */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -791,6 +796,7 @@
 				844316EC1722FE7B00D227D2 /* CategoriesService.m in Sources */,
 				844316EF1722FE8D00D227D2 /* PlacesService.m in Sources */,
 				84DB4F711728968600875ACA /* BeerViewM.m in Sources */,
+				84DB4F7417293C1E00875ACA /* FileManagementService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -13,7 +13,11 @@
 #define PathParam_All @"all"
 #define PathParam_Beers @"beers"
 
+#define PathParam_Add @"add"
+#define PathParam_Update @"update"
+
 #define QueryParam_BeerID @"beerId"
+#define QueryParam_BeerType @"beerType"
 
 #define ResultPath_Categories @"beerTypes"
 #define ResultPath_Beers @"beers"
@@ -74,6 +78,72 @@
          if (onComplete)
          {
              onComplete(mutableItems, nil);
+         }
+     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         if (onComplete)
+         {
+             onComplete(nil, error);
+         }
+     }];
+}
+
+-(void)addBeerCategory:(BeerCategoryM*)beerCategory onComplete:(void (^)(BeerCategoryM* beerCategory, NSError *error))onComplete
+{
+    if (beerCategory == nil)
+    {
+        if (onComplete)
+        {
+            onComplete(nil, [NSError errorWithDomain:@"" code:-1 userInfo:nil]);
+        }
+        
+        return;
+    }
+    
+    NSDictionary* params = @{QueryParam_BeerType:[beerCategory ToDictionary]};
+    
+    NSString* path = [NSString stringWithFormat:@"%@/%@", ServicePath_Categories, PathParam_Add];
+    
+    [[BeerRecoAPIClient sharedClient] postPath:path parameters:params success:^(AFHTTPRequestOperation *operation, id JSON)
+     {
+         BeerCategoryM *item = [[BeerCategoryM alloc] initWithJson:JSON];
+         
+         if (onComplete)
+         {
+             onComplete(item, nil);
+         }
+     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         if (onComplete)
+         {
+             onComplete(nil, error);
+         }
+     }];
+}
+
+-(void)updateBeerCategory:(BeerCategoryM*)beerCategory onComplete:(void (^)(BeerCategoryM* beerCategory, NSError *error))onComplete
+{
+    if (beerCategory == nil)
+    {
+        if (onComplete)
+        {
+            onComplete(nil, [NSError errorWithDomain:@"" code:-1 userInfo:nil]);
+        }
+        
+        return;
+    }
+    
+    NSDictionary* params = @{QueryParam_BeerType:[beerCategory ToDictionary]};
+    
+    NSString* path = [NSString stringWithFormat:@"%@/%@", ServicePath_Categories, PathParam_Update];
+    
+    [[BeerRecoAPIClient sharedClient] putPath:path parameters:params success:^(AFHTTPRequestOperation *operation, id JSON)
+     {
+         BeerCategoryM *item = [[BeerCategoryM alloc] initWithJson:JSON];
+         
+         if (onComplete)
+         {
+             onComplete(item, nil);
          }
      } failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {

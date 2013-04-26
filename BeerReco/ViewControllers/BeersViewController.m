@@ -26,6 +26,8 @@
 @synthesize itemsArray = _itemsArray;
 @synthesize filteredItemArray = _filteredItemArray;
 
+@synthesize parentBeerCategory = _parentBeerCategory;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -58,9 +60,7 @@
 #pragma mark - Private Methods
 
 -(void)visualSetup
-{
-    [self setTitle:@"Beers In Category"];
-    
+{    
     // Don't show the scope bar or cancel button until editing begins
     [self.beersSearchBar setShowsScopeBar:NO];
     [self.beersSearchBar sizeToFit];
@@ -110,6 +110,11 @@
 
 -(void)loadData
 {
+    if (self.parentBeerCategory == nil)
+    {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    
     if (self.HUD == nil)
     {
         self.HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -117,7 +122,7 @@
         self.HUD.dimBackground = YES;
     }
     
-    [[ComServices sharedComServices].categoriesService getBeersByCatergory:@"category" oncComplete:^(NSMutableArray *beers, NSError *error)
+    [[ComServices sharedComServices].categoriesService getBeersByCatergory:self.parentBeerCategory.id oncComplete:^(NSMutableArray *beers, NSError *error)
      {
          if (error == nil && beers != nil)
          {

@@ -7,6 +7,7 @@
 //
 
 #import "BeerCategoriesViewController.h"
+#import "beersViewController.h"
 
 @interface BeerCategoriesViewController ()
 
@@ -182,22 +183,26 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"beerDetailsSegue"])
+    if ([segue.identifier isEqualToString:@"BeersInCategorySegue"])
     {
-        UIViewController *beersViewController = [segue destinationViewController];
+        BeersViewController *beersViewController = [segue destinationViewController];
         
         // In order to manipulate the destination view controller, another check on which table (search or normal) is displayed is needed
         if (sender == self.searchDisplayController.searchResultsTableView)
         {
             NSIndexPath *indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
-            NSString *destinationTitle = [[self.filteredItemArray objectAtIndex:indexPath.row] name];
-            [beersViewController setTitle:destinationTitle];
+            BeerCategoryM* beerCategory = [self.filteredItemArray objectAtIndex:indexPath.row];
+            
+            beersViewController.parentBeerCategory = beerCategory;
+            [beersViewController setTitle:beerCategory.name];
         }
         else
         {
             NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-            NSString *destinationTitle = [[self.itemsArray objectAtIndex:indexPath.row] name];
-            [beersViewController setTitle:destinationTitle];
+            BeerCategoryM* beerCategory = [self.itemsArray objectAtIndex:indexPath.row];
+            
+            beersViewController.parentBeerCategory = beerCategory;
+            [beersViewController setTitle:beerCategory.name];
         }
     }
 }

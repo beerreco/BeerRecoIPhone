@@ -12,6 +12,8 @@
 
 @interface BeersService : NSObject
 
--(void)addBeer:(BeerM*)beer onComplete:(void (^)(NSError *error))onComplete;
+-(void)addBeer:(BeerM*)beer onComplete:(void (^)(BeerM* beer, NSError *error))onComplete;
+
+-(void)updateBeer:(BeerM*)beer onComplete:(void (^)(BeerM* beer, NSError *error))onComplete;
 
 @end

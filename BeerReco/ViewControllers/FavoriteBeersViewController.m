@@ -53,6 +53,24 @@
     [self visualSetup];
 
     [self setup];
+    
+    [[ComServices sharedComServices].fileManagementService uploadFile:^(NSString *filePath, NSError *error) {
+        
+    }];
+     /*
+    BeerCategoryM* beerCategory = [[BeerCategoryM alloc] init];
+    beerCategory.name = @"Wheat";
+    [[ComServices sharedComServices].categoriesService addBeerCategory:beerCategory onComplete:^(BeerCategoryM* beerCategory, NSError *error)
+    {
+        BeerM* beer = [[BeerM alloc] init];
+        beer.name = @"Erdinger";
+        beer.beerTypeId = beerCategory.id;
+        [[ComServices sharedComServices].beersService addBeer:beer onComplete:^(BeerM* beer, NSError *error)
+         {
+             
+         }];        
+    }];     
+     */
 }
 
 - (void)didReceiveMemoryWarning
