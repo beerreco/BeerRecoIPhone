@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "PullToRefreshViewController.h"
 #import "MBProgressHUD.h"
+#import "BeerDetailsViewController.h"
 
 #import "LoadErrorViewController.h"
 

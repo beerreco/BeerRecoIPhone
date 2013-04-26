@@ -16,6 +16,8 @@
 
 -(void)getFavoriteBeersForUser:(void (^)(NSMutableArray* beers, NSError *error))onComplete;
 
+-(void)isBeerInFavorites:(NSString*)beerId onComplete:(void (^)(BOOL inFavorites, NSError *error))onComplete;
+
 -(void)addBeerToFavorites:(NSString*)beerId onComplete:(void (^)(NSError *error))onComplete;
 
 -(void)removeBeerFromFavorites:(NSString*)beerId onComplete:(void (^)(NSError *error))onComplete;

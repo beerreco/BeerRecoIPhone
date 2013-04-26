@@ -186,9 +186,9 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"beerDetailsSegue"])
+    if ([segue.identifier isEqualToString:@"BeerDetailsSegue"])
     {
-        UIViewController *beerDetailsViewController = [segue destinationViewController];
+        BeerDetailsViewController *beerDetailsViewController = [segue destinationViewController];
         
         // In order to manipulate the destination view controller, another check on which table (search or normal) is displayed is needed
         if (sender == self.searchDisplayController.searchResultsTableView)
@@ -196,16 +196,16 @@
             NSIndexPath *indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
             BeerViewM* beerView = [self.filteredItemArray objectAtIndex:indexPath.row];
             
-            NSString *destinationTitle = [beerView.beer name];
-            [beerDetailsViewController setTitle:destinationTitle];
+            beerDetailsViewController.beerView = beerView;
+            [beerDetailsViewController setTitle:beerView.beer.name];
         }
         else
         {
             NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
             BeerViewM* beerView = [self.itemsArray objectAtIndex:indexPath.row];
             
-            NSString *destinationTitle = [beerView.beer name];
-            [beerDetailsViewController setTitle:destinationTitle];
+            beerDetailsViewController.beerView = beerView;
+            [beerDetailsViewController setTitle:beerView.beer.name];
         }
     }
 }

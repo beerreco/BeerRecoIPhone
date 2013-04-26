@@ -13,11 +13,13 @@
 #define PathParam_All @"all"
 #define PathParam_Delete @"delete"
 #define PathParam_Add @"add"
+#define PathParam_InFavorites @"infavorites"
 
 #define QueryParam_UserID @"userId"
 #define QueryParam_BeerID @"beerId"
 
 #define ResultPath_Beers @"beers"
+#define ResultPath_Value @"value"
 
 @implementation FavoriteBeersService
 
@@ -81,6 +83,38 @@
          if (onComplete)
          {
              onComplete(nil, error);
+         }
+     }];
+}
+
+-(void)isBeerInFavorites:(NSString*)beerId onComplete:(void (^)(BOOL inFavorites, NSError *error))onComplete
+{
+    if ([NSString isNullOrEmpty:[GeneralDataStore sharedDataStore].FBUserID])
+    {
+        if (onComplete)
+        {
+            onComplete(NO, [NSError errorWithDomain:@"" code:-1 userInfo:nil]);
+        }
+        
+        return;
+    }
+    
+    NSDictionary* params = @{QueryParam_UserID:[GeneralDataStore sharedDataStore].FBUserID, QueryParam_BeerID:beerId};
+    NSString* path = [NSString stringWithFormat:@"%@/%@", ServicePath_Favorites, PathParam_InFavorites];
+    
+    [[BeerRecoAPIClient sharedClient] getPath:path parameters:params success:^(AFHTTPRequestOperation *operation, id JSON)
+     {
+         BOOL inFav = [[JSON valueForKey:ResultPath_Value] boolValue];
+         
+         if (onComplete)
+         {
+             onComplete(inFav, nil);
+         }
+     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         if (onComplete)
+         {
+             onComplete(NO, error);
          }
      }];
 }

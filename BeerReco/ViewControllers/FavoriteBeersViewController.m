@@ -53,24 +53,32 @@
     [self visualSetup];
 
     [self setup];
-    
+    /*
     [[ComServices sharedComServices].fileManagementService uploadFile:^(NSString *filePath, NSError *error) {
         
     }];
-     /*
+    [self createBeerWithCategory:@"Heiniken" andCategory:@"Ale"];
+    [self createBeerWithCategory:@"GoldStar" andCategory:@"Pils"];
+    [self createBeerWithCategory:@"Baltika" andCategory:@"Ale"];
+     [self createBeerWithCategory:@"Jems" andCategory:@"Wheat"];
+     [self createBeerWithCategory:@"Erdinger" andCategory:@"Wheat"];
+     */        
+}
+
+-(void)createBeerWithCategory:(NSString*)beerName andCategory:(NSString*)categoryName
+{
     BeerCategoryM* beerCategory = [[BeerCategoryM alloc] init];
-    beerCategory.name = @"Wheat";
+    beerCategory.name = categoryName;
     [[ComServices sharedComServices].categoriesService addBeerCategory:beerCategory onComplete:^(BeerCategoryM* beerCategory, NSError *error)
-    {
-        BeerM* beer = [[BeerM alloc] init];
-        beer.name = @"Erdinger";
-        beer.beerTypeId = beerCategory.id;
-        [[ComServices sharedComServices].beersService addBeer:beer onComplete:^(BeerM* beer, NSError *error)
-         {
-             
-         }];        
-    }];     
-     */
+     {
+         BeerM* beer = [[BeerM alloc] init];
+         beer.name = beerName;
+         beer.beerTypeId = beerCategory.id;
+         [[ComServices sharedComServices].beersService addBeer:beer onComplete:^(BeerM* beer, NSError *error)
+          {
+              
+          }];
+     }];
 }
 
 - (void)didReceiveMemoryWarning
@@ -365,9 +373,9 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"beerDetailsSegue"])
+    if ([segue.identifier isEqualToString:@"BeerDetailsSegue"])
     {
-        UIViewController *beerDetailsViewController = [segue destinationViewController];
+        BeerDetailsViewController *beerDetailsViewController = [segue destinationViewController];
         
         // In order to manipulate the destination view controller, another check on which table (search or normal) is displayed is needed
         if (sender == self.searchDisplayController.searchResultsTableView)
@@ -375,16 +383,16 @@
             NSIndexPath *indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
             BeerViewM* beerView = [self.filteredItemsArray objectAtIndex:indexPath.row];
             
-            NSString *destinationTitle = [beerView.beer name];
-            [beerDetailsViewController setTitle:destinationTitle];
+            beerDetailsViewController.beerView = beerView;
+            [beerDetailsViewController setTitle:beerView.beer.name];
         }
         else
         {
             NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
             BeerViewM* beerView = [self.itemsArray objectAtIndex:indexPath.row];
             
-            NSString *destinationTitle = [beerView.beer name];
-            [beerDetailsViewController setTitle:destinationTitle];
+            beerDetailsViewController.beerView = beerView;
+            [beerDetailsViewController setTitle:beerView.beer.name];
         }
     }
 }
@@ -499,7 +507,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Perform segue to beer detail
-    [self performSegueWithIdentifier:@"beerDetailsSegue" sender:tableView];
+    [self performSegueWithIdentifier:@"BeerDetailsSegue" sender:tableView];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

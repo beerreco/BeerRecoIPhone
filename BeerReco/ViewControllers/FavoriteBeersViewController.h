@@ -10,6 +10,8 @@
 #import "PullToRefreshViewController.h"
 #import "MBProgressHUD.h"
 
+#import "BeerDetailsViewController.h"
+
 #import "LoadErrorViewController.h"
 
 #import "BeerM.h"

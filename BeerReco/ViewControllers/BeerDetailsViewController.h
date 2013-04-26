@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <FacebookSDK/FacebookSDK.h>
+#import "MBProgressHUD.h"
 
-@interface BeerDetailsViewController : UIViewController
+@interface BeerDetailsViewController : UIViewController<MBProgressHUDDelegate>
+
+@property (nonatomic, strong) BeerViewM* beerView;
+
+@property (weak, nonatomic) IBOutlet UILabel *lblBeerName;
+@property (weak, nonatomic) IBOutlet UILabel *lblBeerCategory;
+@property (weak, nonatomic) IBOutlet UIImageView *imgBeerIcon;
 
 @end
