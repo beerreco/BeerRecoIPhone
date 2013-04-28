@@ -53,32 +53,6 @@
     [self visualSetup];
 
     [self setup];
-    /*
-    [[ComServices sharedComServices].fileManagementService uploadFile:^(NSString *filePath, NSError *error) {
-        
-    }];
-    [self createBeerWithCategory:@"Heiniken" andCategory:@"Ale"];
-    [self createBeerWithCategory:@"GoldStar" andCategory:@"Pils"];
-    [self createBeerWithCategory:@"Baltika" andCategory:@"Ale"];
-     [self createBeerWithCategory:@"Jems" andCategory:@"Wheat"];
-     [self createBeerWithCategory:@"Erdinger" andCategory:@"Wheat"];
-     */        
-}
-
--(void)createBeerWithCategory:(NSString*)beerName andCategory:(NSString*)categoryName
-{
-    BeerCategoryM* beerCategory = [[BeerCategoryM alloc] init];
-    beerCategory.name = categoryName;
-    [[ComServices sharedComServices].categoriesService addBeerCategory:beerCategory onComplete:^(BeerCategoryM* beerCategory, NSError *error)
-     {
-         BeerM* beer = [[BeerM alloc] init];
-         beer.name = beerName;
-         beer.beerTypeId = beerCategory.id;
-         [[ComServices sharedComServices].beersService addBeer:beer onComplete:^(BeerM* beer, NSError *error)
-          {
-              
-          }];
-     }];
 }
 
 - (void)didReceiveMemoryWarning

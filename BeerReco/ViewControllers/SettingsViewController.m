@@ -25,13 +25,6 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-    [self visualSetup];
-}
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -43,7 +36,63 @@
     [super viewDidUnload];
 }
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    [self visualSetup];
+    
+    /*
+     [[ComServices sharedComServices].fileManagementService uploadFile:^(NSString *filePath, NSError *error) {
+     
+     }];
+     
+     [self createBeerWithCategory:@"Heiniken" andCategory:@"Ale"];
+     [self createBeerWithCategory:@"GoldStar" andCategory:@"Pils"];
+     [self createBeerWithCategory:@"Baltika" andCategory:@"Ale"];
+     [self createBeerWithCategory:@"Jems" andCategory:@"Wheat"];
+     [self createBeerWithCategory:@"Erdinger" andCategory:@"Wheat"];
+     
+    
+     [self createPlaceWithArea:@"Mikes Place" andArea:@"HaMerkaz"];
+     [self createPlaceWithArea:@"Leo Blooms" andArea:@"HaMerkaz"];
+     [self createPlaceWithArea:@"Meet Ball" andArea:@"HaDarom"];
+      */
+}
+
 #pragma mark - Private Methods
+
+-(void)createBeerWithCategory:(NSString*)beerName andCategory:(NSString*)categoryName
+{
+    BeerCategoryM* beerCategory = [[BeerCategoryM alloc] init];
+    beerCategory.name = categoryName;
+    [[ComServices sharedComServices].categoriesService addBeerCategory:beerCategory onComplete:^(BeerCategoryM* beerCategory, NSError *error)
+     {
+         BeerM* beer = [[BeerM alloc] init];
+         beer.name = beerName;
+         beer.beerTypeId = beerCategory.id;
+         [[ComServices sharedComServices].beersService addBeer:beer onComplete:^(BeerM* beer, NSError *error)
+          {
+              [NSThread sleepForTimeInterval:1];
+          }];
+     }];
+}
+
+-(void)createPlaceWithArea:(NSString*)placeName andArea:(NSString*)areaName
+{
+    AreaM* area = [[AreaM alloc] init];
+    area.name = areaName;
+    [[ComServices sharedComServices].areasService addArea:area onComplete:^(AreaM* area, NSError *error)
+     {
+         PlaceM* place = [[PlaceM alloc] init];
+         place.name = placeName;
+         place.areaId = area.id;
+         [[ComServices sharedComServices].placesService addPlace:place onComplete:^(PlaceM* place, NSError *error)
+          {
+              [NSThread sleepForTimeInterval:1];
+          }];
+     }];
+}
 
 -(void)visualSetup
 {

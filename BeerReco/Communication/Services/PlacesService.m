@@ -12,30 +12,71 @@
 
 #define PathParam_All @"all"
 
-#define QueryParam_UserID @"userId"
-#define QueryParam_BeerID @"beerId"
+#define PathParam_Add @"add"
+#define PathParam_Update @"update"
+
+#define QueryParam_Place @"place"
 
 #define ResultPath_Places @"places"
 
 @implementation PlacesService
 
--(void)getAllPlaces:(void (^)(NSMutableArray* categories, NSError *error))onComplete
+-(void)addPlace:(PlaceM *)place onComplete:(void (^)(PlaceM *, NSError *))onComplete
 {
-    NSString* path = [NSString stringWithFormat:@"%@/%@", ServicePath_Places, PathParam_All];
+    if (place == nil)
+    {
+        if (onComplete)
+        {
+            onComplete(nil, [NSError errorWithDomain:@"" code:-1 userInfo:nil]);
+        }
+        
+        return;
+    }
     
-    [[BeerRecoAPIClient sharedClient] getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id JSON)
+    NSDictionary* params = @{QueryParam_Place:[place ToDictionary]};
+    
+    NSString* path = [NSString stringWithFormat:@"%@/%@", ServicePath_Places, PathParam_Add];
+    
+    [[BeerRecoAPIClient sharedClient] postPath:path parameters:params success:^(AFHTTPRequestOperation *operation, id JSON)
      {
-         NSArray *itemsFromResponse = [JSON valueForKeyPath:ResultPath_Places];
-         NSMutableArray *mutableItems = [NSMutableArray arrayWithCapacity:[itemsFromResponse count]];
-         for (NSDictionary *json in itemsFromResponse)
-         {
-             PlaceM *item = [[PlaceM alloc] initWithJson:json];
-             [mutableItems addObject:item];
-         }
+         PlaceM* item = [[PlaceM alloc] initWithJson:JSON];
          
          if (onComplete)
          {
-             onComplete(mutableItems, nil);
+             onComplete(item, nil);
+         }
+     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         if (onComplete)
+         {
+             onComplete(nil, error);
+         }
+     }];
+}
+
+-(void)updatePlace:(PlaceM *)place onComplete:(void (^)(PlaceM *, NSError *))onComplete
+{
+    if (place == nil)
+    {
+        if (onComplete)
+        {
+            onComplete(nil, [NSError errorWithDomain:@"" code:-1 userInfo:nil]);
+        }
+        
+        return;
+    }
+    
+    NSDictionary* params = @{QueryParam_Place:[place ToDictionary]};
+    
+    NSString* path = [NSString stringWithFormat:@"%@/%@", ServicePath_Places, PathParam_Update];
+    
+    [[BeerRecoAPIClient sharedClient] putPath:path parameters:params success:^(AFHTTPRequestOperation *operation, id JSON)
+     {
+         PlaceM* item = [[PlaceM alloc] initWithJson:JSON];
+         
+         if (onComplete)
+         {
+             onComplete(item, nil);
          }
      } failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {

@@ -1,15 +1,15 @@
 //
-//  BeerCategoriesViewController.m
+//  PlaceAreasViewController.m
 //  BeerReco
 //
-//  Created by RLemberg on 4/10/13.
+//  Created by RLemberg on 4/28/13.
 //  Copyright (c) 2013 Colman. All rights reserved.
 //
 
-#import "BeerCategoriesViewController.h"
-#import "beersViewController.h"
+#import "PlaceAreasViewController.h"
+#import "PlacesViewController.h"
 
-@interface BeerCategoriesViewController ()
+@interface PlaceAreasViewController ()
 
 @property (nonatomic, strong) LoadErrorViewController* loadErrorViewController;
 
@@ -20,7 +20,7 @@
 
 @end
 
-@implementation BeerCategoriesViewController
+@implementation PlaceAreasViewController
 
 @synthesize loadErrorViewController = _loadErrorViewController;
 @synthesize HUD = _HUD;
@@ -53,7 +53,7 @@
 
 - (void)viewDidUnload
 {
-    [self setCategoriesSearchBar:nil];
+    [self setAreasSearchBar:nil];
     [super viewDidUnload];
 }
 
@@ -61,11 +61,11 @@
 
 -(void)visualSetup
 {
-    self.navigationItem.title = @"Categories";
+    self.navigationItem.title = @"Areas";
     
     // Don't show the scope bar or cancel button until editing begins
-    [self.categoriesSearchBar setShowsScopeBar:NO];
-    [self.categoriesSearchBar sizeToFit];
+    [self.areasSearchBar setShowsScopeBar:NO];
+    [self.areasSearchBar sizeToFit];
     
     [self performSelector:@selector(hideSearchBar) withObject:nil afterDelay:0.5];
 }
@@ -79,7 +79,7 @@
 {
     // Hide the search bar until user scrolls up
     CGRect newBounds = [[self tableView] bounds];
-    newBounds.origin.y = newBounds.origin.y + self.categoriesSearchBar.bounds.size.height;
+    newBounds.origin.y = newBounds.origin.y + self.areasSearchBar.bounds.size.height;
     [self.tableView setBounds:newBounds];
 }
 
@@ -119,11 +119,11 @@
         self.HUD.dimBackground = YES;
     }
     
-    [[ComServices sharedComServices].categoriesService getAllCategories:^(NSMutableArray *categories, NSError *error) 
-     {
-         if (error == nil && categories != nil)
-         {             
-             self.itemsArray = [NSMutableArray arrayWithArray:categories];
+    [[ComServices sharedComServices].areasService getAllAreas:^(NSMutableArray *areas, NSError *error)
+    {   
+         if (error == nil && areas != nil)
+         {
+             self.itemsArray = [NSMutableArray arrayWithArray:areas];
              
              [self dataLoaded];
          }
@@ -160,7 +160,7 @@
     
     // If you're worried that your users might not catch on to the fact that a search bar is available if they scroll to reveal it, a search icon will help them
     // Note that if you didn't hide your search bar, you should probably not include this, as it would be redundant
-    [self.categoriesSearchBar becomeFirstResponder];
+    [self.areasSearchBar becomeFirstResponder];
 }
 
 #pragma mark Content Filtering
@@ -183,26 +183,26 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"BeersInCategorySegue"])
+    if ([segue.identifier isEqualToString:@"PlacesInAreaSegue"])
     {
-        BeersViewController *beersViewController = [segue destinationViewController];
+        PlacesViewController *placesViewController = [segue destinationViewController];
         
         // In order to manipulate the destination view controller, another check on which table (search or normal) is displayed is needed
         if (sender == self.searchDisplayController.searchResultsTableView)
         {
             NSIndexPath *indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
-            BeerCategoryM* beerCategory = [self.filteredItemArray objectAtIndex:indexPath.row];
+            AreaM* area = [self.filteredItemArray objectAtIndex:indexPath.row];
             
-            beersViewController.parentBeerCategory = beerCategory;
-            [beersViewController setTitle:beerCategory.name];
+            placesViewController.parentArea = area;
+            [placesViewController setTitle:area.name];
         }
         else
         {
             NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-            BeerCategoryM* beerCategory = [self.itemsArray objectAtIndex:indexPath.row];
+            AreaM* area = [self.itemsArray objectAtIndex:indexPath.row];
             
-            beersViewController.parentBeerCategory = beerCategory;
-            [beersViewController setTitle:beerCategory.name];
+            placesViewController.parentArea = area;
+            [placesViewController setTitle:area.name];
         }
     }
 }
@@ -268,20 +268,20 @@
     }
     
     // Create a new Candy Object
-    BeerCategoryM *beerCategory = nil;
+    AreaM *area = nil;
     
     // Check to see whether the normal table or search results table is being displayed and set the Candy object from the appropriate array
     if (tableView == self.searchDisplayController.searchResultsTableView)
 	{
-        beerCategory = [self.filteredItemArray objectAtIndex:indexPath.row];
+        area = [self.filteredItemArray objectAtIndex:indexPath.row];
     }
 	else
 	{
-        beerCategory = [self.itemsArray objectAtIndex:indexPath.row];
+        area = [self.itemsArray objectAtIndex:indexPath.row];
     }
     
     // Configure the cell
-    [cell.textLabel setText:beerCategory.name];
+    [cell.textLabel setText:area.name];
     
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     [cell setEditingAccessoryType:UITableViewCellAccessoryNone];
@@ -315,7 +315,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Perform segue to beer detail
-    [self performSegueWithIdentifier:@"BeersInCategorySegue" sender:tableView];
+    [self performSegueWithIdentifier:@"PlacesInAreaSegue" sender:tableView];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

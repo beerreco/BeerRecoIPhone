@@ -12,9 +12,12 @@
 
 #import "LoadErrorViewController.h"
 
-#import "BeerM.h"
+#import "AreaM.h"
+#import "PlaceDetailsViewController.h"
 
 @interface PlacesViewController : PullToRefreshViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate, MBProgressHUDDelegate, LoadErrorDelegate>
+
+@property (nonatomic, strong) AreaM* parentArea;
 
 @property (weak, nonatomic) IBOutlet UISearchBar *placesSearchBar;
 

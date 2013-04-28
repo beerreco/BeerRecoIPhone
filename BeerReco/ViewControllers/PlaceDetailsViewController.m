@@ -14,6 +14,8 @@
 
 @implementation PlaceDetailsViewController
 
+@synthesize placeView = _placeView;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -37,15 +39,27 @@
     [super didReceiveMemoryWarning];
 }
 
+- (void)viewDidUnload
+{
+    [self setLblPlaceName:nil];
+    [self setLblPlaceArea:nil];
+    [self setImgPlaceIcon:nil];
+    [super viewDidUnload];
+}
+
 #pragma mark - Private Methods
 
 -(void)visualSetup
 {
-    [self setTitle:@"Places Details"];
 }
 
 -(void)setup
 {
+    self.lblPlaceName.text = self.placeView.place.name;
+    self.lblPlaceArea.text = self.placeView.area.name;
+    
+    NSString* imageUrl = [BeerRecoAPIClient getFullPathForFile:self.placeView.place.placeIconUrl];
+    [self.imgPlaceIcon setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"weihenstephaner_hefe_icon"]];
 }
 
 @end

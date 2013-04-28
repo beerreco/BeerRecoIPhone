@@ -13,7 +13,7 @@
 #define PathParam_All @"all"
 #define PathParam_Delete @"delete"
 #define PathParam_Add @"add"
-#define PathParam_InFavorites @"infavorites"
+#define PathParam_InFavorites @"is-in-favorites"
 
 #define QueryParam_UserID @"userId"
 #define QueryParam_BeerID @"beerId"

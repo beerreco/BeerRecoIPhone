@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+#import "PlaceViewM.h"
+
 @interface PlaceDetailsViewController : UIViewController
+
+@property (nonatomic, strong) PlaceViewM* placeView;
+
+@property (weak, nonatomic) IBOutlet UILabel *lblPlaceName;
+@property (weak, nonatomic) IBOutlet UILabel *lblPlaceArea;
+@property (weak, nonatomic) IBOutlet UIImageView *imgPlaceIcon;
 
 @end

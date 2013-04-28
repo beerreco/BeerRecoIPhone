@@ -93,6 +93,10 @@
 		84D14A501715C65400F0660C /* BeersService.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D14A4F1715C65400F0660C /* BeersService.m */; };
 		84D14A531715C7D900F0660C /* FavoriteBeersService.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D14A521715C7D900F0660C /* FavoriteBeersService.m */; };
 		84D14A561715C99800F0660C /* PlaceDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D14A551715C99800F0660C /* PlaceDetailsViewController.m */; };
+		84D9D88E172C833500CC8E71 /* PlaceAreasViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D9D88D172C833500CC8E71 /* PlaceAreasViewController.m */; };
+		84D9D891172C869A00CC8E71 /* PlaceViewM.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D9D890172C869A00CC8E71 /* PlaceViewM.m */; };
+		84D9D894172C86A900CC8E71 /* AreaM.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D9D893172C86A900CC8E71 /* AreaM.m */; };
+		84D9D897172C88D600CC8E71 /* AreasService.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D9D896172C88D600CC8E71 /* AreasService.m */; };
 		84DB4F711728968600875ACA /* BeerViewM.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DB4F701728968600875ACA /* BeerViewM.m */; };
 		84DB4F7417293C1E00875ACA /* FileManagementService.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DB4F7317293C1E00875ACA /* FileManagementService.m */; };
 /* End PBXBuildFile section */
@@ -242,6 +246,14 @@
 		84D14A521715C7D900F0660C /* FavoriteBeersService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FavoriteBeersService.m; path = Communication/Services/FavoriteBeersService.m; sourceTree = "<group>"; };
 		84D14A541715C99800F0660C /* PlaceDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlaceDetailsViewController.h; path = ViewControllers/PlaceDetailsViewController.h; sourceTree = "<group>"; };
 		84D14A551715C99800F0660C /* PlaceDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlaceDetailsViewController.m; path = ViewControllers/PlaceDetailsViewController.m; sourceTree = "<group>"; };
+		84D9D88C172C833500CC8E71 /* PlaceAreasViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlaceAreasViewController.h; path = ViewControllers/PlaceAreasViewController.h; sourceTree = "<group>"; };
+		84D9D88D172C833500CC8E71 /* PlaceAreasViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlaceAreasViewController.m; path = ViewControllers/PlaceAreasViewController.m; sourceTree = "<group>"; };
+		84D9D88F172C869A00CC8E71 /* PlaceViewM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlaceViewM.h; path = Models/PlaceViewM.h; sourceTree = "<group>"; };
+		84D9D890172C869A00CC8E71 /* PlaceViewM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlaceViewM.m; path = Models/PlaceViewM.m; sourceTree = "<group>"; };
+		84D9D892172C86A900CC8E71 /* AreaM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AreaM.h; path = Models/AreaM.h; sourceTree = "<group>"; };
+		84D9D893172C86A900CC8E71 /* AreaM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AreaM.m; path = Models/AreaM.m; sourceTree = "<group>"; };
+		84D9D895172C88D600CC8E71 /* AreasService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AreasService.h; path = Communication/Services/AreasService.h; sourceTree = "<group>"; };
+		84D9D896172C88D600CC8E71 /* AreasService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AreasService.m; path = Communication/Services/AreasService.m; sourceTree = "<group>"; };
 		84DB4F6F1728968600875ACA /* BeerViewM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeerViewM.h; path = Models/BeerViewM.h; sourceTree = "<group>"; };
 		84DB4F701728968600875ACA /* BeerViewM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BeerViewM.m; path = Models/BeerViewM.m; sourceTree = "<group>"; };
 		84DB4F7217293C1E00875ACA /* FileManagementService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileManagementService.h; path = Communication/Services/FileManagementService.h; sourceTree = "<group>"; };
@@ -387,8 +399,6 @@
 				84B58C7516DB8DC30097CD67 /* FavoriteBeersViewController.m */,
 				84B58C7616DB8DC30097CD67 /* SearchViewController.h */,
 				84B58C7716DB8DC30097CD67 /* SearchViewController.m */,
-				84B58CDE16DD0E720097CD67 /* BeerDetailsViewController.h */,
-				84B58CDF16DD0E720097CD67 /* BeerDetailsViewController.m */,
 				84A58FBB1711D76E00A46E9F /* Settings */,
 				84D14A581715C9DD00F0660C /* Beers */,
 				84D14A571715C9BC00F0660C /* Places */,
@@ -463,6 +473,8 @@
 				844316EE1722FE8D00D227D2 /* PlacesService.m */,
 				84DB4F7217293C1E00875ACA /* FileManagementService.h */,
 				84DB4F7317293C1E00875ACA /* FileManagementService.m */,
+				84D9D895172C88D600CC8E71 /* AreasService.h */,
+				84D9D896172C88D600CC8E71 /* AreasService.m */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -478,6 +490,10 @@
 				84D14A4C1715C5E400F0660C /* BeerCategoryM.m */,
 				84DB4F6F1728968600875ACA /* BeerViewM.h */,
 				84DB4F701728968600875ACA /* BeerViewM.m */,
+				84D9D88F172C869A00CC8E71 /* PlaceViewM.h */,
+				84D9D890172C869A00CC8E71 /* PlaceViewM.m */,
+				84D9D892172C86A900CC8E71 /* AreaM.h */,
+				84D9D893172C86A900CC8E71 /* AreaM.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -594,6 +610,8 @@
 		84D14A571715C9BC00F0660C /* Places */ = {
 			isa = PBXGroup;
 			children = (
+				84D9D88C172C833500CC8E71 /* PlaceAreasViewController.h */,
+				84D9D88D172C833500CC8E71 /* PlaceAreasViewController.m */,
 				84D14A451715C59800F0660C /* PlacesViewController.h */,
 				84D14A461715C59800F0660C /* PlacesViewController.m */,
 				84D14A541715C99800F0660C /* PlaceDetailsViewController.h */,
@@ -605,6 +623,8 @@
 		84D14A581715C9DD00F0660C /* Beers */ = {
 			isa = PBXGroup;
 			children = (
+				84B58CDE16DD0E720097CD67 /* BeerDetailsViewController.h */,
+				84B58CDF16DD0E720097CD67 /* BeerDetailsViewController.m */,
 				84D14A3F1715C53A00F0660C /* BeerCategoriesViewController.h */,
 				84D14A401715C53A00F0660C /* BeerCategoriesViewController.m */,
 				84D14A421715C58300F0660C /* BeersViewController.h */,
@@ -797,6 +817,10 @@
 				844316EF1722FE8D00D227D2 /* PlacesService.m in Sources */,
 				84DB4F711728968600875ACA /* BeerViewM.m in Sources */,
 				84DB4F7417293C1E00875ACA /* FileManagementService.m in Sources */,
+				84D9D88E172C833500CC8E71 /* PlaceAreasViewController.m in Sources */,
+				84D9D891172C869A00CC8E71 /* PlaceViewM.m in Sources */,
+				84D9D894172C86A900CC8E71 /* AreaM.m in Sources */,
+				84D9D897172C88D600CC8E71 /* AreasService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

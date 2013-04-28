@@ -26,6 +26,8 @@
 @synthesize itemsArray = _itemsArray;
 @synthesize filteredItemArray = _filteredItemArray;
 
+@synthesize parentArea = _parentArea;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -112,6 +114,11 @@
 
 -(void)loadData
 {
+    if (self.parentArea == nil)
+    {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    
     if (self.HUD == nil)
     {
         self.HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -119,8 +126,8 @@
         self.HUD.dimBackground = YES;
     }
     
-    [[ComServices sharedComServices].placesService getAllPlaces:^(NSMutableArray *places, NSError *error) 
-     {
+    [[ComServices sharedComServices].areasService getPlacesByArea:self.parentArea.id oncComplete:^(NSMutableArray *places, NSError *error)
+    {
          if (error == nil && places != nil)
          {
              self.itemsArray = [NSMutableArray arrayWithArray:places];
@@ -185,20 +192,24 @@
 {
     if ([segue.identifier isEqualToString:@"PlaceDetailsSegue"])
     {
-        UIViewController *beerDetailsViewController = [segue destinationViewController];
+        PlaceDetailsViewController *placeDetailsViewController = [segue destinationViewController];
         
         // In order to manipulate the destination view controller, another check on which table (search or normal) is displayed is needed
         if (sender == self.searchDisplayController.searchResultsTableView)
         {
             NSIndexPath *indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
-            NSString *destinationTitle = [[self.filteredItemArray objectAtIndex:indexPath.row] name];
-            [beerDetailsViewController setTitle:destinationTitle];
+            
+            PlaceViewM* placeView = [self.filteredItemArray objectAtIndex:indexPath.row];
+            placeDetailsViewController.placeView = placeView;
+            [placeDetailsViewController setTitle:placeView.place.name];
         }
         else
         {
             NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-            NSString *destinationTitle = [[self.itemsArray objectAtIndex:indexPath.row] name];
-            [beerDetailsViewController setTitle:destinationTitle];
+            
+            PlaceViewM* placeView = [self.itemsArray objectAtIndex:indexPath.row];
+            placeDetailsViewController.placeView = placeView;
+            [placeDetailsViewController setTitle:placeView.place.name];
         }
     }
 }
@@ -264,21 +275,21 @@
     }
     
     // Create a new Candy Object
-    PlaceM *place = nil;
+    PlaceViewM* placeView = nil;
     
     // Check to see whether the normal table or search results table is being displayed and set the Candy object from the appropriate array
     if (tableView == self.searchDisplayController.searchResultsTableView)
 	{
-        place = [self.filteredItemArray objectAtIndex:indexPath.row];
+        placeView = [self.filteredItemArray objectAtIndex:indexPath.row];
     }
 	else
 	{
-        place = [self.itemsArray objectAtIndex:indexPath.row];
+        placeView = [self.itemsArray objectAtIndex:indexPath.row];
     }
     
     // Configure the cell
-    [cell.textLabel setText:place.name];
-    [cell.detailTextLabel setText:place.address];
+    [cell.textLabel setText:placeView.place.name];
+    [cell.detailTextLabel setText:placeView.area.name];
     
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     [cell setEditingAccessoryType:UITableViewCellAccessoryNone];

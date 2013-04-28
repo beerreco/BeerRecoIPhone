@@ -12,6 +12,8 @@
 
 @interface PlacesService : NSObject
 
--(void)getAllPlaces:(void (^)(NSMutableArray* places, NSError *error))onComplete;
+-(void)addPlace:(PlaceM*)place onComplete:(void (^)(PlaceM* place, NSError *error))onComplete;
+
+-(void)updatePlace:(PlaceM*)place onComplete:(void (^)(PlaceM* place, NSError *error))onComplete;
 
 @end

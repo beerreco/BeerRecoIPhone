@@ -22,6 +22,7 @@
         _sharedComServices.favoriteBeersService = [[FavoriteBeersService alloc] init];
         _sharedComServices.categoriesService = [[CategoriesService alloc] init];
         _sharedComServices.placesService = [[PlacesService alloc] init];
+        _sharedComServices.areasService = [[AreasService alloc] init];
         _sharedComServices.fileManagementService = [[FileManagementService alloc] init];
     });
     
