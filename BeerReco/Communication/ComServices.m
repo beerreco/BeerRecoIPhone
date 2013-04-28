@@ -24,6 +24,7 @@
         _sharedComServices.placesService = [[PlacesService alloc] init];
         _sharedComServices.areasService = [[AreasService alloc] init];
         _sharedComServices.fileManagementService = [[FileManagementService alloc] init];
+        _sharedComServices.commentsService = [[CommentsService alloc] init];
     });
     
     return _sharedComServices;

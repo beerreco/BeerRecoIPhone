@@ -64,14 +64,20 @@ void uncaughtExceptionHandler(NSException *exception);
 
 - (void)openSession
 {
-    [FBSession openActiveSessionWithReadPermissions:nil
+    [[FBSession activeSession] openWithBehavior:FBSessionLoginBehaviorForcingWebView completionHandler:^(FBSession *session, FBSessionState state, NSError *error)
+     {
+         NSLog(@" state=%d",state);
+         [self sessionStateChanged:session state:state error:error];
+     }];
+    
+    /*[FBSession openActiveSessionWithReadPermissions:nil
                                        allowLoginUI:YES
                                   completionHandler:
      ^(FBSession *session,
        FBSessionState state, NSError *error)
     {
         [self sessionStateChanged:session state:state error:error];
-    }];
+    }];*/
 }
 
 #pragma mark - UIApplicationDelegate

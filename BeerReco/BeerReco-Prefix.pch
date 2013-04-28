@@ -27,6 +27,7 @@
 #import "UIColor-Expanded.h"
 #import "UIWindow+InnerViewControllers.h"
 #import "UIViewController+ModalPresenter.h"
+#import "NSData+Encoding.h"
 
 
 #import "BeerRecoAPIClient.h"
@@ -60,4 +61,6 @@
 #else
 #define NSLog(...)
 #endif
+
+#define FacebookAppID @"563853693654605"
 

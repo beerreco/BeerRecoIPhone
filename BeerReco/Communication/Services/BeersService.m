@@ -19,6 +19,11 @@
 
 @implementation BeersService
 
+-(NSString*)getFullUrlForBeerId:(NSString*)beerId
+{
+    return [NSString stringWithFormat:@"%@%@/%@", BaseURL, ServicePath_Beers, beerId];
+}
+
 -(void)addBeer:(BeerM*)beer onComplete:(void (^)(BeerM* beer, NSError *error))onComplete
 {
     if (beer == nil)

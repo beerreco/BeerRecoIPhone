@@ -38,6 +38,10 @@
 		844316E91722E2DA00D227D2 /* 178-city.png in Resources */ = {isa = PBXBuildFile; fileRef = 844316E61722E2DA00D227D2 /* 178-city.png */; };
 		844316EC1722FE7B00D227D2 /* CategoriesService.m in Sources */ = {isa = PBXBuildFile; fileRef = 844316EB1722FE7B00D227D2 /* CategoriesService.m */; };
 		844316EF1722FE8D00D227D2 /* PlacesService.m in Sources */ = {isa = PBXBuildFile; fileRef = 844316EE1722FE8D00D227D2 /* PlacesService.m */; };
+		844956B8172D2FB300A4690C /* FacebookCommentsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 844956B7172D2FB300A4690C /* FacebookCommentsView.m */; };
+		844956BB172D4F2000A4690C /* NSData+Encoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 844956BA172D4F2000A4690C /* NSData+Encoding.m */; };
+		844956BD172D613A00A4690C /* FBComments.html in Resources */ = {isa = PBXBuildFile; fileRef = 844956BC172D613A00A4690C /* FBComments.html */; };
+		844956C0172D85F800A4690C /* CommentsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 844956BF172D85F800A4690C /* CommentsService.m */; };
 		84A58FA3170C6AD400A46E9F /* BeerM.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A58FA2170C6AD400A46E9F /* BeerM.m */; };
 		84A58FAA170DAE4300A46E9F /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A58FA9170DAE4300A46E9F /* FacebookSDK.framework */; };
 		84A58FAC170DAE8800A46E9F /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 84A58FAB170DAE8800A46E9F /* FacebookSDKResources.bundle */; };
@@ -149,6 +153,13 @@
 		844316EB1722FE7B00D227D2 /* CategoriesService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CategoriesService.m; path = Communication/Services/CategoriesService.m; sourceTree = "<group>"; };
 		844316ED1722FE8C00D227D2 /* PlacesService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlacesService.h; path = Communication/Services/PlacesService.h; sourceTree = "<group>"; };
 		844316EE1722FE8D00D227D2 /* PlacesService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlacesService.m; path = Communication/Services/PlacesService.m; sourceTree = "<group>"; };
+		844956B6172D2FB300A4690C /* FacebookCommentsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FacebookCommentsView.h; path = Views/FacebookCommentsView.h; sourceTree = "<group>"; };
+		844956B7172D2FB300A4690C /* FacebookCommentsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FacebookCommentsView.m; path = Views/FacebookCommentsView.m; sourceTree = "<group>"; };
+		844956B9172D4F2000A4690C /* NSData+Encoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+Encoding.h"; path = "Categories/NSData+Encoding.h"; sourceTree = "<group>"; };
+		844956BA172D4F2000A4690C /* NSData+Encoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+Encoding.m"; path = "Categories/NSData+Encoding.m"; sourceTree = "<group>"; };
+		844956BC172D613A00A4690C /* FBComments.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = FBComments.html; path = Resources/FacebookWebPlugins/FBComments.html; sourceTree = "<group>"; };
+		844956BE172D85F800A4690C /* CommentsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommentsService.h; path = Communication/Services/CommentsService.h; sourceTree = "<group>"; };
+		844956BF172D85F800A4690C /* CommentsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommentsService.m; path = Communication/Services/CommentsService.m; sourceTree = "<group>"; };
 		84A58FA1170C6AD400A46E9F /* BeerM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeerM.h; path = Models/BeerM.h; sourceTree = "<group>"; };
 		84A58FA2170C6AD400A46E9F /* BeerM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BeerM.m; path = Models/BeerM.m; sourceTree = "<group>"; };
 		84A58FA7170DADF900A46E9F /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = /Users/admin/Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<absolute>"; };
@@ -381,6 +392,14 @@
 			name = ContentImages;
 			sourceTree = "<group>";
 		};
+		844956B3172D1CEC00A4690C /* FacebookWebPlugins */ = {
+			isa = PBXGroup;
+			children = (
+				844956BC172D613A00A4690C /* FBComments.html */,
+			);
+			name = FacebookWebPlugins;
+			sourceTree = "<group>";
+		};
 		84A58FBB1711D76E00A46E9F /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -410,6 +429,7 @@
 		84B58C6616DB8DA00097CD67 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				844956B3172D1CEC00A4690C /* FacebookWebPlugins */,
 				844316D917215EA900D227D2 /* ContentImages */,
 				84B58C6716DB8DA60097CD67 /* Images */,
 			);
@@ -442,6 +462,8 @@
 			isa = PBXGroup;
 			children = (
 				84377F2716D92B9400B44D99 /* MainStoryboard.storyboard */,
+				844956B6172D2FB300A4690C /* FacebookCommentsView.h */,
+				844956B7172D2FB300A4690C /* FacebookCommentsView.m */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -475,6 +497,8 @@
 				84DB4F7317293C1E00875ACA /* FileManagementService.m */,
 				84D9D895172C88D600CC8E71 /* AreasService.h */,
 				84D9D896172C88D600CC8E71 /* AreasService.m */,
+				844956BE172D85F800A4690C /* CommentsService.h */,
+				844956BF172D85F800A4690C /* CommentsService.m */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -523,6 +547,8 @@
 				844316C0171BF06100D227D2 /* UIViewController+ModalPresenter.m */,
 				844316C1171BF06100D227D2 /* UIWindow+InnerViewControllers.h */,
 				844316C2171BF06100D227D2 /* UIWindow+InnerViewControllers.m */,
+				844956B9172D4F2000A4690C /* NSData+Encoding.h */,
+				844956BA172D4F2000A4690C /* NSData+Encoding.m */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -716,6 +742,7 @@
 				844316E71722E2DA00D227D2 /* 19-gear.png in Resources */,
 				844316E81722E2DA00D227D2 /* 88-beer-mug.png in Resources */,
 				844316E91722E2DA00D227D2 /* 178-city.png in Resources */,
+				844956BD172D613A00A4690C /* FBComments.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -821,6 +848,9 @@
 				84D9D891172C869A00CC8E71 /* PlaceViewM.m in Sources */,
 				84D9D894172C86A900CC8E71 /* AreaM.m in Sources */,
 				84D9D897172C88D600CC8E71 /* AreasService.m in Sources */,
+				844956B8172D2FB300A4690C /* FacebookCommentsView.m in Sources */,
+				844956BB172D4F2000A4690C /* NSData+Encoding.m in Sources */,
+				844956C0172D85F800A4690C /* CommentsService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
