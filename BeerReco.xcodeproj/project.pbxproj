@@ -42,6 +42,7 @@
 		844956BB172D4F2000A4690C /* NSData+Encoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 844956BA172D4F2000A4690C /* NSData+Encoding.m */; };
 		844956BD172D613A00A4690C /* FBComments.html in Resources */ = {isa = PBXBuildFile; fileRef = 844956BC172D613A00A4690C /* FBComments.html */; };
 		844956C0172D85F800A4690C /* CommentsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 844956BF172D85F800A4690C /* CommentsService.m */; };
+		844956C3172D8A1100A4690C /* FacebookCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844956C2172D8A1100A4690C /* FacebookCommentsViewController.m */; };
 		84A58FA3170C6AD400A46E9F /* BeerM.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A58FA2170C6AD400A46E9F /* BeerM.m */; };
 		84A58FAA170DAE4300A46E9F /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A58FA9170DAE4300A46E9F /* FacebookSDK.framework */; };
 		84A58FAC170DAE8800A46E9F /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 84A58FAB170DAE8800A46E9F /* FacebookSDKResources.bundle */; };
@@ -160,6 +161,8 @@
 		844956BC172D613A00A4690C /* FBComments.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = FBComments.html; path = Resources/FacebookWebPlugins/FBComments.html; sourceTree = "<group>"; };
 		844956BE172D85F800A4690C /* CommentsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommentsService.h; path = Communication/Services/CommentsService.h; sourceTree = "<group>"; };
 		844956BF172D85F800A4690C /* CommentsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommentsService.m; path = Communication/Services/CommentsService.m; sourceTree = "<group>"; };
+		844956C1172D8A1000A4690C /* FacebookCommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FacebookCommentsViewController.h; path = ViewControllers/FacebookCommentsViewController.h; sourceTree = "<group>"; };
+		844956C2172D8A1100A4690C /* FacebookCommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FacebookCommentsViewController.m; path = ViewControllers/FacebookCommentsViewController.m; sourceTree = "<group>"; };
 		84A58FA1170C6AD400A46E9F /* BeerM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeerM.h; path = Models/BeerM.h; sourceTree = "<group>"; };
 		84A58FA2170C6AD400A46E9F /* BeerM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BeerM.m; path = Models/BeerM.m; sourceTree = "<group>"; };
 		84A58FA7170DADF900A46E9F /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = /Users/admin/Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<absolute>"; };
@@ -422,6 +425,8 @@
 				84D14A581715C9DD00F0660C /* Beers */,
 				84D14A571715C9BC00F0660C /* Places */,
 				844316D81721530200D227D2 /* LoadError */,
+				844956C1172D8A1000A4690C /* FacebookCommentsViewController.h */,
+				844956C2172D8A1100A4690C /* FacebookCommentsViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -851,6 +856,7 @@
 				844956B8172D2FB300A4690C /* FacebookCommentsView.m in Sources */,
 				844956BB172D4F2000A4690C /* NSData+Encoding.m in Sources */,
 				844956C0172D85F800A4690C /* CommentsService.m in Sources */,
+				844956C3172D8A1100A4690C /* FacebookCommentsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

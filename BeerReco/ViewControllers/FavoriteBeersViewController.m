@@ -283,7 +283,7 @@
         {
             // Create Login View so that the app will be granted "status_update" permission.
             self.fbLoginView = [[FBLoginView alloc] init];
-            
+
             self.fbLoginView.frame =  CGRectMake(self.view.center.x - (self.fbLoginView.frame.size.width / 2), self.view.center.y - (self.fbLoginView.frame.size.height / 2), self.fbLoginView.frame.size.width, self.fbLoginView.frame.size.height);
             
             self.fbLoginView.delegate = self;

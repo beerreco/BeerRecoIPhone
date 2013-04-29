@@ -46,14 +46,15 @@
      [[ComServices sharedComServices].fileManagementService uploadFile:^(NSString *filePath, NSError *error) {
      
      }];
-     
+     */
+     /*
      [self createBeerWithCategory:@"Heiniken" andCategory:@"Ale"];
      [self createBeerWithCategory:@"GoldStar" andCategory:@"Pils"];
      [self createBeerWithCategory:@"Baltika" andCategory:@"Ale"];
      [self createBeerWithCategory:@"Jems" andCategory:@"Wheat"];
      [self createBeerWithCategory:@"Erdinger" andCategory:@"Wheat"];
-     
-    
+     */
+    /*
      [self createPlaceWithArea:@"Mikes Place" andArea:@"HaMerkaz"];
      [self createPlaceWithArea:@"Leo Blooms" andArea:@"HaMerkaz"];
      [self createPlaceWithArea:@"Meet Ball" andArea:@"HaDarom"];
@@ -73,7 +74,7 @@
          beer.beerTypeId = beerCategory.id;
          [[ComServices sharedComServices].beersService addBeer:beer onComplete:^(BeerM* beer, NSError *error)
           {
-              [NSThread sleepForTimeInterval:1];
+              [NSThread sleepForTimeInterval:100];
           }];
      }];
 }
@@ -89,7 +90,7 @@
          place.areaId = area.id;
          [[ComServices sharedComServices].placesService addPlace:place onComplete:^(PlaceM* place, NSError *error)
           {
-              [NSThread sleepForTimeInterval:1];
+              [NSThread sleepForTimeInterval:100];
           }];
      }];
 }

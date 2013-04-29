@@ -29,6 +29,7 @@ void uncaughtExceptionHandler(NSException *exception);
                       state:(FBSessionState) state
                       error:(NSError *)error
 {
+    NSLog(@" state=%d",state);
     switch (state)
     {
         case FBSessionStateOpen:
@@ -38,11 +39,8 @@ void uncaughtExceptionHandler(NSException *exception);
             break;
         case FBSessionStateClosed:
         case FBSessionStateClosedLoginFailed:
-            // Once the user has logged in, we want them to
-            // be looking at the root view.
-            //[self.window.rootViewController popToRootViewControllerAnimated:NO];
             
-            [FBSession.activeSession closeAndClearTokenInformation];
+            [self closeSession];
             
             [[NSNotificationCenter defaultCenter] postNotificationName:GlobalMessage_FB_LoggedOut object:nil userInfo:nil];
             break;
@@ -62,11 +60,30 @@ void uncaughtExceptionHandler(NSException *exception);
     }
 }
 
-- (void)openSession
+-(void)closeSession
+{
+    [FBSession.activeSession closeAndClearTokenInformation];
+    
+    NSHTTPCookie *cookie;
+    NSHTTPCookieStorage* storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    
+    for (cookie in [storage cookies])
+    {
+        NSString *domainStr=(NSString *)[cookie domain];
+        NSLog(@"%@",domainStr);
+        if([domainStr isEqualToString:@".facebook.com" ])
+        {
+            [storage deleteCookie:cookie];
+        }
+    }
+    
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+-(void)openSession
 {
     [[FBSession activeSession] openWithBehavior:FBSessionLoginBehaviorForcingWebView completionHandler:^(FBSession *session, FBSessionState state, NSError *error)
      {
-         NSLog(@" state=%d",state);
          [self sessionStateChanged:session state:state error:error];
      }];
     

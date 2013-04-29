@@ -7,6 +7,7 @@
 //
 
 #import "BeerDetailsViewController.h"
+#import "FacebookCommentsViewController.h"
 
 @interface BeerDetailsViewController ()
 
@@ -17,8 +18,6 @@
 @end
 
 @implementation BeerDetailsViewController
-
-@synthesize fbCommentsView = _fbCommentsView;
 
 @synthesize btnAddToFavlorites = _btnAddToFavlorites;
 
@@ -56,9 +55,27 @@
     [self setLblBeerName:nil];
     [self setLblBeerCategory:nil];
     [self setImgBeerIcon:nil];
-    [self setFbCommentsView:nil];
     [self setBtnComments:nil];
+    [self setActivityCommentsLoad:nil];
     [super viewDidUnload];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.btnComments setTitle:@"Comments" forState:UIControlStateNormal];
+    [self.activityCommentsLoad startAnimating];
+    
+    NSString* fullObjectId = [[ComServices sharedComServices].beersService getFullUrlForBeerId:self.beerView.beer.id];
+    
+    [[ComServices sharedComServices].commentsService getCommentsCountForObject:fullObjectId onComplete:^(int count, NSError *error)
+     {
+         if (count > 0)
+         {
+             [self.btnComments setTitle:[NSString stringWithFormat:@"%d Comments", count] forState:UIControlStateNormal];
+         }
+         
+        [self.activityCommentsLoad stopAnimating];
+     }];
 }
 
 #pragma mark - Private Methods
@@ -85,30 +102,6 @@
     
     NSString* imageUrl = [BeerRecoAPIClient getFullPathForFile:self.beerView.beer.beerIconUrl];
     [self.imgBeerIcon setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"weihenstephaner_hefe_icon"]];
-    
-     NSString* fullObjectId = [[ComServices sharedComServices].beersService getFullUrlForBeerId:self.beerView.beer.id];
-    
-    [[ComServices sharedComServices].commentsService getCommentsCountForObject:fullObjectId onComplete:^(int count, NSError *error)
-    {
-        [self.btnComments setTitle:[NSString stringWithFormat:@"Add to %d Comments", count] forState:UIControlStateNormal];
-    }];
-    
-    self.fbCommentsView.href = [NSURL URLWithString:fullObjectId];
-    self.fbCommentsView.numbeOfPosts = 5;
-    self.fbCommentsView.showFaces = NO;
-    
-    [self reloadFacebookCommentsView:1];
-}
-
--(void)reloadFacebookCommentsView
-{
-    [self reloadFacebookCommentsView:1];
-}
-
--(void)reloadFacebookCommentsView:(int)alpha
-{
-    self.fbCommentsView.alpha = alpha;
-    [self.fbCommentsView load];
 }
 
 -(void)addFavoritesButton
@@ -142,15 +135,11 @@
 -(void)facebookLoggedIn:(NSNotification*)notification
 {
     [self performSelector:@selector(addFavoritesButton) withObject:nil afterDelay:1];
-    [self performSelector:@selector(reloadFacebookCommentsView) withObject:nil afterDelay:1];
 }
 
 -(void)facebookLoggedOut:(NSNotification*)notification
 {
     [self removeFavoritesButton];
-    
-    self.fbCommentsView.alpha = 1;
-    [self.fbCommentsView load];
 }
 
 #pragma mark - Action Handlers
@@ -195,30 +184,20 @@
      }];
 }
 
-#pragma mark FacebookCommentsViewDelegate methods
+#pragma mark - Segue
 
--(void)facebookCommentsView:(FacebookCommentsView *)aFacebookCommentsView didFailLoadWithError:(NSError *)error
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    [[FBSession activeSession] openWithBehavior:FBSessionLoginBehaviorForcingWebView completionHandler:^(FBSession *session, FBSessionState state, NSError *error)
-     {
-         NSLog(@" state=%d",state);
-     }];
-}
-
-- (void)facebookCommentsViewRequiresLogin:(FacebookCommentsView *)aFacebookCommentsView
-{    
-    [[FBSession activeSession] openWithBehavior:FBSessionLoginBehaviorForcingWebView completionHandler:^(FBSession *session, FBSessionState state, NSError *error)
+    if ([segue.identifier isEqualToString:@"CommentsSegue"])
     {
-        NSLog(@" state=%d",state);
-    }];
-}
-
-- (void)facebookCommentsViewDidRender:(FacebookCommentsView *)aFacebookCommentsView
-{
-    [UIView beginAnimations:@"" context:nil];
-    [UIView setAnimationDelay:0.5];
-    self.fbCommentsView.alpha = 1;
-    [UIView commitAnimations];
+        FacebookCommentsViewController *facebookCommentsViewController = [segue destinationViewController];
+        
+        NSString* fullObjectId = [[ComServices sharedComServices].beersService getFullUrlForBeerId:self.beerView.beer.id];
+        
+        facebookCommentsViewController.objectId = fullObjectId;
+        
+        [facebookCommentsViewController setTitle:self.beerView.beer.name];
+    }
 }
 
 #pragma mark - MBProgressHUDDelegate methods
@@ -233,6 +212,4 @@
     }
 }
 
-- (IBAction)showCommentsClicked:(id)sender {
-}
 @end

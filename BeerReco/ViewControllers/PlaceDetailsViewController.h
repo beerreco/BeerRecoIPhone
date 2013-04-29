@@ -17,5 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *lblPlaceName;
 @property (weak, nonatomic) IBOutlet UILabel *lblPlaceArea;
 @property (weak, nonatomic) IBOutlet UIImageView *imgPlaceIcon;
+@property (weak, nonatomic) IBOutlet UIButton *btnComments;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityCommentsLoad;
 
 @end

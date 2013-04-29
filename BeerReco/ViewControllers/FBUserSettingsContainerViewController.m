@@ -7,6 +7,7 @@
 //
 
 #import "FBUserSettingsContainerViewController.h"
+#import "AppDelegate.h"
 
 @interface FBUserSettingsContainerViewController ()
 
@@ -43,6 +44,8 @@
     // There are many ways to implement the Facebook login flow.
     // In this sample, the FBLoginView delegate (SCLoginViewController)
     // will already handle logging out so this method is a no-op.
+    
+    [[AppDelegate getMainApp] closeSession];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:GlobalMessage_FB_LoggedOut object:nil userInfo:nil];
 }

@@ -21,6 +21,11 @@
 
 @implementation PlacesService
 
+-(NSString*)getFullUrlForPlaceId:(NSString*)placeId
+{
+    return [NSString stringWithFormat:@"%@%@/%@", BaseURL, ServicePath_Places, placeId];
+}
+
 -(void)addPlace:(PlaceM *)place onComplete:(void (^)(PlaceM *, NSError *))onComplete
 {
     if (place == nil)

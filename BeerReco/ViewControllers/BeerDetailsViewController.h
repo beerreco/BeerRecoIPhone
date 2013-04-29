@@ -9,17 +9,15 @@
 #import <UIKit/UIKit.h>
 #import <FacebookSDK/FacebookSDK.h>
 #import "MBProgressHUD.h"
-#import "FacebookCommentsView.h"
 
-@interface BeerDetailsViewController : UIViewController<MBProgressHUDDelegate, FacebookCommentsViewDelegate>
+@interface BeerDetailsViewController : UIViewController<MBProgressHUDDelegate>
 
 @property (nonatomic, strong) BeerViewM* beerView;
 
 @property (weak, nonatomic) IBOutlet UILabel *lblBeerName;
 @property (weak, nonatomic) IBOutlet UILabel *lblBeerCategory;
 @property (weak, nonatomic) IBOutlet UIImageView *imgBeerIcon;
-@property (weak, nonatomic) IBOutlet FacebookCommentsView *fbCommentsView;
 @property (weak, nonatomic) IBOutlet UIButton *btnComments;
-- (IBAction)showCommentsClicked:(id)sender;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityCommentsLoad;
 
 @end

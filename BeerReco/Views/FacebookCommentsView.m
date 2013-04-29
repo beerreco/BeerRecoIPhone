@@ -65,7 +65,7 @@
         if ([subview isKindOfClass:[UIScrollView class]])
         {
             subview.scrollEnabled = YES;
-            subview.bounces = NO;
+            subview.bounces = YES;
         }
     }
     
@@ -85,10 +85,6 @@
     
     NSString *html = [NSString stringWithFormat:htmlFormat,
                       self.href.absoluteString,
-                      self.href.absoluteString,
-                      self.frame.size.width,
-                      self.showFaces ? @"true" : @"false",
-                      self.href.absoluteString,
                       self.frame.size.width,
                       self.numbeOfPosts];
 
@@ -105,7 +101,18 @@
 
 - (void)didObserveFacebookEvent:(NSString *)fbEvent
 {
-    if ([fbEvent isEqualToString:@"xfbml.render"] && [_delegate respondsToSelector:@selector(facebookLikeViewDidRender:)])
+    if ([fbEvent isEqualToString:@"comment.create"] &&
+        [self.delegate respondsToSelector:@selector(facebookCommentsViewDidCreateComment:)])
+    {
+        [self.delegate facebookCommentsViewDidCreateComment:self];
+    }
+    else if ([fbEvent isEqualToString:@"comment.remove"] &&
+             [self.delegate respondsToSelector:@selector(FacebookCommentsViewDidDeleteComment:)])
+    {
+         [self.delegate FacebookCommentsViewDidDeleteComment:self];
+    }
+    else if ([fbEvent isEqualToString:@"xfbml.render"] &&
+             [self.delegate respondsToSelector:@selector(facebookCommentsViewDidRender:)])
     {
         [self.delegate facebookCommentsViewDidRender:self];
     }
@@ -114,7 +121,7 @@
 #pragma mark UIWebViewDelegate methods
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
-{//return YES;
+{
     // Allow loading Like button XFBML from file
     if ([request.URL.host isEqual:self.href.host])
     {
@@ -149,8 +156,7 @@
     }
     
     // Block redirects to the Facebook login page and notify the delegate that we've done so
-    else if ([request.URL.path isEqualToString:@"/dialog/plugin.option"] ||
-             ([request.URL.path isEqualToString:@"/plugins/like/connect"] && [request.HTTPBody.UTF8String hasPrefix:@"lsd"]))
+    else if ([request.URL.path isEqualToString:@"/login.php"])
     {
         [self.delegate facebookCommentsViewRequiresLogin:self];
         return NO;
@@ -158,7 +164,6 @@
     
     else
     {
-        NSLog(@"%@",request.URL.path);
         return YES;
     }
 }

@@ -12,6 +12,8 @@
 
 @interface PlacesService : NSObject
 
+-(NSString*)getFullUrlForPlaceId:(NSString*)placeId;
+
 -(void)addPlace:(PlaceM*)place onComplete:(void (^)(PlaceM* place, NSError *error))onComplete;
 
 -(void)updatePlace:(PlaceM*)place onComplete:(void (^)(PlaceM* place, NSError *error))onComplete;

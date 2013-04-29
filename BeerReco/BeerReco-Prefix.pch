@@ -15,6 +15,7 @@
 
 #import <SystemConfiguration/SystemConfiguration.h>
 #import <MobileCoreServices/MobileCoreServices.h>
+#import <FacebookSDK/FacebookSDK.h>
 
 #import "NSThread+SendBlockToBackground.h"
 #import "NSNull+ValueProvider.h"
@@ -28,7 +29,6 @@
 #import "UIWindow+InnerViewControllers.h"
 #import "UIViewController+ModalPresenter.h"
 #import "NSData+Encoding.h"
-
 
 #import "BeerRecoAPIClient.h"
 #import "ComServices.h"

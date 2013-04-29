@@ -7,6 +7,7 @@
 //
 
 #import "PlaceDetailsViewController.h"
+#import "FacebookCommentsViewController.h"
 
 @interface PlaceDetailsViewController ()
 
@@ -44,7 +45,27 @@
     [self setLblPlaceName:nil];
     [self setLblPlaceArea:nil];
     [self setImgPlaceIcon:nil];
+    [self setBtnComments:nil];
+    [self setActivityCommentsLoad:nil];
     [super viewDidUnload];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self.btnComments setTitle:@"Comments" forState:UIControlStateNormal];
+    [self.activityCommentsLoad startAnimating];
+    
+    NSString* fullObjectId = [[ComServices sharedComServices].placesService getFullUrlForPlaceId:self.placeView.place.id];
+    
+    [[ComServices sharedComServices].commentsService getCommentsCountForObject:fullObjectId onComplete:^(int count, NSError *error)
+     {
+         if (count > 0)
+         {
+             [self.btnComments setTitle:[NSString stringWithFormat:@"%d Comments", count] forState:UIControlStateNormal];
+         }
+         
+         [self.activityCommentsLoad stopAnimating];
+     }];
 }
 
 #pragma mark - Private Methods
@@ -60,6 +81,22 @@
     
     NSString* imageUrl = [BeerRecoAPIClient getFullPathForFile:self.placeView.place.placeIconUrl];
     [self.imgPlaceIcon setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"weihenstephaner_hefe_icon"]];
+}
+
+#pragma mark - Segue
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"CommentsSegue"])
+    {
+        FacebookCommentsViewController *facebookCommentsViewController = [segue destinationViewController];
+        
+        NSString* fullObjectId = [[ComServices sharedComServices].placesService getFullUrlForPlaceId:self.placeView.place.id];
+        
+        facebookCommentsViewController.objectId = fullObjectId;
+        
+        [facebookCommentsViewController setTitle:self.placeView.place.name];
+    }
 }
 
 @end

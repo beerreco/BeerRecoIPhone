@@ -62,5 +62,10 @@
 // Called when the web view made a failed request or is redirected away from facebook.com
 - (void)facebookCommentsView:(FacebookCommentsView *)aFacebookCommentsView didFailLoadWithError:(NSError *)error;
 
+// Called when the user likes a URL via this view
+- (void)facebookCommentsViewDidCreateComment:(FacebookCommentsView *)aFacebookCommentsView;
+
+// Called when the user unlikes a URL via this view
+- (void)FacebookCommentsViewDidDeleteComment:(FacebookCommentsView *)aFacebookCommentsView;
 
 @end

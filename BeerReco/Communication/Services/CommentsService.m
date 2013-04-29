@@ -24,8 +24,19 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:path]];
     AFJSONRequestOperation *operation = [AFJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id JSON)
     {
-        id objectInfo = [JSON valueForKey:objectId];
-        int count = [[objectInfo valueForKey:@"comments"] intValue];
+        int count = 0;
+    
+        @try
+        {
+            if (![JSON isKindOfClass:([NSArray class])])
+            {
+                id objectInfo = [JSON valueForKey:objectId];
+                count = [[objectInfo valueForKey:@"comments"] intValue];
+            }
+        }
+        @catch (NSException * e) {
+            NSLog(@"Exception: %@", e);
+        }
         
         if (onComplete)
         {
