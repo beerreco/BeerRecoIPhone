@@ -197,18 +197,18 @@
     }
 }
 
--(void)removeFromFavorites:(BeerM*)beer onComplete:(void (^)(NSError *error))onComplete
+-(void)removeFromFavorites:(BeerViewM*)beerView onComplete:(void (^)(NSError *error))onComplete
 {
     self.HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     self.HUD.delegate = self;
     self.HUD.dimBackground = YES;
     
-    [[ComServices sharedComServices].favoriteBeersService removeBeerFromFavorites:beer.id onComplete:^(NSError *error)
+    [[ComServices sharedComServices].favoriteBeersService removeBeerFromFavorites:beerView.beer.id onComplete:^(NSError *error)
     {
         if (error == nil)
         {
-            [self.itemsArray removeObject:beer];
-            [self.filteredItemsArray removeObject:beer];
+            [self.itemsArray removeObject:beerView];
+            [self.filteredItemsArray removeObject:beerView];
         }
         
         [self.HUD hide:YES];
@@ -496,14 +496,14 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
     if (editingStyle == UITableViewCellEditingStyleDelete)
     {
         NSIndexPath* beerIndex;
-        BeerM* beer;
+        BeerViewM* beerView;
         
         if (aTableView == self.searchDisplayController.searchResultsTableView)
         {
-            beer = [self.filteredItemsArray objectAtIndex:indexPath.row];
-            beerIndex = [NSIndexPath indexPathForItem:[self.itemsArray indexOfObject:beer] inSection:indexPath.section];
+            beerView = [self.filteredItemsArray objectAtIndex:indexPath.row];
+            beerIndex = [NSIndexPath indexPathForItem:[self.itemsArray indexOfObject:beerView] inSection:indexPath.section];
             
-            [self removeFromFavorites:beer onComplete:^(NSError *error)
+            [self removeFromFavorites:beerView onComplete:^(NSError *error)
             {
                 if (error == nil)
                 {
@@ -515,13 +515,11 @@ forRowAtIndexPath:(NSIndexPath *)indexPath
         }
         else
         {
-            beer = [self.itemsArray objectAtIndex:indexPath.row];
-            [self removeFromFavorites:beer onComplete:^(NSError *error)
+            beerView = [self.itemsArray objectAtIndex:indexPath.row];
+            [self removeFromFavorites:beerView onComplete:^(NSError *error)
              {
                  if (error == nil)
-                 {
-                     [self.searchDisplayController.searchResultsTableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-                     
+                 {                     
                      [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
                  }
              }];

@@ -961,6 +961,8 @@
 		84377F3B16D92B9400B44D99 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Rony Paikin (HQK8M76JR6)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Rony Paikin (HQK8M76JR6)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -979,6 +981,8 @@
 					"-lsqlite3.0",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "990F12D5-7225-4E66-A4FF-54463D591974";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "990F12D5-7225-4E66-A4FF-54463D591974";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -986,6 +990,8 @@
 		84377F3C16D92B9400B44D99 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer: Rony Paikin (HQK8M76JR6)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Rony Paikin (HQK8M76JR6)";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)\"",
@@ -1004,6 +1010,8 @@
 					"-lsqlite3.0",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "990F12D5-7225-4E66-A4FF-54463D591974";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "990F12D5-7225-4E66-A4FF-54463D591974";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

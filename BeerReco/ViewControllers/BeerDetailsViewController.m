@@ -102,6 +102,37 @@
     
     NSString* imageUrl = [BeerRecoAPIClient getFullPathForFile:self.beerView.beer.beerIconUrl];
     [self.imgBeerIcon setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"weihenstephaner_hefe_icon"]];
+    
+    [FBRequestConnection startWithGraphPath:@"me/og.likes"
+                          completionHandler:^(FBRequestConnection *connection,
+                                              id result,
+                                              NSError *error)
+    {
+        //NSLog(@"%@", result);
+    }];
+    
+    NSString* fullObjectId = [[ComServices sharedComServices].beersService getFullUrlForBeerId:self.beerView.beer.id];
+    
+    NSMutableDictionary<FBGraphObject> *action = [FBGraphObject graphObject];
+    action[@"object"] = fullObjectId;
+    
+    [FBRequestConnection startForPostWithGraphPath:@"me/og.likes"
+                                       graphObject:action
+                                 completionHandler:^(FBRequestConnection *connection,
+                                                     id result,
+                                                     NSError *error)
+    {
+                                     NSLog(@"%@", result);
+                                 }];
+    
+    [FBRequestConnection startWithGraphPath:@"me/og.likes"
+                                 parameters:action HTTPMethod:@"GET"
+                          completionHandler:^(FBRequestConnection *connection,
+                                              id result,
+                                              NSError *error)
+     {
+         NSLog(@"%@", result);
+     }];
 }
 
 -(void)addFavoritesButton
