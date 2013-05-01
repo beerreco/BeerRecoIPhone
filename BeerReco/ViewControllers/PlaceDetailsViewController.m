@@ -58,20 +58,9 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
-    [self.btnComments setTitle:@"Comments" forState:UIControlStateNormal];
-    [self.activityCommentsLoad startAnimating];
+    [self updateCommentsButton];
     
-    NSString* fullObjectId = [[ComServices sharedComServices].placesService getFullUrlForPlaceId:self.placeView.place.id];
-    
-    [[FacebookHelper sharedFacebookHelper] getCommentsCountForExternalObject:fullObjectId onComplete:^(int count, NSError *error)
-     {
-         if (count > 0)
-         {
-             [self.btnComments setTitle:[NSString stringWithFormat:@"%d Comments", count] forState:UIControlStateNormal];
-         }
-         
-         [self.activityCommentsLoad stopAnimating];
-     }];
+    [self addLikeButton];
 }
 
 #pragma mark - Private Methods
@@ -88,6 +77,24 @@
     
     NSString* imageUrl = [BeerRecoAPIClient getFullPathForFile:self.placeView.place.placeIconUrl];
     [self.imgPlaceIcon setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"weihenstephaner_hefe_icon"]];
+}
+
+-(void)updateCommentsButton
+{
+    [self.btnComments setTitle:@"Comments" forState:UIControlStateNormal];
+    [self.activityCommentsLoad startAnimating];
+    
+    NSString* fullObjectId = [[ComServices sharedComServices].placesService getFullUrlForPlaceId:self.placeView.place.id];
+    
+    [[FacebookHelper sharedFacebookHelper] getCommentsCountForExternalObject:fullObjectId onComplete:^(int count, NSError *error)
+     {
+         if (count > 0)
+         {
+             [self.btnComments setTitle:[NSString stringWithFormat:@"%d Comments", count] forState:UIControlStateNormal];
+         }
+         
+         [self.activityCommentsLoad stopAnimating];
+     }];
 }
 
 #pragma mark Like handling

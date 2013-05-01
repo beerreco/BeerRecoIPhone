@@ -62,6 +62,30 @@
 
 -(void)viewWillAppear:(BOOL)animated
 {
+    [self updateCommentsButton];
+    
+    [self addFavoritesButton];
+    
+    [self addLikeButton];
+}
+
+#pragma mark - Private Methods
+
+-(void)visualSetup
+{
+}
+
+-(void)setup
+{
+    self.lblBeerName.text = self.beerView.beer.name;
+    self.lblBeerCategory.text = self.beerView.beerCategory.name;
+    
+    NSString* imageUrl = [BeerRecoAPIClient getFullPathForFile:self.beerView.beer.beerIconUrl];
+    [self.imgBeerIcon setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"weihenstephaner_hefe_icon"]];
+}
+
+-(void)updateCommentsButton
+{
     [self.btnComments setTitle:@"Comments" forState:UIControlStateNormal];
     [self.activityCommentsLoad startAnimating];
     
@@ -74,26 +98,8 @@
              [self.btnComments setTitle:[NSString stringWithFormat:@"%d Comments", count] forState:UIControlStateNormal];
          }
          
-        [self.activityCommentsLoad stopAnimating];
+         [self.activityCommentsLoad stopAnimating];
      }];
-}
-
-#pragma mark - Private Methods
-
--(void)visualSetup
-{
-    [self addFavoritesButton];
-    
-    [self addLikeButton];
-}
-
--(void)setup
-{
-    self.lblBeerName.text = self.beerView.beer.name;
-    self.lblBeerCategory.text = self.beerView.beerCategory.name;
-    
-    NSString* imageUrl = [BeerRecoAPIClient getFullPathForFile:self.beerView.beer.beerIconUrl];
-    [self.imgBeerIcon setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"weihenstephaner_hefe_icon"]];
 }
 
 #pragma mark Like handling
