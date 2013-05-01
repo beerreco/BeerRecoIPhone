@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 
 #import "PlaceViewM.h"
+#import "MBProgressHUD.h"
 
-@interface PlaceDetailsViewController : UIViewController
+@interface PlaceDetailsViewController : UIViewController <MBProgressHUDDelegate>
 
 @property (nonatomic, strong) PlaceViewM* placeView;
 
@@ -19,5 +20,10 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imgPlaceIcon;
 @property (weak, nonatomic) IBOutlet UIButton *btnComments;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityCommentsLoad;
+
+@property (weak, nonatomic) IBOutlet UIButton *btnLike;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityLikeCheck;
+
+- (IBAction)likeClicked:(id)sender;
 
 @end

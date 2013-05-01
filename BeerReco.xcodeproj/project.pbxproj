@@ -41,8 +41,8 @@
 		844956B8172D2FB300A4690C /* FacebookCommentsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 844956B7172D2FB300A4690C /* FacebookCommentsView.m */; };
 		844956BB172D4F2000A4690C /* NSData+Encoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 844956BA172D4F2000A4690C /* NSData+Encoding.m */; };
 		844956BD172D613A00A4690C /* FBComments.html in Resources */ = {isa = PBXBuildFile; fileRef = 844956BC172D613A00A4690C /* FBComments.html */; };
-		844956C0172D85F800A4690C /* CommentsService.m in Sources */ = {isa = PBXBuildFile; fileRef = 844956BF172D85F800A4690C /* CommentsService.m */; };
 		844956C3172D8A1100A4690C /* FacebookCommentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 844956C2172D8A1100A4690C /* FacebookCommentsViewController.m */; };
+		844956C6172FFDC800A4690C /* FacebookHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 844956C5172FFDC700A4690C /* FacebookHelper.m */; };
 		84A58FA3170C6AD400A46E9F /* BeerM.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A58FA2170C6AD400A46E9F /* BeerM.m */; };
 		84A58FAA170DAE4300A46E9F /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A58FA9170DAE4300A46E9F /* FacebookSDK.framework */; };
 		84A58FAC170DAE8800A46E9F /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 84A58FAB170DAE8800A46E9F /* FacebookSDKResources.bundle */; };
@@ -159,10 +159,10 @@
 		844956B9172D4F2000A4690C /* NSData+Encoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+Encoding.h"; path = "Categories/NSData+Encoding.h"; sourceTree = "<group>"; };
 		844956BA172D4F2000A4690C /* NSData+Encoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+Encoding.m"; path = "Categories/NSData+Encoding.m"; sourceTree = "<group>"; };
 		844956BC172D613A00A4690C /* FBComments.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; name = FBComments.html; path = Resources/FacebookWebPlugins/FBComments.html; sourceTree = "<group>"; };
-		844956BE172D85F800A4690C /* CommentsService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommentsService.h; path = Communication/Services/CommentsService.h; sourceTree = "<group>"; };
-		844956BF172D85F800A4690C /* CommentsService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommentsService.m; path = Communication/Services/CommentsService.m; sourceTree = "<group>"; };
 		844956C1172D8A1000A4690C /* FacebookCommentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FacebookCommentsViewController.h; path = ViewControllers/FacebookCommentsViewController.h; sourceTree = "<group>"; };
 		844956C2172D8A1100A4690C /* FacebookCommentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FacebookCommentsViewController.m; path = ViewControllers/FacebookCommentsViewController.m; sourceTree = "<group>"; };
+		844956C4172FFDC700A4690C /* FacebookHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FacebookHelper.h; path = Communication/FacebookHelper.h; sourceTree = "<group>"; };
+		844956C5172FFDC700A4690C /* FacebookHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FacebookHelper.m; path = Communication/FacebookHelper.m; sourceTree = "<group>"; };
 		84A58FA1170C6AD400A46E9F /* BeerM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeerM.h; path = Models/BeerM.h; sourceTree = "<group>"; };
 		84A58FA2170C6AD400A46E9F /* BeerM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BeerM.m; path = Models/BeerM.m; sourceTree = "<group>"; };
 		84A58FA7170DADF900A46E9F /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = /Users/admin/Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<absolute>"; };
@@ -483,6 +483,8 @@
 				84B58CAD16DB91DF0097CD67 /* GeneralDataStore.m */,
 				84B58CB916DB9B2B0097CD67 /* ComServices.h */,
 				84B58CBA16DB9B2B0097CD67 /* ComServices.m */,
+				844956C4172FFDC700A4690C /* FacebookHelper.h */,
+				844956C5172FFDC700A4690C /* FacebookHelper.m */,
 			);
 			name = Communication;
 			sourceTree = "<group>";
@@ -502,8 +504,6 @@
 				84DB4F7317293C1E00875ACA /* FileManagementService.m */,
 				84D9D895172C88D600CC8E71 /* AreasService.h */,
 				84D9D896172C88D600CC8E71 /* AreasService.m */,
-				844956BE172D85F800A4690C /* CommentsService.h */,
-				844956BF172D85F800A4690C /* CommentsService.m */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -855,8 +855,8 @@
 				84D9D897172C88D600CC8E71 /* AreasService.m in Sources */,
 				844956B8172D2FB300A4690C /* FacebookCommentsView.m in Sources */,
 				844956BB172D4F2000A4690C /* NSData+Encoding.m in Sources */,
-				844956C0172D85F800A4690C /* CommentsService.m in Sources */,
 				844956C3172D8A1100A4690C /* FacebookCommentsViewController.m in Sources */,
+				844956C6172FFDC800A4690C /* FacebookHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

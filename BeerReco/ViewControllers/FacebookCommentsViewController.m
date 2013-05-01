@@ -86,7 +86,10 @@
 
 - (void)facebookCommentsViewRequiresLogin:(FacebookCommentsView *)aFacebookCommentsView
 {
-    [[AppDelegate getMainApp] openSession];
+    [[FacebookHelper sharedFacebookHelper] openSession:^(NSError *error)
+     {
+        
+    }];
 }
 
 - (void)facebookCommentsViewDidRender:(FacebookCommentsView *)aFacebookCommentsView

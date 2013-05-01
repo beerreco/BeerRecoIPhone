@@ -19,5 +19,12 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imgBeerIcon;
 @property (weak, nonatomic) IBOutlet UIButton *btnComments;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityCommentsLoad;
+@property (weak, nonatomic) IBOutlet UIButton *btnFavorites;
+@property (weak, nonatomic) IBOutlet UIButton *btnLike;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityFavoriteCheck;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityLikeCheck;
+
+- (IBAction)likeClicked:(id)sender;
+- (IBAction)favoritesButtonClicked:(id)sender;
 
 @end

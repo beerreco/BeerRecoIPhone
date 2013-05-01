@@ -14,4 +14,6 @@
 
 @property (nonatomic, strong) NSString* FBUserID;
 
+-(BOOL)hasFBUser;
+
 @end

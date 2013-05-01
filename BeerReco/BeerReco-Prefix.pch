@@ -34,6 +34,7 @@
 #import "ComServices.h"
 #import "GeneralDataStore.h"
 #import "LocalizeHelper.h"
+#import "FacebookHelper.h"
 
 #define GlobalMessage_NetworkStatusChanged @"GlobalMessage_NetworkStatusChanged"
 

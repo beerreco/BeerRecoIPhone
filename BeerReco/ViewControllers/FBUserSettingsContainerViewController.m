@@ -28,6 +28,9 @@
 {
     [super viewDidLoad];
     
+    [self setPublishPermissions:[[FacebookHelper sharedFacebookHelper] getPublishPermissions]];
+    [self setDefaultAudience:FBSessionDefaultAudienceEveryone];
+    
     self.delegate = self;
 }
 
@@ -45,7 +48,7 @@
     // In this sample, the FBLoginView delegate (SCLoginViewController)
     // will already handle logging out so this method is a no-op.
     
-    [[AppDelegate getMainApp] closeSession];
+    [[FacebookHelper sharedFacebookHelper] closeSession:YES];
     
     [[NSNotificationCenter defaultCenter] postNotificationName:GlobalMessage_FB_LoggedOut object:nil userInfo:nil];
 }

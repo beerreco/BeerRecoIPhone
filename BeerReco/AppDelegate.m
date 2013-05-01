@@ -23,80 +23,6 @@ void uncaughtExceptionHandler(NSException *exception);
     return (AppDelegate*)[[UIApplication sharedApplication] delegate];
 }
 
-#pragma mark - Private Methods
-
-- (void)sessionStateChanged:(FBSession *)session
-                      state:(FBSessionState) state
-                      error:(NSError *)error
-{
-    NSLog(@" state=%d",state);
-    switch (state)
-    {
-        case FBSessionStateOpen:
-        {
-            [[NSNotificationCenter defaultCenter] postNotificationName:GlobalMessage_FB_LoggedIn object:nil userInfo:nil];
-        }
-            break;
-        case FBSessionStateClosed:
-        case FBSessionStateClosedLoginFailed:
-            
-            [self closeSession];
-            
-            [[NSNotificationCenter defaultCenter] postNotificationName:GlobalMessage_FB_LoggedOut object:nil userInfo:nil];
-            break;
-        default:
-            break;
-    }
-    
-    if (error)
-    {
-        UIAlertView *alertView = [[UIAlertView alloc]
-                                  initWithTitle:@"Error"
-                                  message:error.localizedDescription
-                                  delegate:nil
-                                  cancelButtonTitle:@"OK"
-                                  otherButtonTitles:nil];
-        [alertView show];
-    }
-}
-
--(void)closeSession
-{
-    [FBSession.activeSession closeAndClearTokenInformation];
-    
-    NSHTTPCookie *cookie;
-    NSHTTPCookieStorage* storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-    
-    for (cookie in [storage cookies])
-    {
-        NSString *domainStr=(NSString *)[cookie domain];
-        NSLog(@"%@",domainStr);
-        if([domainStr isEqualToString:@".facebook.com" ])
-        {
-            [storage deleteCookie:cookie];
-        }
-    }
-    
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
--(void)openSession
-{
-    [[FBSession activeSession] openWithBehavior:FBSessionLoginBehaviorForcingWebView completionHandler:^(FBSession *session, FBSessionState state, NSError *error)
-     {
-         [self sessionStateChanged:session state:state error:error];
-     }];
-    
-    /*[FBSession openActiveSessionWithReadPermissions:nil
-                                       allowLoginUI:YES
-                                  completionHandler:
-     ^(FBSession *session,
-       FBSessionState state, NSError *error)
-    {
-        [self sessionStateChanged:session state:state error:error];
-    }];*/
-}
-
 #pragma mark - UIApplicationDelegate
 
 - (BOOL)application:(UIApplication *)application
@@ -122,12 +48,14 @@ void uncaughtExceptionHandler(NSException *exception);
     // See if we have a valid token for the current state.
     if (FBSession.activeSession.state == FBSessionStateCreatedTokenLoaded)
     {
-         [self openSession];
+        [[FacebookHelper sharedFacebookHelper] openSession:NO onComplete:^(NSError *error)
+        {
+             
+        }];
     }
     else
     {
-        // No, display the login page.
-        //[self showLoginView];
+        
     }
     
     return YES;
@@ -171,7 +99,7 @@ void uncaughtExceptionHandler(NSException *exception);
     // if the app is going away, we close the session object; this is a good idea because
     // things may be hanging off the session, that need releasing (completion block, etc.) and
     // other components in the app may be awaiting close notification in order to do cleanup
-    [FBSession.activeSession close];
+    [[FacebookHelper sharedFacebookHelper] closeSession];
 }
 
 #pragma mark - uncaughtExceptionHandler

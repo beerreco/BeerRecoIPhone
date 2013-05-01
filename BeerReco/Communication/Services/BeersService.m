@@ -21,7 +21,7 @@
 
 -(NSString*)getFullUrlForBeerId:(NSString*)beerId
 {
-    return [NSString stringWithFormat:@"%@%@/%@", BaseURL, ServicePath_Beers, beerId];
+    return [NSString stringWithFormat:@"%@%@%@/%@", BaseURL, BaseIpadPathPrefix, ServicePath_Beers, beerId];
 }
 
 -(void)addBeer:(BeerM*)beer onComplete:(void (^)(BeerM* beer, NSError *error))onComplete

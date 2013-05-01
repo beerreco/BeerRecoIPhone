@@ -14,7 +14,6 @@
 #import "PlacesService.h"
 #import "FileManagementService.h"
 #import "AreasService.h"
-#import "CommentsService.h"
 
 @interface ComServices : NSObject
 
@@ -26,6 +25,5 @@
 @property (nonatomic, strong) PlacesService* placesService;
 @property (nonatomic, strong) AreasService* areasService;
 @property (nonatomic, strong) FileManagementService* fileManagementService;
-@property (nonatomic, strong) CommentsService* commentsService;
 
 @end

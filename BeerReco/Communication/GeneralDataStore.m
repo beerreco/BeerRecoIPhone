@@ -68,4 +68,9 @@
     self.FBUserID = nil;
 }
 
+-(BOOL)hasFBUser
+{
+    return ![NSString isNullOrEmpty:self.FBUserID];
+}
+
 @end

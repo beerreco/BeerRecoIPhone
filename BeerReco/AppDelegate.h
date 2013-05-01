@@ -14,9 +14,6 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
--(void)openSession;
--(void)closeSession;
-
 void RunBlockOnMainQueueAfterDelay(NSTimeInterval delay, void (^block)(void))
 {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, NSEC_PER_SEC * delay),

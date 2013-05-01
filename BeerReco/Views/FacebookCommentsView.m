@@ -26,17 +26,23 @@
 @synthesize ref = _ref;
 @synthesize delegate = _delegate;
 
-- (id)initWithFrame:(CGRect)frame {
-    if (self = [super initWithFrame:frame]) {
+- (id)initWithFrame:(CGRect)frame
+{
+    if (self = [super initWithFrame:frame])
+    {
         [self initCommon];
     }
+    
     return self;
 }
 
-- (id)initWithCoder:(NSCoder *)aDecoder {
-    if (self = [super initWithCoder:aDecoder]) {
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    if (self = [super initWithCoder:aDecoder])
+    {
         [self initCommon];
     }
+    
     return  self;
 }
 
@@ -53,14 +59,14 @@
 
 - (void)initCommon
 {
-    _webView = [[UIWebView alloc] init];
-    _webView.opaque = NO;
-    _webView.backgroundColor = [UIColor clearColor];
-    _webView.delegate = self;
-    [self addSubview:_webView];
+    self.webView = [[UIWebView alloc] init];
+    self.webView.opaque = NO;
+    self.webView.backgroundColor = [UIColor clearColor];
+    self.webView.delegate = self;
+    [self addSubview:self.webView];
     
     // Prevent web view from scrolling
-    for (UIScrollView *subview in _webView.subviews)
+    for (UIScrollView *subview in self.webView.subviews)
     {
         if ([subview isKindOfClass:[UIScrollView class]])
         {
@@ -122,23 +128,25 @@
 
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
+    BOOL ret = NO;
+    
     // Allow loading Like button XFBML from file
     if ([request.URL.host isEqual:self.href.host])
     {
-        return YES;
+        ret = YES;
     }
     
     // Allow loading about:blank, etc.
-    if ([request.URL.scheme isEqualToString:@"about"])
+    else if ([request.URL.scheme isEqualToString:@"about"])
     {
-        return YES;
+        ret = YES;
     }
     
     // Block loading of 'event:*', our scheme for forwarding Facebook JS SDK events to native code
     else if ([request.URL.scheme isEqualToString:@"event"])
     {
         [self didObserveFacebookEvent:request.URL.resourceSpecifier];
-        return NO;
+        ret = NO;
     }
     
     // Block redirects to non-Facebook URLs (e.g., by public wifi access points)
@@ -152,20 +160,24 @@
                                              code:0
                                          userInfo:errorInfo];
         [self didFailLoadWithError:error];
-        return NO;
+        ret = NO;
     }
     
     // Block redirects to the Facebook login page and notify the delegate that we've done so
     else if ([request.URL.path isEqualToString:@"/login.php"])
     {
         [self.delegate facebookCommentsViewRequiresLogin:self];
-        return NO;
+        ret = NO;
     }
     
     else
     {
-        return YES;
+        ret = YES;
     }
+    
+    NSLog(@"%@", request.URL.path);
+    
+    return ret;
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error

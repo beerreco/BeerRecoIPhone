@@ -11,15 +11,11 @@
 
 @interface BeerDetailsViewController ()
 
-@property (nonatomic, strong) UIBarButtonItem* btnAddToFavlorites;
-@property (nonatomic, strong) UIBarButtonItem* btnRemoveFromFavlorites;
 @property (nonatomic, strong) MBProgressHUD* HUD;
 
 @end
 
 @implementation BeerDetailsViewController
-
-@synthesize btnAddToFavlorites = _btnAddToFavlorites;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -57,6 +53,10 @@
     [self setImgBeerIcon:nil];
     [self setBtnComments:nil];
     [self setActivityCommentsLoad:nil];
+    [self setBtnFavorites:nil];
+    [self setBtnLike:nil];
+    [self setActivityFavoriteCheck:nil];
+    [self setActivityLikeCheck:nil];
     [super viewDidUnload];
 }
 
@@ -67,7 +67,7 @@
     
     NSString* fullObjectId = [[ComServices sharedComServices].beersService getFullUrlForBeerId:self.beerView.beer.id];
     
-    [[ComServices sharedComServices].commentsService getCommentsCountForObject:fullObjectId onComplete:^(int count, NSError *error)
+    [[FacebookHelper sharedFacebookHelper] getCommentsCountForExternalObject:fullObjectId onComplete:^(int count, NSError *error)
      {
          if (count > 0)
          {
@@ -82,17 +82,9 @@
 
 -(void)visualSetup
 {
-    if  (self.btnAddToFavlorites == nil)
-    {
-        self.btnAddToFavlorites = [[UIBarButtonItem alloc] initWithTitle:@"Add to Favorites" style:UIBarButtonItemStyleBordered target:self action:@selector(addToFavoritesClicked:)];
-    }
-    
-    if  (self.btnRemoveFromFavlorites == nil)
-    {
-        self.btnRemoveFromFavlorites = [[UIBarButtonItem alloc] initWithTitle:@"Remove from Favorites" style:UIBarButtonItemStyleBordered target:self action:@selector(removeFromFavoritesClicked:)];
-    }
-    
     [self addFavoritesButton];
+    
+    [self addLikeButton];
 }
 
 -(void)setup
@@ -102,80 +94,154 @@
     
     NSString* imageUrl = [BeerRecoAPIClient getFullPathForFile:self.beerView.beer.beerIconUrl];
     [self.imgBeerIcon setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"weihenstephaner_hefe_icon"]];
-    
-    [FBRequestConnection startWithGraphPath:@"me/og.likes"
-                          completionHandler:^(FBRequestConnection *connection,
-                                              id result,
-                                              NSError *error)
-    {
-        //NSLog(@"%@", result);
-    }];
-    
-    NSString* fullObjectId = [[ComServices sharedComServices].beersService getFullUrlForBeerId:self.beerView.beer.id];
-    
-    NSMutableDictionary<FBGraphObject> *action = [FBGraphObject graphObject];
-    action[@"object"] = fullObjectId;
-    
-    [FBRequestConnection startForPostWithGraphPath:@"me/og.likes"
-                                       graphObject:action
-                                 completionHandler:^(FBRequestConnection *connection,
-                                                     id result,
-                                                     NSError *error)
-    {
-                                     NSLog(@"%@", result);
-                                 }];
-    
-    [FBRequestConnection startWithGraphPath:@"me/og.likes"
-                                 parameters:action HTTPMethod:@"GET"
-                          completionHandler:^(FBRequestConnection *connection,
-                                              id result,
-                                              NSError *error)
-     {
-         NSLog(@"%@", result);
-     }];
 }
 
--(void)addFavoritesButton
+#pragma mark Like handling
+
+-(void)addLikeButton
+{
+    if ([[GeneralDataStore sharedDataStore] hasFBUser])
+    {
+        [self.activityLikeCheck startAnimating];
+        
+        NSString* fullObjectId = [[ComServices sharedComServices].beersService getFullUrlForBeerId:self.beerView.beer.id];
+        
+        [[FacebookHelper sharedFacebookHelper] checkIfExternalObjectIsLiked:fullObjectId onComplete:^(BOOL liked, NSError *error)
+         {
+             if (liked)
+             {
+                 [self makeUnlikeButton];
+             }
+             else
+             {
+                 [self makeLikeButton];
+             }
+             
+             [self.activityLikeCheck stopAnimating];
+         }];
+    }
+    else
+    {
+        [self makeLikeButton];
+    }
+}
+
+-(void)makeLikeButton
+{
+    [self.btnLike setTitle:@"Like" forState:UIControlStateNormal];
+    [self.btnLike setTag:0];
+}
+
+-(void)makeUnlikeButton
+{
+    [self.btnLike setTitle:@"Unlike" forState:UIControlStateNormal];
+    [self.btnLike setTag:1];
+}
+
+- (void)likeObject
 {
     if (FBSession.activeSession.isOpen)
     {
+        if (self.HUD == nil)
+        {
+            self.HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            self.HUD.delegate = self;
+            self.HUD.dimBackground = YES;
+        }
+        
+        NSString* fullObjectId = [[ComServices sharedComServices].beersService getFullUrlForBeerId:self.beerView.beer.id];
+        
+        [[FacebookHelper sharedFacebookHelper] likeExternalObject:fullObjectId onComplete:^(BOOL added, NSError *error)
+         {
+             if (added)
+             {
+                 [self makeUnlikeButton];
+             }
+             
+             [self.HUD hide:YES];
+         }];
+    }
+}
+
+- (void)unlikeObject
+{
+    if (FBSession.activeSession.isOpen)
+    {
+        if (self.HUD == nil)
+        {
+            self.HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            self.HUD.delegate = self;
+            self.HUD.dimBackground = YES;
+        }
+        
+        NSString* fullObjectId = [[ComServices sharedComServices].beersService getFullUrlForBeerId:self.beerView.beer.id];
+        
+        [[FacebookHelper sharedFacebookHelper] getLikeObjectIdOnExternalObject:fullObjectId onComplete:^(NSString *likeObjectId, NSError *error)
+         {
+             if (![NSString isNullOrEmpty:likeObjectId])
+             {
+                 [[FacebookHelper sharedFacebookHelper] removeOGObject:likeObjectId onComplete:^(BOOL deleted, NSError *error)
+                  {
+                      if (deleted)
+                      {
+                          [self makeLikeButton];
+                      }
+                      
+                      [self.HUD hide:YES];
+                  }];
+             }
+             else
+             {
+                 [self.HUD hide:YES];
+             }
+         }];
+    }
+}
+
+#pragma mark Favorites handling
+
+-(void)addFavoritesButton
+{
+    if ([[GeneralDataStore sharedDataStore] hasFBUser])
+    {
+        [self.activityFavoriteCheck startAnimating];
+        
         [[ComServices sharedComServices].favoriteBeersService isBeerInFavorites:self.beerView.beer.id onComplete:^(BOOL inFavorites, NSError *error)
         {
             if (error == nil)
             {
                 if (inFavorites)
                 {
-                    self.navigationItem.rightBarButtonItem = self.btnRemoveFromFavlorites;
+                    [self makeRemoveFavoritesButton];
                 }
                 else
                 {
-                    self.navigationItem.rightBarButtonItem = self.btnAddToFavlorites;
+                    [self makeAddFavoritesButton];
                 }
             }
+            
+            [self.activityFavoriteCheck stopAnimating];
         }];
+    }
+    else
+    {
+        [self makeAddFavoritesButton];
     }
 }
 
--(void)removeFavoritesButton
+-(void)makeAddFavoritesButton
 {
-    self.navigationItem.rightBarButtonItem = nil;
+    [self.btnFavorites setTitle:@"Add Fav" forState:UIControlStateNormal];
+    [self.btnFavorites setTag:0];
 }
 
-#pragma mark - Notifications Handlers
-
--(void)facebookLoggedIn:(NSNotification*)notification
+-(void)makeRemoveFavoritesButton
 {
-    [self performSelector:@selector(addFavoritesButton) withObject:nil afterDelay:1];
+    [self.btnFavorites setTitle:@"Rem Fav" forState:UIControlStateNormal];
+    [self.btnFavorites setTag:1];
 }
 
--(void)facebookLoggedOut:(NSNotification*)notification
-{
-    [self removeFavoritesButton];
-}
-
-#pragma mark - Action Handlers
-
-- (void)addToFavoritesClicked:(id)sender
+- (void)addToFavorites
 {
     if (self.HUD == nil)
     {
@@ -188,14 +254,14 @@
      {
          if (error == nil)
          {
-             self.navigationItem.rightBarButtonItem = self.btnRemoveFromFavlorites;
+             [self makeRemoveFavoritesButton];
          }
          
-         [self.HUD hide:YES];         
+         [self.HUD hide:YES];
      }];
 }
 
-- (void)removeFromFavoritesClicked:(id)sender
+- (void)removeFromFavorites
 {
     if (self.HUD == nil)
     {
@@ -208,11 +274,143 @@
      {
          if (error == nil)
          {
-             self.navigationItem.rightBarButtonItem = self.btnAddToFavlorites;
+             [self makeAddFavoritesButton];
          }
          
          [self.HUD hide:YES];
      }];
+}
+
+#pragma mark - Notifications Handlers
+
+-(void)facebookLoggedIn:(NSNotification*)notification
+{
+    [self performSelector:@selector(addFavoritesButton) withObject:nil afterDelay:1];
+}
+
+-(void)facebookLoggedOut:(NSNotification*)notification
+{
+    [self makeAddFavoritesButton];
+    
+    [self makeLikeButton];
+}
+
+#pragma mark - Action Handlers
+
+- (IBAction)likeClicked:(id)sender
+{
+    if ([[FacebookHelper sharedFacebookHelper] hasSessionWithAccessToken])
+    {
+        if (self.btnLike.tag == 0)
+        {
+            [self likeObject];
+        }
+        else if (self.btnLike.tag == 1)
+        {
+            [self unlikeObject];
+        }
+    }
+    else
+    {
+        if (self.HUD == nil)
+        {
+            self.HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            self.HUD.delegate = self;
+            self.HUD.dimBackground = YES;
+        }
+        
+        [[FacebookHelper sharedFacebookHelper] openSession:NO onComplete:^(NSError *error)
+         {
+             if (error == nil)
+             {
+                 if (self.btnLike.tag == 0)
+                 {
+                     NSString* fullObjectId = [[ComServices sharedComServices].beersService getFullUrlForBeerId:self.beerView.beer.id];
+                     
+                     [[FacebookHelper sharedFacebookHelper] checkIfExternalObjectIsLiked:fullObjectId onComplete:^(BOOL liked, NSError *error)
+                      {
+                          if (liked)
+                          {
+                              [self makeUnlikeButton];
+                              
+                              [self.HUD hide:YES];
+                          }
+                          else
+                          {
+                              [self likeObject];
+                          }
+                      }];
+                 }
+                 else if (self.btnLike.tag == 1)
+                 {
+                     [self unlikeObject];
+                 }
+             }
+             else
+             {
+                 [self.HUD hide:YES];
+             }
+         }];
+    }
+}
+
+- (IBAction)favoritesButtonClicked:(id)sender
+{
+    if ([[GeneralDataStore sharedDataStore] hasFBUser])
+    {
+        if (self.btnFavorites.tag == 0)
+        {
+            [self addToFavorites];
+        }
+        else if (self.btnFavorites.tag == 1)
+        {
+            [self removeFromFavorites];
+        }
+    }
+    else
+    {
+        if (self.HUD == nil)
+        {
+            self.HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+            self.HUD.delegate = self;
+            self.HUD.dimBackground = YES;
+        }
+        
+        [[FacebookHelper sharedFacebookHelper] openSession:^(NSError *error)
+         {
+             if (error == nil)
+             {
+                 [[ComServices sharedComServices].favoriteBeersService isBeerInFavorites:self.beerView.beer.id onComplete:^(BOOL inFavorites, NSError *error)
+                  {
+                      if (error == nil)
+                      {
+                          if (self.btnFavorites.tag == 0)
+                          {
+                              if (inFavorites)
+                              {
+                                  [self makeRemoveFavoritesButton];
+                              }
+                              else
+                              {
+                                  [self addToFavorites];
+                              }
+                          }
+                          else if (self.btnFavorites.tag == 1)
+                          {
+                              if (inFavorites)
+                              {
+                                  [self removeFromFavorites];
+                              }
+                              else
+                              {
+                                  [self makeAddFavoritesButton];
+                              }
+                          }
+                      }
+                  }];
+             }
+         }];
+    }
 }
 
 #pragma mark - Segue
