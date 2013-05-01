@@ -19,11 +19,6 @@
 @implementation FacebookCommentsView
 
 @synthesize href = _href;
-@synthesize layout = _layout;
-@synthesize showFaces = _showFaces;
-@synthesize action = _action, font=_font;
-@synthesize colorScheme = _colorScheme;
-@synthesize ref = _ref;
 @synthesize delegate = _delegate;
 
 - (id)initWithFrame:(CGRect)frame
@@ -49,11 +44,6 @@
 - (void)dealloc
 {
     self.href = nil;
-    self.layout = nil;
-    self.action = nil;
-    self.font = nil;
-    self.colorScheme = nil;
-    self.ref = nil;
     self.webView = nil;
 }
 
@@ -77,19 +67,24 @@
     
     // Default settings
     self.href = [NSURL URLWithString:@"http://example.com"];
-    self.layout = @"standard";
-    self.showFaces = YES;
-    self.action = @"like";
-    self.font = @"arial";
-    self.colorScheme = @"light";
-    self.ref = @"";
 }
 
 - (void)load
 {
     NSString *htmlFormat = [NSString stringWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"FBComments" ofType:@"html"] encoding:NSUTF8StringEncoding error:nil];
     
+    NSString* metaDataString = @"";
+    
+    if (self.metaData)
+    {
+        for (NSString* key in self.metaData)
+        {
+            [metaDataString stringByAppendingString:[NSString stringWithFormat:@"<meta property='%@' content='%@'/>", key, [self.metaData objectForKey:key]]];
+        }
+    }
+    
     NSString *html = [NSString stringWithFormat:htmlFormat,
+                      metaDataString,
                       self.href.absoluteString,
                       self.frame.size.width,
                       self.numbeOfPosts];

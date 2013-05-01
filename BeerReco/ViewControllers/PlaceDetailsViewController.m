@@ -83,6 +83,7 @@
 {
     [self.btnComments setTitle:@"Comments" forState:UIControlStateNormal];
     [self.activityCommentsLoad startAnimating];
+    [self.btnComments setEnabled:NO];
     
     NSString* fullObjectId = [[ComServices sharedComServices].placesService getFullUrlForPlaceId:self.placeView.place.id];
     
@@ -94,6 +95,7 @@
          }
          
          [self.activityCommentsLoad stopAnimating];
+         [self.btnComments setEnabled:YES];
      }];
 }
 
@@ -104,6 +106,7 @@
     if ([[GeneralDataStore sharedDataStore] hasFBUser])
     {
         [self.activityLikeCheck startAnimating];
+        [self.btnLike setEnabled:NO];
         
         NSString* fullObjectId = [[ComServices sharedComServices].placesService getFullUrlForPlaceId:self.placeView.place.id];
         
@@ -119,6 +122,7 @@
              }
              
              [self.activityLikeCheck stopAnimating];
+             [self.btnLike setEnabled:YES];
          }];
     }
     else
@@ -278,9 +282,7 @@
     {
         FacebookCommentsViewController *facebookCommentsViewController = [segue destinationViewController];
         
-        NSString* fullObjectId = [[ComServices sharedComServices].placesService getFullUrlForPlaceId:self.placeView.place.id];
-        
-        facebookCommentsViewController.objectId = fullObjectId;
+        facebookCommentsViewController.placeView = self.placeView;
         
         [facebookCommentsViewController setTitle:self.placeView.place.name];
     }

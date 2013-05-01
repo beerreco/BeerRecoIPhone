@@ -87,6 +87,7 @@
 -(void)updateCommentsButton
 {
     [self.btnComments setTitle:@"Comments" forState:UIControlStateNormal];
+    [self.btnComments setEnabled:NO];
     [self.activityCommentsLoad startAnimating];
     
     NSString* fullObjectId = [[ComServices sharedComServices].beersService getFullUrlForBeerId:self.beerView.beer.id];
@@ -99,6 +100,7 @@
          }
          
          [self.activityCommentsLoad stopAnimating];
+             [self.btnComments setEnabled:YES];
      }];
 }
 
@@ -109,6 +111,7 @@
     if ([[GeneralDataStore sharedDataStore] hasFBUser])
     {
         [self.activityLikeCheck startAnimating];
+        [self.btnLike setEnabled:NO];
         
         NSString* fullObjectId = [[ComServices sharedComServices].beersService getFullUrlForBeerId:self.beerView.beer.id];
         
@@ -124,6 +127,7 @@
              }
              
              [self.activityLikeCheck stopAnimating];
+             [self.btnLike setEnabled:YES];
          }];
     }
     else
@@ -211,6 +215,7 @@
     if ([[GeneralDataStore sharedDataStore] hasFBUser])
     {
         [self.activityFavoriteCheck startAnimating];
+        [self.btnFavorites setEnabled:NO];
         
         [[ComServices sharedComServices].favoriteBeersService isBeerInFavorites:self.beerView.beer.id onComplete:^(BOOL inFavorites, NSError *error)
         {
@@ -227,6 +232,7 @@
             }
             
             [self.activityFavoriteCheck stopAnimating];
+            [self.btnFavorites setEnabled:YES];
         }];
     }
     else
@@ -427,9 +433,7 @@
     {
         FacebookCommentsViewController *facebookCommentsViewController = [segue destinationViewController];
         
-        NSString* fullObjectId = [[ComServices sharedComServices].beersService getFullUrlForBeerId:self.beerView.beer.id];
-        
-        facebookCommentsViewController.objectId = fullObjectId;
+        facebookCommentsViewController.beerView = self.beerView;
         
         [facebookCommentsViewController setTitle:self.beerView.beer.name];
     }

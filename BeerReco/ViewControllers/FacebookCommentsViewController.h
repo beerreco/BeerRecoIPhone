@@ -11,7 +11,8 @@
 
 @interface FacebookCommentsViewController : UIViewController <FacebookCommentsViewDelegate>
 
-@property (nonatomic, strong) NSString* objectId;
+@property (nonatomic, strong) BeerViewM* beerView;
+@property (nonatomic, strong) PlaceViewM* placeView;
 
 @property (weak, nonatomic) IBOutlet FacebookCommentsView *facebookCommentsView;
 

@@ -99,11 +99,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "BeerReco/ViewControllers/FacebookCommentsViewController.m"
-         timestampString = "389100503.109095"
+         timestampString = "389122009.780846"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "104"
-         endingLineNumber = "104"
+         startingLineNumber = "153"
+         endingLineNumber = "153"
          landmarkName = "-facebookCommentsViewDidCreateComment:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -112,11 +112,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "BeerReco/ViewControllers/FacebookCommentsViewController.m"
-         timestampString = "389100503.906726"
+         timestampString = "389122009.780846"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "109"
-         endingLineNumber = "109"
+         startingLineNumber = "158"
+         endingLineNumber = "158"
          landmarkName = "-FacebookCommentsViewDidDeleteComment:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -125,11 +125,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "BeerReco/Views/FacebookCommentsView.m"
-         timestampString = "389101253.982388"
+         timestampString = "389122009.780846"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "169"
-         endingLineNumber = "169"
+         startingLineNumber = "164"
+         endingLineNumber = "164"
          landmarkName = "-webView:shouldStartLoadWithRequest:navigationType:"
          landmarkType = "5">
       </FileBreakpoint>

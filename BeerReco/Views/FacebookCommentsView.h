@@ -19,24 +19,7 @@
 
 @property (nonatomic, strong) NSURL *href;
 
-// The style of the Like button and like count. Options: 'standard', 'button_count', and 'box_count'.
-// You are responsible for sizing your FacebookLikeView appropriately for the layout you choose.
-@property (nonatomic, strong) NSString *layout;
-
-// Specifies whether to display profile photos below the button ('standard' layout only)
-@property (nonatomic) BOOL showFaces;
-
-// The verb to display on the button. Options: 'like', 'recommend'
-@property (nonatomic, strong) NSString *action;
-
-// The font to display in the button. Options: 'arial', 'lucida grande', 'segoe ui', 'tahoma', 'trebuchet ms', 'verdana'
-@property (nonatomic, strong) NSString *font;
-
-// The color scheme for the like button. Options: 'light', 'dark'
-@property (nonatomic, strong) NSString *colorScheme;
-
-// A label for tracking referrals.
-@property (nonatomic, strong) NSString *ref;
+@property (nonatomic, strong) NSMutableDictionary *metaData;
 
 @property (nonatomic) int numbeOfPosts;
 
@@ -45,7 +28,6 @@
 - (void)load;
 
 @end
-
 
 @protocol FacebookCommentsViewDelegate <NSObject>
 

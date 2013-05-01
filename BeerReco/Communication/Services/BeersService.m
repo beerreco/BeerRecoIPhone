@@ -8,8 +8,10 @@
 
 #import "BeersService.h"
 
+#define ServicePath_PublicData @"/public-data"
 #define ServicePath_Beers @"/beers"
 
+#define PathParam_Beer @"beer"
 #define PathParam_Add @"add"
 #define PathParam_Update @"update"
 
@@ -21,7 +23,7 @@
 
 -(NSString*)getFullUrlForBeerId:(NSString*)beerId
 {
-    return [NSString stringWithFormat:@"%@%@%@/%@", BaseURL, BaseIpadPathPrefix, ServicePath_Beers, beerId];
+    return [NSString stringWithFormat:@"%@%@%@/%@/%@", BaseURL, BaseIpadPathPrefix, ServicePath_PublicData, PathParam_Beer, beerId];
 }
 
 -(void)addBeer:(BeerM*)beer onComplete:(void (^)(BeerM* beer, NSError *error))onComplete

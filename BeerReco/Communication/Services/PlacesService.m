@@ -8,8 +8,10 @@
 
 #import "PlacesService.h"
 
+#define ServicePath_PublicData @"/public-data"
 #define ServicePath_Places @"/places"
 
+#define PathParam_Place @"place"
 #define PathParam_All @"all"
 
 #define PathParam_Add @"add"
@@ -23,7 +25,7 @@
 
 -(NSString*)getFullUrlForPlaceId:(NSString*)placeId
 {
-    return [NSString stringWithFormat:@"%@%@%@/%@", BaseURL, BaseIpadPathPrefix, ServicePath_Places, placeId];
+    return [NSString stringWithFormat:@"%@%@%@/%@/%@", BaseURL, BaseIpadPathPrefix, ServicePath_PublicData, PathParam_Place, placeId];
 }
 
 -(void)addPlace:(PlaceM *)place onComplete:(void (^)(PlaceM *, NSError *))onComplete

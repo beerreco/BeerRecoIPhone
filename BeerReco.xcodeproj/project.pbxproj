@@ -643,10 +643,10 @@
 			children = (
 				84D9D88C172C833500CC8E71 /* PlaceAreasViewController.h */,
 				84D9D88D172C833500CC8E71 /* PlaceAreasViewController.m */,
-				84D14A451715C59800F0660C /* PlacesViewController.h */,
-				84D14A461715C59800F0660C /* PlacesViewController.m */,
 				84D14A541715C99800F0660C /* PlaceDetailsViewController.h */,
 				84D14A551715C99800F0660C /* PlaceDetailsViewController.m */,
+				84D14A451715C59800F0660C /* PlacesViewController.h */,
+				84D14A461715C59800F0660C /* PlacesViewController.m */,
 			);
 			name = Places;
 			sourceTree = "<group>";
@@ -654,10 +654,10 @@
 		84D14A581715C9DD00F0660C /* Beers */ = {
 			isa = PBXGroup;
 			children = (
-				84B58CDE16DD0E720097CD67 /* BeerDetailsViewController.h */,
-				84B58CDF16DD0E720097CD67 /* BeerDetailsViewController.m */,
 				84D14A3F1715C53A00F0660C /* BeerCategoriesViewController.h */,
 				84D14A401715C53A00F0660C /* BeerCategoriesViewController.m */,
+				84B58CDE16DD0E720097CD67 /* BeerDetailsViewController.h */,
+				84B58CDF16DD0E720097CD67 /* BeerDetailsViewController.m */,
 				84D14A421715C58300F0660C /* BeersViewController.h */,
 				84D14A431715C58300F0660C /* BeersViewController.m */,
 			);
