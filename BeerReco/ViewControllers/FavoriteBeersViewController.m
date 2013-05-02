@@ -339,7 +339,7 @@
 	[self.filteredItemsArray removeAllObjects];
     
 	// Filter the array using NSPredicate
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.name contains[c] %@",searchText];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.beer.name contains[c] %@",searchText];
     NSArray *tempArray = [self.itemsArray filteredArrayUsingPredicate:predicate];
     
     self.filteredItemsArray = [NSMutableArray arrayWithArray:tempArray];
