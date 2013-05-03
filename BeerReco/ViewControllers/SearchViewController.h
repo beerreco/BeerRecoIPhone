@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SearchViewController : UIViewController
+@interface SearchViewController : UIViewController <UISearchBarDelegate>
+
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segSearch;
+@property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+
+- (IBAction)segValueChanged:(id)sender;
 
 @end
