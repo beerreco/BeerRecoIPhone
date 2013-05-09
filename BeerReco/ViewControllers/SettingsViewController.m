@@ -59,23 +59,57 @@
      [self createPlaceWithArea:@"Leo Blooms" andArea:@"HaMerkaz"];
      [self createPlaceWithArea:@"Meet Ball" andArea:@"HaDarom"];
       */
+    [self createBeersWithCountry:@[@"Malka", @"GoldStar", @"Jems"] andCountry:@"Israel"];
+    [self createBeersWithCategory:@[@"Carlsberg", @"Heiniken"] andCategory:@"Ale"];
 }
 
 #pragma mark - Private Methods
 
--(void)createBeerWithCategory:(NSString*)beerName andCategory:(NSString*)categoryName
+-(void)createBeerWithCategoryId:(NSString*)beerName andCategoryId:(NSString*)categoryId
+{
+    BeerM* beer = [[BeerM alloc] init];
+    beer.name = beerName;
+    beer.beerTypeId = categoryId;
+    [[ComServices sharedComServices].beersService addBeer:beer onComplete:^(BeerM* beer, NSError *error)
+     {
+         [NSThread sleepForTimeInterval:100];
+     }];
+}
+
+-(void)createBeersWithCategory:(NSArray*)beerNames andCategory:(NSString*)categoryName
 {
     BeerCategoryM* beerCategory = [[BeerCategoryM alloc] init];
     beerCategory.name = categoryName;
     [[ComServices sharedComServices].categoriesService addBeerCategory:beerCategory onComplete:^(BeerCategoryM* beerCategory, NSError *error)
      {
-         BeerM* beer = [[BeerM alloc] init];
-         beer.name = beerName;
-         beer.beerTypeId = beerCategory.id;
-         [[ComServices sharedComServices].beersService addBeer:beer onComplete:^(BeerM* beer, NSError *error)
-          {
-              [NSThread sleepForTimeInterval:100];
-          }];
+         for (NSString* beerName in beerNames)
+         {
+             [self createBeerWithCategoryId:beerName andCategoryId:beerCategory.id];
+         }
+     }];
+}
+
+-(void)createBeerWithCountryId:(NSString*)beerName andCountryId:(NSString*)countryId
+{
+    BeerM* beer = [[BeerM alloc] init];
+    beer.name = beerName;
+    beer.originCountryId = countryId;
+    [[ComServices sharedComServices].beersService addBeer:beer onComplete:^(BeerM* beer, NSError *error)
+     {
+         [NSThread sleepForTimeInterval:100];
+     }];
+}
+
+-(void)createBeersWithCountry:(NSArray*)beerNames andCountry:(NSString*)countryName
+{
+    CountryM* country = [[CountryM alloc] init];
+    country.name = countryName;
+    [[ComServices sharedComServices].originCountryService addOriginCountry:country onComplete:^(CountryM *country, NSError *error)
+     {        
+         for (NSString* beerName in beerNames)
+         {
+             [self createBeerWithCountryId:beerName andCountryId:country.id];
+         }
      }];
 }
 

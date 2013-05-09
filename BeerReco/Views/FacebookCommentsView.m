@@ -79,7 +79,7 @@
     {
         for (NSString* key in self.metaData)
         {
-            [metaDataString stringByAppendingString:[NSString stringWithFormat:@"<meta property='%@' content='%@'/>", key, [self.metaData objectForKey:key]]];
+            metaDataString = [metaDataString stringByAppendingString:[NSString stringWithFormat:@"<meta property='%@' content='%@'/>", key, [self.metaData objectForKey:key]]];
         }
     }
     

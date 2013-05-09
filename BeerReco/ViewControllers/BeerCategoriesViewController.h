@@ -18,7 +18,9 @@
 @interface BeerCategoriesViewController : PullToRefreshViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate, MBProgressHUDDelegate, LoadErrorDelegate>
 
 @property (weak, nonatomic) IBOutlet UISearchBar *categoriesSearchBar;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segCategories;
 
+- (IBAction)categorySegValueChanged:(id)sender;
 
 - (IBAction)showSearchClicked:(id)sender;
 

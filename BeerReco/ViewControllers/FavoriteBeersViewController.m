@@ -17,8 +17,6 @@
 
 @property (nonatomic, strong) MBProgressHUD *HUD;
 
-@property (strong,nonatomic) NSMutableArray *publicFavoritesArray;
-@property (strong,nonatomic) NSMutableArray *privateFavoritesArray;
 @property (strong,nonatomic) NSMutableArray *itemsArray;
 @property (strong,nonatomic) NSMutableArray *filteredItemsArray;
 
@@ -32,9 +30,6 @@
 
 @synthesize fbLoginView = _fbLoginView;
 @synthesize btnEditFaforites = _btnEditFaforites;
-
-@synthesize publicFavoritesArray = _publicFavoritesArray;
-@synthesize privateFavoritesArray = _privateFavoritesArray;
 
 @synthesize itemsArray = _itemsArray;
 @synthesize filteredItemsArray = _filteredItemsArray;
@@ -145,10 +140,8 @@
         [[ComServices sharedComServices].favoriteBeersService getPublicFavoriteBeers:^(NSMutableArray *beers, NSError *error)
         {
             if (error == nil && beers != nil)
-            {
-                self.publicFavoritesArray = beers;
-                
-                self.itemsArray = [NSMutableArray arrayWithArray:self.publicFavoritesArray];
+            {                
+                self.itemsArray = [NSMutableArray arrayWithArray:beers];
                 
                 [self dataLoaded];
             }
@@ -168,9 +161,7 @@
          {
              if (error == nil && beers != nil)
              {
-                 self.privateFavoritesArray = beers;
-                 
-                 self.itemsArray = [NSMutableArray arrayWithArray:self.privateFavoritesArray];
+                 self.itemsArray = [NSMutableArray arrayWithArray:beers];
                  
                  [self dataLoaded];
              }

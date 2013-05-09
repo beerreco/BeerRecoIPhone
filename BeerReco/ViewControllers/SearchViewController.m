@@ -56,7 +56,7 @@
     
     if (self.segSearch.selectedSegmentIndex == 0)
     {
-        self.searchBar.scopeButtonTitles = [NSArray arrayWithObjects:@"Name", @"Category", @"Origin", nil];
+        self.searchBar.scopeButtonTitles = [NSArray arrayWithObjects:@"Name", @"Type", @"Origin", nil];
         self.searchBar.selectedScopeButtonIndex = self.previousSelectedScopeIndex;
     }
     else if (self.segSearch.selectedSegmentIndex == 1)

@@ -16,7 +16,7 @@
 @property (nonatomic, strong) NSDate *creationDate;
 @property (nonatomic, strong) NSDate *updateDate;
 @property (nonatomic, strong) NSString *drinkType;
-@property (nonatomic, strong) NSString *origin;
+@property (nonatomic, strong) NSString *originCountryId;
 @property (nonatomic, strong) NSString *brewery;
 @property (nonatomic, strong) NSString *madeOf;
 @property (nonatomic) float alchoholPrecent;

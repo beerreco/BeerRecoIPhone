@@ -401,6 +401,7 @@
                               if (inFavorites)
                               {
                                   [self makeRemoveFavoritesButton];
+                                  [self.HUD hide:YES];
                               }
                               else
                               {
@@ -416,10 +417,19 @@
                               else
                               {
                                   [self makeAddFavoritesButton];
+                                  [self.HUD hide:YES];
                               }
                           }
                       }
+                      else
+                      {
+                          [self.HUD hide:YES];
+                      }
                   }];
+             }
+             else
+             {
+                 [self.HUD hide:YES];
              }
          }];
     }

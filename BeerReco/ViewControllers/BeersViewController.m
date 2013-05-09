@@ -110,9 +110,10 @@
 
 -(void)loadData
 {
-    if (self.parentBeerCategory == nil)
+    if (self.parentBeerCategory == nil && self.parentCountry == nil)
     {
         [self.navigationController popViewControllerAnimated:YES];
+        return;
     }
     
     if (self.HUD == nil)
@@ -122,21 +123,42 @@
         self.HUD.dimBackground = YES;
     }
     
-    [[ComServices sharedComServices].categoriesService getBeersByCatergory:self.parentBeerCategory.id oncComplete:^(NSMutableArray *beers, NSError *error)
-     {
-         if (error == nil && beers != nil)
+    if (self.parentBeerCategory)
+    {
+        [[ComServices sharedComServices].categoriesService getBeersByCatergory:self.parentBeerCategory.id oncComplete:^(NSMutableArray *beers, NSError *error)
          {
-             self.itemsArray = [NSMutableArray arrayWithArray:beers];
+             if (error == nil && beers != nil)
+             {
+                 self.itemsArray = [NSMutableArray arrayWithArray:beers];
+                 
+                 [self dataLoaded];
+             }
+             else
+             {
+                 [self showErrorView];
+             }
              
-             [self dataLoaded];
-         }
-         else
-         {
-             [self showErrorView];
-         }
-         
-         [self.HUD hide:YES];
-     }];
+             [self.HUD hide:YES];
+         }];
+    }
+    else if (self.parentCountry)
+    {
+        [[ComServices sharedComServices].originCountryService getBeersByOriginCountry:self.parentCountry.id oncComplete:^(NSMutableArray *beers, NSError *error)
+        {
+            if (error == nil && beers != nil)
+            {
+                self.itemsArray = [NSMutableArray arrayWithArray:beers];
+                 
+                [self dataLoaded];
+            }
+            else
+            {
+                [self showErrorView];
+            }
+             
+            [self.HUD hide:YES];
+         }];
+    }
 }
 
 -(void)dataLoaded
@@ -285,7 +307,25 @@
     
     // Configure the cell
     [cell.textLabel setText:beerView.beer.name];
-    [cell.detailTextLabel setText:beerView.beerCategory.name];
+    
+    NSString* details = @"";
+    
+    if (beerView.beerCategory)
+    {
+        details = [details stringByAppendingFormat:@"Type: %@", beerView.beerCategory.name];
+    }
+    
+    if (beerView.country)
+    {
+        if (![NSString isNullOrEmpty:details])
+        {
+            details = [details stringByAppendingString:@" - "];
+        }
+        
+        details = [details stringByAppendingFormat:@"Origin Country: %@", beerView.country.name];
+    }
+    
+    [cell.detailTextLabel setText:details];
     [cell.imageView setImage:[UIImage imageNamed:@"weihenstephaner_hefe_icon"]];
     
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
@@ -321,7 +361,7 @@
 {
     // Perform segue to beer detail
     [self performSegueWithIdentifier:@"BeerDetailsSegue" sender:tableView];
-    
+
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

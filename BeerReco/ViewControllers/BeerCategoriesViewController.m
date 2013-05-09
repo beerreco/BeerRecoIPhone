@@ -54,6 +54,7 @@
 - (void)viewDidUnload
 {
     [self setCategoriesSearchBar:nil];
+    [self setSegCategories:nil];
     [super viewDidUnload];
 }
 
@@ -119,21 +120,42 @@
         self.HUD.dimBackground = YES;
     }
     
-    [[ComServices sharedComServices].categoriesService getAllCategories:^(NSMutableArray *categories, NSError *error) 
-     {
-         if (error == nil && categories != nil)
-         {             
-             self.itemsArray = [NSMutableArray arrayWithArray:categories];
-             
-             [self dataLoaded];
-         }
-         else
+    if (self.segCategories.selectedSegmentIndex == 0)
+    {
+        [[ComServices sharedComServices].categoriesService getAllCategories:^(NSMutableArray *categories, NSError *error)
          {
-             [self showErrorView];
-         }
-         
-         [self.HUD hide:YES];
-     }];
+             if (error == nil && categories != nil)
+             {
+                 self.itemsArray = [NSMutableArray arrayWithArray:categories];
+                 
+                 [self dataLoaded];
+             }
+             else
+             {
+                 [self showErrorView];
+             }
+             
+             [self.HUD hide:YES];
+         }];
+    }
+    else if (self.segCategories.selectedSegmentIndex == 1)
+    {
+        [[ComServices sharedComServices].originCountryService getAllOriginCountries:^(NSMutableArray *countries, NSError *error)
+         {          
+             if (error == nil && countries != nil)
+             {
+                 self.itemsArray = [NSMutableArray arrayWithArray:countries];
+                 
+                 [self dataLoaded];
+             }
+             else
+             {
+                 [self showErrorView];
+             }
+             
+             [self.HUD hide:YES];
+         }];
+    }
 }
 
 -(void)dataLoaded
@@ -150,6 +172,23 @@
 }
 
 #pragma mark - Action Handlers
+
+- (IBAction)categorySegValueChanged:(id)sender
+{
+    if (self.loadErrorViewController)
+    {
+        [self.loadErrorViewController removeFloatingViewControllerFromParent:^(BOOL finished)
+         {
+             [self setLoadErrorViewController:nil];
+             
+             [self categorySegValueChanged:self.segCategories];
+         }];
+    }
+    else
+    {
+        [self loadData];
+    }
+}
 
 - (IBAction)showSearchClicked:(id)sender
 {
@@ -191,18 +230,40 @@
         if (sender == self.searchDisplayController.searchResultsTableView)
         {
             NSIndexPath *indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
-            BeerCategoryM* beerCategory = [self.filteredItemArray objectAtIndex:indexPath.row];
             
-            beersViewController.parentBeerCategory = beerCategory;
-            [beersViewController setTitle:beerCategory.name];
+            if (self.segCategories.selectedSegmentIndex == 0)
+            {
+                BeerCategoryM* beerCategory = [self.filteredItemArray objectAtIndex:indexPath.row];
+                
+                beersViewController.parentBeerCategory = beerCategory;
+                [beersViewController setTitle:beerCategory.name];
+            }
+            else if (self.segCategories.selectedSegmentIndex == 1)
+            {
+                CountryM* country = [self.filteredItemArray objectAtIndex:indexPath.row];
+                
+                beersViewController.parentCountry = country;
+                [beersViewController setTitle:country.name];
+            }
         }
         else
         {
             NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-            BeerCategoryM* beerCategory = [self.itemsArray objectAtIndex:indexPath.row];
             
-            beersViewController.parentBeerCategory = beerCategory;
-            [beersViewController setTitle:beerCategory.name];
+            if (self.segCategories.selectedSegmentIndex == 0)
+            {
+                BeerCategoryM* beerCategory = [self.itemsArray objectAtIndex:indexPath.row];
+                
+                beersViewController.parentBeerCategory = beerCategory;
+                [beersViewController setTitle:beerCategory.name];
+            }
+            else if (self.segCategories.selectedSegmentIndex == 1)
+            {
+                CountryM* country = [self.itemsArray objectAtIndex:indexPath.row];
+                
+                beersViewController.parentCountry = country;
+                [beersViewController setTitle:country.name];
+            }
         }
     }
 }
@@ -269,19 +330,42 @@
     
     // Create a new Candy Object
     BeerCategoryM *beerCategory = nil;
+    CountryM *country = nil;
     
     // Check to see whether the normal table or search results table is being displayed and set the Candy object from the appropriate array
     if (tableView == self.searchDisplayController.searchResultsTableView)
 	{
-        beerCategory = [self.filteredItemArray objectAtIndex:indexPath.row];
+        if (self.segCategories.selectedSegmentIndex == 0)
+        {
+            beerCategory = [self.filteredItemArray objectAtIndex:indexPath.row];
+        }
+        else if (self.segCategories.selectedSegmentIndex == 1)
+        {
+            country = [self.filteredItemArray objectAtIndex:indexPath.row];
+        }
     }
 	else
 	{
-        beerCategory = [self.itemsArray objectAtIndex:indexPath.row];
+        if (self.segCategories.selectedSegmentIndex == 0)
+        {
+            beerCategory = [self.itemsArray objectAtIndex:indexPath.row];
+        }
+        else if (self.segCategories.selectedSegmentIndex == 1)
+        {
+            country = [self.itemsArray objectAtIndex:indexPath.row];
+        }
     }
     
-    // Configure the cell
-    [cell.textLabel setText:beerCategory.name];
+    if (self.segCategories.selectedSegmentIndex == 0)
+    {
+        // Configure the cell
+        [cell.textLabel setText:beerCategory.name];
+    }
+    else if (self.segCategories.selectedSegmentIndex == 1)
+    {
+        // Configure the cell
+        [cell.textLabel setText:country.name];
+    }
     
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     [cell setEditingAccessoryType:UITableViewCellAccessoryNone];

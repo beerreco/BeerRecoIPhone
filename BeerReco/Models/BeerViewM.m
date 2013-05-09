@@ -10,11 +10,13 @@
 
 #define PropertyName_Beer @"beer"
 #define PropertyName_BeerType @"beerType"
+#define PropertyName_Country @"country"
 
 @implementation BeerViewM
 
 @synthesize beer = _beer;
 @synthesize beerCategory = _beerCategory;
+@synthesize country = _country;
 
 #pragma mark - Instance Methods
 
@@ -29,6 +31,7 @@
     
     self.beer = [[BeerM alloc] initWithJson:[json valueForKey:@"beer"]];
     self.beerCategory = [[BeerCategoryM alloc] initWithJson:[json valueForKey:@"beerType"]];
+    self.country = [[CountryM alloc] initWithJson:[json valueForKey:@"country"]];
     
     return self;
 }
@@ -47,6 +50,11 @@
     if (self.beerCategory != nil)
     {
         [propertyDict setObject:[self.beerCategory ToDictionary] forKey:PropertyName_BeerType];
+    }
+    
+    if (self.country != nil)
+    {
+        [propertyDict setObject:[self.beerCategory ToDictionary] forKey:PropertyName_Country];
     }
     
     return propertyDict;
