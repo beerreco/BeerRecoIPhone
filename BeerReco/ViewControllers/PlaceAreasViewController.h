@@ -8,18 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-#import "PullToRefreshViewController.h"
-#import "MBProgressHUD.h"
+#import "BaseSearchAndRefreshTableViewController.h"
 
-#import "LoadErrorViewController.h"
+@interface PlaceAreasViewController : BaseSearchAndRefreshTableViewController
 
-@interface PlaceAreasViewController : PullToRefreshViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate, MBProgressHUDDelegate, LoadErrorDelegate>
-
-@property (weak, nonatomic) IBOutlet UISearchBar *areasSearchBar;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segPlaceFiltering;
 
 - (IBAction)placeFilteringValueChanged:(id)sender;
-
-- (IBAction)showSearchClicked:(id)sender;
 
 @end

@@ -7,21 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PullToRefreshViewController.h"
-#import "MBProgressHUD.h"
+
+#import "BaseSearchAndRefreshTableViewController.h"
 #import "BeerDetailsViewController.h"
-
-#import "LoadErrorViewController.h"
-
 #import "BeerM.h"
 
-@interface BeersViewController : PullToRefreshViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate, MBProgressHUDDelegate, LoadErrorDelegate>
+@interface BeersViewController : BaseSearchAndRefreshTableViewController
 
 @property (nonatomic, strong) BeerCategoryM* parentBeerCategory;
 @property (nonatomic, strong) CountryM* parentCountry;
-
-@property (weak, nonatomic) IBOutlet UISearchBar *beersSearchBar;
-
-- (IBAction)showSearchClicked:(id)sender;
 
 @end

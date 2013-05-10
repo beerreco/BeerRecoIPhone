@@ -7,23 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PullToRefreshViewController.h"
-#import "MBProgressHUD.h"
-
+#import "BaseSearchAndRefreshTableViewController.h"
 #import "BeerDetailsViewController.h"
-
-#import "LoadErrorViewController.h"
 
 #import "BeerM.h"
 
-#import <FacebookSDK/FacebookSDK.h>
-
-@interface FavoriteBeersViewController : PullToRefreshViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate, FBLoginViewDelegate, MBProgressHUDDelegate, LoadErrorDelegate>
+@interface FavoriteBeersViewController : BaseSearchAndRefreshTableViewController <FBLoginViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *SegFavoriteListType;
-@property (weak, nonatomic) IBOutlet UISearchBar *favoritesSearchBar;
 
-- (IBAction)showSearchClicked:(UIBarButtonItem *)sender;
 - (IBAction)favoriteListTypeChanged:(UISegmentedControl *)sender forEvent:(UIEvent *)event;
 
 @end

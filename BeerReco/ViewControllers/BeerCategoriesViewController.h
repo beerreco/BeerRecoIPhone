@@ -7,21 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PullToRefreshViewController.h"
-#import "MBProgressHUD.h"
-
-#import "LoadErrorViewController.h"
+#import "BaseSearchAndRefreshTableViewController.h"
 
 #import "BeerM.h"
 #import "BeerCategoryM.h"
 
-@interface BeerCategoriesViewController : PullToRefreshViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate, MBProgressHUDDelegate, LoadErrorDelegate>
+@interface BeerCategoriesViewController : BaseSearchAndRefreshTableViewController
 
-@property (weak, nonatomic) IBOutlet UISearchBar *categoriesSearchBar;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segCategories;
 
 - (IBAction)categorySegValueChanged:(id)sender;
-
-- (IBAction)showSearchClicked:(id)sender;
 
 @end

@@ -14,10 +14,21 @@
 
 @interface BaseSearchAndRefreshTableViewController : PullToRefreshViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate, MBProgressHUDDelegate, LoadErrorDelegate>
 
+@property (nonatomic, strong) LoadErrorViewController* loadErrorViewController;
+@property (nonatomic, strong) MBProgressHUD *HUD;
+
+@property (strong,nonatomic) NSMutableArray *itemsArray;
+@property (strong,nonatomic) NSMutableArray *filteredItemArray;
+
+-(void)loadData;
+-(void)showErrorView;
+-(void)dataLoaded:(NSMutableArray*)data;
+
+#pragma mark - virtuals
 -(void)loadCurrentData;
 -(NSString*)getSearchablePropertyName;
 -(NSString*)getCellIdentifier;
--(void)setupCell:(UITableViewCell*)cell forIndexPath:(NSIndexPath *)indexPath;
+-(void)setupCell:(UITableViewCell*)cell forIndexPath:(NSIndexPath *)indexPath withObject:(id)object;
 -(void)tableItemSelected:(NSIndexPath *)indexPath;
 -(void)prepareForSegue:(UIStoryboardSegue *)segue withObject:(id)object;
 

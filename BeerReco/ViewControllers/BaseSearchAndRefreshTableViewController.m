@@ -10,14 +10,7 @@
 
 @interface BaseSearchAndRefreshTableViewController ()
 
-@property (nonatomic, strong) LoadErrorViewController* loadErrorViewController;
-
-@property (nonatomic, strong) MBProgressHUD *HUD;
-
 @property (nonatomic, strong) UIBarButtonItem* barBtnShowSearch;
-
-@property (strong,nonatomic) NSMutableArray *itemsArray;
-@property (strong,nonatomic) NSMutableArray *filteredItemArray;
 
 @end
 
@@ -60,7 +53,7 @@
     [self.searchDisplayController.searchBar setShowsScopeBar:NO];
     [self.searchDisplayController.searchBar sizeToFit];
     
-    [self performSelector:@selector(hideSearchBar) withObject:nil afterDelay:0.5];
+    [self performSelector:@selector(hideSearchBar) withObject:nil afterDelay:0.1];
     
     if (self.barBtnShowSearch == nil)
     {
@@ -78,7 +71,7 @@
 -(void)hideSearchBar
 {
     // Hide the search bar until user scrolls up
-    CGRect newBounds = [[self tableView] bounds];
+    CGRect newBounds = self.tableView.bounds;
     newBounds.origin.y = newBounds.origin.y + self.searchDisplayController.searchBar.bounds.size.height;
     [self.tableView setBounds:newBounds];
 }
@@ -124,8 +117,10 @@
     [self loadCurrentData];
 }
 
--(void)dataLoaded
+-(void)dataLoaded:(NSMutableArray*)data
 {
+    self.itemsArray = [NSMutableArray arrayWithArray:data];
+    
     // Initialize the filteredCandyArray with a capacity equal to the candyArray's capacity
     self.filteredItemArray = [NSMutableArray arrayWithCapacity:self.itemsArray.count];
     
@@ -156,7 +151,7 @@
     return @"cell";
 }
 
--(void)setupCell:(UITableViewCell*)cell forIndexPath:(NSIndexPath *)indexPath
+-(void)setupCell:(UITableViewCell*)cell forIndexPath:(NSIndexPath *)indexPath withObject:(id)object
 {
     
 }
@@ -179,6 +174,9 @@
     {
         return;
     }
+    
+    [self.searchDisplayController.searchResultsTableView setBackgroundColor:[UIColor clearColor]];
+    [self.searchDisplayController.searchResultsTableView setBackgroundView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"bg_main"]]];
     
     // If you're worried that your users might not catch on to the fact that a search bar is available if they scroll to reveal it, a search icon will help them
     // Note that if you didn't hide your search bar, you should probably not include this, as it would be redundant
@@ -283,7 +281,18 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
-    [self setupCell:cell forIndexPath:indexPath];
+    id object;
+    
+    if (tableView == self.searchDisplayController.searchResultsTableView)
+	{
+        object = [self.filteredItemArray objectAtIndex:indexPath.row];
+    }
+	else
+	{
+        object = [self.itemsArray objectAtIndex:indexPath.row];
+    }
+    
+    [self setupCell:cell forIndexPath:indexPath withObject:object];
     
     return cell;
 }

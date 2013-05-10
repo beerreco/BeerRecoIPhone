@@ -78,15 +78,9 @@
                                 <action selector="favoriteListTypeChanged:forEvent:" destination="2" eventType="valueChanged" id="wu7-O5-gNb"/>
                             </connections>
                         </segmentedControl>
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="NPP-Hu-NX5">
-                            <connections>
-                                <action selector="showSearchClicked:" destination="2" id="f5P-Ks-sYp"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="SegFavoriteListType" destination="vKL-ww-1rr" id="eKq-lb-grz"/>
-                        <outlet property="favoritesSearchBar" destination="jid-Ya-d1F" id="U0u-jp-SfM"/>
                         <outlet property="searchDisplayController" destination="CWm-pd-nq1" id="qjQ-6x-agp"/>
                         <outlet property="tableView" destination="2mX-0C-4xu" id="wTE-zE-Kb3"/>
                         <segue destination="sMW-Q0-IUv" kind="push" identifier="BeerDetailsSegue" id="HzY-4K-pdR"/>
@@ -279,7 +273,7 @@
             <objects>
                 <viewController storyboardIdentifier="SearchViewController" title="Search" id="3" customClass="SearchViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="17">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="bg_main.png" translatesAutoresizingMaskIntoConstraints="NO" id="DMf-Gt-YRJ"/>
@@ -403,14 +397,8 @@
                                 <action selector="placeFilteringValueChanged:" destination="Ecm-J5-Yml" eventType="valueChanged" id="pqX-kX-4il"/>
                             </connections>
                         </segmentedControl>
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="gVG-dw-Mpq">
-                            <connections>
-                                <action selector="showSearchClicked:" destination="Ecm-J5-Yml" id="NQr-Ur-8Ax"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="areasSearchBar" destination="XsO-MN-Gyq" id="Usc-1D-qbX"/>
                         <outlet property="searchDisplayController" destination="oEz-hW-BIq" id="k2f-zZ-yMH"/>
                         <outlet property="segPlaceFiltering" destination="a3j-Es-QkH" id="dwM-LS-Z0T"/>
                         <outlet property="tableView" destination="lPB-pD-Qhj" id="yML-QI-7gi"/>
@@ -429,7 +417,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1003" y="-1422"/>
+            <point key="canvasLocation" x="1065" y="-1510"/>
         </scene>
         <!--Place Details View Controller-->
         <scene sceneID="hGh-zc-VKW">
@@ -610,14 +598,8 @@
                                 <action selector="categorySegValueChanged:" destination="bEg-yq-1o3" eventType="valueChanged" id="wQ0-dN-jhl"/>
                             </connections>
                         </segmentedControl>
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="L6f-IF-4qj">
-                            <connections>
-                                <action selector="showSearchClicked:" destination="bEg-yq-1o3" id="HxX-DH-tiE"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="categoriesSearchBar" destination="rjm-x3-Lxy" id="FhF-ua-aac"/>
                         <outlet property="searchDisplayController" destination="S8S-wg-97m" id="1r2-eJ-z1W"/>
                         <outlet property="segCategories" destination="ZyD-On-zBk" id="xN2-PS-s0E"/>
                         <outlet property="tableView" destination="av0-UH-DtQ" id="VAK-ug-Xtj"/>
@@ -699,15 +681,8 @@
                             <constraint firstItem="1fa-nV-tYP" firstAttribute="top" secondItem="afA-Ta-GAB" secondAttribute="top" type="default" id="pdC-XM-FkR"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="cvT-RS-x7g">
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="voA-yg-XYc">
-                            <connections>
-                                <action selector="showSearchClicked:" destination="r96-59-yWt" id="2mO-ph-HYf"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="cvT-RS-x7g"/>
                     <connections>
-                        <outlet property="beersSearchBar" destination="61V-YG-ral" id="ds8-1b-c20"/>
                         <outlet property="searchDisplayController" destination="SsM-TH-5FZ" id="VAT-nh-NvW"/>
                         <outlet property="tableView" destination="z7o-rO-S35" id="5HU-cN-v9H"/>
                         <segue destination="sMW-Q0-IUv" kind="push" identifier="BeerDetailsSegue" id="QAd-rP-OzB"/>
@@ -738,7 +713,6 @@
                     </tabBar>
                     <connections>
                         <segue destination="Oyt-yu-HH1" kind="relationship" relationship="viewControllers" id="26"/>
-                        <segue destination="RyO-x7-wp3" kind="relationship" relationship="viewControllers" id="27"/>
                         <segue destination="XGi-LW-Fkz" kind="relationship" relationship="viewControllers" id="okn-Tr-d7t"/>
                         <segue destination="n2I-0R-tdW" kind="relationship" relationship="viewControllers" id="09G-fL-qvb"/>
                         <segue destination="1x6-Kf-YU9" kind="relationship" relationship="viewControllers" id="zZJ-b6-tuu"/>
@@ -841,7 +815,7 @@
                                     </connections>
                                 </searchBar>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="Nxi-LF-ze7" style="IBUITableViewCellStyleDefault" id="0fo-UE-K73">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="Nxi-LF-ze7" detailTextLabel="mbE-UJ-GWe" style="IBUITableViewCellStyleSubtitle" id="0fo-UE-K73">
                                         <rect key="frame" x="0.0" y="66" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -849,8 +823,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nxi-LF-ze7">
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mbE-UJ-GWe">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
                                             </subviews>
@@ -876,15 +855,8 @@
                             <constraint firstItem="jcC-xx-uUu" firstAttribute="trailing" secondItem="yon-47-S9O" secondAttribute="trailing" type="default" id="yUg-Xf-1zF"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="u2U-N8-g3i">
-                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="ZPK-IV-58Q">
-                            <connections>
-                                <action selector="showSearchClicked:" destination="bW4-YI-b9c" id="xPx-mC-edI"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="u2U-N8-g3i"/>
                     <connections>
-                        <outlet property="placesSearchBar" destination="qUC-9N-1V0" id="sd0-FC-fAG"/>
                         <outlet property="searchDisplayController" destination="9Iz-Lt-bre" id="hGL-v1-NrW"/>
                         <outlet property="tableView" destination="jcC-xx-uUu" id="cK9-dc-OT8"/>
                         <segue destination="bH2-zK-z05" kind="push" identifier="PlaceDetailsSegue" id="b9l-dl-hcU"/>
@@ -1006,12 +978,13 @@
         <image name="bg_main.png" width="641" height="960"/>
     </resources>
     <classes>
-        <class className="BeerCategoriesViewController" superclassName="PullToRefreshViewController">
+        <class className="BaseSearchAndRefreshTableViewController" superclassName="PullToRefreshViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BaseSearchAndRefreshTableViewController.h"/>
+        </class>
+        <class className="BeerCategoriesViewController" superclassName="BaseSearchAndRefreshTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/BeerCategoriesViewController.h"/>
             <relationships>
                 <relationship kind="action" name="categorySegValueChanged:"/>
-                <relationship kind="action" name="showSearchClicked:"/>
-                <relationship kind="outlet" name="categoriesSearchBar" candidateClass="UISearchBar"/>
                 <relationship kind="outlet" name="segCategories" candidateClass="UISegmentedControl"/>
             </relationships>
         </class>
@@ -1031,12 +1004,8 @@
                 <relationship kind="outlet" name="lblBeerName" candidateClass="UILabel"/>
             </relationships>
         </class>
-        <class className="BeersViewController" superclassName="PullToRefreshViewController">
+        <class className="BeersViewController" superclassName="BaseSearchAndRefreshTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/BeersViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="showSearchClicked:"/>
-                <relationship kind="outlet" name="beersSearchBar" candidateClass="UISearchBar"/>
-            </relationships>
         </class>
         <class className="FBUserSettingsContainerViewController" superclassName="FBUserSettingsViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FBUserSettingsContainerViewController.h"/>
@@ -1065,24 +1034,20 @@
                 <relationship kind="outlet" name="facebookCommentsView" candidateClass="FacebookCommentsView"/>
             </relationships>
         </class>
-        <class className="FavoriteBeersViewController" superclassName="PullToRefreshViewController">
+        <class className="FavoriteBeersViewController" superclassName="BaseSearchAndRefreshTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/FavoriteBeersViewController.h"/>
             <relationships>
                 <relationship kind="action" name="favoriteListTypeChanged:forEvent:" candidateClass="UISegmentedControl"/>
-                <relationship kind="action" name="showSearchClicked:" candidateClass="UIBarButtonItem"/>
                 <relationship kind="outlet" name="SegFavoriteListType" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="favoritesSearchBar" candidateClass="UISearchBar"/>
             </relationships>
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
         </class>
-        <class className="PlaceAreasViewController" superclassName="PullToRefreshViewController">
+        <class className="PlaceAreasViewController" superclassName="BaseSearchAndRefreshTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PlaceAreasViewController.h"/>
             <relationships>
                 <relationship kind="action" name="placeFilteringValueChanged:"/>
-                <relationship kind="action" name="showSearchClicked:"/>
-                <relationship kind="outlet" name="areasSearchBar" candidateClass="UISearchBar"/>
                 <relationship kind="outlet" name="segPlaceFiltering" candidateClass="UISegmentedControl"/>
             </relationships>
         </class>
@@ -1099,12 +1064,8 @@
                 <relationship kind="outlet" name="lblPlaceName" candidateClass="UILabel"/>
             </relationships>
         </class>
-        <class className="PlacesViewController" superclassName="PullToRefreshViewController">
+        <class className="PlacesViewController" superclassName="BaseSearchAndRefreshTableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PlacesViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="showSearchClicked:"/>
-                <relationship kind="outlet" name="placesSearchBar" candidateClass="UISearchBar"/>
-            </relationships>
         </class>
         <class className="PullToRefreshViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PullToRefreshViewController.h"/>
@@ -1134,7 +1095,7 @@
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
         <segue reference="xbE-S5-9tG"/>
-        <segue reference="tBD-v1-Z0u"/>
-        <segue reference="2K0-zJ-6dH"/>
+        <segue reference="HzY-4K-pdR"/>
+        <segue reference="b9l-dl-hcU"/>
     </inferredMetricsTieBreakers>
 </document>

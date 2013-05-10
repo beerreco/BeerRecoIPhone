@@ -11,21 +11,9 @@
 
 @interface BeerCategoriesViewController ()
 
-@property (nonatomic, strong) LoadErrorViewController* loadErrorViewController;
-
-@property (nonatomic, strong) MBProgressHUD *HUD;
-
-@property (strong,nonatomic) NSMutableArray *itemsArray;
-@property (strong,nonatomic) NSMutableArray *filteredItemArray;
-
 @end
 
 @implementation BeerCategoriesViewController
-
-@synthesize loadErrorViewController = _loadErrorViewController;
-@synthesize HUD = _HUD;
-@synthesize itemsArray = _itemsArray;
-@synthesize filteredItemArray = _filteredItemArray;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -38,12 +26,12 @@
 }
 
 - (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
+{    
     [self visualSetup];
     
     [self setup];
+    
+    [super viewDidLoad];
 }
 
 - (void)didReceiveMemoryWarning
@@ -53,8 +41,6 @@
 
 - (void)viewDidUnload
 {
-    [self setCategoriesSearchBar:nil];
-    [self setSegCategories:nil];
     [super viewDidUnload];
 }
 
@@ -63,79 +49,28 @@
 -(void)visualSetup
 {
     self.navigationItem.title = @"Categories";
-    
-    // Don't show the scope bar or cancel button until editing begins
-    [self.categoriesSearchBar setShowsScopeBar:NO];
-    [self.categoriesSearchBar sizeToFit];
-    
-    [self performSelector:@selector(hideSearchBar) withObject:nil afterDelay:0.5];
 }
 
 -(void)setup
 {
-    [self loadData];
 }
 
--(void)hideSearchBar
-{
-    // Hide the search bar until user scrolls up
-    CGRect newBounds = [[self tableView] bounds];
-    newBounds.origin.y = newBounds.origin.y + self.categoriesSearchBar.bounds.size.height;
-    [self.tableView setBounds:newBounds];
-}
+#pragma mark - BaseSearchAndRefreshTableViewController
 
--(LoadErrorViewController*)getErrorViewController
+-(void)loadCurrentData
 {
-    if (self.loadErrorViewController == nil)
-    {
-        self.loadErrorViewController = [[LoadErrorViewController alloc] initWithNibName:@"LoadErrorViewController" bundle:nil];
-        self.loadErrorViewController.delegate = self;
-    }
-    
-    return self.loadErrorViewController;
-}
-
--(void)showErrorView
-{
-    if (self.loadErrorViewController)
-    {
-        return;
-    }
-    
-    CGRect endFrame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
-    CGRect startFrame = CGRectMake(endFrame.origin.x, endFrame.size.height, endFrame.size.width, endFrame.size.height);
-    
-    [self presentFloatingViewController:[self getErrorViewController] startFrame:startFrame endFrame:endFrame completion:^(BOOL finished)
-     {
-         
-     }];
-}
-
--(void)loadData
-{
-    if (self.HUD == nil)
-    {
-        self.HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-        self.HUD.delegate = self;
-        self.HUD.dimBackground = YES;
-    }
-    
     if (self.segCategories.selectedSegmentIndex == 0)
     {
         [[ComServices sharedComServices].categoriesService getAllCategories:^(NSMutableArray *categories, NSError *error)
          {
              if (error == nil && categories != nil)
              {
-                 self.itemsArray = [NSMutableArray arrayWithArray:categories];
-                 
-                 [self dataLoaded];
+                 [self dataLoaded:categories];
              }
              else
              {
                  [self showErrorView];
              }
-             
-             [self.HUD hide:YES];
          }];
     }
     else if (self.segCategories.selectedSegmentIndex == 1)
@@ -144,292 +79,70 @@
          {
              if (error == nil && countries != nil)
              {
-                 self.itemsArray = [NSMutableArray arrayWithArray:countries];
-                 
-                 [self dataLoaded];
+                 [self dataLoaded:countries];
              }
              else
              {
                  [self showErrorView];
              }
-             
-             [self.HUD hide:YES];
          }];
     }
     else if (self.segCategories.selectedSegmentIndex == 2)
     {
         [[ComServices sharedComServices].beersService getAllBeers:^(NSMutableArray *beers, NSError *error)
-        {            
+         {
              if (error == nil && beers != nil)
              {
-                 self.itemsArray = [NSMutableArray arrayWithArray:beers];
-                 
-                 [self dataLoaded];
+                 [self dataLoaded:beers];
              }
              else
              {
                  [self showErrorView];
              }
-             
-             [self.HUD hide:YES];
          }];
     }
 }
 
--(void)dataLoaded
+-(NSString*)getSearchablePropertyName
 {
-    // Initialize the filteredCandyArray with a capacity equal to the candyArray's capacity
-    self.filteredItemArray = [NSMutableArray arrayWithCapacity:self.itemsArray.count];
-    
-    [self.tableView reloadData];
-    
-    if (self.loading == YES)
-    {
-        self.loading = NO;
-    }
-}
-
-#pragma mark - Action Handlers
-
-- (IBAction)categorySegValueChanged:(id)sender
-{
-    if (self.loadErrorViewController)
-    {
-        [self.loadErrorViewController removeFloatingViewControllerFromParent:^(BOOL finished)
-         {
-             [self setLoadErrorViewController:nil];
-             
-             [self categorySegValueChanged:self.segCategories];
-         }];
-    }
-    else
-    {
-        [self loadData];
-    }
-}
-
-- (IBAction)showSearchClicked:(id)sender
-{
-    if (self.loadErrorViewController != nil)
-    {
-        return;
-    }
-    
-    // If you're worried that your users might not catch on to the fact that a search bar is available if they scroll to reveal it, a search icon will help them
-    // Note that if you didn't hide your search bar, you should probably not include this, as it would be redundant
-    [self.categoriesSearchBar becomeFirstResponder];
-}
-
-#pragma mark Content Filtering
-
-- (void)filterContentForSearchText:(NSString*)searchText scope:(NSString*)scope
-{
-	// Update the filtered array based on the search text and scope.
-	
-    // Remove all objects from the filtered search array
-	[self.filteredItemArray removeAllObjects];
-    
-	// Filter the array using NSPredicate
-    NSPredicate *predicate;
     if (self.segCategories.selectedSegmentIndex == 2)
     {
-        predicate = [NSPredicate predicateWithFormat:@"SELF.beer.name contains[c] %@",searchText];
+        return @"beer.name";
     }
     else
     {
-        predicate = [NSPredicate predicateWithFormat:@"SELF.name contains[c] %@",searchText];
-    }
-    
-    NSArray *tempArray = [self.itemsArray filteredArrayUsingPredicate:predicate];
-    
-    self.filteredItemArray = [NSMutableArray arrayWithArray:tempArray];
-}
-
-#pragma mark - Segue
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:@"BeersInCategorySegue"])
-    {
-        BeersViewController *beersViewController = [segue destinationViewController];
-        
-        // In order to manipulate the destination view controller, another check on which table (search or normal) is displayed is needed
-        if (sender == self.searchDisplayController.searchResultsTableView)
-        {
-            NSIndexPath *indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
-            
-            if (self.segCategories.selectedSegmentIndex == 0)
-            {
-                BeerCategoryM* beerCategory = [self.filteredItemArray objectAtIndex:indexPath.row];
-                
-                beersViewController.parentBeerCategory = beerCategory;
-                [beersViewController setTitle:beerCategory.name];
-            }
-            else if (self.segCategories.selectedSegmentIndex == 1)
-            {
-                CountryM* country = [self.filteredItemArray objectAtIndex:indexPath.row];
-                
-                beersViewController.parentCountry = country;
-                [beersViewController setTitle:country.name];
-            }
-        }
-        else
-        {
-            NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-            
-            if (self.segCategories.selectedSegmentIndex == 0)
-            {
-                BeerCategoryM* beerCategory = [self.itemsArray objectAtIndex:indexPath.row];
-                
-                beersViewController.parentBeerCategory = beerCategory;
-                [beersViewController setTitle:beerCategory.name];
-            }
-            else if (self.segCategories.selectedSegmentIndex == 1)
-            {
-                CountryM* country = [self.itemsArray objectAtIndex:indexPath.row];
-                
-                beersViewController.parentCountry = country;
-                [beersViewController setTitle:country.name];
-            }
-        }
-    }
-    
-    if ([segue.identifier isEqualToString:@"BeerDetailsSegue"])
-    {
-        BeerDetailsViewController *beerDetailsViewController = [segue destinationViewController];
-        
-        // In order to manipulate the destination view controller, another check on which table (search or normal) is displayed is needed
-        if (sender == self.searchDisplayController.searchResultsTableView)
-        {
-            NSIndexPath *indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
-            BeerViewM* beerView = [self.filteredItemArray objectAtIndex:indexPath.row];
-            
-            beerDetailsViewController.beerView = beerView;
-            [beerDetailsViewController setTitle:beerView.beer.name];
-        }
-        else
-        {
-            NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-            BeerViewM* beerView = [self.itemsArray objectAtIndex:indexPath.row];
-            
-            beerDetailsViewController.beerView = beerView;
-            [beerDetailsViewController setTitle:beerView.beer.name];
-        }
+        return [super getSearchablePropertyName];
     }
 }
 
-#pragma mark - PullToRefreshViewController
-
--(void)doRefresh
+-(NSString*)getCellIdentifier
 {
-    self.loading = YES;
-    
-    [self performSelector:@selector(loadData) withObject:nil afterDelay:1];
+    return [super getCellIdentifier];
 }
 
--(void)reloading
+-(void)setupCell:(UITableViewCell*)cell forIndexPath:(NSIndexPath *)indexPath withObject:(id)object
 {
-    
-}
-
--(void)reloaded
-{
-    [self hideSearchBar];
-}
-
-#pragma mark - LoadErrorDelegate
-
--(void)reloadRequested
-{
-    [self.loadErrorViewController removeFloatingViewControllerFromParent:^(BOOL finished)
-     {
-         [self setLoadErrorViewController:nil];
-         
-         [self loadData];
-     }];
-}
-
-#pragma mark - UITableViewDataSource
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    // Check to see whether the normal table or search results table is being displayed and return the count from the appropriate array
-    if (tableView == self.searchDisplayController.searchResultsTableView)
-	{
-        return [self.filteredItemArray count];
-    }
-	else
-	{
-        return [self.itemsArray count];
-    }
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if ( cell == nil )
-    {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
-    }
-    
     [cell.detailTextLabel setText:@""];
     [cell.imageView setImage:nil];
     
-    // Create a new Candy Object
-    BeerCategoryM *beerCategory = nil;
-    CountryM *country = nil;
-    BeerViewM *beerView = nil;
-    
-    // Check to see whether the normal table or search results table is being displayed and set the Candy object from the appropriate array
-    if (tableView == self.searchDisplayController.searchResultsTableView)
-	{
-        if (self.segCategories.selectedSegmentIndex == 0)
-        {
-            beerCategory = [self.filteredItemArray objectAtIndex:indexPath.row];
-        }
-        else if (self.segCategories.selectedSegmentIndex == 1)
-        {
-            country = [self.filteredItemArray objectAtIndex:indexPath.row];
-        }
-        else if (self.segCategories.selectedSegmentIndex == 2)
-        {
-            beerView = [self.filteredItemArray objectAtIndex:indexPath.row];
-        }
-    }
-	else
-	{
-        if (self.segCategories.selectedSegmentIndex == 0)
-        {
-            beerCategory = [self.itemsArray objectAtIndex:indexPath.row];
-        }
-        else if (self.segCategories.selectedSegmentIndex == 1)
-        {
-            country = [self.itemsArray objectAtIndex:indexPath.row];
-        }
-        else if (self.segCategories.selectedSegmentIndex == 2)
-        {
-            beerView = [self.itemsArray objectAtIndex:indexPath.row];
-        }
-    }
-    
-    if (self.segCategories.selectedSegmentIndex == 0)
+    if ([object isKindOfClass:([BeerCategoryM class])])
     {
+        BeerCategoryM *beerCategory = object;
+        
         // Configure the cell
         [cell.textLabel setText:beerCategory.name];
     }
-    else if (self.segCategories.selectedSegmentIndex == 1)
+    else if ([object isKindOfClass:([CountryM class])])
     {
+        CountryM *country = object;
+        
         // Configure the cell
         [cell.textLabel setText:country.name];
     }
-    else if (self.segCategories.selectedSegmentIndex == 2)
+    else if ([object isKindOfClass:([BeerViewM class])])
     {
+        BeerViewM *beerView = object;
+        
         // Configure the cell
         [cell.textLabel setText:beerView.beer.name];
         
@@ -458,80 +171,72 @@
     
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     [cell setEditingAccessoryType:UITableViewCellAccessoryNone];
-    
-    return cell;
-    
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return 44;
-}
-
-- (UITableViewCellEditingStyle)tableView:(UITableView *)aTableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return self.editing ? UITableViewCellEditingStyleDelete : UITableViewCellEditingStyleNone;
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
-{
-    return @"";
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
-{
-    return @"";
-}
-
-#pragma mark - UITableViewDelegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+-(void)tableItemSelected:(NSIndexPath *)indexPath
 {
     if (self.segCategories.selectedSegmentIndex == 2)
     {
-        [self performSegueWithIdentifier:@"BeerDetailsSegue" sender:tableView];
+        [self performSegueWithIdentifier:@"BeerDetailsSegue" sender:nil];
     }
     else
     {
-        [self performSegueWithIdentifier:@"BeersInCategorySegue" sender:tableView];
+        [self performSegueWithIdentifier:@"BeersInCategorySegue" sender:nil];
     }
-    
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+-(void)prepareForSegue:(UIStoryboardSegue *)segue withObject:(id)object
 {
-}
-
-#pragma mark - UISearchBarDelegate
-
-- (void)searchBarCancelButtonClicked:(UISearchBar *) searchBar
-{
-    [self hideSearchBar];
-}
-
-#pragma mark - MBProgressHUDDelegate methods
-
-- (void)hudWasHidden:(MBProgressHUD *)hud
-{
-	// Remove HUD from screen when the HUD was hidded
-	[hud removeFromSuperview];
-	if (self.HUD == hud)
+    if ([segue.identifier isEqualToString:@"BeersInCategorySegue"])
     {
-        self.HUD = nil;
+        BeersViewController *beersViewController = [segue destinationViewController];
+        
+        if ([object isKindOfClass:([BeerCategoryM class])])
+        {
+            BeerCategoryM* beerCategory = object;
+            beersViewController.parentBeerCategory = beerCategory;
+            [beersViewController setTitle:beerCategory.name];
+        }
+       
+        if ([object isKindOfClass:([CountryM class])])
+        {
+            CountryM* country = object;
+            beersViewController.parentCountry = country;
+            [beersViewController setTitle:country.name];
+        }
+        
+    }
+    
+    if ([segue.identifier isEqualToString:@"BeerDetailsSegue"])
+    {
+        BeerDetailsViewController *beerDetailsViewController = [segue destinationViewController];
+        
+        if ([object isKindOfClass:([BeerViewM class])])
+        {
+            BeerViewM* beerView = object;
+            beerDetailsViewController.beerView = beerView;
+            [beerDetailsViewController setTitle:beerView.beer.name];
+        }
     }
 }
 
-#pragma mark - UISearchDisplayController Delegate Methods
+#pragma mark - Action Handlers
 
-- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+- (IBAction)categorySegValueChanged:(id)sender
 {
-    // Tells the table data source to reload when text changes
-    [self filterContentForSearchText:searchString scope:
-     [[self.searchDisplayController.searchBar scopeButtonTitles] objectAtIndex:[self.searchDisplayController.searchBar selectedScopeButtonIndex]]];
-    
-    // Return YES to cause the search result table view to be reloaded.
-    return YES;
+    if (self.loadErrorViewController)
+    {
+        [self.loadErrorViewController removeFloatingViewControllerFromParent:^(BOOL finished)
+         {
+             [self setLoadErrorViewController:nil];
+             
+             [self loadData];
+         }];
+    }
+    else
+    {
+        [self loadData];
+    }
 }
 
 @end

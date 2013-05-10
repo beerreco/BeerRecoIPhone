@@ -7,20 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PullToRefreshViewController.h"
-#import "MBProgressHUD.h"
-
-#import "LoadErrorViewController.h"
-
+#import "BaseSearchAndRefreshTableViewController.h"
 #import "AreaM.h"
 #import "PlaceDetailsViewController.h"
 
-@interface PlacesViewController : PullToRefreshViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate, MBProgressHUDDelegate, LoadErrorDelegate>
+@interface PlacesViewController : BaseSearchAndRefreshTableViewController
 
 @property (nonatomic, strong) AreaM* parentArea;
-
-@property (weak, nonatomic) IBOutlet UISearchBar *placesSearchBar;
-
-- (IBAction)showSearchClicked:(id)sender;
 
 @end
