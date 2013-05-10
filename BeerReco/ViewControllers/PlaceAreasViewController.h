@@ -16,6 +16,9 @@
 @interface PlaceAreasViewController : PullToRefreshViewController <UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchDisplayDelegate, MBProgressHUDDelegate, LoadErrorDelegate>
 
 @property (weak, nonatomic) IBOutlet UISearchBar *areasSearchBar;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segPlaceFiltering;
+
+- (IBAction)placeFilteringValueChanged:(id)sender;
 
 - (IBAction)showSearchClicked:(id)sender;
 

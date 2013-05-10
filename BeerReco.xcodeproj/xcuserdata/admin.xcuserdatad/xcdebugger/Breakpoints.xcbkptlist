@@ -21,32 +21,6 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "BeerReco/Communication/FacebookHelper.m"
-         timestampString = "389102257.093198"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "226"
-         endingLineNumber = "226"
-         landmarkName = "-checkIfExternalObjectExists:onComplete:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "BeerReco/Communication/FacebookHelper.m"
-         timestampString = "389102707.715541"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "280"
-         endingLineNumber = "280"
-         landmarkName = "-checkIfExternalObjectIsLiked:onComplete:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "BeerReco/Communication/FacebookHelper.m"
          timestampString = "389102988.834869"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"

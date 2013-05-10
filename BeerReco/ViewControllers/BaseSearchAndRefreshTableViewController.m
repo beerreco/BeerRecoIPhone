@@ -1,49 +1,41 @@
 //
-//  BeersViewController.m
+//  BaseSearchAndRefreshTableViewController.m
 //  BeerReco
 //
-//  Created by RLemberg on 4/10/13.
+//  Created by RLemberg on 5/10/13.
 //  Copyright (c) 2013 Colman. All rights reserved.
 //
 
-#import "BeersViewController.h"
+#import "BaseSearchAndRefreshTableViewController.h"
 
-@interface BeersViewController ()
+@interface BaseSearchAndRefreshTableViewController ()
 
 @property (nonatomic, strong) LoadErrorViewController* loadErrorViewController;
 
 @property (nonatomic, strong) MBProgressHUD *HUD;
+
+@property (nonatomic, strong) UIBarButtonItem* barBtnShowSearch;
 
 @property (strong,nonatomic) NSMutableArray *itemsArray;
 @property (strong,nonatomic) NSMutableArray *filteredItemArray;
 
 @end
 
-@implementation BeersViewController
+@implementation BaseSearchAndRefreshTableViewController
 
+@synthesize barBtnShowSearch = _barBtnShowSearch;
 @synthesize loadErrorViewController = _loadErrorViewController;
 @synthesize HUD = _HUD;
 @synthesize itemsArray = _itemsArray;
 @synthesize filteredItemArray = _filteredItemArray;
 
-@synthesize parentBeerCategory = _parentBeerCategory;
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    [self visualSetup];
+    [self baseVisualSetup];
     
-    [self setup];
+    [self baseSetup];
 }
 
 - (void)didReceiveMemoryWarning
@@ -53,22 +45,32 @@
 
 - (void)viewDidUnload
 {
-    [self setBeersSearchBar:nil];
     [super viewDidUnload];
+}
+
+-(void)viewDidAppear:(BOOL)animated
+{
 }
 
 #pragma mark - Private Methods
 
--(void)visualSetup
-{    
+-(void)baseVisualSetup
+{
     // Don't show the scope bar or cancel button until editing begins
-    [self.beersSearchBar setShowsScopeBar:NO];
-    [self.beersSearchBar sizeToFit];
+    [self.searchDisplayController.searchBar setShowsScopeBar:NO];
+    [self.searchDisplayController.searchBar sizeToFit];
     
-    [self performSelector:@selector(hideSearchBar) withObject:nil afterDelay:0.1]; 
+    [self performSelector:@selector(hideSearchBar) withObject:nil afterDelay:0.5];
+    
+    if (self.barBtnShowSearch == nil)
+    {
+        self.barBtnShowSearch = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(showSearchClicked:)];
+    }
+    
+    self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects:self.barBtnShowSearch, nil];
 }
 
--(void)setup
+-(void)baseSetup
 {
     [self loadData];
 }
@@ -77,7 +79,7 @@
 {
     // Hide the search bar until user scrolls up
     CGRect newBounds = [[self tableView] bounds];
-    newBounds.origin.y = newBounds.origin.y + self.beersSearchBar.bounds.size.height;
+    newBounds.origin.y = newBounds.origin.y + self.searchDisplayController.searchBar.bounds.size.height;
     [self.tableView setBounds:newBounds];
 }
 
@@ -99,6 +101,8 @@
         return;
     }
     
+    [self.HUD hide:YES];
+    
     CGRect endFrame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
     CGRect startFrame = CGRectMake(endFrame.origin.x, endFrame.size.height, endFrame.size.width, endFrame.size.height);
     
@@ -110,12 +114,6 @@
 
 -(void)loadData
 {
-    if (self.parentBeerCategory == nil && self.parentCountry == nil)
-    {
-        [self.navigationController popViewControllerAnimated:YES];
-        return;
-    }
-    
     if (self.HUD == nil)
     {
         self.HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
@@ -123,42 +121,7 @@
         self.HUD.dimBackground = YES;
     }
     
-    if (self.parentBeerCategory)
-    {
-        [[ComServices sharedComServices].categoriesService getBeersByCatergory:self.parentBeerCategory.id oncComplete:^(NSMutableArray *beers, NSError *error)
-         {
-             if (error == nil && beers != nil)
-             {
-                 self.itemsArray = [NSMutableArray arrayWithArray:beers];
-                 
-                 [self dataLoaded];
-             }
-             else
-             {
-                 [self showErrorView];
-             }
-             
-             [self.HUD hide:YES];
-         }];
-    }
-    else if (self.parentCountry)
-    {
-        [[ComServices sharedComServices].originCountryService getBeersByOriginCountry:self.parentCountry.id oncComplete:^(NSMutableArray *beers, NSError *error)
-        {
-            if (error == nil && beers != nil)
-            {
-                self.itemsArray = [NSMutableArray arrayWithArray:beers];
-                 
-                [self dataLoaded];
-            }
-            else
-            {
-                [self showErrorView];
-            }
-             
-            [self.HUD hide:YES];
-         }];
-    }
+    [self loadCurrentData];
 }
 
 -(void)dataLoaded
@@ -172,11 +135,45 @@
     {
         self.loading = NO;
     }
+    
+    [self.HUD hide:YES];
+}
+
+#pragma mark - Virtuals
+
+-(void)loadCurrentData
+{
+    
+}
+
+-(NSString*)getSearchablePropertyName
+{
+    return @"name";
+}
+
+-(NSString*)getCellIdentifier
+{
+    return @"cell";
+}
+
+-(void)setupCell:(UITableViewCell*)cell forIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
+
+-(void)tableItemSelected:(NSIndexPath *)indexPath
+{
+    
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue withObject:(id)object
+{
+    
 }
 
 #pragma mark - Action Handlers
 
-- (IBAction)showSearchClicked:(id)sender
+- (void)showSearchClicked:(id)sender
 {
     if (self.loadErrorViewController != nil)
     {
@@ -185,7 +182,7 @@
     
     // If you're worried that your users might not catch on to the fact that a search bar is available if they scroll to reveal it, a search icon will help them
     // Note that if you didn't hide your search bar, you should probably not include this, as it would be redundant
-    [self.beersSearchBar becomeFirstResponder];
+    [self.searchDisplayController.searchBar becomeFirstResponder];
 }
 
 #pragma mark Content Filtering
@@ -197,8 +194,11 @@
     // Remove all objects from the filtered search array
 	[self.filteredItemArray removeAllObjects];
     
+    NSString* searchableProperty = [self getSearchablePropertyName];
+    
 	// Filter the array using NSPredicate
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.beer.name contains[c] %@",searchText];
+    NSPredicate *predicate = predicate = [NSPredicate predicateWithFormat:@"SELF.%@ contains[c] %@", searchableProperty, searchText];;
+    
     NSArray *tempArray = [self.itemsArray filteredArrayUsingPredicate:predicate];
     
     self.filteredItemArray = [NSMutableArray arrayWithArray:tempArray];
@@ -208,28 +208,19 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"BeerDetailsSegue"])
+    id object;
+    if (sender == self.searchDisplayController.searchResultsTableView)
     {
-        BeerDetailsViewController *beerDetailsViewController = [segue destinationViewController];
-        
-        // In order to manipulate the destination view controller, another check on which table (search or normal) is displayed is needed
-        if (sender == self.searchDisplayController.searchResultsTableView)
-        {
-            NSIndexPath *indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
-            BeerViewM* beerView = [self.filteredItemArray objectAtIndex:indexPath.row];
-            
-            beerDetailsViewController.beerView = beerView;
-            [beerDetailsViewController setTitle:beerView.beer.name];
-        }
-        else
-        {
-            NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-            BeerViewM* beerView = [self.itemsArray objectAtIndex:indexPath.row];
-            
-            beerDetailsViewController.beerView = beerView;
-            [beerDetailsViewController setTitle:beerView.beer.name];
-        }
+        NSIndexPath *indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
+        object = [self.filteredItemArray objectAtIndex:indexPath.row];
     }
+    else
+    {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        object = [self.itemsArray objectAtIndex:indexPath.row];
+    }
+    
+    [self prepareForSegue:segue withObject:object];
 }
 
 #pragma mark - PullToRefreshViewController
@@ -285,56 +276,16 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"cell";
+    NSString *CellIdentifier = [self getCellIdentifier];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if ( cell == nil )
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
-    // Create a new Candy Object
-    BeerViewM *beerView = nil;
-    
-    // Check to see whether the normal table or search results table is being displayed and set the Candy object from the appropriate array
-    if (tableView == self.searchDisplayController.searchResultsTableView)
-	{
-        beerView = [self.filteredItemArray objectAtIndex:indexPath.row];
-    }
-	else
-	{
-        beerView = [self.itemsArray objectAtIndex:indexPath.row];
-    }
-    
-    // Configure the cell
-    [cell.textLabel setText:beerView.beer.name];
-    
-    NSString* details = @"";
-    
-    if (beerView.beerCategory)
-    {
-        details = [details stringByAppendingFormat:@"Type: %@", beerView.beerCategory.name];
-    }
-    
-    if (beerView.country)
-    {
-        if (![NSString isNullOrEmpty:details])
-        {
-            details = [details stringByAppendingString:@" - "];
-        }
-        
-        details = [details stringByAppendingFormat:@"Origin Country: %@", beerView.country.name];
-    }
-    
-    [cell.detailTextLabel setText:details];
-    
-    NSString* imageUrl = [BeerRecoAPIClient getFullPathForFile:beerView.beer.beerIconUrl];
-    [cell.imageView setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"weihenstephaner_hefe_icon"]];
-    
-    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-    [cell setEditingAccessoryType:UITableViewCellAccessoryNone];
+    [self setupCell:cell forIndexPath:indexPath];
     
     return cell;
-    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -361,9 +312,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Perform segue to beer detail
-    [self performSegueWithIdentifier:@"BeerDetailsSegue" sender:tableView];
-
+    [self tableItemSelected:indexPath];
+    
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 

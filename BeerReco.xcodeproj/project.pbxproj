@@ -112,6 +112,7 @@
 		84D9D897172C88D600CC8E71 /* AreasService.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D9D896172C88D600CC8E71 /* AreasService.m */; };
 		84DB4F711728968600875ACA /* BeerViewM.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DB4F701728968600875ACA /* BeerViewM.m */; };
 		84DB4F7417293C1E00875ACA /* FileManagementService.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DB4F7317293C1E00875ACA /* FileManagementService.m */; };
+		84E5F195173C7DD100BFB703 /* BaseSearchAndRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E5F194173C7DD100BFB703 /* BaseSearchAndRefreshTableViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -293,6 +294,8 @@
 		84DB4F701728968600875ACA /* BeerViewM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BeerViewM.m; path = Models/BeerViewM.m; sourceTree = "<group>"; };
 		84DB4F7217293C1E00875ACA /* FileManagementService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileManagementService.h; path = Communication/Services/FileManagementService.h; sourceTree = "<group>"; };
 		84DB4F7317293C1E00875ACA /* FileManagementService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileManagementService.m; path = Communication/Services/FileManagementService.m; sourceTree = "<group>"; };
+		84E5F193173C7DD100BFB703 /* BaseSearchAndRefreshTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseSearchAndRefreshTableViewController.h; path = ViewControllers/BaseSearchAndRefreshTableViewController.h; sourceTree = "<group>"; };
+		84E5F194173C7DD100BFB703 /* BaseSearchAndRefreshTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseSearchAndRefreshTableViewController.m; path = ViewControllers/BaseSearchAndRefreshTableViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -453,6 +456,8 @@
 				844316D81721530200D227D2 /* LoadError */,
 				844956C1172D8A1000A4690C /* FacebookCommentsViewController.h */,
 				844956C2172D8A1100A4690C /* FacebookCommentsViewController.m */,
+				84E5F193173C7DD100BFB703 /* BaseSearchAndRefreshTableViewController.h */,
+				84E5F194173C7DD100BFB703 /* BaseSearchAndRefreshTableViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -899,6 +904,7 @@
 				844956C6172FFDC800A4690C /* FacebookHelper.m in Sources */,
 				844956DB173BF8BF00A4690C /* CountryM.m in Sources */,
 				844956E1173C1B6D00A4690C /* OriginCountryService.m in Sources */,
+				84E5F195173C7DD100BFB703 /* BaseSearchAndRefreshTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

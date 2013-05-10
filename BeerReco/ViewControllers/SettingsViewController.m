@@ -59,8 +59,10 @@
      [self createPlaceWithArea:@"Leo Blooms" andArea:@"HaMerkaz"];
      [self createPlaceWithArea:@"Meet Ball" andArea:@"HaDarom"];
       */
-    [self createBeersWithCountry:@[@"Malka", @"GoldStar", @"Jems"] andCountry:@"Israel"];
-    [self createBeersWithCategory:@[@"Carlsberg", @"Heiniken"] andCategory:@"Ale"];
+    //[self createBeersWithCountry:@[@"Malka", @"GoldStar", @"Jems"] andCountry:@"Israel"];
+    //[self createBeersWithCategory:@[@"Carlsberg", @"Heiniken"] andCategory:@"Ale"];
+    [self createPlacesWithArea:@[@"Mikes Place", @"Leo Blooms"] andArea:@"HaMerkaz"];
+    [self createPlacesWithArea:@[@"Meet Ball"] andArea:@"HaDarom"];
 }
 
 #pragma mark - Private Methods
@@ -113,19 +115,27 @@
      }];
 }
 
--(void)createPlaceWithArea:(NSString*)placeName andArea:(NSString*)areaName
+-(void)createPlaceWithArea:(NSString*)placeName andAreaId:(NSString*)areaId
+{
+    PlaceM* place = [[PlaceM alloc] init];
+    place.name = placeName;
+    place.areaId = areaId;
+    [[ComServices sharedComServices].placesService addPlace:place onComplete:^(PlaceM* place, NSError *error)
+     {
+         [NSThread sleepForTimeInterval:100];
+     }];
+}
+
+-(void)createPlacesWithArea:(NSArray*)placeNames andArea:(NSString*)areaName
 {
     AreaM* area = [[AreaM alloc] init];
     area.name = areaName;
     [[ComServices sharedComServices].areasService addArea:area onComplete:^(AreaM* area, NSError *error)
      {
-         PlaceM* place = [[PlaceM alloc] init];
-         place.name = placeName;
-         place.areaId = area.id;
-         [[ComServices sharedComServices].placesService addPlace:place onComplete:^(PlaceM* place, NSError *error)
-          {
-              [NSThread sleepForTimeInterval:100];
-          }];
+         for (NSString* placeName in placeNames)
+         {
+             [self createPlaceWithArea:placeName andAreaId:area.id];
+         }
      }];
 }
 

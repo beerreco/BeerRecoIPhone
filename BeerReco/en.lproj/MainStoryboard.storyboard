@@ -350,7 +350,7 @@
                                     </connections>
                                 </searchBar>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="dIr-hh-E58" style="IBUITableViewCellStyleDefault" id="2uK-zH-wpY">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="dIr-hh-E58" detailTextLabel="uXB-6o-ex1" style="IBUITableViewCellStyleSubtitle" id="2uK-zH-wpY">
                                         <rect key="frame" x="0.0" y="66" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -358,8 +358,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dIr-hh-E58">
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uXB-6o-ex1">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
                                             </subviews>
@@ -386,6 +391,18 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="zbb-wT-SUC">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="a3j-Es-QkH">
+                            <rect key="frame" x="96" y="7" width="128" height="31"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Area"/>
+                                <segment title="All"/>
+                            </segments>
+                            <connections>
+                                <action selector="placeFilteringValueChanged:" destination="Ecm-J5-Yml" eventType="valueChanged" id="pqX-kX-4il"/>
+                            </connections>
+                        </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" systemItem="search" id="gVG-dw-Mpq">
                             <connections>
                                 <action selector="showSearchClicked:" destination="Ecm-J5-Yml" id="NQr-Ur-8Ax"/>
@@ -395,8 +412,10 @@
                     <connections>
                         <outlet property="areasSearchBar" destination="XsO-MN-Gyq" id="Usc-1D-qbX"/>
                         <outlet property="searchDisplayController" destination="oEz-hW-BIq" id="k2f-zZ-yMH"/>
+                        <outlet property="segPlaceFiltering" destination="a3j-Es-QkH" id="dwM-LS-Z0T"/>
                         <outlet property="tableView" destination="lPB-pD-Qhj" id="yML-QI-7gi"/>
                         <segue destination="bW4-YI-b9c" kind="push" identifier="PlacesInAreaSegue" id="BEs-zc-tqO"/>
+                        <segue destination="bH2-zK-z05" kind="push" identifier="PlaceDetailsSegue" id="2K0-zJ-6dH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kgP-Kq-zfz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -410,7 +429,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1179" y="-1482"/>
+            <point key="canvasLocation" x="1003" y="-1422"/>
         </scene>
         <!--Place Details View Controller-->
         <scene sceneID="hGh-zc-VKW">
@@ -537,7 +556,7 @@
                                     </connections>
                                 </searchBar>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="aud-UU-iMs" style="IBUITableViewCellStyleDefault" id="wm3-Oa-Y9c">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="aud-UU-iMs" detailTextLabel="eEu-P3-TvD" style="IBUITableViewCellStyleSubtitle" id="wm3-Oa-Y9c">
                                         <rect key="frame" x="0.0" y="66" width="320" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -545,8 +564,13 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aud-UU-iMs">
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eEu-P3-TvD">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 </label>
                                             </subviews>
@@ -580,6 +604,7 @@
                             <segments>
                                 <segment title="Type"/>
                                 <segment title="Origin"/>
+                                <segment title="All"/>
                             </segments>
                             <connections>
                                 <action selector="categorySegValueChanged:" destination="bEg-yq-1o3" eventType="valueChanged" id="wQ0-dN-jhl"/>
@@ -597,6 +622,7 @@
                         <outlet property="segCategories" destination="ZyD-On-zBk" id="xN2-PS-s0E"/>
                         <outlet property="tableView" destination="av0-UH-DtQ" id="VAK-ug-Xtj"/>
                         <segue destination="r96-59-yWt" kind="push" identifier="BeersInCategorySegue" id="WRN-vJ-ljt"/>
+                        <segue destination="sMW-Q0-IUv" kind="push" identifier="BeerDetailsSegue" id="tBD-v1-Z0u"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wf4-Us-hmB" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -610,7 +636,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="1051" y="-2144"/>
+            <point key="canvasLocation" x="1071" y="-2180"/>
         </scene>
         <!--Beers View Controller-->
         <scene sceneID="aeK-IL-7YF">
@@ -1054,8 +1080,10 @@
         <class className="PlaceAreasViewController" superclassName="PullToRefreshViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/PlaceAreasViewController.h"/>
             <relationships>
+                <relationship kind="action" name="placeFilteringValueChanged:"/>
                 <relationship kind="action" name="showSearchClicked:"/>
                 <relationship kind="outlet" name="areasSearchBar" candidateClass="UISearchBar"/>
+                <relationship kind="outlet" name="segPlaceFiltering" candidateClass="UISegmentedControl"/>
             </relationships>
         </class>
         <class className="PlaceDetailsViewController" superclassName="UIViewController">
@@ -1105,7 +1133,8 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="HzY-4K-pdR"/>
         <segue reference="xbE-S5-9tG"/>
+        <segue reference="tBD-v1-Z0u"/>
+        <segue reference="2K0-zJ-6dH"/>
     </inferredMetricsTieBreakers>
 </document>

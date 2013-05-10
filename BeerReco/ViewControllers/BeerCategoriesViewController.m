@@ -141,10 +141,28 @@
     else if (self.segCategories.selectedSegmentIndex == 1)
     {
         [[ComServices sharedComServices].originCountryService getAllOriginCountries:^(NSMutableArray *countries, NSError *error)
-         {          
+         {
              if (error == nil && countries != nil)
              {
                  self.itemsArray = [NSMutableArray arrayWithArray:countries];
+                 
+                 [self dataLoaded];
+             }
+             else
+             {
+                 [self showErrorView];
+             }
+             
+             [self.HUD hide:YES];
+         }];
+    }
+    else if (self.segCategories.selectedSegmentIndex == 2)
+    {
+        [[ComServices sharedComServices].beersService getAllBeers:^(NSMutableArray *beers, NSError *error)
+        {            
+             if (error == nil && beers != nil)
+             {
+                 self.itemsArray = [NSMutableArray arrayWithArray:beers];
                  
                  [self dataLoaded];
              }
@@ -212,7 +230,16 @@
 	[self.filteredItemArray removeAllObjects];
     
 	// Filter the array using NSPredicate
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.name contains[c] %@",searchText];
+    NSPredicate *predicate;
+    if (self.segCategories.selectedSegmentIndex == 2)
+    {
+        predicate = [NSPredicate predicateWithFormat:@"SELF.beer.name contains[c] %@",searchText];
+    }
+    else
+    {
+        predicate = [NSPredicate predicateWithFormat:@"SELF.name contains[c] %@",searchText];
+    }
+    
     NSArray *tempArray = [self.itemsArray filteredArrayUsingPredicate:predicate];
     
     self.filteredItemArray = [NSMutableArray arrayWithArray:tempArray];
@@ -264,6 +291,29 @@
                 beersViewController.parentCountry = country;
                 [beersViewController setTitle:country.name];
             }
+        }
+    }
+    
+    if ([segue.identifier isEqualToString:@"BeerDetailsSegue"])
+    {
+        BeerDetailsViewController *beerDetailsViewController = [segue destinationViewController];
+        
+        // In order to manipulate the destination view controller, another check on which table (search or normal) is displayed is needed
+        if (sender == self.searchDisplayController.searchResultsTableView)
+        {
+            NSIndexPath *indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
+            BeerViewM* beerView = [self.filteredItemArray objectAtIndex:indexPath.row];
+            
+            beerDetailsViewController.beerView = beerView;
+            [beerDetailsViewController setTitle:beerView.beer.name];
+        }
+        else
+        {
+            NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+            BeerViewM* beerView = [self.itemsArray objectAtIndex:indexPath.row];
+            
+            beerDetailsViewController.beerView = beerView;
+            [beerDetailsViewController setTitle:beerView.beer.name];
         }
     }
 }
@@ -328,9 +378,13 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
+    [cell.detailTextLabel setText:@""];
+    [cell.imageView setImage:nil];
+    
     // Create a new Candy Object
     BeerCategoryM *beerCategory = nil;
     CountryM *country = nil;
+    BeerViewM *beerView = nil;
     
     // Check to see whether the normal table or search results table is being displayed and set the Candy object from the appropriate array
     if (tableView == self.searchDisplayController.searchResultsTableView)
@@ -343,6 +397,10 @@
         {
             country = [self.filteredItemArray objectAtIndex:indexPath.row];
         }
+        else if (self.segCategories.selectedSegmentIndex == 2)
+        {
+            beerView = [self.filteredItemArray objectAtIndex:indexPath.row];
+        }
     }
 	else
 	{
@@ -353,6 +411,10 @@
         else if (self.segCategories.selectedSegmentIndex == 1)
         {
             country = [self.itemsArray objectAtIndex:indexPath.row];
+        }
+        else if (self.segCategories.selectedSegmentIndex == 2)
+        {
+            beerView = [self.itemsArray objectAtIndex:indexPath.row];
         }
     }
     
@@ -365,6 +427,33 @@
     {
         // Configure the cell
         [cell.textLabel setText:country.name];
+    }
+    else if (self.segCategories.selectedSegmentIndex == 2)
+    {
+        // Configure the cell
+        [cell.textLabel setText:beerView.beer.name];
+        
+        NSString* details = @"";
+        
+        if (beerView.beerCategory)
+        {
+            details = [details stringByAppendingFormat:@"Type: %@", beerView.beerCategory.name];
+        }
+        
+        if (beerView.country)
+        {
+            if (![NSString isNullOrEmpty:details])
+            {
+                details = [details stringByAppendingString:@" - "];
+            }
+            
+            details = [details stringByAppendingFormat:@"Origin Country: %@", beerView.country.name];
+        }
+        
+        [cell.detailTextLabel setText:details];
+        
+        NSString* imageUrl = [BeerRecoAPIClient getFullPathForFile:beerView.beer.beerIconUrl];
+        [cell.imageView setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"weihenstephaner_hefe_icon"]];
     }
     
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
@@ -398,8 +487,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Perform segue to beer detail
-    [self performSegueWithIdentifier:@"BeersInCategorySegue" sender:tableView];
+    if (self.segCategories.selectedSegmentIndex == 2)
+    {
+        [self performSegueWithIdentifier:@"BeerDetailsSegue" sender:tableView];
+    }
+    else
+    {
+        [self performSegueWithIdentifier:@"BeersInCategorySegue" sender:tableView];
+    }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

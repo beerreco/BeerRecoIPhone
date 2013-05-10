@@ -54,6 +54,7 @@
 - (void)viewDidUnload
 {
     [self setAreasSearchBar:nil];
+    [self setSegPlaceFiltering:nil];
     [super viewDidUnload];
 }
 
@@ -119,21 +120,42 @@
         self.HUD.dimBackground = YES;
     }
     
-    [[ComServices sharedComServices].areasService getAllAreas:^(NSMutableArray *areas, NSError *error)
-    {   
-         if (error == nil && areas != nil)
+    if (self.segPlaceFiltering.selectedSegmentIndex == 0)
+    {
+        [[ComServices sharedComServices].areasService getAllAreas:^(NSMutableArray *areas, NSError *error)
          {
-             self.itemsArray = [NSMutableArray arrayWithArray:areas];
+             if (error == nil && areas != nil)
+             {
+                 self.itemsArray = [NSMutableArray arrayWithArray:areas];
+                 
+                 [self dataLoaded];
+             }
+             else
+             {
+                 [self showErrorView];
+             }
              
-             [self dataLoaded];
-         }
-         else
-         {
-             [self showErrorView];
-         }
-         
-         [self.HUD hide:YES];
-     }];
+             [self.HUD hide:YES];
+         }];
+    }
+    else if (self.segPlaceFiltering.selectedSegmentIndex == 1)
+    {
+        [[ComServices sharedComServices].placesService getAllPlaces:^(NSMutableArray *places, NSError *error)
+        {            
+             if (error == nil && places != nil)
+             {
+                 self.itemsArray = [NSMutableArray arrayWithArray:places];
+                 
+                 [self dataLoaded];
+             }
+             else
+             {
+                 [self showErrorView];
+             }
+             
+             [self.HUD hide:YES];
+         }];
+    }
 }
 
 -(void)dataLoaded
@@ -150,6 +172,23 @@
 }
 
 #pragma mark - Action Handlers
+
+- (IBAction)placeFilteringValueChanged:(id)sender
+{
+    if (self.loadErrorViewController)
+    {
+        [self.loadErrorViewController removeFloatingViewControllerFromParent:^(BOOL finished)
+         {
+             [self setLoadErrorViewController:nil];
+             
+             [self placeFilteringValueChanged:self.segPlaceFiltering];
+         }];
+    }
+    else
+    {
+        [self loadData];
+    }
+}
 
 - (IBAction)showSearchClicked:(id)sender
 {
@@ -173,7 +212,17 @@
 	[self.filteredItemArray removeAllObjects];
     
 	// Filter the array using NSPredicate
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.name contains[c] %@",searchText];
+    NSPredicate *predicate;
+    
+    if (self.segPlaceFiltering.selectedSegmentIndex == 1)
+    {
+        predicate = [NSPredicate predicateWithFormat:@"SELF.place.name contains[c] %@", searchText];
+    }
+    else
+    {
+        predicate = [NSPredicate predicateWithFormat:@"SELF.name contains[c] %@", searchText];
+    }
+    
     NSArray *tempArray = [self.itemsArray filteredArrayUsingPredicate:predicate];
     
     self.filteredItemArray = [NSMutableArray arrayWithArray:tempArray];
@@ -203,6 +252,29 @@
             
             placesViewController.parentArea = area;
             [placesViewController setTitle:area.name];
+        }
+    }
+    
+    if ([segue.identifier isEqualToString:@"PlaceDetailsSegue"])
+    {
+        PlaceDetailsViewController *placeDetailsViewController = [segue destinationViewController];
+        
+        // In order to manipulate the destination view controller, another check on which table (search or normal) is displayed is needed
+        if (sender == self.searchDisplayController.searchResultsTableView)
+        {
+            NSIndexPath *indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
+            
+            PlaceViewM* placeView = [self.filteredItemArray objectAtIndex:indexPath.row];
+            placeDetailsViewController.placeView = placeView;
+            [placeDetailsViewController setTitle:placeView.place.name];
+        }
+        else
+        {
+            NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+            
+            PlaceViewM* placeView = [self.itemsArray objectAtIndex:indexPath.row];
+            placeDetailsViewController.placeView = placeView;
+            [placeDetailsViewController setTitle:placeView.place.name];
         }
     }
 }
@@ -267,27 +339,55 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
+    [cell.detailTextLabel setText:@""];
+    [cell.imageView setImage:nil];
+    
     // Create a new Candy Object
     AreaM *area = nil;
+    PlaceViewM* placeView = nil;
     
     // Check to see whether the normal table or search results table is being displayed and set the Candy object from the appropriate array
     if (tableView == self.searchDisplayController.searchResultsTableView)
 	{
-        area = [self.filteredItemArray objectAtIndex:indexPath.row];
+        if (self.segPlaceFiltering.selectedSegmentIndex == 1)
+        {
+            placeView = [self.filteredItemArray objectAtIndex:indexPath.row];
+        }
+        else
+        {
+            area = [self.filteredItemArray objectAtIndex:indexPath.row];
+        }        
     }
 	else
 	{
-        area = [self.itemsArray objectAtIndex:indexPath.row];
+        if (self.segPlaceFiltering.selectedSegmentIndex == 1)
+        {
+            placeView = [self.itemsArray objectAtIndex:indexPath.row];
+        }
+        else
+        {
+            area = [self.itemsArray objectAtIndex:indexPath.row];
+        }
     }
     
-    // Configure the cell
-    [cell.textLabel setText:area.name];
+    if (self.segPlaceFiltering.selectedSegmentIndex == 1)
+    {
+        [cell.textLabel setText:placeView.place.name];
+        [cell.detailTextLabel setText:placeView.area.name];
+        
+        NSString* imageUrl = [BeerRecoAPIClient getFullPathForFile:placeView.place.placeIconUrl];
+        [cell.imageView setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"weihenstephaner_hefe_icon"]];
+    }
+    else
+    {
+        // Configure the cell
+        [cell.textLabel setText:area.name];
+    }
     
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     [cell setEditingAccessoryType:UITableViewCellAccessoryNone];
     
     return cell;
-    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -314,8 +414,14 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Perform segue to beer detail
-    [self performSegueWithIdentifier:@"PlacesInAreaSegue" sender:tableView];
+    if (self.segPlaceFiltering.selectedSegmentIndex == 1)
+    {
+        [self performSegueWithIdentifier:@"PlaceDetailsSegue" sender:tableView];
+    }
+    else
+    {
+        [self performSegueWithIdentifier:@"PlacesInAreaSegue" sender:tableView];
+    }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

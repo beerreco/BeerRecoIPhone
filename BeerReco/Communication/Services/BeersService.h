@@ -14,6 +14,8 @@
 
 -(NSString*)getFullUrlForBeerId:(NSString*)beerId;
 
+-(void)getAllBeers:(void (^)(NSMutableArray* beers, NSError *error))onComplete;
+
 -(void)addBeer:(BeerM*)beer onComplete:(void (^)(BeerM* beer, NSError *error))onComplete;
 
 -(void)updateBeer:(BeerM*)beer onComplete:(void (^)(BeerM* beer, NSError *error))onComplete;

@@ -28,6 +28,33 @@
     return [NSString stringWithFormat:@"%@%@%@/%@/%@", BaseURL, BaseIpadPathPrefix, ServicePath_PublicData, PathParam_Place, placeId];
 }
 
+-(void)getAllPlaces:(void (^)(NSMutableArray* places, NSError *error))onComplete
+{
+    NSString* path = [NSString stringWithFormat:@"%@/%@", ServicePath_Places, PathParam_All];
+    
+    [[BeerRecoAPIClient sharedClient] getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id JSON)
+     {
+         NSArray *itemsFromResponse = [JSON valueForKeyPath:ResultPath_Places];
+         NSMutableArray *mutableItems = [NSMutableArray arrayWithCapacity:[itemsFromResponse count]];
+         for (NSDictionary *json in itemsFromResponse)
+         {
+             PlaceViewM *item = [[PlaceViewM alloc] initWithJson:json];
+             [mutableItems addObject:item];
+         }
+         
+         if (onComplete)
+         {
+             onComplete(mutableItems, nil);
+         }
+     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         if (onComplete)
+         {
+             onComplete(nil, error);
+         }
+     }];
+}
+
 -(void)addPlace:(PlaceM *)place onComplete:(void (^)(PlaceM *, NSError *))onComplete
 {
     if (place == nil)
