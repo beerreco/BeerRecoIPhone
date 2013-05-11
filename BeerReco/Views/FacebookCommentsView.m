@@ -170,6 +170,7 @@
         ret = YES;
     }
     
+    NSLog(@"Load request: %c", ret);
     NSLog(@"%@", request.URL.path);
     
     return ret;

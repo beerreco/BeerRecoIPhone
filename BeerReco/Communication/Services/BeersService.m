@@ -15,10 +15,12 @@
 #define PathParam_Add @"add"
 #define PathParam_Update @"update"
 #define PathParam_All @"all"
+#define PathParam_Places @"places"
 
 #define QueryParam_Beer @"beer"
 
 #define ResultPath_Beers @"beers"
+#define ResultPath_Items @"items"
 
 @implementation BeersService
 
@@ -38,6 +40,43 @@
          for (NSDictionary *json in itemsFromResponse)
          {
              BeerViewM *item = [[BeerViewM alloc] initWithJson:json];
+             [mutableItems addObject:item];
+         }
+         
+         if (onComplete)
+         {
+             onComplete(mutableItems, nil);
+         }
+     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         if (onComplete)
+         {
+             onComplete(nil, error);
+         }
+     }];
+}
+
+-(void)getPlacesByBeer:(NSString*)beerId onComplete:(void (^)(NSMutableArray* beerInPlaceViews, NSError *error))onComplete
+{
+    if ([NSString isNullOrEmpty:beerId])
+    {
+        if (onComplete)
+        {
+            onComplete(nil, [NSError errorWithDomain:@"" code:-1 userInfo:nil]);
+        }
+        
+        return;
+    }
+    
+    NSString* path = [NSString stringWithFormat:@"%@/%@/%@", ServicePath_Beers, beerId, PathParam_Places];
+    
+    [[BeerRecoAPIClient sharedClient] getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id JSON)
+     {
+         NSArray *itemsFromResponse = [JSON valueForKeyPath:ResultPath_Items];
+         NSMutableArray *mutableItems = [NSMutableArray arrayWithCapacity:[itemsFromResponse count]];
+         for (NSDictionary *json in itemsFromResponse)
+         {
+             BeerInPlaceViewM *item = [[BeerInPlaceViewM alloc] initWithJson:json];
              [mutableItems addObject:item];
          }
          

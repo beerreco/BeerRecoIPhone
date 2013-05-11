@@ -103,6 +103,18 @@
     }
 }
 
+-(NSString*)getSortingKeyPath
+{
+    if (self.segCategories.selectedSegmentIndex == 2)
+    {
+        return @"beer.name";
+    }
+    else
+    {
+        return @"name";
+    }
+}
+
 -(NSString*)getSearchablePropertyName
 {
     if (self.segCategories.selectedSegmentIndex == 2)
@@ -195,14 +207,12 @@
         {
             BeerCategoryM* beerCategory = object;
             beersViewController.parentBeerCategory = beerCategory;
-            [beersViewController setTitle:beerCategory.name];
         }
        
         if ([object isKindOfClass:([CountryM class])])
         {
             CountryM* country = object;
             beersViewController.parentCountry = country;
-            [beersViewController setTitle:country.name];
         }
         
     }
@@ -215,7 +225,6 @@
         {
             BeerViewM* beerView = object;
             beerDetailsViewController.beerView = beerView;
-            [beerDetailsViewController setTitle:beerView.beer.name];
         }
     }
 }

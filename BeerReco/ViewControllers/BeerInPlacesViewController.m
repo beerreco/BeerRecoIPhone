@@ -1,35 +1,35 @@
 //
-//  PlacesViewController.m
+//  BeerInPlacesViewController.m
 //  BeerReco
 //
-//  Created by RLemberg on 4/10/13.
+//  Created by RLemberg on 5/11/13.
 //  Copyright (c) 2013 Colman. All rights reserved.
 //
 
-#import "PlacesViewController.h"
+#import "BeerInPlacesViewController.h"
 
-@interface PlacesViewController ()
+#import "PlaceDetailsViewController.h"
+
+@interface BeerInPlacesViewController ()
 
 @end
 
-@implementation PlacesViewController
+@implementation BeerInPlacesViewController
 
-@synthesize parentArea = _parentArea;
+@synthesize beerView = _beerView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self)
-    {
+    if (self) {
         // Custom initialization
     }
-    
     return self;
 }
 
 - (void)viewDidLoad
 {
-    if (self.parentArea == nil)
+    if (self.beerView == nil)
     {
         [self.navigationController popViewControllerAnimated:YES];
         return;
@@ -56,7 +56,7 @@
 
 -(void)visualSetup
 {
-    self.navigationItem.title = self.parentArea.name;
+    self.navigationItem.title = self.beerView.beer.name;
 }
 
 -(void)setup
@@ -67,27 +67,30 @@
 
 -(void)loadCurrentData
 {
-    [[ComServices sharedComServices].areasService getPlacesByArea:self.parentArea.id oncComplete:^(NSMutableArray *places, NSError *error)
-     {
-         if (error == nil && places != nil)
-         {
-             [self dataLoaded:places];
-         }
-         else
-         {
-             [self showErrorView];
-         }
-     }];
+    if (self.beerView)
+    {
+        [[ComServices sharedComServices].beersService getPlacesByBeer:self.beerView.beer.id onComplete:^(NSMutableArray *beerInPlaceViews, NSError *error)
+        {            
+             if (error == nil && beerInPlaceViews != nil)
+             {
+                 [self dataLoaded:beerInPlaceViews];
+             }
+             else
+             {
+                 [self showErrorView];
+             }
+         }];
+    }
 }
 
 -(NSString*)getSortingKeyPath
 {
-    return @"place.name";
+    return @"placeView.place.name";
 }
 
 -(NSString*)getSearchablePropertyName
 {
-    return @"place.name";
+    return @"placeView.place.name";
 }
 
 -(NSString*)getCellIdentifier
@@ -100,14 +103,27 @@
     [cell.detailTextLabel setText:@""];
     [cell.imageView setImage:nil];
     
-    if ([object isKindOfClass:([PlaceViewM class])])
+    if ([object isKindOfClass:([BeerInPlaceViewM class])])
     {
-        PlaceViewM* placeView = object;
+        BeerInPlaceViewM *beerInPlaceView = object;
         
-        [cell.textLabel setText:placeView.place.name];
-        [cell.detailTextLabel setText:placeView.area.name];
+        // Configure the cell
+        [cell.textLabel setText:beerInPlaceView.placeView.place.name];
         
-        NSString* imageUrl = [BeerRecoAPIClient getFullPathForFile:placeView.place.placeIconUrl];
+        NSString* details = @"";
+        
+        if (beerInPlaceView.beerInPlace.price > 0)
+        {
+            details = [details stringByAppendingFormat:@"Price: %.0f", beerInPlaceView.beerInPlace.price];
+        }
+        else
+        {
+            details = @"Price: N/A";
+        }
+        
+        [cell.detailTextLabel setText:details];
+        
+        NSString* imageUrl = [BeerRecoAPIClient getFullPathForFile:beerInPlaceView.placeView.place.placeIconUrl];
         [cell.imageView setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"weihenstephaner_hefe_icon"]];
     }
     
@@ -121,15 +137,15 @@
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue withObject:(id)object
-{    
+{
     if ([segue.identifier isEqualToString:@"PlaceDetailsSegue"])
     {
         PlaceDetailsViewController *placeDetailsViewController = [segue destinationViewController];
         
-        if ([object isKindOfClass:([PlaceViewM class])])
+        if ([object isKindOfClass:([BeerInPlaceViewM class])])
         {
-            PlaceViewM* placeView = object;
-            placeDetailsViewController.placeView = placeView;
+            BeerInPlaceViewM* beerInPlaceViewM = object;
+            placeDetailsViewController.placeView = beerInPlaceViewM.placeView;
         }
     }
 }

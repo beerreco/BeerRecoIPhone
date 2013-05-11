@@ -1,20 +1,22 @@
 //
-//  BeersViewController.m
+//  BeersInPlaceViewController.m
 //  BeerReco
 //
-//  Created by RLemberg on 4/10/13.
+//  Created by RLemberg on 5/12/13.
 //  Copyright (c) 2013 Colman. All rights reserved.
 //
 
-#import "BeersViewController.h"
+#import "BeersInPlaceViewController.h"
 
-@interface BeersViewController ()
+#import "BeerDetailsViewController.h"
+
+@interface BeersInPlaceViewController ()
 
 @end
 
-@implementation BeersViewController
+@implementation BeersInPlaceViewController
 
-@synthesize parentBeerCategory = _parentBeerCategory;
+@synthesize placeView = _placeView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,7 +29,7 @@
 
 - (void)viewDidLoad
 {
-    if (self.parentBeerCategory == nil && self.parentCountry == nil)
+    if (self.placeView == nil)
     {
         [self.navigationController popViewControllerAnimated:YES];
         return;
@@ -54,14 +56,7 @@
 
 -(void)visualSetup
 {
-    if (self.parentBeerCategory)
-    {
-        self.navigationItem.title = self.parentBeerCategory.name;
-    }
-    else if (self.parentCountry)
-    {
-        self.navigationItem.title = self.parentCountry.name;
-    }
+    self.navigationItem.title = self.placeView.place.name;
 }
 
 -(void)setup
@@ -72,27 +67,13 @@
 
 -(void)loadCurrentData
 {
-    if (self.parentBeerCategory)
+    if (self.placeView)
     {
-        [[ComServices sharedComServices].categoriesService getBeersByCatergory:self.parentBeerCategory.id oncComplete:^(NSMutableArray *beers, NSError *error)
-         {
-             if (error == nil && beers != nil)
+        [[ComServices sharedComServices].placesService getBeersByPlace:self.placeView.place.id onComplete:^(NSMutableArray *beerInPlaceViews, NSError *error)
+        {            
+             if (error == nil && beerInPlaceViews != nil)
              {
-                 [self dataLoaded:beers];
-             }
-             else
-             {
-                 [self showErrorView];
-             }
-         }];
-    }
-    else if (self.parentCountry)
-    {
-        [[ComServices sharedComServices].originCountryService getBeersByOriginCountry:self.parentCountry.id oncComplete:^(NSMutableArray *beers, NSError *error)
-         {
-             if (error == nil && beers != nil)
-             {
-                 [self dataLoaded:beers];
+                 [self dataLoaded:beerInPlaceViews];
              }
              else
              {
@@ -104,12 +85,12 @@
 
 -(NSString*)getSortingKeyPath
 {
-    return @"beer.name";
+    return @"beerView.beer.name";
 }
 
 -(NSString*)getSearchablePropertyName
 {
-    return @"beer.name";
+    return @"beerView.beer.name";
 }
 
 -(NSString*)getCellIdentifier
@@ -122,35 +103,29 @@
     [cell.detailTextLabel setText:@""];
     [cell.imageView setImage:nil];
     
-    if ([object isKindOfClass:([BeerViewM class])])
+    if ([object isKindOfClass:([BeerInPlaceViewM class])])
     {
-        BeerViewM *beerView = object;
+        BeerInPlaceViewM *beerInPlaceView = object;
         
         // Configure the cell
-        [cell.textLabel setText:beerView.beer.name];
+        [cell.textLabel setText:beerInPlaceView.beerView.beer.name];
         
         NSString* details = @"";
         
-        if (beerView.beerCategory)
+        if (beerInPlaceView.beerInPlace.price > 0)
         {
-            details = [details stringByAppendingFormat:@"Type: %@", beerView.beerCategory.name];
+            details = [details stringByAppendingFormat:@"Price: %.0f", beerInPlaceView.beerInPlace.price];
         }
-        
-        if (beerView.country)
+        else
         {
-            if (![NSString isNullOrEmpty:details])
-            {
-                details = [details stringByAppendingString:@" - "];
-            }
-            
-            details = [details stringByAppendingFormat:@"Origin Country: %@", beerView.country.name];
+            details = @"Price: N/A";
         }
         
         [cell.detailTextLabel setText:details];
         
-        NSString* imageUrl = [BeerRecoAPIClient getFullPathForFile:beerView.beer.beerIconUrl];
+        NSString* imageUrl = [BeerRecoAPIClient getFullPathForFile:beerInPlaceView.beerView.beer.beerIconUrl];
         [cell.imageView setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"weihenstephaner_hefe_icon"]];
-    }    
+    }
     
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     [cell setEditingAccessoryType:UITableViewCellAccessoryNone];
@@ -167,10 +142,10 @@
     {
         BeerDetailsViewController *beerDetailsViewController = [segue destinationViewController];
         
-        if ([object isKindOfClass:([BeerViewM class])])
+        if ([object isKindOfClass:([BeerInPlaceViewM class])])
         {
-            BeerViewM* beerView = object;
-            beerDetailsViewController.beerView = beerView;
+            BeerInPlaceViewM* beerInPlaceViewM = object;
+            beerDetailsViewController.beerView = beerInPlaceViewM.beerView;
         }
     }
 }

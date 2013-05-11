@@ -121,6 +121,12 @@
 {
     self.itemsArray = [NSMutableArray arrayWithArray:data];
     
+    if ([self shouldSortItemsList])
+    {
+        NSSortDescriptor *sort = [NSSortDescriptor sortDescriptorWithKey:[self getSortingKeyPath] ascending:YES];
+        [self.itemsArray sortUsingDescriptors:[NSArray arrayWithObject:sort]];
+    }
+    
     // Initialize the filteredCandyArray with a capacity equal to the candyArray's capacity
     self.filteredItemArray = [NSMutableArray arrayWithCapacity:self.itemsArray.count];
     
@@ -139,6 +145,16 @@
 -(void)loadCurrentData
 {
     
+}
+
+-(BOOL)shouldSortItemsList
+{
+    return ![NSString isNullOrEmpty:[self getSortingKeyPath]];
+}
+
+-(NSString*)getSortingKeyPath
+{
+    return @"";
 }
 
 -(NSString*)getSearchablePropertyName

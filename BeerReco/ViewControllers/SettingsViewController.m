@@ -47,22 +47,15 @@
      
      }];
      */
-     /*
-     [self createBeerWithCategory:@"Heiniken" andCategory:@"Ale"];
-     [self createBeerWithCategory:@"GoldStar" andCategory:@"Pils"];
-     [self createBeerWithCategory:@"Baltika" andCategory:@"Ale"];
-     [self createBeerWithCategory:@"Jems" andCategory:@"Wheat"];
-     [self createBeerWithCategory:@"Erdinger" andCategory:@"Wheat"];
-     */
-    /*
-     [self createPlaceWithArea:@"Mikes Place" andArea:@"HaMerkaz"];
-     [self createPlaceWithArea:@"Leo Blooms" andArea:@"HaMerkaz"];
-     [self createPlaceWithArea:@"Meet Ball" andArea:@"HaDarom"];
-      */
-    //[self createBeersWithCountry:@[@"Malka", @"GoldStar", @"Jems"] andCountry:@"Israel"];
-    //[self createBeersWithCategory:@[@"Carlsberg", @"Heiniken"] andCategory:@"Ale"];
+    /*[self createBeersWithCountry:@[@"Malka", @"GoldStar", @"Jems"] andCountry:@"Israel"];
+    [self createBeersWithCategory:@[@"Carlsberg", @"Heiniken"] andCategory:@"Ale"];
     [self createPlacesWithArea:@[@"Mikes Place", @"Leo Blooms"] andArea:@"HaMerkaz"];
-    [self createPlacesWithArea:@[@"Meet Ball"] andArea:@"HaDarom"];
+    [self createPlacesWithArea:@[@"Meet Ball"] andArea:@"HaDarom"];*/
+    
+    [[ComServices sharedComServices].placesService addBeer:@"36471366-d3ec-4af5-ae86-04f9bcdfcd45" toPlace:@"5a58aae6-ee19-4a65-a0e4-c10c5b7bf9e5" withPrice:29 onComplete:^(NSError *error)
+    {
+        NSLog(@"beer adding to place %@", error ? @"failed" : @"succedded");
+    }];
 }
 
 #pragma mark - Private Methods
@@ -74,7 +67,7 @@
     beer.beerTypeId = categoryId;
     [[ComServices sharedComServices].beersService addBeer:beer onComplete:^(BeerM* beer, NSError *error)
      {
-         [NSThread sleepForTimeInterval:100];
+         [NSThread sleepForTimeInterval:2];
      }];
 }
 
@@ -98,7 +91,7 @@
     beer.originCountryId = countryId;
     [[ComServices sharedComServices].beersService addBeer:beer onComplete:^(BeerM* beer, NSError *error)
      {
-         [NSThread sleepForTimeInterval:100];
+         [NSThread sleepForTimeInterval:2];
      }];
 }
 
@@ -122,7 +115,7 @@
     place.areaId = areaId;
     [[ComServices sharedComServices].placesService addPlace:place onComplete:^(PlaceM* place, NSError *error)
      {
-         [NSThread sleepForTimeInterval:100];
+         [NSThread sleepForTimeInterval:2];
      }];
 }
 

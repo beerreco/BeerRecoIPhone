@@ -113,6 +113,10 @@
 		84DB4F711728968600875ACA /* BeerViewM.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DB4F701728968600875ACA /* BeerViewM.m */; };
 		84DB4F7417293C1E00875ACA /* FileManagementService.m in Sources */ = {isa = PBXBuildFile; fileRef = 84DB4F7317293C1E00875ACA /* FileManagementService.m */; };
 		84E5F195173C7DD100BFB703 /* BaseSearchAndRefreshTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E5F194173C7DD100BFB703 /* BaseSearchAndRefreshTableViewController.m */; };
+		84E5F198173D456400BFB703 /* BeerInPlaceM.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E5F197173D456400BFB703 /* BeerInPlaceM.m */; };
+		84E5F19B173D46A900BFB703 /* BeerInPlaceViewM.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E5F19A173D46A900BFB703 /* BeerInPlaceViewM.m */; };
+		84E5F19E173EE7CF00BFB703 /* BeerInPlacesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E5F19D173EE7CF00BFB703 /* BeerInPlacesViewController.m */; };
+		84E5F1A1173EF6C700BFB703 /* BeersInPlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E5F1A0173EF6C700BFB703 /* BeersInPlaceViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -296,6 +300,14 @@
 		84DB4F7317293C1E00875ACA /* FileManagementService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileManagementService.m; path = Communication/Services/FileManagementService.m; sourceTree = "<group>"; };
 		84E5F193173C7DD100BFB703 /* BaseSearchAndRefreshTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseSearchAndRefreshTableViewController.h; path = ViewControllers/BaseSearchAndRefreshTableViewController.h; sourceTree = "<group>"; };
 		84E5F194173C7DD100BFB703 /* BaseSearchAndRefreshTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseSearchAndRefreshTableViewController.m; path = ViewControllers/BaseSearchAndRefreshTableViewController.m; sourceTree = "<group>"; };
+		84E5F196173D456400BFB703 /* BeerInPlaceM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeerInPlaceM.h; path = Models/BeerInPlaceM.h; sourceTree = "<group>"; };
+		84E5F197173D456400BFB703 /* BeerInPlaceM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BeerInPlaceM.m; path = Models/BeerInPlaceM.m; sourceTree = "<group>"; };
+		84E5F199173D46A900BFB703 /* BeerInPlaceViewM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeerInPlaceViewM.h; path = Models/BeerInPlaceViewM.h; sourceTree = "<group>"; };
+		84E5F19A173D46A900BFB703 /* BeerInPlaceViewM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BeerInPlaceViewM.m; path = Models/BeerInPlaceViewM.m; sourceTree = "<group>"; };
+		84E5F19C173EE7CE00BFB703 /* BeerInPlacesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeerInPlacesViewController.h; path = ViewControllers/BeerInPlacesViewController.h; sourceTree = "<group>"; };
+		84E5F19D173EE7CF00BFB703 /* BeerInPlacesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BeerInPlacesViewController.m; path = ViewControllers/BeerInPlacesViewController.m; sourceTree = "<group>"; };
+		84E5F19F173EF6C700BFB703 /* BeersInPlaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeersInPlaceViewController.h; path = ViewControllers/BeersInPlaceViewController.h; sourceTree = "<group>"; };
+		84E5F1A0173EF6C700BFB703 /* BeersInPlaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BeersInPlaceViewController.m; path = ViewControllers/BeersInPlaceViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -562,6 +574,10 @@
 				84D9D893172C86A900CC8E71 /* AreaM.m */,
 				844956D9173BF8BF00A4690C /* CountryM.h */,
 				844956DA173BF8BF00A4690C /* CountryM.m */,
+				84E5F196173D456400BFB703 /* BeerInPlaceM.h */,
+				84E5F197173D456400BFB703 /* BeerInPlaceM.m */,
+				84E5F199173D46A900BFB703 /* BeerInPlaceViewM.h */,
+				84E5F19A173D46A900BFB703 /* BeerInPlaceViewM.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -686,6 +702,8 @@
 				84D14A551715C99800F0660C /* PlaceDetailsViewController.m */,
 				84D14A451715C59800F0660C /* PlacesViewController.h */,
 				84D14A461715C59800F0660C /* PlacesViewController.m */,
+				84E5F19F173EF6C700BFB703 /* BeersInPlaceViewController.h */,
+				84E5F1A0173EF6C700BFB703 /* BeersInPlaceViewController.m */,
 			);
 			name = Places;
 			sourceTree = "<group>";
@@ -699,6 +717,8 @@
 				84B58CDF16DD0E720097CD67 /* BeerDetailsViewController.m */,
 				84D14A421715C58300F0660C /* BeersViewController.h */,
 				84D14A431715C58300F0660C /* BeersViewController.m */,
+				84E5F19C173EE7CE00BFB703 /* BeerInPlacesViewController.h */,
+				84E5F19D173EE7CF00BFB703 /* BeerInPlacesViewController.m */,
 			);
 			name = Beers;
 			sourceTree = "<group>";
@@ -905,6 +925,10 @@
 				844956DB173BF8BF00A4690C /* CountryM.m in Sources */,
 				844956E1173C1B6D00A4690C /* OriginCountryService.m in Sources */,
 				84E5F195173C7DD100BFB703 /* BaseSearchAndRefreshTableViewController.m in Sources */,
+				84E5F198173D456400BFB703 /* BeerInPlaceM.m in Sources */,
+				84E5F19B173D46A900BFB703 /* BeerInPlaceViewM.m in Sources */,
+				84E5F19E173EE7CF00BFB703 /* BeerInPlacesViewController.m in Sources */,
+				84E5F1A1173EF6C700BFB703 /* BeersInPlaceViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

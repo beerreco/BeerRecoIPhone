@@ -162,6 +162,11 @@
     }
 }
 
+-(NSString*)getSortingKeyPath
+{
+    return @"beer.name";
+}
+
 -(NSString*)getSearchablePropertyName
 {
     return @"beer.name";

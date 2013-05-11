@@ -89,6 +89,18 @@
     }
 }
 
+-(NSString*)getSortingKeyPath
+{
+    if (self.segPlaceFiltering.selectedSegmentIndex == 1)
+    {
+        return @"place.name";
+    }
+    else
+    {
+        return @"name";
+    }
+}
+
 -(NSString*)getSearchablePropertyName
 {
     if (self.segPlaceFiltering.selectedSegmentIndex == 1)
@@ -155,7 +167,6 @@
         {
             AreaM* area = object;            
             placesViewController.parentArea = area;
-            [placesViewController setTitle:area.name];
         }
     }
     
@@ -167,7 +178,6 @@
         {
             PlaceViewM* placeView = object;
             placeDetailsViewController.placeView = placeView;
-            [placeDetailsViewController setTitle:placeView.place.name];
         }
     }
 }

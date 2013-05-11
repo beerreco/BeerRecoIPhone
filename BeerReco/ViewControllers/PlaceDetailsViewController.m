@@ -8,6 +8,7 @@
 
 #import "PlaceDetailsViewController.h"
 #import "FacebookCommentsViewController.h"
+#import "BeersInPlaceViewController.h"
 
 @interface PlaceDetailsViewController ()
 
@@ -53,6 +54,7 @@
     [self setImgPlaceIcon:nil];
     [self setBtnComments:nil];
     [self setActivityCommentsLoad:nil];
+    [self setTbPlaceProperties:nil];
     [super viewDidUnload];
 }
 
@@ -66,7 +68,9 @@
 #pragma mark - Private Methods
 
 -(void)visualSetup
-{    
+{
+    self.navigationItem.title = self.placeView.place.name;
+    
     [self addLikeButton];
 }
 
@@ -286,6 +290,13 @@
         
         [facebookCommentsViewController setTitle:self.placeView.place.name];
     }
+    
+    if ([segue.identifier isEqualToString:@"BeersInPlaceSegue"])
+    {
+        BeersInPlaceViewController *beersInPlaceViewController = [segue destinationViewController];
+        
+        beersInPlaceViewController.placeView = self.placeView;
+    }
 }
 
 #pragma mark - MBProgressHUDDelegate methods
@@ -298,6 +309,76 @@
     {
         self.HUD = nil;
     }
+}
+
+#pragma mark - UITableViewDataSource
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (section == 0)
+    {
+        return 1;
+    }
+    
+    return 0;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString *CellIdentifier = @"cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if ( cell == nil )
+    {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    }
+    
+    if (indexPath.section == 0)
+    {
+        cell.textLabel.text = @"Beers and prices";
+    }
+    
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 44;
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)aTableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return self.editing ? UITableViewCellEditingStyleDelete : UITableViewCellEditingStyleNone;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+    return @"";
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForFooterInSection:(NSInteger)section
+{
+    return @"";
+}
+
+#pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (indexPath.section == 0)
+    {
+        [self performSegueWithIdentifier:@"BeersInPlaceSegue" sender:nil];
+    }
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
 }
 
 @end

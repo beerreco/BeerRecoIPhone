@@ -26,6 +26,8 @@
 
 #pragma mark - virtuals
 -(void)loadCurrentData;
+-(BOOL)shouldSortItemsList;
+-(NSString*)getSortingKeyPath;
 -(NSString*)getSearchablePropertyName;
 -(NSString*)getCellIdentifier;
 -(void)setupCell:(UITableViewCell*)cell forIndexPath:(NSIndexPath *)indexPath withObject:(id)object;

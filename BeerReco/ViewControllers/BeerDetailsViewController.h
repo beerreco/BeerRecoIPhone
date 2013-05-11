@@ -10,7 +10,7 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "MBProgressHUD.h"
 
-@interface BeerDetailsViewController : UIViewController<MBProgressHUDDelegate>
+@interface BeerDetailsViewController : UIViewController<MBProgressHUDDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) BeerViewM* beerView;
 
@@ -23,6 +23,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnLike;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityFavoriteCheck;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityLikeCheck;
+@property (weak, nonatomic) IBOutlet UITableView *tbBeerProperties;
 
 - (IBAction)likeClicked:(id)sender;
 - (IBAction)favoritesButtonClicked:(id)sender;

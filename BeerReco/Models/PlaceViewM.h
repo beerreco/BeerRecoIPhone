@@ -7,7 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+
 #import "AreaM.h"
+#import "PlaceM.h"
 
 @interface PlaceViewM : NSObject
 

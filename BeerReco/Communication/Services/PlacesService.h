@@ -16,8 +16,13 @@
 
 -(void)getAllPlaces:(void (^)(NSMutableArray* places, NSError *error))onComplete;
 
+-(void)getBeersByPlace:(NSString*)placeId onComplete:(void (^)(NSMutableArray* beerInPlaceViews, NSError *error))onComplete;
+
 -(void)addPlace:(PlaceM*)place onComplete:(void (^)(PlaceM* place, NSError *error))onComplete;
 
 -(void)updatePlace:(PlaceM*)place onComplete:(void (^)(PlaceM* place, NSError *error))onComplete;
+
+-(void)addBeer:(NSString*)beerId toPlace:(NSString*)placeId onComplete:(void (^)(NSError *error))onComplete;
+-(void)addBeer:(NSString*)beerId toPlace:(NSString*)placeId withPrice:(double)price onComplete:(void (^)(NSError *error))onComplete;
 
 @end
