@@ -191,9 +191,9 @@
         
         NSString* details = @"";
         
-        if (beerView.beerCategory)
+        if (beerView.beerType)
         {
-            details = [details stringByAppendingFormat:@"Type: %@", beerView.beerCategory.name];
+            details = [details stringByAppendingFormat:@"Type: %@", beerView.beerType.name];
         }
         
         if (beerView.country)
@@ -204,6 +204,16 @@
             }
             
             details = [details stringByAppendingFormat:@"Origin Country: %@", beerView.country.name];
+        }
+        
+        if (beerView.brewery && (!beerView.country || !beerView.beerType))
+        {
+            if (![NSString isNullOrEmpty:details])
+            {
+                details = [details stringByAppendingString:@" - "];
+            }
+            
+            details = [details stringByAppendingFormat:@"Brewery: %@", beerView.brewery.name];
         }
         
         [cell.detailTextLabel setText:details];

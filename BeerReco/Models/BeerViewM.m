@@ -10,12 +10,14 @@
 
 #define PropertyName_Beer @"beer"
 #define PropertyName_BeerType @"beerType"
+#define PropertyName_Brewery @"brewery"
 #define PropertyName_Country @"country"
 
 @implementation BeerViewM
 
 @synthesize beer = _beer;
-@synthesize beerCategory = _beerCategory;
+@synthesize beerType = _beerType;
+@synthesize brewery = _brewery;
 @synthesize country = _country;
 
 #pragma mark - Instance Methods
@@ -30,7 +32,8 @@
     }
     
     self.beer = [[BeerM alloc] initWithJson:[json valueForKey:@"beer"]];
-    self.beerCategory = [[BeerCategoryM alloc] initWithJson:[json valueForKey:@"beerType"]];
+    self.beerType = [[BeerTypeM alloc] initWithJson:[json valueForKey:@"beerType"]];
+    self.brewery = [[BreweryM alloc] initWithJson:[json valueForKey:@"brewery"]];
     self.country = [[CountryM alloc] initWithJson:[json valueForKey:@"country"]];
     
     return self;
@@ -47,14 +50,19 @@
         [propertyDict setObject:[self.beer ToDictionary] forKey:PropertyName_Beer];
     }
     
-    if (self.beerCategory != nil)
+    if (self.beerType != nil)
     {
-        [propertyDict setObject:[self.beerCategory ToDictionary] forKey:PropertyName_BeerType];
+        [propertyDict setObject:[self.beerType ToDictionary] forKey:PropertyName_BeerType];
+    }
+    
+    if (self.brewery != nil)
+    {
+        [propertyDict setObject:[self.brewery ToDictionary] forKey:PropertyName_Brewery];
     }
     
     if (self.country != nil)
     {
-        [propertyDict setObject:[self.beerCategory ToDictionary] forKey:PropertyName_Country];
+        [propertyDict setObject:[self.beerType ToDictionary] forKey:PropertyName_Country];
     }
     
     return propertyDict;

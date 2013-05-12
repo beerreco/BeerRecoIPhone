@@ -10,17 +10,16 @@
 
 #define ServicePath_PublicData @"/public-data"
 #define ServicePath_Places @"/places"
+#define ServicePath_BeerInPlace @"/beer-in-place"
 
 #define PathParam_Place @"place"
 #define PathParam_All @"all"
-#define PathParam_AddBeerToPlace @"add-beer-to-place"
 #define PathParam_Add @"add"
 #define PathParam_Update @"update"
 #define PathParam_Beers @"beers"
 
 #define QueryParam_Place @"place"
-#define QueryParam_BeerId @"beerId"
-#define QueryParam_Price @"price"
+#define QueryParam_BeerInPlace @"beerInPlace"
 
 #define ResultPath_Places @"places"
 #define ResultPath_Items @"items"
@@ -162,38 +161,45 @@
      }];
 }
 
--(void)addBeer:(NSString*)beerId toPlace:(NSString*)placeId onComplete:(void (^)(NSError *error))onComplete
+-(void)addBeer:(NSString*)beerId toPlace:(NSString*)placeId onComplete:(void (^)(BeerInPlaceM * beerInPlace, NSError *error))onComplete
 {
     [self addBeer:beerId toPlace:placeId withPrice:0 onComplete:onComplete];
 }
 
--(void)addBeer:(NSString*)beerId toPlace:(NSString*)placeId withPrice:(double)price onComplete:(void (^)(NSError *error))onComplete
+-(void)addBeer:(NSString*)beerId toPlace:(NSString*)placeId withPrice:(double)price onComplete:(void (^)(BeerInPlaceM * beerInPlace, NSError *error))onComplete
 {
     if ([NSString isNullOrEmpty:beerId] || [NSString isNullOrEmpty:placeId])
     {
         if (onComplete)
         {
-            onComplete([NSError errorWithDomain:@"" code:-1 userInfo:nil]);
+            onComplete(nil, [NSError errorWithDomain:@"" code:-1 userInfo:nil]);
         }
         
         return;
     }
     
-    NSDictionary* params = @{QueryParam_BeerId:beerId, QueryParam_Price:[NSNumber numberWithDouble:price]};
+    BeerInPlaceM* beerInPlace = [[BeerInPlaceM alloc] init];
+    beerInPlace.beerId = beerId;
+    beerInPlace.placeId = placeId;
+    beerInPlace.price = price;
     
-    NSString* path = [NSString stringWithFormat:@"%@/%@/%@", ServicePath_Places, PathParam_AddBeerToPlace, placeId];
+    NSDictionary* params = @{QueryParam_BeerInPlace:[beerInPlace ToDictionary]};
+    
+    NSString* path = [NSString stringWithFormat:@"%@/%@", ServicePath_BeerInPlace, PathParam_Add];
     
     [[BeerRecoAPIClient sharedClient] postPath:path parameters:params success:^(AFHTTPRequestOperation *operation, id JSON)
      {
+         BeerInPlaceM* item = [[BeerInPlaceM alloc] initWithJson:JSON];
+         
          if (onComplete)
          {
-             onComplete(nil);
+             onComplete(item, nil);
          }
      } failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
          if (onComplete)
          {
-             onComplete(error);
+             onComplete(nil, error);
          }
      }];
 }

@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BeerCategoryM.h"
+#import "BeerTypeM.h"
 
 @interface BeerM : NSObject
 
@@ -17,7 +17,7 @@
 @property (nonatomic, strong) NSDate *updateDate;
 @property (nonatomic, strong) NSString *drinkType;
 @property (nonatomic, strong) NSString *originCountryId;
-@property (nonatomic, strong) NSString *brewery;
+@property (nonatomic, strong) NSString *breweryId;
 @property (nonatomic, strong) NSString *madeOf;
 @property (nonatomic) float alchoholPrecent;
 @property (nonatomic, strong) NSString *beerTypeId;

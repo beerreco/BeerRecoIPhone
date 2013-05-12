@@ -1,19 +1,19 @@
 //
-//  BeerCategoryM.m
+//  BreweryM.m
 //  BeerReco
 //
-//  Created by RLemberg on 4/10/13.
+//  Created by RLemberg on 5/13/13.
 //  Copyright (c) 2013 Colman. All rights reserved.
 //
 
-#import "BeerCategoryM.h"
+#import "BreweryM.h"
 
 #define PropertyName_Id @"id"
 #define PropertyName_Name @"name"
 #define PropertyName_CreationDate @"creationDate"
 #define PropertyName_UpdateDate @"updateDate"
 
-@implementation BeerCategoryM
+@implementation BreweryM
 
 @synthesize id = _id;
 @synthesize name = _name;

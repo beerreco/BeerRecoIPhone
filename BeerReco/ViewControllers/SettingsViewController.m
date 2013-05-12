@@ -50,12 +50,14 @@
     /*[self createBeersWithCountry:@[@"Malka", @"GoldStar", @"Jems"] andCountry:@"Israel"];
     [self createBeersWithCategory:@[@"Carlsberg", @"Heiniken"] andCategory:@"Ale"];
     [self createPlacesWithArea:@[@"Mikes Place", @"Leo Blooms"] andArea:@"HaMerkaz"];
-    [self createPlacesWithArea:@[@"Meet Ball"] andArea:@"HaDarom"];*/
-    
-    [[ComServices sharedComServices].placesService addBeer:@"36471366-d3ec-4af5-ae86-04f9bcdfcd45" toPlace:@"5a58aae6-ee19-4a65-a0e4-c10c5b7bf9e5" withPrice:29 onComplete:^(NSError *error)
+    [self createPlacesWithArea:@[@"Meet Ball"] andArea:@"HaDarom"];
+     [self createBeersWithBrewery:@[@"Malka Dark", @"Malka Light"] andBrewery:@"HaGolan"];
+    [self createBeersWithBrewery:@[@"Jems Wheat", @"Jems Pils"] andBrewery:@"Jems"];*/
+    /*
+    [[ComServices sharedComServices].placesService addBeer:@"36471366-d3ec-4af5-ae86-04f9bcdfcd45" toPlace:@"5a58aae6-ee19-4a65-a0e4-c10c5b7bf9e5" withPrice:29 onComplete:^(BeerInPlaceM* beerInPlace, NSError *error)
     {
         NSLog(@"beer adding to place %@", error ? @"failed" : @"succedded");
-    }];
+    }];*/
 }
 
 #pragma mark - Private Methods
@@ -73,13 +75,37 @@
 
 -(void)createBeersWithCategory:(NSArray*)beerNames andCategory:(NSString*)categoryName
 {
-    BeerCategoryM* beerCategory = [[BeerCategoryM alloc] init];
+    BeerTypeM* beerCategory = [[BeerTypeM alloc] init];
     beerCategory.name = categoryName;
-    [[ComServices sharedComServices].categoriesService addBeerCategory:beerCategory onComplete:^(BeerCategoryM* beerCategory, NSError *error)
+    [[ComServices sharedComServices].beerTypesService addBeerType:beerCategory onComplete:^(BeerTypeM* beerCategory, NSError *error)
      {
          for (NSString* beerName in beerNames)
          {
              [self createBeerWithCategoryId:beerName andCategoryId:beerCategory.id];
+         }
+     }];
+}
+
+-(void)createBeerWithBreweryId:(NSString*)beerName andBreweryId:(NSString*)breweryId
+{
+    BeerM* beer = [[BeerM alloc] init];
+    beer.name = beerName;
+    beer.breweryId = breweryId;
+    [[ComServices sharedComServices].beersService addBeer:beer onComplete:^(BeerM* beer, NSError *error)
+     {
+         [NSThread sleepForTimeInterval:2];
+     }];
+}
+
+-(void)createBeersWithBrewery:(NSArray*)beerNames andBrewery:(NSString*)breweryName
+{
+    BreweryM* brewery = [[BreweryM alloc] init];
+    brewery.name = breweryName;
+    [[ComServices sharedComServices].breweryService addBrewery:brewery onComplete:^(BreweryM *brewery, NSError *error)
+    {   
+         for (NSString* beerName in beerNames)
+         {
+             [self createBeerWithBreweryId:beerName andBreweryId:brewery.id];
          }
      }];
 }

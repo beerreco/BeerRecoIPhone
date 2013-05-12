@@ -33,7 +33,7 @@
 		844316E71722E2DA00D227D2 /* 19-gear.png in Resources */ = {isa = PBXBuildFile; fileRef = 844316E41722E2DA00D227D2 /* 19-gear.png */; };
 		844316E81722E2DA00D227D2 /* 88-beer-mug.png in Resources */ = {isa = PBXBuildFile; fileRef = 844316E51722E2DA00D227D2 /* 88-beer-mug.png */; };
 		844316E91722E2DA00D227D2 /* 178-city.png in Resources */ = {isa = PBXBuildFile; fileRef = 844316E61722E2DA00D227D2 /* 178-city.png */; };
-		844316EC1722FE7B00D227D2 /* CategoriesService.m in Sources */ = {isa = PBXBuildFile; fileRef = 844316EB1722FE7B00D227D2 /* CategoriesService.m */; };
+		844316EC1722FE7B00D227D2 /* BeerTypesService.m in Sources */ = {isa = PBXBuildFile; fileRef = 844316EB1722FE7B00D227D2 /* BeerTypesService.m */; };
 		844316EF1722FE8D00D227D2 /* PlacesService.m in Sources */ = {isa = PBXBuildFile; fileRef = 844316EE1722FE8D00D227D2 /* PlacesService.m */; };
 		844956B8172D2FB300A4690C /* FacebookCommentsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 844956B7172D2FB300A4690C /* FacebookCommentsView.m */; };
 		844956BB172D4F2000A4690C /* NSData+Encoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 844956BA172D4F2000A4690C /* NSData+Encoding.m */; };
@@ -102,7 +102,7 @@
 		84D14A441715C58300F0660C /* BeersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D14A431715C58300F0660C /* BeersViewController.m */; };
 		84D14A471715C59800F0660C /* PlacesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D14A461715C59800F0660C /* PlacesViewController.m */; };
 		84D14A4A1715C5C300F0660C /* PlaceM.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D14A491715C5C300F0660C /* PlaceM.m */; };
-		84D14A4D1715C5E400F0660C /* BeerCategoryM.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D14A4C1715C5E400F0660C /* BeerCategoryM.m */; };
+		84D14A4D1715C5E400F0660C /* BeerTypeM.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D14A4C1715C5E400F0660C /* BeerTypeM.m */; };
 		84D14A501715C65400F0660C /* BeersService.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D14A4F1715C65400F0660C /* BeersService.m */; };
 		84D14A531715C7D900F0660C /* FavoriteBeersService.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D14A521715C7D900F0660C /* FavoriteBeersService.m */; };
 		84D14A561715C99800F0660C /* PlaceDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84D14A551715C99800F0660C /* PlaceDetailsViewController.m */; };
@@ -117,6 +117,8 @@
 		84E5F19B173D46A900BFB703 /* BeerInPlaceViewM.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E5F19A173D46A900BFB703 /* BeerInPlaceViewM.m */; };
 		84E5F19E173EE7CF00BFB703 /* BeerInPlacesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E5F19D173EE7CF00BFB703 /* BeerInPlacesViewController.m */; };
 		84E5F1A1173EF6C700BFB703 /* BeersInPlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E5F1A0173EF6C700BFB703 /* BeersInPlaceViewController.m */; };
+		84E5F1A417403FB700BFB703 /* BreweryM.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E5F1A317403FB700BFB703 /* BreweryM.m */; };
+		84E5F1A71740447400BFB703 /* BreweryService.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E5F1A61740447400BFB703 /* BreweryService.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -163,8 +165,8 @@
 		844316E41722E2DA00D227D2 /* 19-gear.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "19-gear.png"; path = "Resources/Images/19-gear.png"; sourceTree = "<group>"; };
 		844316E51722E2DA00D227D2 /* 88-beer-mug.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "88-beer-mug.png"; path = "Resources/Images/88-beer-mug.png"; sourceTree = "<group>"; };
 		844316E61722E2DA00D227D2 /* 178-city.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "178-city.png"; path = "Resources/Images/178-city.png"; sourceTree = "<group>"; };
-		844316EA1722FE7B00D227D2 /* CategoriesService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CategoriesService.h; path = Communication/Services/CategoriesService.h; sourceTree = "<group>"; };
-		844316EB1722FE7B00D227D2 /* CategoriesService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CategoriesService.m; path = Communication/Services/CategoriesService.m; sourceTree = "<group>"; };
+		844316EA1722FE7B00D227D2 /* BeerTypesService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeerTypesService.h; path = Communication/Services/BeerTypesService.h; sourceTree = "<group>"; };
+		844316EB1722FE7B00D227D2 /* BeerTypesService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BeerTypesService.m; path = Communication/Services/BeerTypesService.m; sourceTree = "<group>"; };
 		844316ED1722FE8C00D227D2 /* PlacesService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlacesService.h; path = Communication/Services/PlacesService.h; sourceTree = "<group>"; };
 		844316EE1722FE8D00D227D2 /* PlacesService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlacesService.m; path = Communication/Services/PlacesService.m; sourceTree = "<group>"; };
 		844956B6172D2FB300A4690C /* FacebookCommentsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FacebookCommentsView.h; path = Views/FacebookCommentsView.h; sourceTree = "<group>"; };
@@ -278,8 +280,8 @@
 		84D14A461715C59800F0660C /* PlacesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlacesViewController.m; path = ViewControllers/PlacesViewController.m; sourceTree = "<group>"; };
 		84D14A481715C5C300F0660C /* PlaceM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PlaceM.h; path = Models/PlaceM.h; sourceTree = "<group>"; };
 		84D14A491715C5C300F0660C /* PlaceM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PlaceM.m; path = Models/PlaceM.m; sourceTree = "<group>"; };
-		84D14A4B1715C5E400F0660C /* BeerCategoryM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeerCategoryM.h; path = Models/BeerCategoryM.h; sourceTree = "<group>"; };
-		84D14A4C1715C5E400F0660C /* BeerCategoryM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BeerCategoryM.m; path = Models/BeerCategoryM.m; sourceTree = "<group>"; };
+		84D14A4B1715C5E400F0660C /* BeerTypeM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeerTypeM.h; path = Models/BeerTypeM.h; sourceTree = "<group>"; };
+		84D14A4C1715C5E400F0660C /* BeerTypeM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BeerTypeM.m; path = Models/BeerTypeM.m; sourceTree = "<group>"; };
 		84D14A4E1715C65400F0660C /* BeersService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeersService.h; path = Communication/Services/BeersService.h; sourceTree = "<group>"; };
 		84D14A4F1715C65400F0660C /* BeersService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BeersService.m; path = Communication/Services/BeersService.m; sourceTree = "<group>"; };
 		84D14A511715C7D900F0660C /* FavoriteBeersService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FavoriteBeersService.h; path = Communication/Services/FavoriteBeersService.h; sourceTree = "<group>"; };
@@ -308,6 +310,10 @@
 		84E5F19D173EE7CF00BFB703 /* BeerInPlacesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BeerInPlacesViewController.m; path = ViewControllers/BeerInPlacesViewController.m; sourceTree = "<group>"; };
 		84E5F19F173EF6C700BFB703 /* BeersInPlaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeersInPlaceViewController.h; path = ViewControllers/BeersInPlaceViewController.h; sourceTree = "<group>"; };
 		84E5F1A0173EF6C700BFB703 /* BeersInPlaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BeersInPlaceViewController.m; path = ViewControllers/BeersInPlaceViewController.m; sourceTree = "<group>"; };
+		84E5F1A217403FB700BFB703 /* BreweryM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BreweryM.h; path = Models/BreweryM.h; sourceTree = "<group>"; };
+		84E5F1A317403FB700BFB703 /* BreweryM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BreweryM.m; path = Models/BreweryM.m; sourceTree = "<group>"; };
+		84E5F1A51740447300BFB703 /* BreweryService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BreweryService.h; path = Communication/Services/BreweryService.h; sourceTree = "<group>"; };
+		84E5F1A61740447400BFB703 /* BreweryService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BreweryService.m; path = Communication/Services/BreweryService.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -543,8 +549,8 @@
 				84D14A4F1715C65400F0660C /* BeersService.m */,
 				84D14A511715C7D900F0660C /* FavoriteBeersService.h */,
 				84D14A521715C7D900F0660C /* FavoriteBeersService.m */,
-				844316EA1722FE7B00D227D2 /* CategoriesService.h */,
-				844316EB1722FE7B00D227D2 /* CategoriesService.m */,
+				844316EA1722FE7B00D227D2 /* BeerTypesService.h */,
+				844316EB1722FE7B00D227D2 /* BeerTypesService.m */,
 				844316ED1722FE8C00D227D2 /* PlacesService.h */,
 				844316EE1722FE8D00D227D2 /* PlacesService.m */,
 				84DB4F7217293C1E00875ACA /* FileManagementService.h */,
@@ -553,6 +559,8 @@
 				84D9D896172C88D600CC8E71 /* AreasService.m */,
 				844956DF173C1B6B00A4690C /* OriginCountryService.h */,
 				844956E0173C1B6D00A4690C /* OriginCountryService.m */,
+				84E5F1A51740447300BFB703 /* BreweryService.h */,
+				84E5F1A61740447400BFB703 /* BreweryService.m */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -564,8 +572,8 @@
 				84A58FA2170C6AD400A46E9F /* BeerM.m */,
 				84D14A481715C5C300F0660C /* PlaceM.h */,
 				84D14A491715C5C300F0660C /* PlaceM.m */,
-				84D14A4B1715C5E400F0660C /* BeerCategoryM.h */,
-				84D14A4C1715C5E400F0660C /* BeerCategoryM.m */,
+				84D14A4B1715C5E400F0660C /* BeerTypeM.h */,
+				84D14A4C1715C5E400F0660C /* BeerTypeM.m */,
 				84DB4F6F1728968600875ACA /* BeerViewM.h */,
 				84DB4F701728968600875ACA /* BeerViewM.m */,
 				84D9D88F172C869A00CC8E71 /* PlaceViewM.h */,
@@ -578,6 +586,8 @@
 				84E5F197173D456400BFB703 /* BeerInPlaceM.m */,
 				84E5F199173D46A900BFB703 /* BeerInPlaceViewM.h */,
 				84E5F19A173D46A900BFB703 /* BeerInPlaceViewM.m */,
+				84E5F1A217403FB700BFB703 /* BreweryM.h */,
+				84E5F1A317403FB700BFB703 /* BreweryM.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -894,7 +904,7 @@
 				84D14A441715C58300F0660C /* BeersViewController.m in Sources */,
 				84D14A471715C59800F0660C /* PlacesViewController.m in Sources */,
 				84D14A4A1715C5C300F0660C /* PlaceM.m in Sources */,
-				84D14A4D1715C5E400F0660C /* BeerCategoryM.m in Sources */,
+				84D14A4D1715C5E400F0660C /* BeerTypeM.m in Sources */,
 				84D14A501715C65400F0660C /* BeersService.m in Sources */,
 				84D14A531715C7D900F0660C /* FavoriteBeersService.m in Sources */,
 				84D14A561715C99800F0660C /* PlaceDetailsViewController.m in Sources */,
@@ -910,7 +920,7 @@
 				844316CC171BF06100D227D2 /* UIWindow+InnerViewControllers.m in Sources */,
 				844316D0171BF08200D227D2 /* NSDateFormatter+FormatingHelper.m in Sources */,
 				844316D6172152FB00D227D2 /* LoadErrorViewController.m in Sources */,
-				844316EC1722FE7B00D227D2 /* CategoriesService.m in Sources */,
+				844316EC1722FE7B00D227D2 /* BeerTypesService.m in Sources */,
 				844316EF1722FE8D00D227D2 /* PlacesService.m in Sources */,
 				84DB4F711728968600875ACA /* BeerViewM.m in Sources */,
 				84DB4F7417293C1E00875ACA /* FileManagementService.m in Sources */,
@@ -929,6 +939,8 @@
 				84E5F19B173D46A900BFB703 /* BeerInPlaceViewM.m in Sources */,
 				84E5F19E173EE7CF00BFB703 /* BeerInPlacesViewController.m in Sources */,
 				84E5F1A1173EF6C700BFB703 /* BeersInPlaceViewController.m in Sources */,
+				84E5F1A417403FB700BFB703 /* BreweryM.m in Sources */,
+				84E5F1A71740447400BFB703 /* BreweryService.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -89,7 +89,7 @@
 
 -(void)isBeerInFavorites:(NSString*)beerId onComplete:(void (^)(BOOL inFavorites, NSError *error))onComplete
 {
-    if ([NSString isNullOrEmpty:[GeneralDataStore sharedDataStore].FBUserID])
+    if ([NSString isNullOrEmpty:[GeneralDataStore sharedDataStore].FBUserID] || [NSString isNullOrEmpty:beerId])
     {
         if (onComplete)
         {

@@ -14,7 +14,8 @@
 
 @interface BeersViewController : BaseSearchAndRefreshTableViewController
 
-@property (nonatomic, strong) BeerCategoryM* parentBeerCategory;
+@property (nonatomic, strong) BeerTypeM* parentBeerType;
+@property (nonatomic, strong) BreweryM* parentBrewery;
 @property (nonatomic, strong) CountryM* parentCountry;
 
 @end

@@ -10,7 +10,7 @@
 #import "BaseSearchAndRefreshTableViewController.h"
 
 #import "BeerM.h"
-#import "BeerCategoryM.h"
+#import "BeerTypeM.h"
 
 @interface BeerCategoriesViewController : BaseSearchAndRefreshTableViewController
 

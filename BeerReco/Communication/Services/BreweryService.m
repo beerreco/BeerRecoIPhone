@@ -1,14 +1,14 @@
 //
-//  CategoriesService.m
+//  BreweryService.m
 //  BeerReco
 //
-//  Created by RLemberg on 4/20/13.
+//  Created by RLemberg on 5/13/13.
 //  Copyright (c) 2013 Colman. All rights reserved.
 //
 
-#import "CategoriesService.h"
+#import "BreweryService.h"
 
-#define ServicePath_Categories @"/categories"
+#define ServicePath_Breweries @"/breweries"
 
 #define PathParam_All @"all"
 #define PathParam_Beers @"beers"
@@ -17,24 +17,24 @@
 #define PathParam_Update @"update"
 
 #define QueryParam_BeerID @"beerId"
-#define QueryParam_BeerType @"beerType"
+#define QueryParam_Brewery @"brewery"
 
-#define ResultPath_Categories @"beerTypes"
+#define ResultPath_Breweries @"breweries"
 #define ResultPath_Beers @"beers"
 
-@implementation CategoriesService
+@implementation BreweryService
 
--(void)getAllCategories:(void (^)(NSMutableArray* categories, NSError *error))onComplete
+-(void)getAllBreweries:(void (^)(NSMutableArray* breweries, NSError *error))onComplete
 {
-    NSString* path = [NSString stringWithFormat:@"%@/%@", ServicePath_Categories, PathParam_All];
+    NSString* path = [NSString stringWithFormat:@"%@/%@", ServicePath_Breweries, PathParam_All];
     
     [[BeerRecoAPIClient sharedClient] getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id JSON)
      {
-         NSArray *itemsFromResponse = [JSON valueForKeyPath:ResultPath_Categories];
+         NSArray *itemsFromResponse = [JSON valueForKeyPath:ResultPath_Breweries];
          NSMutableArray *mutableItems = [NSMutableArray arrayWithCapacity:[itemsFromResponse count]];
          for (NSDictionary *json in itemsFromResponse)
          {
-             BeerCategoryM *item = [[BeerCategoryM alloc] initWithJson:json];
+             BreweryM *item = [[BreweryM alloc] initWithJson:json];
              [mutableItems addObject:item];
          }
          
@@ -51,9 +51,9 @@
      }];
 }
 
--(void)getBeersByCatergory:(NSString*)categoryId oncComplete:(void (^)(NSMutableArray* beers, NSError *error))onComplete
+-(void)getBeersByBrewery:(NSString*)breweryId oncComplete:(void (^)(NSMutableArray* beers, NSError *error))onComplete
 {
-    if ([NSString isNullOrEmpty:categoryId])
+    if ([NSString isNullOrEmpty:breweryId])
     {
         if (onComplete)
         {
@@ -63,7 +63,7 @@
         return;
     }
     
-    NSString* path = [NSString stringWithFormat:@"%@/%@/%@", ServicePath_Categories, categoryId, PathParam_Beers];
+    NSString* path = [NSString stringWithFormat:@"%@/%@/%@", ServicePath_Breweries, breweryId, PathParam_Beers];
     
     [[BeerRecoAPIClient sharedClient] getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id JSON)
      {
@@ -88,9 +88,9 @@
      }];
 }
 
--(void)addBeerCategory:(BeerCategoryM*)category onComplete:(void (^)(BeerCategoryM* beerCategory, NSError *error))onComplete
+-(void)addBrewery:(BreweryM*)brewery onComplete:(void (^)(BreweryM* brewery, NSError *error))onComplete
 {
-    if (category == nil)
+    if (brewery == nil)
     {
         if (onComplete)
         {
@@ -100,13 +100,13 @@
         return;
     }
     
-    NSDictionary* params = @{QueryParam_BeerType:[category ToDictionary]};
+    NSDictionary* params = @{QueryParam_Brewery:[brewery ToDictionary]};
     
-    NSString* path = [NSString stringWithFormat:@"%@/%@", ServicePath_Categories, PathParam_Add];
+    NSString* path = [NSString stringWithFormat:@"%@/%@", ServicePath_Breweries, PathParam_Add];
     
     [[BeerRecoAPIClient sharedClient] postPath:path parameters:params success:^(AFHTTPRequestOperation *operation, id JSON)
      {
-         BeerCategoryM *item = [[BeerCategoryM alloc] initWithJson:JSON];
+         BreweryM *item = [[BreweryM alloc] initWithJson:JSON];
          
          if (onComplete)
          {
@@ -121,9 +121,9 @@
      }];
 }
 
--(void)updateBeerCategory:(BeerCategoryM*)category onComplete:(void (^)(BeerCategoryM* beerCategory, NSError *error))onComplete
+-(void)updateBrewery:(BreweryM*)brewery onComplete:(void (^)(BreweryM* brewery, NSError *error))onComplete
 {
-    if (category == nil)
+    if (brewery == nil)
     {
         if (onComplete)
         {
@@ -133,13 +133,13 @@
         return;
     }
     
-    NSDictionary* params = @{QueryParam_BeerType:[category ToDictionary]};
+    NSDictionary* params = @{QueryParam_Brewery:[brewery ToDictionary]};
     
-    NSString* path = [NSString stringWithFormat:@"%@/%@", ServicePath_Categories, PathParam_Update];
+    NSString* path = [NSString stringWithFormat:@"%@/%@", ServicePath_Breweries, PathParam_Update];
     
     [[BeerRecoAPIClient sharedClient] putPath:path parameters:params success:^(AFHTTPRequestOperation *operation, id JSON)
      {
-         BeerCategoryM *item = [[BeerCategoryM alloc] initWithJson:JSON];
+         BreweryM *item = [[BreweryM alloc] initWithJson:JSON];
          
          if (onComplete)
          {

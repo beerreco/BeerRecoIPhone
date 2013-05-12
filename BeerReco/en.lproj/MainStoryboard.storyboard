@@ -822,11 +822,12 @@
                     <navigationItem key="navigationItem" id="rCb-Bk-WdE">
                         <nil key="title"/>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="ZyD-On-zBk">
-                            <rect key="frame" x="76" y="7" width="168" height="31"/>
+                            <rect key="frame" x="34" y="7" width="251" height="31"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="Type"/>
                                 <segment title="Origin"/>
+                                <segment title="Brewery"/>
                                 <segment title="All"/>
                             </segments>
                             <connections>
@@ -1212,13 +1213,132 @@
         <image name="88-beer-mug.png" width="22" height="27"/>
         <image name="bg_main.png" width="641" height="960"/>
     </resources>
+    <classes>
+        <class className="BaseSearchAndRefreshTableViewController" superclassName="PullToRefreshViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BaseSearchAndRefreshTableViewController.h"/>
+        </class>
+        <class className="BeerCategoriesViewController" superclassName="BaseSearchAndRefreshTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BeerCategoriesViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="categorySegValueChanged:"/>
+                <relationship kind="outlet" name="segCategories" candidateClass="UISegmentedControl"/>
+            </relationships>
+        </class>
+        <class className="BeerDetailsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BeerDetailsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="favoritesButtonClicked:"/>
+                <relationship kind="action" name="likeClicked:"/>
+                <relationship kind="outlet" name="activityCommentsLoad" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="activityFavoriteCheck" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="activityLikeCheck" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="btnComments" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="btnFavorites" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="btnLike" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="imgBeerIcon" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="lblBeerCategory" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblBeerName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="tbBeerProperties" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="BeerInPlacesViewController" superclassName="BaseSearchAndRefreshTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BeerInPlacesViewController.h"/>
+        </class>
+        <class className="BeersInPlaceViewController" superclassName="BaseSearchAndRefreshTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BeersInPlaceViewController.h"/>
+        </class>
+        <class className="BeersViewController" superclassName="BaseSearchAndRefreshTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/BeersViewController.h"/>
+        </class>
+        <class className="FBUserSettingsContainerViewController" superclassName="FBUserSettingsViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FBUserSettingsContainerViewController.h"/>
+        </class>
+        <class className="FBUserSettingsViewController" superclassName="FBViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FBUserSettingsViewController.h"/>
+        </class>
+        <class className="FBViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FBViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="cancelButton" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="delegate"/>
+                <relationship kind="outlet" name="doneButton" candidateClass="UIBarButtonItem"/>
+            </relationships>
+        </class>
+        <class className="FacebookCommentsView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FacebookCommentsView.h"/>
+            <relationships>
+                <relationship kind="outlet" name="delegate"/>
+            </relationships>
+        </class>
+        <class className="FacebookCommentsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FacebookCommentsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="doneClicked:"/>
+                <relationship kind="outlet" name="facebookCommentsView" candidateClass="FacebookCommentsView"/>
+            </relationships>
+        </class>
+        <class className="FavoriteBeersViewController" superclassName="BaseSearchAndRefreshTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/FavoriteBeersViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="favoriteListTypeChanged:forEvent:" candidateClass="UISegmentedControl"/>
+                <relationship kind="outlet" name="SegFavoriteListType" candidateClass="UISegmentedControl"/>
+            </relationships>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="PlaceAreasViewController" superclassName="BaseSearchAndRefreshTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlaceAreasViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="placeFilteringValueChanged:"/>
+                <relationship kind="outlet" name="segPlaceFiltering" candidateClass="UISegmentedControl"/>
+            </relationships>
+        </class>
+        <class className="PlaceDetailsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlaceDetailsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="likeClicked:"/>
+                <relationship kind="outlet" name="activityCommentsLoad" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="activityLikeCheck" candidateClass="UIActivityIndicatorView"/>
+                <relationship kind="outlet" name="btnComments" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="btnLike" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="imgPlaceIcon" candidateClass="UIImageView"/>
+                <relationship kind="outlet" name="lblPlaceArea" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="lblPlaceName" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="tbPlaceProperties" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="PlacesViewController" superclassName="BaseSearchAndRefreshTableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlacesViewController.h"/>
+        </class>
+        <class className="PullToRefreshViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/PullToRefreshViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="SearchViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="segValueChanged:"/>
+                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
+                <relationship kind="outlet" name="segSearch" candidateClass="UISegmentedControl"/>
+            </relationships>
+        </class>
+        <class className="SettingsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="tbSettings" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Jvx-Z2-QY1"/>
+        <segue reference="tBD-v1-Z0u"/>
         <segue reference="AHG-38-kl1"/>
         <segue reference="yew-Ol-X7Y"/>
     </inferredMetricsTieBreakers>

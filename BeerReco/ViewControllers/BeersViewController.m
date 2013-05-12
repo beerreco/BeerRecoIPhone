@@ -14,7 +14,9 @@
 
 @implementation BeersViewController
 
-@synthesize parentBeerCategory = _parentBeerCategory;
+@synthesize parentBeerType = _parentBeerType;
+@synthesize parentBrewery = _parentBrewery;
+@synthesize parentCountry = _parentCountry;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,7 +29,7 @@
 
 - (void)viewDidLoad
 {
-    if (self.parentBeerCategory == nil && self.parentCountry == nil)
+    if (self.parentBeerType == nil && self.parentCountry == nil && self.parentBrewery == nil)
     {
         [self.navigationController popViewControllerAnimated:YES];
         return;
@@ -54,13 +56,17 @@
 
 -(void)visualSetup
 {
-    if (self.parentBeerCategory)
+    if (self.parentBeerType)
     {
-        self.navigationItem.title = self.parentBeerCategory.name;
+        self.navigationItem.title = self.parentBeerType.name;
     }
     else if (self.parentCountry)
     {
         self.navigationItem.title = self.parentCountry.name;
+    }
+    else if (self.parentBrewery)
+    {
+        self.navigationItem.title = self.parentBrewery.name;
     }
 }
 
@@ -72,9 +78,9 @@
 
 -(void)loadCurrentData
 {
-    if (self.parentBeerCategory)
+    if (self.parentBeerType)
     {
-        [[ComServices sharedComServices].categoriesService getBeersByCatergory:self.parentBeerCategory.id oncComplete:^(NSMutableArray *beers, NSError *error)
+        [[ComServices sharedComServices].beerTypesService getBeersByType:self.parentBeerType.id oncComplete:^(NSMutableArray *beers, NSError *error)
          {
              if (error == nil && beers != nil)
              {
@@ -90,6 +96,20 @@
     {
         [[ComServices sharedComServices].originCountryService getBeersByOriginCountry:self.parentCountry.id oncComplete:^(NSMutableArray *beers, NSError *error)
          {
+             if (error == nil && beers != nil)
+             {
+                 [self dataLoaded:beers];
+             }
+             else
+             {
+                 [self showErrorView];
+             }
+         }];
+    }
+    else if (self.parentBrewery)
+    {
+        [[ComServices sharedComServices].breweryService getBeersByBrewery:self.parentBrewery.id oncComplete:^(NSMutableArray *beers, NSError *error)
+        {   
              if (error == nil && beers != nil)
              {
                  [self dataLoaded:beers];
@@ -131,9 +151,9 @@
         
         NSString* details = @"";
         
-        if (beerView.beerCategory)
+        if (beerView.beerType)
         {
-            details = [details stringByAppendingFormat:@"Type: %@", beerView.beerCategory.name];
+            details = [details stringByAppendingFormat:@"Type: %@", beerView.beerType.name];
         }
         
         if (beerView.country)
@@ -144,6 +164,16 @@
             }
             
             details = [details stringByAppendingFormat:@"Origin Country: %@", beerView.country.name];
+        }
+        
+        if (beerView.brewery && (!beerView.country || !beerView.beerType))
+        {
+            if (![NSString isNullOrEmpty:details])
+            {
+                details = [details stringByAppendingString:@" - "];
+            }
+            
+            details = [details stringByAppendingFormat:@"Brewery: %@", beerView.brewery.name];
         }
         
         [cell.detailTextLabel setText:details];

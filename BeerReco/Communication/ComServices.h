@@ -10,11 +10,12 @@
 
 #import "BeersService.h"
 #import "FavoriteBeersService.h"
-#import "CategoriesService.h"
+#import "BeerTypesService.h"
 #import "PlacesService.h"
 #import "FileManagementService.h"
 #import "AreasService.h"
 #import "OriginCountryService.h"
+#import "BreweryService.h"
 
 @interface ComServices : NSObject
 
@@ -22,7 +23,8 @@
 
 @property (nonatomic, strong) BeersService* beersService;
 @property (nonatomic, strong) FavoriteBeersService* favoriteBeersService;
-@property (nonatomic, strong) CategoriesService* categoriesService;
+@property (nonatomic, strong) BeerTypesService* beerTypesService;
+@property (nonatomic, strong) BreweryService* breweryService;
 @property (nonatomic, strong) PlacesService* placesService;
 @property (nonatomic, strong) AreasService* areasService;
 @property (nonatomic, strong) OriginCountryService* originCountryService;

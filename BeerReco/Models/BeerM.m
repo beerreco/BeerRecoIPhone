@@ -14,7 +14,7 @@
 #define PropertyName_UpdateDate @"updateDate"
 #define PropertyName_DrinkType @"drinkType"
 #define PropertyName_OriginCountryId @"originCountryId"
-#define PropertyName_Brewery @"brewery"
+#define PropertyName_BreweryId @"breweryId"
 #define PropertyName_MadeOf @"madeOf"
 #define PropertyName_BeerTypeId @"beerTypeId"
 #define PropertyName_AlchoholPrecent @"alchoholPrecent"
@@ -28,7 +28,7 @@
 @synthesize updateDate = _updateDate;
 @synthesize drinkType = _drinkType;
 @synthesize originCountryId = _originCountryId;
-@synthesize brewery = _brewery;
+@synthesize breweryId = _breweryId;
 @synthesize madeOf = _madeOf;
 @synthesize beerTypeId = _beerTypeId;
 @synthesize alchoholPrecent = _alchoholPrecent;
@@ -53,7 +53,7 @@
         
     self.drinkType = [[json valueForKeyPath:@"drinkType"] stringValue];
     self.originCountryId = [[json valueForKeyPath:@"originCountryId"] stringValue];
-    self.brewery = [[json valueForKeyPath:@"brewery"] stringValue];
+    self.breweryId = [[json valueForKeyPath:@"breweryId"] stringValue];
     self.madeOf = [[json valueForKeyPath:@"madeOf"] stringValue];
     self.alchoholPrecent = [[json valueForKeyPath:@"alchoholPrecent"] floatValue];
     self.beerTypeId = [[[json valueForKeyPath:@"beerTypeId"] stringValue] URLEncodedString];
@@ -98,9 +98,9 @@
         [propertyDict setObject:self.originCountryId forKey:PropertyName_OriginCountryId];
     }
     
-    if (![NSString isNullOrEmpty:self.brewery])
+    if (![NSString isNullOrEmpty:self.breweryId])
     {
-        [propertyDict setObject:self.brewery forKey:PropertyName_Brewery];
+        [propertyDict setObject:self.breweryId forKey:PropertyName_BreweryId];
     }
     
     if (![NSString isNullOrEmpty:self.madeOf])

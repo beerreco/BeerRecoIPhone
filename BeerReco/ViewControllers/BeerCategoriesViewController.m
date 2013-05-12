@@ -61,11 +61,11 @@
 {
     if (self.segCategories.selectedSegmentIndex == 0)
     {
-        [[ComServices sharedComServices].categoriesService getAllCategories:^(NSMutableArray *categories, NSError *error)
-         {
-             if (error == nil && categories != nil)
+        [[ComServices sharedComServices].beerTypesService getAllBeerTypes:^(NSMutableArray *beerTypes, NSError *error)
+        {            
+             if (error == nil && beerTypes != nil)
              {
-                 [self dataLoaded:categories];
+                 [self dataLoaded:beerTypes];
              }
              else
              {
@@ -89,6 +89,20 @@
     }
     else if (self.segCategories.selectedSegmentIndex == 2)
     {
+        [[ComServices sharedComServices].breweryService getAllBreweries:^(NSMutableArray *breweries, NSError *error)
+         {            
+             if (error == nil && breweries != nil)
+             {
+                 [self dataLoaded:breweries];
+             }
+             else
+             {
+                 [self showErrorView];
+             }
+         }];
+    }
+    else if (self.segCategories.selectedSegmentIndex == 3)
+    {
         [[ComServices sharedComServices].beersService getAllBeers:^(NSMutableArray *beers, NSError *error)
          {
              if (error == nil && beers != nil)
@@ -105,7 +119,7 @@
 
 -(NSString*)getSortingKeyPath
 {
-    if (self.segCategories.selectedSegmentIndex == 2)
+    if (self.segCategories.selectedSegmentIndex == 3)
     {
         return @"beer.name";
     }
@@ -117,7 +131,7 @@
 
 -(NSString*)getSearchablePropertyName
 {
-    if (self.segCategories.selectedSegmentIndex == 2)
+    if (self.segCategories.selectedSegmentIndex == 3)
     {
         return @"beer.name";
     }
@@ -137,9 +151,9 @@
     [cell.detailTextLabel setText:@""];
     [cell.imageView setImage:nil];
     
-    if ([object isKindOfClass:([BeerCategoryM class])])
+    if ([object isKindOfClass:([BeerTypeM class])])
     {
-        BeerCategoryM *beerCategory = object;
+        BeerTypeM *beerCategory = object;
         
         // Configure the cell
         [cell.textLabel setText:beerCategory.name];
@@ -151,6 +165,13 @@
         // Configure the cell
         [cell.textLabel setText:country.name];
     }
+    else if ([object isKindOfClass:([BreweryM class])])
+    {
+        BreweryM *brewery = object;
+        
+        // Configure the cell
+        [cell.textLabel setText:brewery.name];
+    }
     else if ([object isKindOfClass:([BeerViewM class])])
     {
         BeerViewM *beerView = object;
@@ -160,9 +181,9 @@
         
         NSString* details = @"";
         
-        if (beerView.beerCategory)
+        if (beerView.beerType)
         {
-            details = [details stringByAppendingFormat:@"Type: %@", beerView.beerCategory.name];
+            details = [details stringByAppendingFormat:@"Type: %@", beerView.beerType.name];
         }
         
         if (beerView.country)
@@ -173,6 +194,16 @@
             }
             
             details = [details stringByAppendingFormat:@"Origin Country: %@", beerView.country.name];
+        }
+        
+        if (beerView.brewery && (!beerView.country || !beerView.beerType))
+        {
+            if (![NSString isNullOrEmpty:details])
+            {
+                details = [details stringByAppendingString:@" - "];
+            }
+            
+            details = [details stringByAppendingFormat:@"Brewery: %@", beerView.brewery.name];
         }
         
         [cell.detailTextLabel setText:details];
@@ -187,7 +218,7 @@
 
 -(void)tableItemSelected:(NSIndexPath *)indexPath
 {
-    if (self.segCategories.selectedSegmentIndex == 2)
+    if (self.segCategories.selectedSegmentIndex == 3)
     {
         [self performSegueWithIdentifier:@"BeerDetailsSegue" sender:nil];
     }
@@ -203,10 +234,10 @@
     {
         BeersViewController *beersViewController = [segue destinationViewController];
         
-        if ([object isKindOfClass:([BeerCategoryM class])])
+        if ([object isKindOfClass:([BeerTypeM class])])
         {
-            BeerCategoryM* beerCategory = object;
-            beersViewController.parentBeerCategory = beerCategory;
+            BeerTypeM* beerType = object;
+            beersViewController.parentBeerType = beerType;
         }
        
         if ([object isKindOfClass:([CountryM class])])
@@ -215,6 +246,11 @@
             beersViewController.parentCountry = country;
         }
         
+        if ([object isKindOfClass:([BreweryM class])])
+        {
+            BreweryM* brewery = object;
+            beersViewController.parentBrewery = brewery;
+        }
     }
     
     if ([segue.identifier isEqualToString:@"BeerDetailsSegue"])

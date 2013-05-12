@@ -78,7 +78,7 @@
         }
         
         [metaData setObject:@"Beer Reco" forKey:@"og:site_name"];
-        [metaData setObject:[NSString stringWithFormat:@"Beer Catrgory: %@", self.beerView.beerCategory.name] forKey:@"og:description"];
+        [metaData setObject:[NSString stringWithFormat:@"Beer Catrgory: %@", self.beerView.beerType.name] forKey:@"og:description"];
     }
     else if (self.placeView)
     {

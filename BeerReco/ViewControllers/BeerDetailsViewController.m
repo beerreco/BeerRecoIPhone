@@ -81,7 +81,7 @@
 -(void)setup
 {
     self.lblBeerName.text = self.beerView.beer.name;
-    self.lblBeerCategory.text = self.beerView.beerCategory.name;
+    self.lblBeerCategory.text = self.beerView.beerType.name;
     
     NSString* imageUrl = [BeerRecoAPIClient getFullPathForFile:self.beerView.beer.beerIconUrl];
     [self.imgBeerIcon setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"weihenstephaner_hefe_icon"]];

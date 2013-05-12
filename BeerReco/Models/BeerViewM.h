@@ -9,11 +9,13 @@
 #import <Foundation/Foundation.h>
 
 #import "CountryM.h"
+#import "BreweryM.h"
 
 @interface BeerViewM : NSObject
 
 @property (nonatomic, strong) BeerM* beer;
-@property (nonatomic, strong) BeerCategoryM* beerCategory;
+@property (nonatomic, strong) BeerTypeM* beerType;
+@property (nonatomic, strong) BreweryM* brewery;
 @property (nonatomic, strong) CountryM* country;
 
 -(id)initWithJson:(NSDictionary*)json;

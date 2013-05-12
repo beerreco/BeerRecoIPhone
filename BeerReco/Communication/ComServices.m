@@ -20,7 +20,8 @@
         
         _sharedComServices.beersService = [[BeersService alloc] init];
         _sharedComServices.favoriteBeersService = [[FavoriteBeersService alloc] init];
-        _sharedComServices.categoriesService = [[CategoriesService alloc] init];
+        _sharedComServices.beerTypesService = [[BeerTypesService alloc] init];
+        _sharedComServices.breweryService = [[BreweryService alloc] init];
         _sharedComServices.placesService = [[PlacesService alloc] init];
         _sharedComServices.areasService = [[AreasService alloc] init];
         _sharedComServices.originCountryService = [[OriginCountryService alloc] init];
