@@ -18,4 +18,6 @@
 @property (nonatomic, strong) BreweryM* parentBrewery;
 @property (nonatomic, strong) CountryM* parentCountry;
 
+@property (nonatomic, strong) BeerViewM* beerView;
+
 @end

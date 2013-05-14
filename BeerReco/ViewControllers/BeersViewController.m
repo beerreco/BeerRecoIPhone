@@ -18,6 +18,8 @@
 @synthesize parentBrewery = _parentBrewery;
 @synthesize parentCountry = _parentCountry;
 
+@synthesize beerView = _beerView;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -29,7 +31,10 @@
 
 - (void)viewDidLoad
 {
-    if (self.parentBeerType == nil && self.parentCountry == nil && self.parentBrewery == nil)
+    if (self.parentBeerType == nil &&
+        self.parentCountry == nil &&
+        self.parentBrewery == nil &&
+        self.beerView == nil)
     {
         [self.navigationController popViewControllerAnimated:YES];
         return;
@@ -67,6 +72,10 @@
     else if (self.parentBrewery)
     {
         self.navigationItem.title = self.parentBrewery.name;
+    }
+    else if (self.beerView)
+    {
+        self.navigationItem.title = [NSString stringWithFormat:@"Similar to '%@'", self.beerView.beer.name];
     }
 }
 
@@ -109,6 +118,20 @@
     else if (self.parentBrewery)
     {
         [[ComServices sharedComServices].breweryService getBeersByBrewery:self.parentBrewery.id oncComplete:^(NSMutableArray *beers, NSError *error)
+         {
+             if (error == nil && beers != nil)
+             {
+                 [self dataLoaded:beers];
+             }
+             else
+             {
+                 [self showErrorView];
+             }
+         }];
+    }
+    else if (self.beerView)
+    {
+        [[ComServices sharedComServices].beersService getAllBeers:^(NSMutableArray *beers, NSError *error)
         {   
              if (error == nil && beers != nil)
              {

@@ -9,6 +9,7 @@
 #import "BeerDetailsViewController.h"
 #import "FacebookCommentsViewController.h"
 #import "BeerInPlacesViewController.h"
+#import "BeersViewController.h"
 
 @interface BeerDetailsViewController ()
 
@@ -59,6 +60,7 @@
     [self setActivityFavoriteCheck:nil];
     [self setActivityLikeCheck:nil];
     [self setTbBeerProperties:nil];
+    [self setContentScroller:nil];
     [super viewDidUnload];
 }
 
@@ -76,6 +78,8 @@
 -(void)visualSetup
 {
     self.navigationItem.title = self.beerView.beer.name;
+    
+    [self performSelector:@selector(adjustScrollViewerContentSize) withObject:nil afterDelay:0.1];
 }
 
 -(void)setup
@@ -85,6 +89,11 @@
     
     NSString* imageUrl = [BeerRecoAPIClient getFullPathForFile:self.beerView.beer.beerIconUrl];
     [self.imgBeerIcon setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"weihenstephaner_hefe_icon"]];
+}
+
+-(void)adjustScrollViewerContentSize
+{
+    self.contentScroller.contentSize = CGSizeMake(320, self.tbBeerProperties.frame.size.height + self.tbBeerProperties.frame.origin.y);
 }
 
 -(void)updateCommentsButton
@@ -457,6 +466,13 @@
         
         beerInPlacesViewController.beerView = self.beerView;
     }
+    
+    if ([segue.identifier isEqualToString:@"SimilarBeersSegue"])
+    {
+        BeersViewController *beersViewController = [segue destinationViewController];
+        
+        beersViewController.beerView = self.beerView;
+    }
 }
 
 #pragma mark - MBProgressHUDDelegate methods
@@ -475,14 +491,18 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0)
+    if (section == 1 || section == 2)
     {
         return 1;
+    }
+    else if (section == 0)
+    {
+        return 4;
     }
     
     return 0;
@@ -497,9 +517,40 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
-    if (indexPath.section == 0)
+    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+    [cell setEditingAccessoryType:UITableViewCellAccessoryNone];
+    [cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
+    
+    if (indexPath.section == 1)
     {
-        cell.textLabel.text = @"Places and prices";
+        cell.textLabel.text = @"Places and Prices";
+    }
+    else if (indexPath.section == 2)
+    {
+        cell.textLabel.text = @"Similar Beers";
+    }
+    else if (indexPath.section == 0)
+    {
+        [cell setAccessoryType:UITableViewCellAccessoryNone];
+        [cell setEditingAccessoryType:UITableViewCellAccessoryNone];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        
+        if (indexPath.row == 0)
+        {
+            cell.textLabel.text = [NSString stringWithFormat:@"Origin Country: %@", self.beerView.country != nil ? self.beerView.country.name : @""];
+        }
+        else if (indexPath.row == 1)
+        {
+            cell.textLabel.text = [NSString stringWithFormat:@"Brewery: %@", self.beerView.brewery != nil ? self.beerView.brewery.name : @""];
+        }
+        else if (indexPath.row == 2)
+        {
+            cell.textLabel.text = [NSString stringWithFormat:@"Components: %@", self.beerView.beer.madeOf];
+        }
+        else if (indexPath.row == 3)
+        {
+            cell.textLabel.text = [NSString stringWithFormat:@"Alcohol Percentage: %@", self.beerView.beer.alchoholPrecent > 0 ?[NSString stringWithFormat:@"%.0f", self.beerView.beer.alchoholPrecent] : @"N/A"];
+        }
     }
     
     return cell;
@@ -517,6 +568,11 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
+    if (section == 0)
+    {
+        return @"Beer Details";
+    }
+    
     return @"";
 }
 
@@ -529,9 +585,13 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0)
+    if (indexPath.section == 1)
     {
         [self performSegueWithIdentifier:@"PlacesOfBeerSegue" sender:nil];
+    }
+    else if (indexPath.section == 2)
+    {
+        [self performSegueWithIdentifier:@"SimilarBeersSegue" sender:nil];
     }
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];

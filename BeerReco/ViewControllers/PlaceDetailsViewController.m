@@ -55,6 +55,7 @@
     [self setBtnComments:nil];
     [self setActivityCommentsLoad:nil];
     [self setTbPlaceProperties:nil];
+    [self setContentScroller:nil];
     [super viewDidUnload];
 }
 
@@ -72,6 +73,8 @@
     self.navigationItem.title = self.placeView.place.name;
     
     [self addLikeButton];
+    
+    [self performSelector:@selector(adjustScrollViewerContentSize) withObject:nil afterDelay:0.1];
 }
 
 -(void)setup
@@ -101,6 +104,11 @@
          [self.activityCommentsLoad stopAnimating];
          [self.btnComments setEnabled:YES];
      }];
+}
+
+-(void)adjustScrollViewerContentSize
+{
+    self.contentScroller.contentSize = CGSizeMake(320, self.tbPlaceProperties.frame.size.height + self.tbPlaceProperties.frame.origin.y);
 }
 
 #pragma mark Like handling
@@ -315,14 +323,18 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (section == 0)
+    if (section == 1)
     {
         return 1;
+    }
+    else if (section == 0)
+    {
+        return 2;
     }
     
     return 0;
@@ -339,7 +351,26 @@
     
     if (indexPath.section == 0)
     {
-        cell.textLabel.text = @"Beers and prices";
+        [cell setAccessoryType:UITableViewCellAccessoryNone];
+        [cell setEditingAccessoryType:UITableViewCellAccessoryNone];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        
+        if (indexPath.row == 0)
+        {
+            cell.textLabel.text = [NSString stringWithFormat:@"Type: %@", self.placeView.placeType != nil ? self.placeView.placeType.name : @""];
+        }
+        else if (indexPath.row == 1)
+        {
+            cell.textLabel.text = [NSString stringWithFormat:@"Address: %@", self.placeView.place.address];
+        }
+    }
+    else if (indexPath.section == 1)
+    {
+        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+        [cell setEditingAccessoryType:UITableViewCellAccessoryNone];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
+        
+        cell.textLabel.text = @"Beers and Prices";
     }
     
     return cell;
@@ -357,6 +388,11 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
+    if  (section == 0)
+    {
+        return @"Place Details";
+    }
+    
     return @"";
 }
 
@@ -369,7 +405,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0)
+    if (indexPath.section == 1)
     {
         [self performSegueWithIdentifier:@"BeersInPlaceSegue" sender:nil];
     }

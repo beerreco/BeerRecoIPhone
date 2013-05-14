@@ -75,6 +75,20 @@
     }
     else if (self.segPlaceFiltering.selectedSegmentIndex == 1)
     {
+        [[ComServices sharedComServices].areasService getAllAreas:^(NSMutableArray *areas, NSError *error)
+         {
+             if (error == nil && areas != nil)
+             {
+                 [self dataLoaded:areas];
+             }
+             else
+             {
+                 [self showErrorView];
+             }
+         }];
+    }
+    else if (self.segPlaceFiltering.selectedSegmentIndex == 2)
+    {
         [[ComServices sharedComServices].placesService getAllPlaces:^(NSMutableArray *places, NSError *error)
          {
              if (error == nil && places != nil)
@@ -91,7 +105,7 @@
 
 -(NSString*)getSortingKeyPath
 {
-    if (self.segPlaceFiltering.selectedSegmentIndex == 1)
+    if (self.segPlaceFiltering.selectedSegmentIndex == 2)
     {
         return @"place.name";
     }
@@ -103,7 +117,7 @@
 
 -(NSString*)getSearchablePropertyName
 {
-    if (self.segPlaceFiltering.selectedSegmentIndex == 1)
+    if (self.segPlaceFiltering.selectedSegmentIndex == 2)
     {
         return @"place.name";
     }
@@ -147,7 +161,7 @@
 
 -(void)tableItemSelected:(NSIndexPath *)indexPath
 {
-    if (self.segPlaceFiltering.selectedSegmentIndex == 1)
+    if (self.segPlaceFiltering.selectedSegmentIndex == 2)
     {
         [self performSegueWithIdentifier:@"PlaceDetailsSegue" sender:nil];
     }

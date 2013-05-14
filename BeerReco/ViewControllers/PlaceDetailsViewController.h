@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UIButton *btnLike;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityLikeCheck;
 @property (weak, nonatomic) IBOutlet UITableView *tbPlaceProperties;
+@property (weak, nonatomic) IBOutlet UIScrollView *contentScroller;
 
 - (IBAction)likeClicked:(id)sender;
 

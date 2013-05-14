@@ -24,6 +24,7 @@
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityFavoriteCheck;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityLikeCheck;
 @property (weak, nonatomic) IBOutlet UITableView *tbBeerProperties;
+@property (weak, nonatomic) IBOutlet UIScrollView *contentScroller;
 
 - (IBAction)likeClicked:(id)sender;
 - (IBAction)favoritesButtonClicked:(id)sender;
