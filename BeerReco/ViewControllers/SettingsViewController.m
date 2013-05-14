@@ -7,6 +7,7 @@
 //
 
 #import "SettingsViewController.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface SettingsViewController ()
 
@@ -52,7 +53,8 @@
     [self createPlacesWithArea:@[@"Mikes Place", @"Leo Blooms"] andArea:@"HaMerkaz"];
     [self createPlacesWithArea:@[@"Meet Ball"] andArea:@"HaDarom"];
      [self createBeersWithBrewery:@[@"Malka Dark", @"Malka Light"] andBrewery:@"HaGolan"];
-    [self createBeersWithBrewery:@[@"Jems Wheat", @"Jems Pils"] andBrewery:@"Jems"];*/
+    [self createBeersWithBrewery:@[@"Jems Wheat", @"Jems Pils"] andBrewery:@"Jems"];
+    [self createPlacesWithType:@[@"Shemrok", @"Dublin"] andType:@"Irish Pub"];*/
     /*
     [[ComServices sharedComServices].placesService addBeer:@"36471366-d3ec-4af5-ae86-04f9bcdfcd45" toPlace:@"5a58aae6-ee19-4a65-a0e4-c10c5b7bf9e5" withPrice:29 onComplete:^(BeerInPlaceM* beerInPlace, NSError *error)
     {
@@ -158,6 +160,30 @@
      }];
 }
 
+-(void)createPlaceWithType:(NSString*)placeName andTypeId:(NSString*)typeId
+{
+    PlaceM* place = [[PlaceM alloc] init];
+    place.name = placeName;
+    place.placeTypeId = typeId;
+    [[ComServices sharedComServices].placesService addPlace:place onComplete:^(PlaceM* place, NSError *error)
+     {
+         [NSThread sleepForTimeInterval:2];
+     }];
+}
+
+-(void)createPlacesWithType:(NSArray*)placeNames andType:(NSString*)typeName
+{
+    PlaceTypeM* placeType = [[PlaceTypeM alloc] init];
+    placeType.name = typeName;
+    [[ComServices sharedComServices].placeTypeService addPlaceType:placeType onComplete:^(PlaceTypeM *placeType, NSError *error)
+    {   
+         for (NSString* placeName in placeNames)
+         {
+             [self createPlaceWithType:placeName andTypeId:placeType.id];
+         }
+     }];
+}
+
 -(void)visualSetup
 {
     self.title = @"Settings";
@@ -181,6 +207,20 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if ( cell == nil ) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    
+    if (cell.backgroundView == nil)
+    {
+        UIImageView* backgroud = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cell_bg"]];
+        backgroud.alpha = 0.85;
+        backgroud.layer.cornerRadius = 15;
+        backgroud.clipsToBounds = YES;
+        
+        backgroud.layer.borderWidth = 0.5;
+        backgroud.layer.borderColor = [[UIColor grayColor] CGColor];
+        
+        cell.backgroundView = backgroud;
+        cell.textLabel.backgroundColor = [UIColor clearColor];
     }
     
     // Configure the cell

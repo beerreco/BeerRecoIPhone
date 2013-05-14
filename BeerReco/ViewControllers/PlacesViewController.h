@@ -14,5 +14,6 @@
 @interface PlacesViewController : BaseSearchAndRefreshTableViewController
 
 @property (nonatomic, strong) AreaM* parentArea;
+@property (nonatomic, strong) PlaceTypeM* parentPlaceType;
 
 @end

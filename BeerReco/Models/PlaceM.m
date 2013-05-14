@@ -14,6 +14,7 @@
 #define PropertyName_UpdateDate @"updateDate"
 #define PropertyName_Type @"type"
 #define PropertyName_AreaId @"areaId"
+#define PropertyName_PlaceTypeId @"placeTypeId"
 #define PropertyName_Address @"address"
 #define PropertyName_GeoLocation @"geoLocation"
 #define PropertyName_PlaceIconUrl @"placeIconUrl"
@@ -26,6 +27,7 @@
 @synthesize updateDate = _updateDate;
 @synthesize type = _type;
 @synthesize areaId = _areaId;
+@synthesize placeTypeId = _placeTypeId;
 @synthesize address = _address;
 @synthesize geoLocation = _geoLocation;
 @synthesize placeIconUrl = _placeIconUrl;
@@ -47,6 +49,7 @@
     
     self.type = [[json valueForKeyPath:@"type"] stringValue];
     self.areaId = [[json valueForKeyPath:@"areaId"] stringValue];
+    self.placeTypeId = [[json valueForKeyPath:@"placeTypeId"] stringValue];
     self.address = [[json valueForKeyPath:@"address"] stringValue];
     self.geoLocation = [[json valueForKeyPath:@"geoLocation"] stringValue];
     
@@ -88,6 +91,11 @@
     if (![NSString isNullOrEmpty:self.areaId])
     {
         [propertyDict setObject:self.areaId forKey:PropertyName_AreaId];
+    }
+    
+    if (![NSString isNullOrEmpty:self.placeTypeId])
+    {
+        [propertyDict setObject:self.placeTypeId forKey:PropertyName_PlaceTypeId];
     }
     
     if (![NSString isNullOrEmpty:self.address])

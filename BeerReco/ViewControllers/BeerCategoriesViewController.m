@@ -209,7 +209,7 @@
         [cell.detailTextLabel setText:details];
         
         NSString* imageUrl = [BeerRecoAPIClient getFullPathForFile:beerView.beer.beerIconUrl];
-        [cell.imageView setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"weihenstephaner_hefe_icon"]];
+        [cell.imageView setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"beer_icon_default"]];
     }
     
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];

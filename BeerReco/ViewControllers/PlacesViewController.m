@@ -15,6 +15,7 @@
 @implementation PlacesViewController
 
 @synthesize parentArea = _parentArea;
+@synthesize parentPlaceType = _parentPlaceType;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -29,7 +30,7 @@
 
 - (void)viewDidLoad
 {
-    if (self.parentArea == nil)
+    if (self.parentArea == nil && self.parentPlaceType == nil)
     {
         [self.navigationController popViewControllerAnimated:YES];
         return;
@@ -67,17 +68,34 @@
 
 -(void)loadCurrentData
 {
-    [[ComServices sharedComServices].areasService getPlacesByArea:self.parentArea.id oncComplete:^(NSMutableArray *places, NSError *error)
-     {
-         if (error == nil && places != nil)
+    if (self.parentArea)
+    {
+        [[ComServices sharedComServices].areasService getPlacesByArea:self.parentArea.id oncComplete:^(NSMutableArray *places, NSError *error)
          {
-             [self dataLoaded:places];
-         }
-         else
-         {
-             [self showErrorView];
-         }
-     }];
+             if (error == nil && places != nil)
+             {
+                 [self dataLoaded:places];
+             }
+             else
+             {
+                 [self showErrorView];
+             }
+         }];
+    }
+    else if (self.parentPlaceType)
+    {
+        [[ComServices sharedComServices].placeTypeService getPlacesByPlaceType:self.parentPlaceType.id oncComplete:^(NSMutableArray *places, NSError *error)
+        {   
+             if (error == nil && places != nil)
+             {
+                 [self dataLoaded:places];
+             }
+             else
+             {
+                 [self showErrorView];
+             }
+         }];
+    }
 }
 
 -(NSString*)getSortingKeyPath
@@ -105,10 +123,29 @@
         PlaceViewM* placeView = object;
         
         [cell.textLabel setText:placeView.place.name];
-        [cell.detailTextLabel setText:placeView.area.name];
+        
+        
+        NSString* details = @"";
+        
+        if (placeView.area)
+        {
+            details = [details stringByAppendingFormat:@"Area: %@", placeView.area.name];
+        }
+        
+        if (placeView.placeType)
+        {
+            if (![NSString isNullOrEmpty:details])
+            {
+                details = [details stringByAppendingString:@" - "];
+            }
+            
+            details = [details stringByAppendingFormat:@"Type: %@", placeView.placeType.name];
+        }
+        
+        [cell.detailTextLabel setText:details];
         
         NSString* imageUrl = [BeerRecoAPIClient getFullPathForFile:placeView.place.placeIconUrl];
-        [cell.imageView setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"weihenstephaner_hefe_icon"]];
+        [cell.imageView setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"place_icon_default"]];
     }
     
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];

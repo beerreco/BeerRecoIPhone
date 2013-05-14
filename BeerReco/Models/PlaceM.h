@@ -16,6 +16,7 @@
 @property (nonatomic, strong) NSDate *updateDate;
 @property (nonatomic, strong) NSString *type;
 @property (nonatomic, strong) NSString *areaId;
+@property (nonatomic, strong) NSString *placeTypeId;
 @property (nonatomic, strong) NSString *address;
 @property (nonatomic, strong) NSString *geoLocation;
 @property (nonatomic, strong) NSString *placeIconUrl;

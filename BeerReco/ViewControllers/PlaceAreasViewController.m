@@ -75,11 +75,11 @@
     }
     else if (self.segPlaceFiltering.selectedSegmentIndex == 1)
     {
-        [[ComServices sharedComServices].areasService getAllAreas:^(NSMutableArray *areas, NSError *error)
-         {
-             if (error == nil && areas != nil)
+        [[ComServices sharedComServices].placeTypeService getAllPlaceTypes:^(NSMutableArray *placeTypes, NSError *error)
+        {   
+             if (error == nil && placeTypes != nil)
              {
-                 [self dataLoaded:areas];
+                 [self dataLoaded:placeTypes];
              }
              else
              {
@@ -144,15 +144,40 @@
         // Configure the cell
         [cell.textLabel setText:area.name];
     }
+    else if ([object isKindOfClass:([PlaceTypeM class])])
+    {
+        PlaceTypeM *placeType = object;
+        
+        // Configure the cell
+        [cell.textLabel setText:placeType.name];
+    }
     else if ([object isKindOfClass:([PlaceViewM class])])
     {
         PlaceViewM* placeView = object;
         
         [cell.textLabel setText:placeView.place.name];
-        [cell.detailTextLabel setText:placeView.area.name];
+        
+        NSString* details = @"";
+        
+        if (placeView.area)
+        {
+            details = [details stringByAppendingFormat:@"Area: %@", placeView.area.name];
+        }
+        
+        if (placeView.placeType)
+        {
+            if (![NSString isNullOrEmpty:details])
+            {
+                details = [details stringByAppendingString:@" - "];
+            }
+            
+            details = [details stringByAppendingFormat:@"Type: %@", placeView.placeType.name];
+        }
+        
+        [cell.detailTextLabel setText:details];
         
         NSString* imageUrl = [BeerRecoAPIClient getFullPathForFile:placeView.place.placeIconUrl];
-        [cell.imageView setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"weihenstephaner_hefe_icon"]];
+        [cell.imageView setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"place_icon_default"]];
     }
     
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
@@ -179,8 +204,13 @@
         
         if ([object isKindOfClass:([AreaM class])])
         {
-            AreaM* area = object;            
+            AreaM* area = object;
             placesViewController.parentArea = area;
+        }
+        else if ([object isKindOfClass:([PlaceTypeM class])])
+        {
+            PlaceTypeM* placeType = object;
+            placesViewController.parentPlaceType = placeType;
         }
     }
     

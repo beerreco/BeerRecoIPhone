@@ -16,6 +16,7 @@
 #import "AreasService.h"
 #import "OriginCountryService.h"
 #import "BreweryService.h"
+#import "PlaceTypeService.h"
 
 @interface ComServices : NSObject
 
@@ -28,6 +29,7 @@
 @property (nonatomic, strong) PlacesService* placesService;
 @property (nonatomic, strong) AreasService* areasService;
 @property (nonatomic, strong) OriginCountryService* originCountryService;
+@property (nonatomic, strong) PlaceTypeService* placeTypeService;
 @property (nonatomic, strong) FileManagementService* fileManagementService;
 
 @end

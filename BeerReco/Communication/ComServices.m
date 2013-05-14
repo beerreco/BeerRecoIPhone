@@ -25,6 +25,7 @@
         _sharedComServices.placesService = [[PlacesService alloc] init];
         _sharedComServices.areasService = [[AreasService alloc] init];
         _sharedComServices.originCountryService = [[OriginCountryService alloc] init];
+        _sharedComServices.placeTypeService = [[PlaceTypeService alloc] init];
         _sharedComServices.fileManagementService = [[FileManagementService alloc] init];
     });
     

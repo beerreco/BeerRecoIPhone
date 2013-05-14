@@ -1,40 +1,78 @@
 //
-//  CategoriesService.m
+//  PlaceTypeService.m
 //  BeerReco
 //
-//  Created by RLemberg on 4/20/13.
+//  Created by RLemberg on 5/14/13.
 //  Copyright (c) 2013 Colman. All rights reserved.
 //
 
-#import "BeerTypesService.h"
+#import "PlaceTypeService.h"
 
-#define ServicePath_BeerTypes @"/beer-types"
+#define ServicePath_PlaceTypes @"/place-types"
 
 #define PathParam_All @"all"
-#define PathParam_Beers @"beers"
+#define PathParam_Places @"places"
 
 #define PathParam_Add @"add"
 #define PathParam_Update @"update"
 
-#define QueryParam_BeerID @"beerId"
-#define QueryParam_BeerType @"beerType"
+#define QueryParam_PlaceID @"placeId"
+#define QueryParam_PlaceType @"placeType"
 
-#define ResultPath_BeerTypes @"beerTypes"
-#define ResultPath_Beers @"beers"
+#define ResultPath_PlaceTypes @"placeTypes"
+#define ResultPath_Places @"places"
 
-@implementation BeerTypesService
+@implementation PlaceTypeService
 
--(void)getAllBeerTypes:(void (^)(NSMutableArray* beerTypes, NSError *error))onComplete
+-(void)getAllPlaceTypes:(void (^)(NSMutableArray* placeTypes, NSError *error))onComplete
 {
-    NSString* path = [NSString stringWithFormat:@"%@/%@", ServicePath_BeerTypes, PathParam_All];
+    NSString* path = [NSString stringWithFormat:@"%@/%@", ServicePath_PlaceTypes, PathParam_All];
     
     [[BeerRecoAPIClient sharedClient] getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id JSON)
      {
-         NSArray *itemsFromResponse = [JSON valueForKeyPath:ResultPath_BeerTypes];
+         NSArray *itemsFromResponse = [JSON valueForKeyPath:ResultPath_PlaceTypes];
          NSMutableArray *mutableItems = [NSMutableArray arrayWithCapacity:[itemsFromResponse count]];
          for (NSDictionary *json in itemsFromResponse)
          {
-             BeerTypeM *item = [[BeerTypeM alloc] initWithJson:json];
+             PlaceTypeM *item = [[PlaceTypeM alloc] initWithJson:json];
+             [mutableItems addObject:item];
+         }
+         
+         if (onComplete)
+         {
+             onComplete(mutableItems, nil);
+         }
+     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         if (onComplete)
+         {
+             onComplete(nil, error);
+         }
+     }];
+
+}
+
+-(void)getPlacesByPlaceType:(NSString*)placeTypeId oncComplete:(void (^)(NSMutableArray* places, NSError *error))onComplete
+{
+    if ([NSString isNullOrEmpty:placeTypeId])
+    {
+        if (onComplete)
+        {
+            onComplete(nil, [NSError errorWithDomain:@"" code:-1 userInfo:nil]);
+        }
+        
+        return;
+    }
+    
+    NSString* path = [NSString stringWithFormat:@"%@/%@/%@", ServicePath_PlaceTypes, placeTypeId, PathParam_Places];
+    
+    [[BeerRecoAPIClient sharedClient] getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id JSON)
+     {
+         NSArray *itemsFromResponse = [JSON valueForKeyPath:ResultPath_Places];
+         NSMutableArray *mutableItems = [NSMutableArray arrayWithCapacity:[itemsFromResponse count]];
+         for (NSDictionary *json in itemsFromResponse)
+         {
+             PlaceViewM *item = [[PlaceViewM alloc] initWithJson:json];
              [mutableItems addObject:item];
          }
          
@@ -51,9 +89,9 @@
      }];
 }
 
--(void)getBeersByType:(NSString*)beerTypeId oncComplete:(void (^)(NSMutableArray* beers, NSError *error))onComplete
+-(void)addPlaceType:(PlaceTypeM*)placeType onComplete:(void (^)(PlaceTypeM* placeType, NSError *error))onComplete
 {
-    if ([NSString isNullOrEmpty:beerTypeId])
+    if (placeType == nil)
     {
         if (onComplete)
         {
@@ -63,50 +101,13 @@
         return;
     }
     
-    NSString* path = [NSString stringWithFormat:@"%@/%@/%@", ServicePath_BeerTypes, beerTypeId, PathParam_Beers];
+    NSDictionary* params = @{QueryParam_PlaceType:[placeType ToDictionary]};
     
-    [[BeerRecoAPIClient sharedClient] getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id JSON)
-     {
-         NSArray *itemsFromResponse = [JSON valueForKeyPath:ResultPath_Beers];
-         NSMutableArray *mutableItems = [NSMutableArray arrayWithCapacity:[itemsFromResponse count]];
-         for (NSDictionary *json in itemsFromResponse)
-         {
-             BeerViewM *item = [[BeerViewM alloc] initWithJson:json];
-             [mutableItems addObject:item];
-         }
-         
-         if (onComplete)
-         {
-             onComplete(mutableItems, nil);
-         }
-     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
-     {
-         if (onComplete)
-         {
-             onComplete(nil, error);
-         }
-     }];
-}
-
--(void)addBeerType:(BeerTypeM*)category onComplete:(void (^)(BeerTypeM* beerType, NSError *error))onComplete
-{
-    if (category == nil)
-    {
-        if (onComplete)
-        {
-            onComplete(nil, [NSError errorWithDomain:@"" code:-1 userInfo:nil]);
-        }
-        
-        return;
-    }
-    
-    NSDictionary* params = @{QueryParam_BeerType:[category ToDictionary]};
-    
-    NSString* path = [NSString stringWithFormat:@"%@/%@", ServicePath_BeerTypes, PathParam_Add];
+    NSString* path = [NSString stringWithFormat:@"%@/%@", ServicePath_PlaceTypes, PathParam_Add];
     
     [[BeerRecoAPIClient sharedClient] postPath:path parameters:params success:^(AFHTTPRequestOperation *operation, id JSON)
      {
-         BeerTypeM *item = [[BeerTypeM alloc] initWithJson:JSON];
+         PlaceTypeM *item = [[PlaceTypeM alloc] initWithJson:JSON];
          
          if (onComplete)
          {
@@ -121,9 +122,9 @@
      }];
 }
 
--(void)updateBeerType:(BeerTypeM*)category onComplete:(void (^)(BeerTypeM* beerType, NSError *error))onComplete
+-(void)updatePlaceType:(PlaceTypeM*)placeType onComplete:(void (^)(PlaceTypeM* placeType, NSError *error))onComplete
 {
-    if (category == nil)
+    if (placeType == nil)
     {
         if (onComplete)
         {
@@ -133,13 +134,13 @@
         return;
     }
     
-    NSDictionary* params = @{QueryParam_BeerType:[category ToDictionary]};
+    NSDictionary* params = @{QueryParam_PlaceType:[placeType ToDictionary]};
     
-    NSString* path = [NSString stringWithFormat:@"%@/%@", ServicePath_BeerTypes, PathParam_Update];
+    NSString* path = [NSString stringWithFormat:@"%@/%@", ServicePath_PlaceTypes, PathParam_Update];
     
     [[BeerRecoAPIClient sharedClient] putPath:path parameters:params success:^(AFHTTPRequestOperation *operation, id JSON)
      {
-         BeerTypeM *item = [[BeerTypeM alloc] initWithJson:JSON];
+         PlaceTypeM *item = [[PlaceTypeM alloc] initWithJson:JSON];
          
          if (onComplete)
          {

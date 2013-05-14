@@ -17,6 +17,8 @@
 
 -(void)getAllBeers:(void (^)(NSMutableArray* beers, NSError *error))onComplete;
 
+-(void)getSimilarBeersTo:(NSString*)beerId onComplete:(void (^)(NSMutableArray* beers, NSError *error))onComplete;
+
 -(void)getPlacesByBeer:(NSString*)beerId onComplete:(void (^)(NSMutableArray* beerInPlaceViews, NSError *error))onComplete;
 
 -(void)addBeer:(BeerM*)beer onComplete:(void (^)(BeerM* beer, NSError *error))onComplete;

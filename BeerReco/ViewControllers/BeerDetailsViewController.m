@@ -79,6 +79,13 @@
 {
     self.navigationItem.title = self.beerView.beer.name;
     
+    [self.btnComments setBackgroundImage:[UIImage imageNamed:@"comments_button_bg"] forState:UIControlStateNormal];
+    self.btnComments.layer.cornerRadius = 10;
+    self.btnComments.clipsToBounds = YES;
+    self.btnComments.layer.borderWidth = 1;
+    self.btnComments.layer.borderColor = [[UIColor blackColor] CGColor];
+    
+    
     [self performSelector:@selector(adjustScrollViewerContentSize) withObject:nil afterDelay:0.1];
 }
 
@@ -88,12 +95,13 @@
     self.lblBeerCategory.text = self.beerView.beerType.name;
     
     NSString* imageUrl = [BeerRecoAPIClient getFullPathForFile:self.beerView.beer.beerIconUrl];
-    [self.imgBeerIcon setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"weihenstephaner_hefe_icon"]];
+    [self.imgBeerIcon setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"beer_icon_default"]];
 }
 
 -(void)adjustScrollViewerContentSize
 {
-    self.contentScroller.contentSize = CGSizeMake(320, self.tbBeerProperties.frame.size.height + self.tbBeerProperties.frame.origin.y);
+    self.contentScroller.contentSize =
+    CGSizeMake(320, self.tbBeerProperties.frame.size.height + self.tbBeerProperties.frame.origin.y);
 }
 
 -(void)updateCommentsButton
@@ -150,13 +158,13 @@
 
 -(void)makeLikeButton
 {
-    [self.btnLike setTitle:@"Like" forState:UIControlStateNormal];
+    [self.btnLike setImage:[UIImage imageNamed:@"like_beer"] forState:UIControlStateNormal];
     [self.btnLike setTag:0];
 }
 
 -(void)makeUnlikeButton
 {
-    [self.btnLike setTitle:@"Unlike" forState:UIControlStateNormal];
+    [self.btnLike setImage:[UIImage imageNamed:@"unlike_beer"] forState:UIControlStateNormal];
     [self.btnLike setTag:1];
 }
 
@@ -255,13 +263,13 @@
 
 -(void)makeAddFavoritesButton
 {
-    [self.btnFavorites setTitle:@"Add Fav" forState:UIControlStateNormal];
+    [self.btnFavorites setImage:[UIImage imageNamed:@"add_to_fav"] forState:UIControlStateNormal];
     [self.btnFavorites setTag:0];
 }
 
 -(void)makeRemoveFavoritesButton
 {
-    [self.btnFavorites setTitle:@"Rem Fav" forState:UIControlStateNormal];
+    [self.btnFavorites setImage:[UIImage imageNamed:@"remove_from_fav"] forState:UIControlStateNormal];
     [self.btnFavorites setTag:1];
 }
 
@@ -515,6 +523,20 @@
     if ( cell == nil )
     {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    }
+    
+    if (cell.backgroundView == nil)
+    {
+        UIImageView* backgroud = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cell_bg"]];
+        backgroud.alpha = 0.85;
+        backgroud.layer.cornerRadius = 15;
+        backgroud.clipsToBounds = YES;
+        
+        backgroud.layer.borderWidth = 0.5;
+        backgroud.layer.borderColor = [[UIColor grayColor] CGColor];
+        
+        cell.backgroundView = backgroud;
+        cell.textLabel.backgroundColor = [UIColor clearColor];
     }
     
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];

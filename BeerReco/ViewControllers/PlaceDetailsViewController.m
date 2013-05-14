@@ -72,6 +72,12 @@
 {
     self.navigationItem.title = self.placeView.place.name;
     
+    [self.btnComments setBackgroundImage:[UIImage imageNamed:@"comments_button_bg"] forState:UIControlStateNormal];
+    self.btnComments.layer.cornerRadius = 10;
+    self.btnComments.clipsToBounds = YES;
+    self.btnComments.layer.borderWidth = 1;
+    self.btnComments.layer.borderColor = [[UIColor blackColor] CGColor];
+    
     [self addLikeButton];
     
     [self performSelector:@selector(adjustScrollViewerContentSize) withObject:nil afterDelay:0.1];
@@ -83,7 +89,7 @@
     self.lblPlaceArea.text = self.placeView.area.name;
     
     NSString* imageUrl = [BeerRecoAPIClient getFullPathForFile:self.placeView.place.placeIconUrl];
-    [self.imgPlaceIcon setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"weihenstephaner_hefe_icon"]];
+    [self.imgPlaceIcon setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"place_icon_default"]];
 }
 
 -(void)updateCommentsButton
@@ -145,13 +151,13 @@
 
 -(void)makeLikeButton
 {
-    [self.btnLike setTitle:@"Like" forState:UIControlStateNormal];
+    [self.btnLike setImage:[UIImage imageNamed:@"like_beer"] forState:UIControlStateNormal];
     [self.btnLike setTag:0];
 }
 
 -(void)makeUnlikeButton
 {
-    [self.btnLike setTitle:@"Unlike" forState:UIControlStateNormal];
+    [self.btnLike setImage:[UIImage imageNamed:@"unlike_beer"] forState:UIControlStateNormal];
     [self.btnLike setTag:1];
 }
 
@@ -349,6 +355,24 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     
+    if (cell.backgroundView == nil)
+    {
+        UIImageView* backgroud = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"cell_bg"]];
+        backgroud.alpha = 0.85;
+        backgroud.layer.cornerRadius = 10;
+        backgroud.clipsToBounds = YES;
+        
+        backgroud.layer.borderWidth = 0.5;
+        backgroud.layer.borderColor = [[UIColor grayColor] CGColor];
+        
+        cell.backgroundView = backgroud;
+        cell.textLabel.backgroundColor = [UIColor clearColor];
+    }
+    
+    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+    [cell setEditingAccessoryType:UITableViewCellAccessoryNone];
+    [cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
+    
     if (indexPath.section == 0)
     {
         [cell setAccessoryType:UITableViewCellAccessoryNone];
@@ -365,11 +389,7 @@
         }
     }
     else if (indexPath.section == 1)
-    {
-        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-        [cell setEditingAccessoryType:UITableViewCellAccessoryNone];
-        [cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
-        
+    {        
         cell.textLabel.text = @"Beers and Prices";
     }
     

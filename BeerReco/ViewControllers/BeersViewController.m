@@ -131,7 +131,7 @@
     }
     else if (self.beerView)
     {
-        [[ComServices sharedComServices].beersService getAllBeers:^(NSMutableArray *beers, NSError *error)
+        [[ComServices sharedComServices].beersService getSimilarBeersTo:self.beerView.beer.id onComplete:^(NSMutableArray *beers, NSError *error)
         {   
              if (error == nil && beers != nil)
              {
@@ -202,7 +202,7 @@
         [cell.detailTextLabel setText:details];
         
         NSString* imageUrl = [BeerRecoAPIClient getFullPathForFile:beerView.beer.beerIconUrl];
-        [cell.imageView setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"weihenstephaner_hefe_icon"]];
+        [cell.imageView setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"beer_icon_default"]];
     }    
     
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
