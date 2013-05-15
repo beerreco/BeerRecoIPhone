@@ -26,6 +26,10 @@
 {
     [super viewDidLoad];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(facebookReceivedUser:) name:GlobalMessage_FB_ReceivedUser object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(facebookLoggedOut:) name:GlobalMessage_FB_LoggedOut object:nil];
+    
     [self baseVisualSetup];
     
     [self baseSetup];
@@ -43,6 +47,23 @@
 
 -(void)viewDidAppear:(BOOL)animated
 {
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self showHideContributionToolBar];
+}
+
+#pragma mark - Notifications Handlers
+
+-(void)facebookReceivedUser:(NSNotification*)notification
+{
+    [self showHideContributionToolBar];
+}
+
+-(void)facebookLoggedOut:(NSNotification*)notification
+{
+    [self showHideContributionToolBar];
 }
 
 #pragma mark - Private Methods
@@ -66,6 +87,14 @@
 -(void)baseSetup
 {
     [self loadData];
+}
+
+-(void)showHideContributionToolBar
+{    
+    BOOL showBar = self.canShowContributionToolBar && [GeneralDataStore sharedDataStore].contributionAllowed;
+    
+    [self.buttomToolBar setHidden:!showBar];
+    self.tableToButtomConstraint.constant = (showBar ? 44 : 0);
 }
 
 -(void)hideSearchBar
@@ -147,6 +176,11 @@
     
 }
 
+-(BOOL)canShowContributionToolBar
+{
+    return true;
+}
+
 -(BOOL)shouldSortItemsList
 {
     return ![NSString isNullOrEmpty:[self getSortingKeyPath]];
@@ -182,6 +216,16 @@
     
 }
 
+-(void)addNewItem
+{
+    
+}
+
+-(void)toggleEditMode
+{
+    
+}
+
 #pragma mark - Action Handlers
 
 - (void)showSearchClicked:(id)sender
@@ -197,6 +241,16 @@
     // If you're worried that your users might not catch on to the fact that a search bar is available if they scroll to reveal it, a search icon will help them
     // Note that if you didn't hide your search bar, you should probably not include this, as it would be redundant
     [self.searchDisplayController.searchBar becomeFirstResponder];
+}
+
+- (IBAction)contributionEditClicked:(UIBarButtonItem *)sender
+{
+    [self toggleEditMode];
+}
+
+- (IBAction)contributionAddClicked:(UIBarButtonItem *)sender
+{
+    [self addNewItem];
 }
 
 #pragma mark Content Filtering

@@ -8,6 +8,7 @@
 
 #import "BeerCategoriesViewController.h"
 #import "beersViewController.h"
+#import "AddEditBeerTypeViewController.h"
 
 @interface BeerCategoriesViewController ()
 
@@ -263,6 +264,37 @@
             beerDetailsViewController.beerView = beerView;
         }
     }
+}
+
+-(void)addNewItem
+{
+    UINavigationController* navController = [[UINavigationController alloc] init];
+                                             
+    if (self.segCategories.selectedSegmentIndex == 0)
+    {
+        AddEditBeerTypeViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"AddEditBeerTypeViewController"];
+        
+        [navController setViewControllers:@[vc]];
+    }
+    else if (self.segCategories.selectedSegmentIndex == 1)
+    {
+        
+    }
+    else if (self.segCategories.selectedSegmentIndex == 2)
+    {
+        
+    }
+    else if (self.segCategories.selectedSegmentIndex == 3)
+    {
+        
+    }
+    
+    [self presentModalViewController:navController animated:YES];
+}
+
+-(void)toggleEditMode
+{
+    
 }
 
 #pragma mark - Action Handlers

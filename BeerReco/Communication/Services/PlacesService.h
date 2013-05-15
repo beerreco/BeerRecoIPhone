@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 #import "PlaceM.h"
+#import "FieldUpdateDataM.h"
 
 @interface PlacesService : NSObject
 
@@ -20,9 +21,12 @@
 
 -(void)addPlace:(PlaceM*)place onComplete:(void (^)(PlaceM* place, NSError *error))onComplete;
 
--(void)updatePlace:(PlaceM*)place onComplete:(void (^)(PlaceM* place, NSError *error))onComplete;
+-(void)updatePlace:(FieldUpdateDataM*)fieldUpdateData onComplete:(void (^)(NSError *error))onComplete;
 
 -(void)addBeer:(NSString*)beerId toPlace:(NSString*)placeId onComplete:(void (^)(BeerInPlaceM * beerInPlace, NSError *error))onComplete;
+
 -(void)addBeer:(NSString*)beerId toPlace:(NSString*)placeId withPrice:(double)price onComplete:(void (^)(BeerInPlaceM * beerInPlace, NSError *error))onComplete;
+
+-(void)updateBeerInPlace:(FieldUpdateDataM*)fieldUpdateData onComplete:(void (^)(NSError *error))onComplete;
 
 @end

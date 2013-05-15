@@ -122,35 +122,33 @@
      }];
 }
 
--(void)updatePlaceType:(PlaceTypeM*)placeType onComplete:(void (^)(PlaceTypeM* placeType, NSError *error))onComplete
+-(void)updatePlaceType:(FieldUpdateDataM*)fieldUpdateData  onComplete:(void (^)(NSError *error))onComplete
 {
-    if (placeType == nil)
+    if (fieldUpdateData == nil)
     {
         if (onComplete)
         {
-            onComplete(nil, [NSError errorWithDomain:@"" code:-1 userInfo:nil]);
+            onComplete([NSError errorWithDomain:@"" code:-1 userInfo:nil]);
         }
         
         return;
     }
     
-    NSDictionary* params = @{QueryParam_PlaceType:[placeType ToDictionary]};
+    NSDictionary* params = @{QueryParam_PlaceType:[fieldUpdateData ToDictionary]};
     
     NSString* path = [NSString stringWithFormat:@"%@/%@", ServicePath_PlaceTypes, PathParam_Update];
     
     [[BeerRecoAPIClient sharedClient] putPath:path parameters:params success:^(AFHTTPRequestOperation *operation, id JSON)
      {
-         PlaceTypeM *item = [[PlaceTypeM alloc] initWithJson:JSON];
-         
          if (onComplete)
          {
-             onComplete(item, nil);
+             onComplete(nil);
          }
      } failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
          if (onComplete)
          {
-             onComplete(nil, error);
+             onComplete(error);
          }
      }];
 }

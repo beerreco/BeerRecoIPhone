@@ -41,6 +41,10 @@
 {
     [super viewDidLoad];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(facebookReceivedUser:) name:GlobalMessage_FB_ReceivedUser object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(facebookLoggedOut:) name:GlobalMessage_FB_LoggedOut object:nil];
+    
     [self visualSetup];
     
     /*
@@ -189,11 +193,34 @@
     self.title = @"Settings";
 }
 
+#pragma mark - Action Handlers
+
+
+- (IBAction)switchValueChanged:(UISwitch *)sender
+{
+    if (sender.tag == 1)
+    {
+        [GeneralDataStore sharedDataStore].contributerMode = sender.isOn;
+    }
+}
+
+#pragma mark - Notifications Handlers
+
+-(void)facebookReceivedUser:(NSNotification*)notification
+{
+    [self.tbSettings reloadData];
+}
+
+-(void)facebookLoggedOut:(NSNotification*)notification
+{
+    [self.tbSettings reloadData];
+}
+
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -203,7 +230,14 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
+    
+    NSString *CellIdentifier = @"cell";
+    
+    if (indexPath.section == 1)
+    {
+        CellIdentifier = @"cell2";
+    }
+    
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     if ( cell == nil ) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
@@ -223,9 +257,27 @@
         cell.textLabel.backgroundColor = [UIColor clearColor];
     }
     
-    // Configure the cell
-    [cell.textLabel setText:@"Facebook"];
-    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+    if (indexPath.section == 0)
+    {
+        [cell.textLabel setText:@"Facebook"];
+        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+    }
+    else if (indexPath.section == 1)
+    {
+        UILabel* label = (UILabel*)[cell viewWithTag:0];
+        if (label)
+        {
+            label.text = @"Contributer Mode";
+        }
+        
+        UISwitch* switchCon = (UISwitch*)[cell viewWithTag:1];
+        if (switchCon)
+        {
+            [switchCon setOn:[GeneralDataStore sharedDataStore].contributionAllowed];
+            
+            [switchCon setEnabled:[GeneralDataStore sharedDataStore].hasFBUser];
+        }
+    }
     
     return cell;
     

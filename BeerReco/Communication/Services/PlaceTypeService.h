@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "FieldUpdateDataM.h"
+
 @interface PlaceTypeService : NSObject
 
 -(void)getAllPlaceTypes:(void (^)(NSMutableArray* placeTypes, NSError *error))onComplete;
@@ -16,6 +18,6 @@
 
 -(void)addPlaceType:(PlaceTypeM*)placeType onComplete:(void (^)(PlaceTypeM* placeType, NSError *error))onComplete;
 
--(void)updatePlaceType:(PlaceTypeM*)placeType onComplete:(void (^)(PlaceTypeM* placeType, NSError *error))onComplete;
+-(void)updatePlaceType:(FieldUpdateDataM*)fieldUpdateData onComplete:(void (^)(NSError *error))onComplete;
 
 @end

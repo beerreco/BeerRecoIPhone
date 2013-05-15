@@ -45,6 +45,10 @@
 
 #define GlobalMessage_FB_LoggedOut @"GlobalMessage_FB_LoggedOut"
 #define GlobalMessage_FB_LoggedIn @"GlobalMessage_FB_LoggedIn"
+#define GlobalMessage_FB_ReceivedUser @"GlobalMessage_FB_ReceivedUser"
+
+#define GlobalMessage_ContributionAllowed @"GlobalMessage_ContributionAllowed"
+#define GlobalMessage_ContributionNotAllowed @"GlobalMessage_ContributionNotAllowed"
 
 #define TrueStr @"true"
 #define FalseStr @"false"

@@ -10,6 +10,7 @@
 
 #import "BeerTypeM.h"
 #import "BeerViewM.h"
+#import "FieldUpdateDataM.h"
 
 @interface BeerTypesService : NSObject
 
@@ -19,6 +20,6 @@
 
 -(void)addBeerType:(BeerTypeM*)category onComplete:(void (^)(BeerTypeM* beerType, NSError *error))onComplete;
 
--(void)updateBeerType:(BeerTypeM*)category onComplete:(void (^)(BeerTypeM* beerType, NSError *error))onComplete;
+-(void)updateBeerType:(FieldUpdateDataM*)fieldUpdateData onComplete:(void (^)(NSError *error))onComplete;
 
 @end

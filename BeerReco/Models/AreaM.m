@@ -10,8 +10,6 @@
 
 #define PropertyName_Id @"id"
 #define PropertyName_Name @"name"
-#define PropertyName_CreationDate @"creationDate"
-#define PropertyName_UpdateDate @"updateDate"
 
 @implementation AreaM
 
@@ -51,16 +49,6 @@
     if (![NSString isNullOrEmpty:self.name])
     {
         [propertyDict setObject:self.name forKey:PropertyName_Name];
-    }
-    
-    if (self.creationDate != nil)
-    {
-        [propertyDict setObject:self.creationDate forKey:PropertyName_CreationDate];
-    }
-    
-    if (self.updateDate != nil)
-    {
-        [propertyDict setObject:self.updateDate forKey:PropertyName_UpdateDate];
     }
     
     return propertyDict;

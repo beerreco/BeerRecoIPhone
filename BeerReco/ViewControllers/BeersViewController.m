@@ -145,6 +145,11 @@
     }
 }
 
+-(BOOL)canShowContributionToolBar
+{
+    return self.beerView ? NO :YES;
+}
+
 -(NSString*)getSortingKeyPath
 {
     return @"beer.name";

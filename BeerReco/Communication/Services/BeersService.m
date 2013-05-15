@@ -164,35 +164,33 @@
      }];
 }
 
--(void)updateBeer:(BeerM*)beer onComplete:(void (^)(BeerM* beer, NSError *error))onComplete
+-(void)updateBeer:(FieldUpdateDataM*)fieldUpdateData  onComplete:(void (^)(NSError *error))onComplete
 {
-    if (beer == nil)
+    if (fieldUpdateData == nil)
     {
         if (onComplete)
         {
-            onComplete(nil, [NSError errorWithDomain:@"" code:-1 userInfo:nil]);
+            onComplete([NSError errorWithDomain:@"" code:-1 userInfo:nil]);
         }
         
         return;
     }
     
-    NSDictionary* params = @{QueryParam_Beer:[beer ToDictionary]};
+    NSDictionary* params = @{QueryParam_Beer:[fieldUpdateData ToDictionary]};
     
     NSString* path = [NSString stringWithFormat:@"%@/%@", ServicePath_Beers, PathParam_Update];
     
     [[BeerRecoAPIClient sharedClient] putPath:path parameters:params success:^(AFHTTPRequestOperation *operation, id JSON)
      {
-         BeerM* item = [[BeerM alloc] initWithJson:JSON];
-         
          if (onComplete)
          {
-             onComplete(item, nil);
+             onComplete(nil);
          }
      } failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
          if (onComplete)
          {
-             onComplete(nil, error);
+             onComplete(error);
          }
      }];
 }

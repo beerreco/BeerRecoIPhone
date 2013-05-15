@@ -12,4 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tbSettings;
 
+- (IBAction)switchValueChanged:(UISwitch *)sender;
+
 @end

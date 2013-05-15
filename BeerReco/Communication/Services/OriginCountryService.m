@@ -121,35 +121,33 @@
      }];
 }
 
--(void)updateOriginCountry:(CountryM*)country onComplete:(void (^)(CountryM* country, NSError *error))onComplete
+-(void)updateOriginCountry:(FieldUpdateDataM*)fieldUpdateData  onComplete:(void (^)(NSError *error))onComplete
 {
-    if (country == nil)
+    if (fieldUpdateData == nil)
     {
         if (onComplete)
         {
-            onComplete(nil, [NSError errorWithDomain:@"" code:-1 userInfo:nil]);
+            onComplete([NSError errorWithDomain:@"" code:-1 userInfo:nil]);
         }
         
         return;
     }
     
-    NSDictionary* params = @{QueryParam_Country:[country ToDictionary]};
+    NSDictionary* params = @{QueryParam_Country:[fieldUpdateData ToDictionary]};
     
     NSString* path = [NSString stringWithFormat:@"%@/%@", ServicePath_Countries, PathParam_Update];
     
     [[BeerRecoAPIClient sharedClient] putPath:path parameters:params success:^(AFHTTPRequestOperation *operation, id JSON)
      {
-         CountryM *item = [[CountryM alloc] initWithJson:JSON];
-         
          if (onComplete)
          {
-             onComplete(item, nil);
+             onComplete(nil);
          }
      } failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
          if (onComplete)
          {
-             onComplete(nil, error);
+             onComplete(error);
          }
      }];
 }

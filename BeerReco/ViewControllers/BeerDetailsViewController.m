@@ -34,7 +34,7 @@
 {
     [super viewDidLoad];
     
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(facebookLoggedIn:) name:GlobalMessage_FB_LoggedIn object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(facebookReceivedUser:) name:GlobalMessage_FB_ReceivedUser object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(facebookLoggedOut:) name:GlobalMessage_FB_LoggedOut object:nil];
     
@@ -106,7 +106,7 @@
 
 -(void)updateCommentsButton
 {
-    [self.btnComments setTitle:@"Comments" forState:UIControlStateNormal];
+    [self.btnComments setTitle:@"Show Comments" forState:UIControlStateNormal];
     [self.btnComments setEnabled:NO];
     [self.activityCommentsLoad startAnimating];
     
@@ -116,7 +116,7 @@
      {
          if (count > 0)
          {
-             [self.btnComments setTitle:[NSString stringWithFormat:@"%d Comments", count] forState:UIControlStateNormal];
+             [self.btnComments setTitle:[NSString stringWithFormat:@"Show %d Comments", count] forState:UIControlStateNormal];
          }
          
          [self.activityCommentsLoad stopAnimating];
@@ -315,9 +315,11 @@
 
 #pragma mark - Notifications Handlers
 
--(void)facebookLoggedIn:(NSNotification*)notification
+-(void)facebookReceivedUser:(NSNotification*)notification
 {
-    [self performSelector:@selector(addFavoritesButton) withObject:nil afterDelay:1];
+    [self addFavoritesButton];
+    
+    [self addLikeButton];
 }
 
 -(void)facebookLoggedOut:(NSNotification*)notification

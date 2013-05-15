@@ -8,6 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+#import "CountryM.h"
+#import "FieldUpdateDataM.h"
+
 @interface OriginCountryService : NSObject
 
 -(void)getAllOriginCountries:(void (^)(NSMutableArray* countries, NSError *error))onComplete;
@@ -16,6 +19,6 @@
 
 -(void)addOriginCountry:(CountryM*)country onComplete:(void (^)(CountryM* country, NSError *error))onComplete;
 
--(void)updateOriginCountry:(CountryM*)country onComplete:(void (^)(CountryM* country, NSError *error))onComplete;
+-(void)updateOriginCountry:(FieldUpdateDataM*)fieldUpdateData  onComplete:(void (^)(NSError *error))onComplete;
 
 @end

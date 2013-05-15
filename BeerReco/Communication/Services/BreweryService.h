@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+#import "FieldUpdateDataM.h"
+
 @interface BreweryService : NSObject
 
 -(void)getAllBreweries:(void (^)(NSMutableArray* breweries, NSError *error))onComplete;
@@ -16,6 +18,6 @@
 
 -(void)addBrewery:(BreweryM*)brewery onComplete:(void (^)(BreweryM* brewery, NSError *error))onComplete;
 
--(void)updateBrewery:(BreweryM*)brewery onComplete:(void (^)(BreweryM* brewery, NSError *error))onComplete;
+-(void)updateBrewery:(FieldUpdateDataM*)fieldUpdateData  onComplete:(void (^)(NSError *error))onComplete;
 
 @end

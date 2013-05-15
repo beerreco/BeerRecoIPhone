@@ -13,7 +13,9 @@
 + (GeneralDataStore*)sharedDataStore;
 
 @property (nonatomic, strong) NSString* FBUserID;
+@property (nonatomic) BOOL contributerMode;
 
 -(BOOL)hasFBUser;
+-(BOOL)contributionAllowed;
 
 @end

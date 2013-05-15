@@ -10,6 +10,7 @@
 
 #import "AreaM.h"
 #import "PlaceViewM.h"
+#import "FieldUpdateDataM.h"
 
 @interface AreasService : NSObject
 
@@ -19,6 +20,6 @@
 
 -(void)addArea:(AreaM*)area onComplete:(void (^)(AreaM* area, NSError *error))onComplete;
 
--(void)updateArea:(AreaM*)area onComplete:(void (^)(AreaM* area, NSError *error))onComplete;
+-(void)updateArea:(FieldUpdateDataM*)fieldUpdateData onComplete:(void (^)(NSError *error))onComplete;
 
 @end
