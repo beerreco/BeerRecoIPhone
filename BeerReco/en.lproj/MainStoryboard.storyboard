@@ -334,7 +334,7 @@
                             </tableView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BhX-EX-g7u">
                                 <items>
-                                    <barButtonItem systemItem="edit" id="JV4-wf-DkU">
+                                    <barButtonItem title="Edit" id="JV4-wf-DkU">
                                         <connections>
                                             <action selector="contributionEditClicked:" destination="Tou-EZ-N2d" id="xZc-NM-TG8"/>
                                         </connections>
@@ -495,7 +495,7 @@
             <objects>
                 <viewController storyboardIdentifier="PlaceAreasViewController" id="Ecm-J5-Yml" customClass="PlaceAreasViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6Hx-Fq-KRb">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="bg_main.png" translatesAutoresizingMaskIntoConstraints="NO" id="WVZ-Tt-tg1"/>
@@ -539,7 +539,7 @@
                             </tableView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1qP-AJ-Lac">
                                 <items>
-                                    <barButtonItem systemItem="edit" id="MsD-wP-lXb">
+                                    <barButtonItem title="Edit" id="MsD-wP-lXb">
                                         <connections>
                                             <action selector="contributionEditClicked:" destination="Ecm-J5-Yml" id="ccm-r0-ktA"/>
                                         </connections>
@@ -817,7 +817,7 @@
                             </tableView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vyU-JE-te9">
                                 <items>
-                                    <barButtonItem systemItem="edit" id="Xpr-Yt-58H">
+                                    <barButtonItem title="Edit" id="Xpr-Yt-58H">
                                         <connections>
                                             <action selector="contributionEditClicked:" destination="4Wg-Fk-rtC" id="L6w-a3-GVp"/>
                                         </connections>
@@ -871,12 +871,218 @@
             </objects>
             <point key="canvasLocation" x="2611" y="-1455"/>
         </scene>
+        <!--Add Edit Beer In Places View Controller-->
+        <scene sceneID="fFV-Ld-H2D">
+            <objects>
+                <viewController storyboardIdentifier="AddEditBeerInPlacesViewController" id="TEE-zP-kov" customClass="AddEditBeerInPlacesViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4rs-1n-KBY">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="bg_main.png" translatesAutoresizingMaskIntoConstraints="NO" id="wxI-yn-Fid"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="v2N-02-1ug">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="fieldNameValueChanged:" destination="TEE-zP-kov" eventType="editingChanged" id="h6E-Fv-cVW"/>
+                                    <outlet property="delegate" destination="TEE-zP-kov" id="Kxr-aT-Ffh"/>
+                                </connections>
+                            </textField>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="QtG-eX-Obv">
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="FZp-Vd-jXq"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="NMg-1J-5xB" detailTextLabel="mwy-sO-hFF" style="IBUITableViewCellStyleSubtitle" id="MGV-46-AHE">
+                                        <rect key="frame" x="0.0" y="46" width="320" height="46"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="1" width="280" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NMg-1J-5xB">
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mwy-sO-hFF">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="TEE-zP-kov" id="PJt-rH-7Ig"/>
+                                    <outlet property="delegate" destination="TEE-zP-kov" id="Jyb-9u-Ofk"/>
+                                </connections>
+                            </tableView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fXN-ON-ecI">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="HyO-jS-Si4"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="QtG-eX-Obv" firstAttribute="top" secondItem="4rs-1n-KBY" secondAttribute="top" type="default" id="0eL-Ri-gVg"/>
+                            <constraint firstItem="v2N-02-1ug" firstAttribute="leading" secondItem="4rs-1n-KBY" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="HOC-wt-Oox"/>
+                            <constraint firstItem="QtG-eX-Obv" firstAttribute="trailing" secondItem="4rs-1n-KBY" secondAttribute="trailing" type="default" id="Ib8-sC-Rtj"/>
+                            <constraint firstItem="QtG-eX-Obv" firstAttribute="leading" secondItem="4rs-1n-KBY" secondAttribute="leading" type="default" id="Kjo-qw-Lgf"/>
+                            <constraint firstItem="wxI-yn-Fid" firstAttribute="trailing" secondItem="4rs-1n-KBY" secondAttribute="trailing" type="default" id="Lft-FC-qhR"/>
+                            <constraint firstAttribute="trailing" secondItem="fXN-ON-ecI" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Q4Z-R5-2Mc"/>
+                            <constraint firstItem="wxI-yn-Fid" firstAttribute="leading" secondItem="4rs-1n-KBY" secondAttribute="leading" type="default" id="coN-yn-jDS"/>
+                            <constraint firstItem="v2N-02-1ug" firstAttribute="top" secondItem="fXN-ON-ecI" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="eRP-Hb-Saz"/>
+                            <constraint firstItem="wxI-yn-Fid" firstAttribute="bottom" secondItem="4rs-1n-KBY" secondAttribute="bottom" type="default" id="euc-tA-M1C"/>
+                            <constraint firstItem="fXN-ON-ecI" firstAttribute="leading" secondItem="4rs-1n-KBY" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="rBQ-wM-YC9"/>
+                            <constraint firstItem="wxI-yn-Fid" firstAttribute="top" secondItem="4rs-1n-KBY" secondAttribute="top" type="default" id="rR1-2G-jeL"/>
+                            <constraint firstAttribute="trailing" secondItem="v2N-02-1ug" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="rvO-BH-lvB"/>
+                            <constraint firstItem="fXN-ON-ecI" firstAttribute="top" secondItem="4rs-1n-KBY" secondAttribute="top" constant="81" id="wvE-ff-V7m"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="h4z-vR-UnO">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="eJm-bo-2fF">
+                            <connections>
+                                <action selector="cancelClicked:" destination="TEE-zP-kov" id="ENB-ZD-Dii"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="tBA-un-iRk">
+                            <connections>
+                                <action selector="saveClicked:" destination="TEE-zP-kov" id="Kr6-tE-ngX"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="btnCancel" destination="eJm-bo-2fF" id="ccx-9c-KhQ"/>
+                        <outlet property="btnSave" destination="tBA-un-iRk" id="JFt-ix-vTe"/>
+                        <outlet property="lblBoxLabel" destination="fXN-ON-ecI" id="8Uu-Ff-Qju"/>
+                        <outlet property="tbSelection" destination="QtG-eX-Obv" id="kAo-FM-em5"/>
+                        <outlet property="txtFieldName" destination="v2N-02-1ug" id="Wf9-2j-cgK"/>
+                        <segue destination="Ecm-J5-Yml" kind="push" identifier="placeSelectionSegue" id="woj-sx-4eM"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mWm-kS-qF4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3227" y="-1705"/>
+        </scene>
+        <!--Add Edit Beer In Place View Controller-->
+        <scene sceneID="aT8-ub-Mgs">
+            <objects>
+                <viewController storyboardIdentifier="AddEditBeerInPlaceViewController" id="8OX-tL-Gha" customClass="AddEditBeerInPlaceViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eSg-fZ-NSA">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="bg_main.png" translatesAutoresizingMaskIntoConstraints="NO" id="yIs-qF-uf4"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AGh-aE-LJ7">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="fieldNameValueChanged:" destination="8OX-tL-Gha" eventType="editingChanged" id="xbN-zR-jCJ"/>
+                                    <outlet property="delegate" destination="8OX-tL-Gha" id="cl2-uC-X6m"/>
+                                </connections>
+                            </textField>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Ot-dm-Auq">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="36" id="hC6-Iu-tfW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="6Bo-8Q-2mf">
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="E3j-Ne-PWK"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="SXq-1n-lZI" detailTextLabel="6S5-FP-wPO" style="IBUITableViewCellStyleSubtitle" id="r1O-gO-bmc">
+                                        <rect key="frame" x="0.0" y="46" width="320" height="46"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="10" y="1" width="280" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SXq-1n-lZI">
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Subtitle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6S5-FP-wPO">
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <color key="textColor" red="0.50196078431372548" green="0.50196078431372548" blue="0.50196078431372548" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="8OX-tL-Gha" id="i91-Tj-AZa"/>
+                                    <outlet property="delegate" destination="8OX-tL-Gha" id="RH0-KG-XhZ"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="AGh-aE-LJ7" firstAttribute="top" secondItem="8Ot-dm-Auq" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="8Uf-77-hhw"/>
+                            <constraint firstItem="6Bo-8Q-2mf" firstAttribute="leading" secondItem="eSg-fZ-NSA" secondAttribute="leading" type="default" id="H14-Ce-0dP"/>
+                            <constraint firstItem="6Bo-8Q-2mf" firstAttribute="top" secondItem="eSg-fZ-NSA" secondAttribute="top" type="default" id="LxR-rq-A6a"/>
+                            <constraint firstItem="yIs-qF-uf4" firstAttribute="bottom" secondItem="eSg-fZ-NSA" secondAttribute="bottom" type="default" id="Mz7-Cw-jtw"/>
+                            <constraint firstAttribute="trailing" secondItem="8Ot-dm-Auq" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Rle-kj-gbK"/>
+                            <constraint firstAttribute="trailing" secondItem="AGh-aE-LJ7" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="ePo-k1-tUf"/>
+                            <constraint firstItem="8Ot-dm-Auq" firstAttribute="top" secondItem="eSg-fZ-NSA" secondAttribute="top" constant="81" id="f8u-Ry-Mmq"/>
+                            <constraint firstItem="6Bo-8Q-2mf" firstAttribute="trailing" secondItem="eSg-fZ-NSA" secondAttribute="trailing" type="default" id="heq-Bv-RPN"/>
+                            <constraint firstItem="yIs-qF-uf4" firstAttribute="trailing" secondItem="eSg-fZ-NSA" secondAttribute="trailing" type="default" id="hhc-gk-rbs"/>
+                            <constraint firstItem="yIs-qF-uf4" firstAttribute="top" secondItem="eSg-fZ-NSA" secondAttribute="top" type="default" id="pYa-mg-VQT"/>
+                            <constraint firstItem="8Ot-dm-Auq" firstAttribute="leading" secondItem="eSg-fZ-NSA" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="uMI-5q-RC0"/>
+                            <constraint firstItem="AGh-aE-LJ7" firstAttribute="leading" secondItem="eSg-fZ-NSA" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="wyw-5c-p5p"/>
+                            <constraint firstItem="yIs-qF-uf4" firstAttribute="leading" secondItem="eSg-fZ-NSA" secondAttribute="leading" type="default" id="z3i-FH-C7e"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="D7r-07-eSs">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="lIc-Gw-OJy">
+                            <connections>
+                                <action selector="cancelClicked:" destination="8OX-tL-Gha" id="tE0-t9-3cW"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="ePQ-Ng-Tfj">
+                            <connections>
+                                <action selector="saveClicked:" destination="8OX-tL-Gha" id="vYA-NQ-fWd"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="btnCancel" destination="lIc-Gw-OJy" id="X1b-SU-b2J"/>
+                        <outlet property="btnSave" destination="ePQ-Ng-Tfj" id="0io-HA-WKe"/>
+                        <outlet property="lblBoxLabel" destination="8Ot-dm-Auq" id="qAl-kE-g8p"/>
+                        <outlet property="tbSelection" destination="6Bo-8Q-2mf" id="eFc-tY-Hth"/>
+                        <outlet property="txtFieldName" destination="AGh-aE-LJ7" id="Tdt-Or-ji3"/>
+                        <segue destination="bEg-yq-1o3" kind="push" identifier="beerSelectionSegue" id="58t-Gu-oJf"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lq2-D5-ycf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3659" y="-1705"/>
+        </scene>
         <!--Beer Categories View Controller-->
         <scene sceneID="Ask-LF-ree">
             <objects>
                 <viewController storyboardIdentifier="BeerCategoriesViewController" id="bEg-yq-1o3" customClass="BeerCategoriesViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iW3-qY-iwT">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="bg_main.png" translatesAutoresizingMaskIntoConstraints="NO" id="zid-dA-XGj"/>
@@ -920,7 +1126,7 @@
                             </tableView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="O8c-J3-5sl">
                                 <items>
-                                    <barButtonItem systemItem="edit" id="eRH-DI-RXz">
+                                    <barButtonItem title="Edit" id="eRH-DI-RXz">
                                         <connections>
                                             <action selector="contributionEditClicked:" destination="bEg-yq-1o3" id="yCq-rf-fHC"/>
                                         </connections>
@@ -996,7 +1202,7 @@
             <objects>
                 <viewController storyboardIdentifier="BeersViewController" id="r96-59-yWt" customClass="BeersViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="afA-Ta-GAB">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="bg_main.png" translatesAutoresizingMaskIntoConstraints="NO" id="1fa-nV-tYP"/>
@@ -1041,7 +1247,7 @@
                             </tableView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XYW-Dm-jfK">
                                 <items>
-                                    <barButtonItem systemItem="edit" id="1ps-gL-N91">
+                                    <barButtonItem title="Edit" id="1ps-gL-N91">
                                         <connections>
                                             <action selector="contributionEditClicked:" destination="r96-59-yWt" id="3j5-po-2Iu"/>
                                         </connections>
@@ -1100,7 +1306,7 @@
             <objects>
                 <viewController storyboardIdentifier="AddEditBeerTypeViewController" id="bIn-gx-DGr" customClass="AddEditBeerTypeViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LjK-kB-Hsg">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="bg_main.png" translatesAutoresizingMaskIntoConstraints="NO" id="fLQ-qS-Cv5"/>
@@ -1138,7 +1344,6 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="btnCancel" destination="P93-WV-1iN" id="gEC-c9-0bk"/>
                         <outlet property="btnSave" destination="hvW-o0-YFU" id="udt-zG-5Pe"/>
@@ -1147,7 +1352,215 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a00-C4-Ibv" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2577" y="-2207"/>
+            <point key="canvasLocation" x="2393" y="-2397"/>
+        </scene>
+        <!--Add Edit Country View Controller-->
+        <scene sceneID="snf-CK-rYQ">
+            <objects>
+                <viewController storyboardIdentifier="AddEditCountryViewController" id="dX5-Oo-0oB" customClass="AddEditCountryViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="mgN-CO-dH5">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="bg_main.png" translatesAutoresizingMaskIntoConstraints="NO" id="Lp3-Cn-8u3"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Bo-qb-rZH">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="fieldNameValueChanged:" destination="dX5-Oo-0oB" eventType="editingChanged" id="nko-Ok-mBR"/>
+                                    <outlet property="delegate" destination="dX5-Oo-0oB" id="z0N-dP-Zlh"/>
+                                </connections>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Lp3-Cn-8u3" firstAttribute="trailing" secondItem="mgN-CO-dH5" secondAttribute="trailing" type="default" id="FD3-lM-O6z"/>
+                            <constraint firstItem="Lp3-Cn-8u3" firstAttribute="top" secondItem="mgN-CO-dH5" secondAttribute="top" type="default" id="S7Y-u2-H1g"/>
+                            <constraint firstAttribute="trailing" secondItem="4Bo-qb-rZH" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="UMd-UI-iNZ"/>
+                            <constraint firstItem="4Bo-qb-rZH" firstAttribute="leading" secondItem="mgN-CO-dH5" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="VlO-jX-Hew"/>
+                            <constraint firstItem="Lp3-Cn-8u3" firstAttribute="leading" secondItem="mgN-CO-dH5" secondAttribute="leading" type="default" id="ZDA-hv-Wrn"/>
+                            <constraint firstItem="Lp3-Cn-8u3" firstAttribute="bottom" secondItem="mgN-CO-dH5" secondAttribute="bottom" type="default" id="oeA-kO-Dee"/>
+                            <constraint firstItem="4Bo-qb-rZH" firstAttribute="top" secondItem="mgN-CO-dH5" secondAttribute="top" constant="20" symbolic="YES" type="default" id="qpU-Nx-B4j"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Lll-W0-sxO">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Plp-NS-KLH">
+                            <connections>
+                                <action selector="cancelClicked:" destination="dX5-Oo-0oB" id="fKe-AI-iM8"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="8wQ-NL-9hy">
+                            <connections>
+                                <action selector="saveClicked:" destination="dX5-Oo-0oB" id="fPm-ra-xad"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="btnCancel" destination="Plp-NS-KLH" id="KLc-Cg-r33"/>
+                        <outlet property="btnSave" destination="8wQ-NL-9hy" id="vT0-ez-RnG"/>
+                        <outlet property="txtFieldName" destination="4Bo-qb-rZH" id="s2l-MG-EXQ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MTD-i3-IFx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2735" y="-2397"/>
+        </scene>
+        <!--Add Edit Brewery View Controller-->
+        <scene sceneID="xUZ-Hy-gxg">
+            <objects>
+                <viewController storyboardIdentifier="AddEditBreweryViewController" id="Y10-Uy-yT6" customClass="AddEditBreweryViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="u49-No-b38">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="bg_main.png" translatesAutoresizingMaskIntoConstraints="NO" id="SxW-hu-JJP"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vJy-3v-mOd">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="fieldNameValueChanged:" destination="Y10-Uy-yT6" eventType="editingChanged" id="TGD-c9-tGL"/>
+                                    <outlet property="delegate" destination="Y10-Uy-yT6" id="zSD-Uu-FNk"/>
+                                </connections>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="SxW-hu-JJP" firstAttribute="leading" secondItem="u49-No-b38" secondAttribute="leading" type="default" id="5DS-Mq-4Gy"/>
+                            <constraint firstItem="vJy-3v-mOd" firstAttribute="leading" secondItem="u49-No-b38" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="FG5-hr-Ix0"/>
+                            <constraint firstItem="SxW-hu-JJP" firstAttribute="centerY" secondItem="u49-No-b38" secondAttribute="centerY" type="default" id="VpN-Kc-1qE"/>
+                            <constraint firstAttribute="trailing" secondItem="vJy-3v-mOd" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="buh-2Y-0CU"/>
+                            <constraint firstItem="SxW-hu-JJP" firstAttribute="top" secondItem="u49-No-b38" secondAttribute="top" type="default" id="cmm-tD-FL9"/>
+                            <constraint firstItem="vJy-3v-mOd" firstAttribute="top" secondItem="u49-No-b38" secondAttribute="top" constant="20" symbolic="YES" type="default" id="lsi-KG-Se6"/>
+                            <constraint firstItem="SxW-hu-JJP" firstAttribute="trailing" secondItem="u49-No-b38" secondAttribute="trailing" type="default" id="lvY-fb-uj5"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="hNa-hn-rWu">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="UGZ-cF-aii">
+                            <connections>
+                                <action selector="cancelClicked:" destination="Y10-Uy-yT6" id="OT3-wB-SAP"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="kFE-cI-qmH">
+                            <connections>
+                                <action selector="saveClicked:" destination="Y10-Uy-yT6" id="5N1-al-Pox"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="btnCancel" destination="UGZ-cF-aii" id="l7e-7t-hfc"/>
+                        <outlet property="btnSave" destination="kFE-cI-qmH" id="QsS-y4-Ri5"/>
+                        <outlet property="txtFieldName" destination="vJy-3v-mOd" id="fhg-2P-juY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="csH-Ra-hQN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3087" y="-2393"/>
+        </scene>
+        <!--Add Edit Area View Controller-->
+        <scene sceneID="pbf-eI-JDJ">
+            <objects>
+                <viewController storyboardIdentifier="AddEditAreaViewController" id="jY3-co-zrh" customClass="AddEditAreaViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="WtG-YN-w18">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="bg_main.png" translatesAutoresizingMaskIntoConstraints="NO" id="ZTs-4V-cIo"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sfn-Ib-2To">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="fieldNameValueChanged:" destination="jY3-co-zrh" eventType="editingChanged" id="W8U-dC-4rR"/>
+                                    <outlet property="delegate" destination="jY3-co-zrh" id="NcY-TI-O4K"/>
+                                </connections>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ZTs-4V-cIo" firstAttribute="trailing" secondItem="WtG-YN-w18" secondAttribute="trailing" type="default" id="2Ti-IC-bXD"/>
+                            <constraint firstItem="ZTs-4V-cIo" firstAttribute="bottom" secondItem="WtG-YN-w18" secondAttribute="bottom" type="default" id="5px-Ap-UZn"/>
+                            <constraint firstItem="ZTs-4V-cIo" firstAttribute="leading" secondItem="WtG-YN-w18" secondAttribute="leading" type="default" id="SOt-pG-R7t"/>
+                            <constraint firstItem="Sfn-Ib-2To" firstAttribute="leading" secondItem="WtG-YN-w18" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="bhL-nM-KbL"/>
+                            <constraint firstItem="ZTs-4V-cIo" firstAttribute="top" secondItem="WtG-YN-w18" secondAttribute="top" type="default" id="mQA-uf-CvY"/>
+                            <constraint firstItem="Sfn-Ib-2To" firstAttribute="top" secondItem="WtG-YN-w18" secondAttribute="top" constant="20" symbolic="YES" type="default" id="o2K-0c-hEx"/>
+                            <constraint firstAttribute="trailing" secondItem="Sfn-Ib-2To" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="wAA-up-xVR"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="7PR-j9-ozf">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="UjX-Sb-t9X">
+                            <connections>
+                                <action selector="cancelClicked:" destination="jY3-co-zrh" id="aML-0S-POx"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="6Jl-GQ-e4I">
+                            <connections>
+                                <action selector="saveClicked:" destination="jY3-co-zrh" id="MAI-4J-sup"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="btnCancel" destination="UjX-Sb-t9X" id="8qY-ly-Wzf"/>
+                        <outlet property="btnSave" destination="6Jl-GQ-e4I" id="HWP-4p-tDb"/>
+                        <outlet property="txtFieldName" destination="Sfn-Ib-2To" id="Cu5-AM-UEI"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ifp-P1-tpZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3443" y="-2397"/>
+        </scene>
+        <!--Add Edit Place Type View Controller-->
+        <scene sceneID="N29-Ru-qav">
+            <objects>
+                <viewController storyboardIdentifier="AddEditPlaceTypeViewController" id="jUH-7R-c4b" customClass="AddEditPlaceTypeViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="N8O-c2-l38">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="bg_main.png" translatesAutoresizingMaskIntoConstraints="NO" id="jB8-93-osE"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6s2-JX-kl7">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="fieldNameValueChanged:" destination="jUH-7R-c4b" eventType="editingChanged" id="xMb-nb-w7u"/>
+                                    <outlet property="delegate" destination="jUH-7R-c4b" id="Djz-Hf-VrF"/>
+                                </connections>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="jB8-93-osE" firstAttribute="top" secondItem="N8O-c2-l38" secondAttribute="top" type="default" id="EkH-Gz-svM"/>
+                            <constraint firstAttribute="trailing" secondItem="6s2-JX-kl7" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="Ppu-sd-C2O"/>
+                            <constraint firstItem="jB8-93-osE" firstAttribute="trailing" secondItem="N8O-c2-l38" secondAttribute="trailing" type="default" id="QOd-rv-TzO"/>
+                            <constraint firstItem="jB8-93-osE" firstAttribute="leading" secondItem="N8O-c2-l38" secondAttribute="leading" type="default" id="Qze-L3-lPK"/>
+                            <constraint firstItem="6s2-JX-kl7" firstAttribute="top" secondItem="N8O-c2-l38" secondAttribute="top" constant="20" symbolic="YES" type="default" id="fAC-S0-j8M"/>
+                            <constraint firstItem="6s2-JX-kl7" firstAttribute="leading" secondItem="N8O-c2-l38" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="lWY-He-vQw"/>
+                            <constraint firstItem="jB8-93-osE" firstAttribute="bottom" secondItem="N8O-c2-l38" secondAttribute="bottom" type="default" id="yY5-4l-1Hb"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="HOO-OY-QgZ">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="UUX-Fo-0Nv">
+                            <connections>
+                                <action selector="cancelClicked:" destination="jUH-7R-c4b" id="rcp-mm-Ogl"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="tDD-eL-Ako">
+                            <connections>
+                                <action selector="saveClicked:" destination="jUH-7R-c4b" id="GDF-Cd-sqk"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="btnCancel" destination="UUX-Fo-0Nv" id="1OP-2p-w1f"/>
+                        <outlet property="btnSave" destination="tDD-eL-Ako" id="BSk-OJ-Qdr"/>
+                        <outlet property="txtFieldName" destination="6s2-JX-kl7" id="Icv-BE-RMa"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zeN-tY-Qk1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3791" y="-2397"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="15">
@@ -1269,7 +1682,7 @@
             <objects>
                 <viewController storyboardIdentifier="PlacesViewController" id="bW4-YI-b9c" customClass="PlacesViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yon-47-S9O">
-                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="bg_main.png" translatesAutoresizingMaskIntoConstraints="NO" id="9K9-XD-Nf4"/>
@@ -1313,7 +1726,7 @@
                             </tableView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="urM-mq-NV2">
                                 <items>
-                                    <barButtonItem systemItem="edit" id="BdL-eo-IG0">
+                                    <barButtonItem title="Edit" id="BdL-eo-IG0">
                                         <connections>
                                             <action selector="contributionEditClicked:" destination="bW4-YI-b9c" id="PBE-w1-BzR"/>
                                         </connections>
@@ -1462,24 +1875,6 @@
             </objects>
             <point key="canvasLocation" x="641" y="558"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="b88-R3-Sx8">
-            <objects>
-                <navigationController storyboardIdentifier="AddEditBeerTypeNav" id="msq-4Z-DMb" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="5fw-D4-uA5">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="bIn-gx-DGr" kind="relationship" relationship="rootViewController" id="pTd-TR-6Kl"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="hHh-lY-t3w" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2051" y="-2207"/>
-        </scene>
     </scenes>
     <resources>
         <image name="178-city.png" width="23" height="27"/>
@@ -1488,16 +1883,34 @@
         <image name="bg_main.png" width="641" height="960"/>
     </resources>
     <classes>
-        <class className="AddEditBeerTypeViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddEditBeerTypeViewController.h"/>
+        <class className="AddEditAreaViewController" superclassName="SimpleAddEditViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddEditAreaViewController.h"/>
+        </class>
+        <class className="AddEditBeerInPlaceViewController" superclassName="SimpleAddEditViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddEditBeerInPlaceViewController.h"/>
             <relationships>
-                <relationship kind="action" name="cancelClicked:"/>
-                <relationship kind="action" name="fieldNameValueChanged:"/>
-                <relationship kind="action" name="saveClicked:"/>
-                <relationship kind="outlet" name="btnCancel" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="btnSave" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="txtFieldName" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="lblBoxLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="tbSelection" candidateClass="UITableView"/>
             </relationships>
+        </class>
+        <class className="AddEditBeerInPlacesViewController" superclassName="SimpleAddEditViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddEditBeerInPlacesViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="lblBoxLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="tbSelection" candidateClass="UITableView"/>
+            </relationships>
+        </class>
+        <class className="AddEditBeerTypeViewController" superclassName="SimpleAddEditViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddEditBeerTypeViewController.h"/>
+        </class>
+        <class className="AddEditBreweryViewController" superclassName="SimpleAddEditViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddEditBreweryViewController.h"/>
+        </class>
+        <class className="AddEditCountryViewController" superclassName="SimpleAddEditViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddEditCountryViewController.h"/>
+        </class>
+        <class className="AddEditPlaceTypeViewController" superclassName="SimpleAddEditViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddEditPlaceTypeViewController.h"/>
         </class>
         <class className="BaseSearchAndRefreshTableViewController" superclassName="PullToRefreshViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/BaseSearchAndRefreshTableViewController.h"/>
@@ -1627,6 +2040,17 @@
                 <relationship kind="outlet" name="tbSettings" candidateClass="UITableView"/>
             </relationships>
         </class>
+        <class className="SimpleAddEditViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SimpleAddEditViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="cancelClicked:"/>
+                <relationship kind="action" name="fieldNameValueChanged:"/>
+                <relationship kind="action" name="saveClicked:"/>
+                <relationship kind="outlet" name="btnCancel" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="btnSave" candidateClass="UIBarButtonItem"/>
+                <relationship kind="outlet" name="txtFieldName" candidateClass="UITextField"/>
+            </relationships>
+        </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -1634,9 +2058,11 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="QAd-rP-OzB"/>
-        <segue reference="4T6-rQ-Bai"/>
         <segue reference="AHG-38-kl1"/>
+        <segue reference="tBD-v1-Z0u"/>
+        <segue reference="58t-Gu-oJf"/>
+        <segue reference="WRN-vJ-ljt"/>
         <segue reference="yew-Ol-X7Y"/>
+        <segue reference="woj-sx-4eM"/>
     </inferredMetricsTieBreakers>
 </document>

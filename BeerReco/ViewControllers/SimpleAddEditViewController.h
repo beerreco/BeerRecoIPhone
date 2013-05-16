@@ -16,6 +16,8 @@
 
 @property (nonatomic, strong) NSString* previousValue;
 
+@property (nonatomic, strong) NSString* textFieldPreviousValue;
+
 @property (nonatomic, strong) MBProgressHUD* HUD;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *btnCancel;
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *btnSave;
@@ -30,6 +32,7 @@
 -(void)innerVisualSetup;
 -(void)innerSetup;
 -(BOOL)innerFormValidation;
+-(BOOL)formValidation;
 -(void)saveItem:(id)object;
 
 #pragma mark - Public Methods

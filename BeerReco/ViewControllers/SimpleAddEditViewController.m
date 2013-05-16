@@ -64,6 +64,11 @@
     return YES;
 }
 
+-(BOOL)innerValidateEditedTextField:(id)sender
+{
+    return YES;
+}
+
 -(void)saveItem:(id)object
 {
     
@@ -80,6 +85,19 @@
     [alert show];
 }
 
+-(BOOL)formValidation
+{
+    BOOL isValid = ![NSString isNullOrEmpty:self.txtFieldName.text];
+    
+    isValid &= ![self.previousValue isEqualToString:self.txtFieldName.text];
+    
+    isValid &= [self innerFormValidation];
+    
+    [self.btnSave setEnabled:isValid];
+    
+    return isValid;
+}
+
 #pragma mark - Private Methods
 
 -(void)visualSetup
@@ -93,6 +111,7 @@
     if (![NSString isNullOrEmpty:self.previousValue])
     {
         self.txtFieldName.text = self.previousValue;
+        self.textFieldPreviousValue = self.previousValue;
     }
     
     [self formValidation];
@@ -105,16 +124,12 @@
     [self innerSetup];
 }
 
--(BOOL)formValidation
+-(BOOL)validateEditedTextField:(id)sender
 {
-    BOOL isValid = ![NSString isNullOrEmpty:self.txtFieldName.text];
+    BOOL isValid = YES;
     
-    isValid &= ![self.previousValue isEqualToString:self.txtFieldName.text];
+    isValid &= [self innerValidateEditedTextField:sender];
     
-    isValid &= [self innerFormValidation];
-    
-    [self.btnSave setEnabled:isValid];
- 
     return isValid;
 }
 
@@ -122,7 +137,16 @@
 
 - (IBAction)fieldNameValueChanged:(id)sender
 {
-    [self formValidation];
+    if (![self validateEditedTextField:sender])
+    {
+        self.txtFieldName.text = self.textFieldPreviousValue;
+    }
+    else
+    {
+        self.textFieldPreviousValue = self.txtFieldName.text;
+        
+        [self formValidation];
+    }
 }
 
 - (IBAction)cancelClicked:(id)sender

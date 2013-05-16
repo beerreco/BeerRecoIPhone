@@ -54,6 +54,25 @@
     [self showHideContributionToolBar];
 }
 
+-(void)setEditing:(BOOL)editing animated:(BOOL)animated
+{
+    if (editing)
+    {
+        [self.barBtnEdit setTitle:@"Done"];
+        [self.barBtnEdit setStyle:UIBarButtonItemStyleDone];
+        
+    }
+    else
+    {
+        [self.barBtnEdit setTitle:@"Edit"];
+        [self.barBtnEdit setStyle:UIBarButtonItemStyleBordered];
+    }
+    
+    [super setEditing:editing animated:animated];
+    
+    [self.tableView setEditing:editing animated:animated];
+}
+
 #pragma mark - Notifications Handlers
 
 -(void)facebookReceivedUser:(NSNotification*)notification
@@ -169,6 +188,13 @@
     [self.HUD hide:YES];
 }
 
+#pragma mark - Public Methods
+
+-(void)toggleEditMode
+{
+    [self setEditing:!self.editing animated:YES];
+}
+
 #pragma mark - Virtuals
 
 -(void)loadCurrentData
@@ -201,12 +227,32 @@
     return @"cell";
 }
 
+-(UITableViewCellEditingStyle)getTableCellEditingStyle
+{
+    return UITableViewCellEditingStyleNone;
+}
+
+-(BOOL)canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+-(BOOL)shouldIndentWhileEditing
+{
+    return NO;
+}
+
 -(void)setupCell:(UITableViewCell*)cell forIndexPath:(NSIndexPath *)indexPath withObject:(id)object
 {
     
 }
 
--(void)tableItemSelected:(NSIndexPath *)indexPath
+-(void)tableItemAccessoryClicked:(NSIndexPath *)indexPath
+{
+    
+}
+
+-(void)tableItemSelected:(NSIndexPath *)indexPath withObject:(id)object
 {
     
 }
@@ -218,12 +264,6 @@
 
 -(void)addNewItem
 {
-    
-}
-
--(void)toggleEditMode
-{
-    
 }
 
 #pragma mark - Action Handlers
@@ -250,6 +290,11 @@
 
 - (IBAction)contributionAddClicked:(UIBarButtonItem *)sender
 {
+    if (self.editing)
+    {
+        [self toggleEditMode];
+    }
+    
     [self addNewItem];
 }
 
@@ -342,6 +387,16 @@
     }
 }
 
+- (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [self shouldIndentWhileEditing];
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [self canEditRowAtIndexPath:indexPath];
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSString *CellIdentifier = [self getCellIdentifier];
@@ -374,7 +429,7 @@
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)aTableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return self.editing ? UITableViewCellEditingStyleDelete : UITableViewCellEditingStyleNone;
+    return [self getTableCellEditingStyle];;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -389,9 +444,25 @@
 
 #pragma mark - UITableViewDelegate
 
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    [self tableItemAccessoryClicked:indexPath];
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self tableItemSelected:indexPath];
+    id object;
+    
+    if (tableView == self.searchDisplayController.searchResultsTableView)
+	{
+        object = [self.filteredItemArray objectAtIndex:indexPath.row];
+    }
+	else
+	{
+        object = [self.itemsArray objectAtIndex:indexPath.row];
+    }
+    
+    [self tableItemSelected:indexPath withObject:object];
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

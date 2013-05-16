@@ -56,6 +56,15 @@
     return YES;
 }
 
+-(BOOL)innerValidateEditedTextField:(id)sender
+{
+    BOOL isValid = YES;
+    
+    isValid &= self.txtFieldName.text.length < 40;
+    
+    return isValid;
+}
+
 -(void)saveItem:(id)object
 {
     if (self.editedItem)

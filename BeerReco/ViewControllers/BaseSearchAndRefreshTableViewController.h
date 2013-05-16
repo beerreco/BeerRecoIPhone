@@ -36,7 +36,7 @@
 -(NSString*)getSearchablePropertyName;
 -(NSString*)getCellIdentifier;
 -(void)setupCell:(UITableViewCell*)cell forIndexPath:(NSIndexPath *)indexPath withObject:(id)object;
--(void)tableItemSelected:(NSIndexPath *)indexPath;
+-(void)tableItemSelected:(NSIndexPath *)indexPath withObject:(id)object;
 -(void)prepareForSegue:(UIStoryboardSegue *)segue withObject:(id)object;
 -(void)addNewItem;
 -(void)toggleEditMode;

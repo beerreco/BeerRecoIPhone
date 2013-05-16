@@ -10,7 +10,17 @@
 
 #import "BaseSearchAndRefreshTableViewController.h"
 
+@protocol PlaceSelectionDelegate <NSObject>
+
+-(void)selectedPlace:(PlaceViewM*)placeView;
+
+@end
+
 @interface PlaceAreasViewController : BaseSearchAndRefreshTableViewController
+
+@property (nonatomic) BOOL placeSelectionMode;
+
+@property (nonatomic, weak) id<PlaceSelectionDelegate> placeSelectionDelegate;
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segPlaceFiltering;
 

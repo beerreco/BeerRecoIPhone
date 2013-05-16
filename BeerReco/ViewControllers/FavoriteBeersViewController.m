@@ -26,7 +26,7 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
-- (void)viewDid
+- (void)viewDidLoad
 {
     [self visualSetup];
     
@@ -114,7 +114,7 @@
         else
         {
             [self.btnEditFaforites setTitle:@"Edit"];
-            [self.btnEditFaforites setStyle:UIBarButtonItemStylePlain];
+            [self.btnEditFaforites setStyle:UIBarButtonItemStyleBordered];
         }
     }
 }
@@ -177,6 +177,16 @@
     return [super getCellIdentifier];
 }
 
+-(UITableViewCellEditingStyle)getTableCellEditingStyle
+{
+    return self.editing ? UITableViewCellEditingStyleDelete : UITableViewCellEditingStyleNone;
+}
+
+-(BOOL)shouldIndentWhileEditing
+{
+    return YES;
+}
+
 -(void)setupCell:(UITableViewCell*)cell forIndexPath:(NSIndexPath *)indexPath withObject:(id)object
 {
     [cell.detailTextLabel setText:@""];
@@ -226,7 +236,7 @@
     [cell setEditingAccessoryType:UITableViewCellAccessoryNone];
 }
 
--(void)tableItemSelected:(NSIndexPath *)indexPath
+-(void)tableItemSelected:(NSIndexPath *)indexPath withObject:(id)object
 {
     [self performSegueWithIdentifier:@"BeerDetailsSegue" sender:nil];
 }

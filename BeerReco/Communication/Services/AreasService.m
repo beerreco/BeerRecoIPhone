@@ -18,6 +18,7 @@
 
 #define QueryParam_PlaceID @"placeId"
 #define QueryParam_Area @"area"
+#define QueryParam_FieldUpdateData @"fieldUpdateData"
 
 #define ResultPath_Areas @"areas"
 #define ResultPath_Places @"places"
@@ -133,7 +134,7 @@
         return;
     }
     
-    NSDictionary* params = @{QueryParam_Area:[fieldUpdateData ToDictionary]};
+    NSDictionary* params = @{QueryParam_FieldUpdateData:[fieldUpdateData ToDictionary]};
     
     NSString* path = [NSString stringWithFormat:@"%@/%@", ServicePath_Areas, PathParam_Update];
     

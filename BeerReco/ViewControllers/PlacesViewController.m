@@ -57,7 +57,16 @@
 
 -(void)visualSetup
 {
-    self.navigationItem.title = self.parentArea.name;
+    if (self.parentArea)
+    {
+        self.navigationItem.title = self.parentArea.name;
+    }
+    else if (self.parentPlaceType)
+    {
+        self.navigationItem.title = self.parentPlaceType.name;
+    }
+    
+    [self.barBtnEdit setEnabled:NO];
 }
 
 -(void)setup
@@ -115,6 +124,9 @@
 
 -(void)setupCell:(UITableViewCell*)cell forIndexPath:(NSIndexPath *)indexPath withObject:(id)object
 {
+    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+    [cell setEditingAccessoryType:UITableViewCellAccessoryNone];
+    
     [cell.detailTextLabel setText:@""];
     [cell.imageView setImage:nil];
     
@@ -147,12 +159,9 @@
         NSString* imageUrl = [BeerRecoAPIClient getFullPathForFile:placeView.place.placeIconUrl];
         [cell.imageView setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"place_icon_default"]];
     }
-    
-    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-    [cell setEditingAccessoryType:UITableViewCellAccessoryNone];
 }
 
--(void)tableItemSelected:(NSIndexPath *)indexPath
+-(void)tableItemSelected:(NSIndexPath *)indexPath withObject:(id)object
 {
     [self performSegueWithIdentifier:@"PlaceDetailsSegue" sender:nil];
 }

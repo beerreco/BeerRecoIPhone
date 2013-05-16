@@ -77,6 +77,8 @@
     {
         self.navigationItem.title = [NSString stringWithFormat:@"Similar to '%@'", self.beerView.beer.name];
     }
+    
+    [self.barBtnEdit setEnabled:NO];
 }
 
 -(void)setup
@@ -84,6 +86,11 @@
 }
 
 #pragma mark - BaseSearchAndRefreshTableViewController
+
+-(BOOL)canShowContributionToolBar
+{
+    return self.beerView ? NO : YES;
+}
 
 -(void)loadCurrentData
 {
@@ -145,11 +152,6 @@
     }
 }
 
--(BOOL)canShowContributionToolBar
-{
-    return self.beerView ? NO :YES;
-}
-
 -(NSString*)getSortingKeyPath
 {
     return @"beer.name";
@@ -167,6 +169,9 @@
 
 -(void)setupCell:(UITableViewCell*)cell forIndexPath:(NSIndexPath *)indexPath withObject:(id)object
 {
+    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+    [cell setEditingAccessoryType:UITableViewCellAccessoryNone];
+    
     [cell.detailTextLabel setText:@""];
     [cell.imageView setImage:nil];
     
@@ -209,12 +214,9 @@
         NSString* imageUrl = [BeerRecoAPIClient getFullPathForFile:beerView.beer.beerIconUrl];
         [cell.imageView setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"beer_icon_default"]];
     }    
-    
-    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-    [cell setEditingAccessoryType:UITableViewCellAccessoryNone];
 }
 
--(void)tableItemSelected:(NSIndexPath *)indexPath
+-(void)tableItemSelected:(NSIndexPath *)indexPath withObject:(id)object
 {
     [self performSegueWithIdentifier:@"BeerDetailsSegue" sender:nil];
 }

@@ -12,7 +12,17 @@
 #import "BeerM.h"
 #import "BeerTypeM.h"
 
+@protocol BeerSelectionDelegate <NSObject>
+
+-(void)selectedBeer:(BeerViewM*)beerView;
+
+@end
+
 @interface BeerCategoriesViewController : BaseSearchAndRefreshTableViewController
+
+@property (nonatomic) BOOL beerSelectionMode;
+
+@property (nonatomic, weak) id<BeerSelectionDelegate> beerSelectionDelegate;
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *segCategories;
 

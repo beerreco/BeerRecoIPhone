@@ -9,6 +9,7 @@
 #import "BeersInPlaceViewController.h"
 
 #import "BeerDetailsViewController.h"
+#import "AddEditBeerInPlaceViewController.h"
 
 @interface BeersInPlaceViewController ()
 
@@ -100,6 +101,9 @@
 
 -(void)setupCell:(UITableViewCell*)cell forIndexPath:(NSIndexPath *)indexPath withObject:(id)object
 {
+    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+    [cell setEditingAccessoryType:UITableViewCellAccessoryDetailDisclosureButton];
+    
     [cell.detailTextLabel setText:@""];
     [cell.imageView setImage:nil];
     
@@ -126,12 +130,23 @@
         NSString* imageUrl = [BeerRecoAPIClient getFullPathForFile:beerInPlaceView.beerView.beer.beerIconUrl];
         [cell.imageView setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"beer_icon_default"]];
     }
-    
-    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-    [cell setEditingAccessoryType:UITableViewCellAccessoryNone];
 }
 
--(void)tableItemSelected:(NSIndexPath *)indexPath
+-(void)tableItemAccessoryClicked:(NSIndexPath *)indexPath
+{
+    UINavigationController* navController = [[UINavigationController alloc] init];
+    
+    AddEditBeerInPlaceViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"AddEditBeerInPlaceViewController"];
+    
+    vc.editedItem = [self.itemsArray objectAtIndex:indexPath.row];
+    vc.placeView = self.placeView;
+    
+    [navController setViewControllers:@[vc]];
+    
+    [self presentModalViewController:navController animated:YES];
+}
+
+-(void)tableItemSelected:(NSIndexPath *)indexPath withObject:(id)object
 {
     [self performSegueWithIdentifier:@"BeerDetailsSegue" sender:nil];
 }
@@ -148,6 +163,19 @@
             beerDetailsViewController.beerView = beerInPlaceViewM.beerView;
         }
     }
+}
+
+-(void)addNewItem
+{
+    UINavigationController* navController = [[UINavigationController alloc] init];
+    
+    AddEditBeerInPlaceViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"AddEditBeerInPlaceViewController"];
+    
+    vc.placeView = self.placeView;
+    
+    [navController setViewControllers:@[vc]];
+    
+    [self presentModalViewController:navController animated:YES];
 }
 
 @end

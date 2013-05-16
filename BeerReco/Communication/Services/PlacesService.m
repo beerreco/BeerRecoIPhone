@@ -20,6 +20,7 @@
 
 #define QueryParam_Place @"place"
 #define QueryParam_BeerInPlace @"beerInPlace"
+#define QueryParam_FieldUpdateData @"fieldUpdateData"
 
 #define ResultPath_Places @"places"
 #define ResultPath_Items @"items"
@@ -140,7 +141,7 @@
         return;
     }
     
-    NSDictionary* params = @{QueryParam_Place:[fieldUpdateData ToDictionary]};
+    NSDictionary* params = @{QueryParam_FieldUpdateData:[fieldUpdateData ToDictionary]};
     
     NSString* path = [NSString stringWithFormat:@"%@/%@", ServicePath_Places, PathParam_Update];
     
@@ -204,7 +205,33 @@
 
 -(void)updateBeerInPlace:(FieldUpdateDataM*)fieldUpdateData onComplete:(void (^)(NSError *error))onComplete
 {
+    if (fieldUpdateData == nil)
+    {
+        if (onComplete)
+        {
+            onComplete([NSError errorWithDomain:@"" code:-1 userInfo:nil]);
+        }
+        
+        return;
+    }
     
+    NSDictionary* params = @{QueryParam_FieldUpdateData:[fieldUpdateData ToDictionary]};
+    
+    NSString* path = [NSString stringWithFormat:@"%@/%@", ServicePath_BeerInPlace, PathParam_Update];
+    
+    [[BeerRecoAPIClient sharedClient] putPath:path parameters:params success:^(AFHTTPRequestOperation *operation, id JSON)
+     {
+         if (onComplete)
+         {
+             onComplete(nil);
+         }
+     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         if (onComplete)
+         {
+             onComplete(error);
+         }
+     }];
 }
 
 @end

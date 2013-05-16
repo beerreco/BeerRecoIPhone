@@ -18,6 +18,7 @@
 
 #define QueryParam_BeerID @"beerId"
 #define QueryParam_Country @"country"
+#define QueryParam_FieldUpdateData @"fieldUpdateData"
 
 #define ResultPath_Countries @"countries"
 #define ResultPath_Beers @"beers"
@@ -133,7 +134,7 @@
         return;
     }
     
-    NSDictionary* params = @{QueryParam_Country:[fieldUpdateData ToDictionary]};
+    NSDictionary* params = @{QueryParam_FieldUpdateData:[fieldUpdateData ToDictionary]};
     
     NSString* path = [NSString stringWithFormat:@"%@/%@", ServicePath_Countries, PathParam_Update];
     

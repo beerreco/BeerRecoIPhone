@@ -8,6 +8,9 @@
 
 #import "PlaceAreasViewController.h"
 #import "PlacesViewController.h"
+#import "AddEditAreaViewController.h"
+#import "AddEditPlaceTypeViewController.h"
+#import "AddEditPlaceViewController.h"
 
 @interface PlaceAreasViewController ()
 
@@ -47,8 +50,17 @@
 #pragma mark - Private Methods
 
 -(void)visualSetup
-{
-    self.navigationItem.title = @"Areas";
+{   
+    if (self.placeSelectionMode)
+    {
+        self.navigationItem.titleView = nil;
+        
+        self.navigationItem.title = @"Place Selection";
+    }
+    else
+    {
+        self.navigationItem.title = @"Place Categories";
+    }
 }
 
 -(void)setup
@@ -57,9 +69,14 @@
 
 #pragma mark - BaseSearchAndRefreshTableViewController
 
+-(BOOL)canShowContributionToolBar
+{
+    return self.placeSelectionMode ? NO : YES;
+}
+
 -(void)loadCurrentData
 {
-    if (self.segPlaceFiltering.selectedSegmentIndex == 0)
+    if (self.segPlaceFiltering && self.segPlaceFiltering.selectedSegmentIndex == 0)
     {
         [[ComServices sharedComServices].areasService getAllAreas:^(NSMutableArray *areas, NSError *error)
          {
@@ -73,7 +90,7 @@
              }
          }];
     }
-    else if (self.segPlaceFiltering.selectedSegmentIndex == 1)
+    else if (self.segPlaceFiltering &&self.segPlaceFiltering.selectedSegmentIndex == 1)
     {
         [[ComServices sharedComServices].placeTypeService getAllPlaceTypes:^(NSMutableArray *placeTypes, NSError *error)
         {   
@@ -87,7 +104,8 @@
              }
          }];
     }
-    else if (self.segPlaceFiltering.selectedSegmentIndex == 2)
+    else if ((self.segPlaceFiltering && self.segPlaceFiltering.selectedSegmentIndex == 2) ||
+             self.placeSelectionMode)
     {
         [[ComServices sharedComServices].placesService getAllPlaces:^(NSMutableArray *places, NSError *error)
          {
@@ -105,7 +123,8 @@
 
 -(NSString*)getSortingKeyPath
 {
-    if (self.segPlaceFiltering.selectedSegmentIndex == 2)
+    if ((self.segPlaceFiltering && self.segPlaceFiltering.selectedSegmentIndex == 2) ||
+        self.placeSelectionMode)
     {
         return @"place.name";
     }
@@ -117,7 +136,8 @@
 
 -(NSString*)getSearchablePropertyName
 {
-    if (self.segPlaceFiltering.selectedSegmentIndex == 2)
+    if ((self.segPlaceFiltering && self.segPlaceFiltering.selectedSegmentIndex == 2) ||
+        self.placeSelectionMode)
     {
         return @"place.name";
     }
@@ -134,6 +154,17 @@
 
 -(void)setupCell:(UITableViewCell*)cell forIndexPath:(NSIndexPath *)indexPath withObject:(id)object
 {
+    if (self.placeSelectionMode)
+    {
+        [cell setAccessoryType:UITableViewCellAccessoryNone];
+        [cell setEditingAccessoryType:UITableViewCellAccessoryNone];
+    }
+    else
+    {
+        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+        [cell setEditingAccessoryType:UITableViewCellAccessoryDetailDisclosureButton];
+    }
+    
     [cell.detailTextLabel setText:@""];
     [cell.imageView setImage:nil];
     
@@ -179,20 +210,50 @@
         NSString* imageUrl = [BeerRecoAPIClient getFullPathForFile:placeView.place.placeIconUrl];
         [cell.imageView setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"place_icon_default"]];
     }
-    
-    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-    [cell setEditingAccessoryType:UITableViewCellAccessoryNone];
 }
 
--(void)tableItemSelected:(NSIndexPath *)indexPath
+-(void)tableItemAccessoryClicked:(NSIndexPath *)indexPath
 {
-    if (self.segPlaceFiltering.selectedSegmentIndex == 2)
+    UINavigationController* navController = [[UINavigationController alloc] init];
+    
+    if (self.segPlaceFiltering.selectedSegmentIndex == 0)
     {
-        [self performSegueWithIdentifier:@"PlaceDetailsSegue" sender:nil];
+        AddEditAreaViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"AddEditAreaViewController"];
+
+        vc.editedItem = [self.itemsArray objectAtIndex:indexPath.row];
+        
+        [navController setViewControllers:@[vc]];
+    }
+    else if (self.segPlaceFiltering.selectedSegmentIndex == 1)
+    {
+        AddEditPlaceTypeViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"AddEditPlaceTypeViewController"];
+        
+        vc.editedItem = [self.itemsArray objectAtIndex:indexPath.row];
+        
+        [navController setViewControllers:@[vc]];
+    }
+    
+    [self presentModalViewController:navController animated:YES];
+}
+
+-(void)tableItemSelected:(NSIndexPath *)indexPath withObject:(id)object
+{
+    if (self.placeSelectionMode)
+    {
+        [self.placeSelectionDelegate selectedPlace:object];
+        
+        [self.navigationController popViewControllerAnimated:YES];
     }
     else
     {
-        [self performSegueWithIdentifier:@"PlacesInAreaSegue" sender:nil];
+        if (self.segPlaceFiltering && self.segPlaceFiltering.selectedSegmentIndex == 2)
+        {
+            [self performSegueWithIdentifier:@"PlaceDetailsSegue" sender:nil];
+        }
+        else
+        {
+            [self performSegueWithIdentifier:@"PlacesInAreaSegue" sender:nil];
+        }
     }
 }
 
@@ -226,10 +287,43 @@
     }
 }
 
+-(void)addNewItem
+{
+    UINavigationController* navController = [[UINavigationController alloc] init];
+    
+    if (self.segPlaceFiltering.selectedSegmentIndex == 0)
+    {
+        AddEditAreaViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"AddEditAreaViewController"];
+        
+        [navController setViewControllers:@[vc]];
+    }
+    else if (self.segPlaceFiltering.selectedSegmentIndex == 1)
+    {
+        AddEditPlaceTypeViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"AddEditPlaceTypeViewController"];
+        
+        [navController setViewControllers:@[vc]];
+    }
+    else if (self.segPlaceFiltering.selectedSegmentIndex == 2)
+    {
+        AddEditPlaceViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"AddEditPlaceViewController"];
+        
+        [navController setViewControllers:@[vc]];
+    }
+    
+    [self presentModalViewController:navController animated:YES];
+}
+
 #pragma mark - Action Handlers
 
 - (IBAction)placeFilteringValueChanged:(id)sender
 {
+    if (self.editing)
+    {
+        [super toggleEditMode];
+    }
+    
+    [self.barBtnEdit setEnabled:self.segPlaceFiltering.selectedSegmentIndex != 2];
+    
     if (self.loadErrorViewController)
     {
         [self.loadErrorViewController removeFloatingViewControllerFromParent:^(BOOL finished)

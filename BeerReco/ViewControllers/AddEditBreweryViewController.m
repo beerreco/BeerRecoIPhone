@@ -37,8 +37,8 @@
 
 -(void)innerVisualSetup
 {
-    self.viewTitle = @"Beer Type";
-    self.textFieldPlaceHolder = @"Beer Type";
+    self.viewTitle = @"Brewery";
+    self.textFieldPlaceHolder = @"Brewery";
     
     if (self.editedItem)
     {
@@ -54,6 +54,15 @@
 -(BOOL)innerFormValidation
 {
     return YES;
+}
+
+-(BOOL)innerValidateEditedTextField:(id)sender
+{
+    BOOL isValid = YES;
+    
+    isValid &= self.txtFieldName.text.length < 40;
+    
+    return isValid;
 }
 
 -(void)saveItem:(id)object

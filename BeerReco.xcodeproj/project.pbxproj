@@ -142,6 +142,8 @@
 		84E5F1E41743D9A700BFB703 /* AddEditPlaceTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E5F1E31743D9A700BFB703 /* AddEditPlaceTypeViewController.m */; };
 		84E5F1E71743D9B800BFB703 /* AddEditPlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E5F1E61743D9B800BFB703 /* AddEditPlaceViewController.m */; };
 		84E5F1EA1743D9C900BFB703 /* AddEditAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E5F1E91743D9C900BFB703 /* AddEditAreaViewController.m */; };
+		84E5F1ED1745051400BFB703 /* AddEditBeerInPlacesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E5F1EC1745051300BFB703 /* AddEditBeerInPlacesViewController.m */; };
+		84E5F1F0174523ED00BFB703 /* AddEditBeerInPlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E5F1EF174523ED00BFB703 /* AddEditBeerInPlaceViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -371,6 +373,10 @@
 		84E5F1E61743D9B800BFB703 /* AddEditPlaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddEditPlaceViewController.m; path = ViewControllers/AddEditPlaceViewController.m; sourceTree = "<group>"; };
 		84E5F1E81743D9C900BFB703 /* AddEditAreaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddEditAreaViewController.h; path = ViewControllers/AddEditAreaViewController.h; sourceTree = "<group>"; };
 		84E5F1E91743D9C900BFB703 /* AddEditAreaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddEditAreaViewController.m; path = ViewControllers/AddEditAreaViewController.m; sourceTree = "<group>"; };
+		84E5F1EB1745051200BFB703 /* AddEditBeerInPlacesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddEditBeerInPlacesViewController.h; path = ViewControllers/AddEditBeerInPlacesViewController.h; sourceTree = "<group>"; };
+		84E5F1EC1745051300BFB703 /* AddEditBeerInPlacesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddEditBeerInPlacesViewController.m; path = ViewControllers/AddEditBeerInPlacesViewController.m; sourceTree = "<group>"; };
+		84E5F1EE174523EC00BFB703 /* AddEditBeerInPlaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddEditBeerInPlaceViewController.h; path = ViewControllers/AddEditBeerInPlaceViewController.h; sourceTree = "<group>"; };
+		84E5F1EF174523ED00BFB703 /* AddEditBeerInPlaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddEditBeerInPlaceViewController.m; path = ViewControllers/AddEditBeerInPlaceViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -823,6 +829,8 @@
 				84E5F1DC1743D97100BFB703 /* AddEditCountryViewController.m */,
 				84E5F1DE1743D98900BFB703 /* AddEditBeerViewController.h */,
 				84E5F1DF1743D98A00BFB703 /* AddEditBeerViewController.m */,
+				84E5F1EB1745051200BFB703 /* AddEditBeerInPlacesViewController.h */,
+				84E5F1EC1745051300BFB703 /* AddEditBeerInPlacesViewController.m */,
 			);
 			name = AddEdit;
 			sourceTree = "<group>";
@@ -836,6 +844,8 @@
 				84E5F1E61743D9B800BFB703 /* AddEditPlaceViewController.m */,
 				84E5F1E81743D9C900BFB703 /* AddEditAreaViewController.h */,
 				84E5F1E91743D9C900BFB703 /* AddEditAreaViewController.m */,
+				84E5F1EE174523EC00BFB703 /* AddEditBeerInPlaceViewController.h */,
+				84E5F1EF174523ED00BFB703 /* AddEditBeerInPlaceViewController.m */,
 			);
 			name = AddEdit;
 			sourceTree = "<group>";
@@ -1071,6 +1081,8 @@
 				84E5F1E41743D9A700BFB703 /* AddEditPlaceTypeViewController.m in Sources */,
 				84E5F1E71743D9B800BFB703 /* AddEditPlaceViewController.m in Sources */,
 				84E5F1EA1743D9C900BFB703 /* AddEditAreaViewController.m in Sources */,
+				84E5F1ED1745051400BFB703 /* AddEditBeerInPlacesViewController.m in Sources */,
+				84E5F1F0174523ED00BFB703 /* AddEditBeerInPlaceViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

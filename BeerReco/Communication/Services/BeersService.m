@@ -18,6 +18,7 @@
 #define PathParam_Places @"places"
 #define PathParam_Similar @"similar"
 
+#define QueryParam_FieldUpdateData @"fieldUpdateData"
 #define QueryParam_Beer @"beer"
 
 #define ResultPath_Beers @"beers"
@@ -176,7 +177,7 @@
         return;
     }
     
-    NSDictionary* params = @{QueryParam_Beer:[fieldUpdateData ToDictionary]};
+    NSDictionary* params = @{QueryParam_FieldUpdateData:[fieldUpdateData ToDictionary]};
     
     NSString* path = [NSString stringWithFormat:@"%@/%@", ServicePath_Beers, PathParam_Update];
     

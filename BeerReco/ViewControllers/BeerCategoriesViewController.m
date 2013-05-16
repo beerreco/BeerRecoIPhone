@@ -9,6 +9,9 @@
 #import "BeerCategoriesViewController.h"
 #import "beersViewController.h"
 #import "AddEditBeerTypeViewController.h"
+#import "AddEditBreweryViewController.h"
+#import "AddEditCountryViewController.h"
+#import "AddEditBeerViewController.h"
 
 @interface BeerCategoriesViewController ()
 
@@ -49,7 +52,16 @@
 
 -(void)visualSetup
 {
-    self.navigationItem.title = @"Categories";
+    if (self.beerSelectionMode)
+    {
+        self.navigationItem.titleView = nil;
+        
+        self.navigationItem.title = @"Beer Selection";
+    }
+    else
+    {
+        self.navigationItem.title = @"Beer Categories";
+    }
 }
 
 -(void)setup
@@ -58,9 +70,14 @@
 
 #pragma mark - BaseSearchAndRefreshTableViewController
 
+-(BOOL)canShowContributionToolBar
+{
+    return self.beerSelectionMode ? NO : YES;
+}
+
 -(void)loadCurrentData
 {
-    if (self.segCategories.selectedSegmentIndex == 0)
+    if (self.segCategories && self.segCategories.selectedSegmentIndex == 0)
     {
         [[ComServices sharedComServices].beerTypesService getAllBeerTypes:^(NSMutableArray *beerTypes, NSError *error)
         {            
@@ -74,7 +91,7 @@
              }
          }];
     }
-    else if (self.segCategories.selectedSegmentIndex == 1)
+    else if (self.segCategories && self.segCategories.selectedSegmentIndex == 1)
     {
         [[ComServices sharedComServices].originCountryService getAllOriginCountries:^(NSMutableArray *countries, NSError *error)
          {
@@ -88,7 +105,7 @@
              }
          }];
     }
-    else if (self.segCategories.selectedSegmentIndex == 2)
+    else if (self.segCategories && self.segCategories.selectedSegmentIndex == 2)
     {
         [[ComServices sharedComServices].breweryService getAllBreweries:^(NSMutableArray *breweries, NSError *error)
          {            
@@ -102,7 +119,7 @@
              }
          }];
     }
-    else if (self.segCategories.selectedSegmentIndex == 3)
+    else if ((self.segCategories && self.segCategories.selectedSegmentIndex == 3) || self.beerSelectionMode)
     {
         [[ComServices sharedComServices].beersService getAllBeers:^(NSMutableArray *beers, NSError *error)
          {
@@ -120,7 +137,7 @@
 
 -(NSString*)getSortingKeyPath
 {
-    if (self.segCategories.selectedSegmentIndex == 3)
+    if ((self.segCategories && self.segCategories.selectedSegmentIndex == 3) || self.beerSelectionMode)
     {
         return @"beer.name";
     }
@@ -132,7 +149,7 @@
 
 -(NSString*)getSearchablePropertyName
 {
-    if (self.segCategories.selectedSegmentIndex == 3)
+    if ((self.segCategories && self.segCategories.selectedSegmentIndex == 3) || self.beerSelectionMode)
     {
         return @"beer.name";
     }
@@ -149,6 +166,17 @@
 
 -(void)setupCell:(UITableViewCell*)cell forIndexPath:(NSIndexPath *)indexPath withObject:(id)object
 {
+    if (self.beerSelectionMode)
+    {
+        [cell setAccessoryType:UITableViewCellAccessoryNone];
+        [cell setEditingAccessoryType:UITableViewCellAccessoryNone];
+    }
+    else
+    {
+        [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+        [cell setEditingAccessoryType:UITableViewCellAccessoryDetailDisclosureButton];
+    }
+    
     [cell.detailTextLabel setText:@""];
     [cell.imageView setImage:nil];
     
@@ -212,20 +240,58 @@
         NSString* imageUrl = [BeerRecoAPIClient getFullPathForFile:beerView.beer.beerIconUrl];
         [cell.imageView setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"beer_icon_default"]];
     }
-    
-    [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-    [cell setEditingAccessoryType:UITableViewCellAccessoryNone];
 }
 
--(void)tableItemSelected:(NSIndexPath *)indexPath
+-(void)tableItemAccessoryClicked:(NSIndexPath *)indexPath
 {
-    if (self.segCategories.selectedSegmentIndex == 3)
+    UINavigationController* navController = [[UINavigationController alloc] init];
+    
+    if (self.segCategories.selectedSegmentIndex == 0)
     {
-        [self performSegueWithIdentifier:@"BeerDetailsSegue" sender:nil];
+        AddEditBeerTypeViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"AddEditBeerTypeViewController"];
+        
+        vc.editedItem = [self.itemsArray objectAtIndex:indexPath.row];
+        
+        [navController setViewControllers:@[vc]];
+    }
+    else if (self.segCategories.selectedSegmentIndex == 1)
+    {
+        AddEditCountryViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"AddEditCountryViewController"];
+        
+        vc.editedItem = [self.itemsArray objectAtIndex:indexPath.row];
+        
+        [navController setViewControllers:@[vc]];
+    }
+    else if (self.segCategories.selectedSegmentIndex == 2)
+    {
+        AddEditBreweryViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"AddEditBreweryViewController"];
+        
+        vc.editedItem = [self.itemsArray objectAtIndex:indexPath.row];
+        
+        [navController setViewControllers:@[vc]];
+    }
+    
+    [self presentModalViewController:navController animated:YES];
+}
+
+-(void)tableItemSelected:(NSIndexPath *)indexPath withObject:(id)object
+{
+    if (self.beerSelectionMode)
+    {
+        [self.beerSelectionDelegate selectedBeer:object];
+        
+        [self.navigationController popViewControllerAnimated:YES];
     }
     else
     {
-        [self performSegueWithIdentifier:@"BeersInCategorySegue" sender:nil];
+        if (self.segCategories && self.segCategories.selectedSegmentIndex == 3)
+        {
+            [self performSegueWithIdentifier:@"BeerDetailsSegue" sender:nil];
+        }
+        else
+        {
+            [self performSegueWithIdentifier:@"BeersInCategorySegue" sender:nil];
+        }
     }
 }
 
@@ -278,29 +344,37 @@
     }
     else if (self.segCategories.selectedSegmentIndex == 1)
     {
+        AddEditCountryViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"AddEditCountryViewController"];
         
+        [navController setViewControllers:@[vc]];
     }
     else if (self.segCategories.selectedSegmentIndex == 2)
     {
+        AddEditBreweryViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"AddEditBreweryViewController"];
         
+        [navController setViewControllers:@[vc]];
     }
     else if (self.segCategories.selectedSegmentIndex == 3)
     {
+        AddEditBeerViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"AddEditBeerViewController"];
         
+        [navController setViewControllers:@[vc]];
     }
     
     [self presentModalViewController:navController animated:YES];
-}
-
--(void)toggleEditMode
-{
-    
 }
 
 #pragma mark - Action Handlers
 
 - (IBAction)categorySegValueChanged:(id)sender
 {
+    if (self.editing)
+    {
+        [super toggleEditMode];
+    }
+
+    [self.barBtnEdit setEnabled:self.segCategories.selectedSegmentIndex != 3];
+    
     if (self.loadErrorViewController)
     {
         [self.loadErrorViewController removeFloatingViewControllerFromParent:^(BOOL finished)
