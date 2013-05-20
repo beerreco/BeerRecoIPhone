@@ -136,7 +136,6 @@
         
         [cell.textLabel setText:placeView.place.name];
         
-        
         NSString* details = @"";
         
         if (placeView.area)

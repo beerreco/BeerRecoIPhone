@@ -108,14 +108,6 @@
     [self loadData];
 }
 
--(void)showHideContributionToolBar
-{    
-    BOOL showBar = self.canShowContributionToolBar && [GeneralDataStore sharedDataStore].contributionAllowed;
-    
-    [self.buttomToolBar setHidden:!showBar];
-    self.tableToButtomConstraint.constant = (showBar ? 44 : 0);
-}
-
 -(void)hideSearchBar
 {
     // Hide the search bar until user scrolls up
@@ -190,9 +182,30 @@
 
 #pragma mark - Public Methods
 
+-(void)showHideContributionToolBar
+{
+    BOOL showBar = self.canShowContributionToolBar && [GeneralDataStore sharedDataStore].contributionAllowed;
+    
+    [self.buttomToolBar setHidden:!showBar];
+    self.tableToButtomConstraint.constant = (showBar ? 44 : 0);
+}
+
 -(void)toggleEditMode
 {
     [self setEditing:!self.editing animated:YES];
+}
+
+-(UIButton*)makeDetailDisclosureButton
+{
+    UIButton * button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+
+    [button setImage:[UIImage imageNamed:@"edit_icon"] forState:UIControlStateNormal];
+    
+    [button addTarget: self
+               action: @selector(accessoryButtonTapped:withEvent:)
+     forControlEvents: UIControlEventTouchUpInside];
+    
+    return button;
 }
 
 #pragma mark - Virtuals
@@ -296,6 +309,15 @@
     }
     
     [self addNewItem];
+}
+
+- (void)accessoryButtonTapped:(UIControl*)button withEvent:(UIEvent*)event
+{
+    NSIndexPath * indexPath = [self.tableView indexPathForRowAtPoint:[[[event touchesForView: button] anyObject] locationInView: self.tableView]];
+    if ( indexPath == nil )
+        return;
+    
+    [self.tableView.delegate tableView: self.tableView accessoryButtonTappedForRowWithIndexPath: indexPath];
 }
 
 #pragma mark Content Filtering

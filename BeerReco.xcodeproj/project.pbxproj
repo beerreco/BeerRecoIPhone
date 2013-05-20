@@ -144,6 +144,8 @@
 		84E5F1EA1743D9C900BFB703 /* AddEditAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E5F1E91743D9C900BFB703 /* AddEditAreaViewController.m */; };
 		84E5F1ED1745051400BFB703 /* AddEditBeerInPlacesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E5F1EC1745051300BFB703 /* AddEditBeerInPlacesViewController.m */; };
 		84E5F1F0174523ED00BFB703 /* AddEditBeerInPlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E5F1EF174523ED00BFB703 /* AddEditBeerInPlaceViewController.m */; };
+		84E5F1F3174A82EE00BFB703 /* edit_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 84E5F1F1174A82EE00BFB703 /* edit_icon.png */; };
+		84E5F1F4174A82EE00BFB703 /* edit_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 84E5F1F2174A82EE00BFB703 /* edit_icon@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -377,6 +379,8 @@
 		84E5F1EC1745051300BFB703 /* AddEditBeerInPlacesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddEditBeerInPlacesViewController.m; path = ViewControllers/AddEditBeerInPlacesViewController.m; sourceTree = "<group>"; };
 		84E5F1EE174523EC00BFB703 /* AddEditBeerInPlaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddEditBeerInPlaceViewController.h; path = ViewControllers/AddEditBeerInPlaceViewController.h; sourceTree = "<group>"; };
 		84E5F1EF174523ED00BFB703 /* AddEditBeerInPlaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddEditBeerInPlaceViewController.m; path = ViewControllers/AddEditBeerInPlaceViewController.m; sourceTree = "<group>"; };
+		84E5F1F1174A82EE00BFB703 /* edit_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = edit_icon.png; path = Resources/Images/edit_icon.png; sourceTree = "<group>"; };
+		84E5F1F2174A82EE00BFB703 /* edit_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "edit_icon@2x.png"; path = "Resources/Images/edit_icon@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -556,6 +560,8 @@
 		84B58C6716DB8DA60097CD67 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				84E5F1F1174A82EE00BFB703 /* edit_icon.png */,
+				84E5F1F2174A82EE00BFB703 /* edit_icon@2x.png */,
 				84E5F1CA1742F7AC00BFB703 /* comments_button_bg.png */,
 				84E5F1CB1742F7AC00BFB703 /* comments_button_bg@2x.png */,
 				84E5F1C61742ED5600BFB703 /* cell_bg.png */,
@@ -952,6 +958,8 @@
 				84E5F1C91742ED5600BFB703 /* cell_bg@2x.png in Resources */,
 				84E5F1CC1742F7AC00BFB703 /* comments_button_bg.png in Resources */,
 				84E5F1CD1742F7AC00BFB703 /* comments_button_bg@2x.png in Resources */,
+				84E5F1F3174A82EE00BFB703 /* edit_icon.png in Resources */,
+				84E5F1F4174A82EE00BFB703 /* edit_icon@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

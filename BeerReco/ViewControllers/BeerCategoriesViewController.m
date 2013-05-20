@@ -174,7 +174,7 @@
     else
     {
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-        [cell setEditingAccessoryType:UITableViewCellAccessoryDetailDisclosureButton];
+        [cell setEditingAccessoryView:[super makeDetailDisclosureButton]];
     }
     
     [cell.detailTextLabel setText:@""];

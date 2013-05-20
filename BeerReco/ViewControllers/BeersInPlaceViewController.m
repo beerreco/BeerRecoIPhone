@@ -102,7 +102,7 @@
 -(void)setupCell:(UITableViewCell*)cell forIndexPath:(NSIndexPath *)indexPath withObject:(id)object
 {
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-    [cell setEditingAccessoryType:UITableViewCellAccessoryDetailDisclosureButton];
+    [cell setEditingAccessoryView:[super makeDetailDisclosureButton]];
     
     [cell.detailTextLabel setText:@""];
     [cell.imageView setImage:nil];

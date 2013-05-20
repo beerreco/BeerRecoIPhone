@@ -71,7 +71,7 @@
 
 -(BOOL)canShowContributionToolBar
 {
-    return self.placeSelectionMode ? NO : YES;
+    return self.placeSelectionMode || self.segPlaceFiltering.selectedSegmentIndex == 0 ? NO : YES;
 }
 
 -(void)loadCurrentData
@@ -162,7 +162,7 @@
     else
     {
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-        [cell setEditingAccessoryType:UITableViewCellAccessoryDetailDisclosureButton];
+        [cell setEditingAccessoryView:[super makeDetailDisclosureButton]];
     }
     
     [cell.detailTextLabel setText:@""];
@@ -323,6 +323,8 @@
     }
     
     [self.barBtnEdit setEnabled:self.segPlaceFiltering.selectedSegmentIndex != 2];
+    
+    [super showHideContributionToolBar];
     
     if (self.loadErrorViewController)
     {

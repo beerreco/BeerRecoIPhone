@@ -39,7 +39,11 @@
 -(void)tableItemSelected:(NSIndexPath *)indexPath withObject:(id)object;
 -(void)prepareForSegue:(UIStoryboardSegue *)segue withObject:(id)object;
 -(void)addNewItem;
+
+#pragma mark - Public Methods
+-(void)showHideContributionToolBar;
 -(void)toggleEditMode;
+-(UIButton*)makeDetailDisclosureButton;
 
 - (IBAction)contributionEditClicked:(UIBarButtonItem *)sender;
 - (IBAction)contributionAddClicked:(UIBarButtonItem *)sender;
