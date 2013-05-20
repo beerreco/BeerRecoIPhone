@@ -74,6 +74,11 @@
     return self.placeSelectionMode || self.segPlaceFiltering.selectedSegmentIndex == 0 ? NO : YES;
 }
 
+-(BOOL)shouldSortItemsList
+{
+    return self.segPlaceFiltering && self.segPlaceFiltering.selectedSegmentIndex == 0 ? NO : YES;
+}
+
 -(void)loadCurrentData
 {
     if (self.segPlaceFiltering && self.segPlaceFiltering.selectedSegmentIndex == 0)
