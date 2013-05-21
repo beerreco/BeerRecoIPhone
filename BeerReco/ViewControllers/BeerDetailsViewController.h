@@ -26,7 +26,17 @@
 @property (weak, nonatomic) IBOutlet UITableView *tbBeerProperties;
 @property (weak, nonatomic) IBOutlet UIScrollView *contentScroller;
 
+@property (nonatomic, strong) UIBarButtonItem* barBtnEdit;
+@property (weak, nonatomic) IBOutlet UIButton *btnEditBeerName;
+@property (weak, nonatomic) IBOutlet UIButton *btnEditBeerType;
+@property (weak, nonatomic) IBOutlet UIButton *btnEditBeerIcon;
+
 - (IBAction)likeClicked:(id)sender;
 - (IBAction)favoritesButtonClicked:(id)sender;
+
+- (void)contributionEditClicked:(UIBarButtonItem *)sender;
+- (IBAction)editBeerNameClicked:(UIButton*)sender;
+- (IBAction)editBeerTypeClicked:(UIButton*)sender;
+- (IBAction)editBeerIconClicked:(UIButton *)sender;
 
 @end

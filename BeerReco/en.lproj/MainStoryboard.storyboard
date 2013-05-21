@@ -116,6 +116,19 @@
                                             <constraint firstAttribute="height" constant="60" id="E8x-rJ-1mA"/>
                                         </constraints>
                                     </imageView>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aH4-gL-kmQ">
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" image="edit_icon.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="editBeerIconClicked:" destination="sMW-Q0-IUv" eventType="touchUpInside" id="fLn-Tn-s2g"/>
+                                        </connections>
+                                    </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="eng" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GBZ-5i-E2x">
                                         <constraints>
                                             <constraint firstAttribute="width" constant="235" id="1fE-Sc-Zo4"/>
@@ -125,21 +138,46 @@
                                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="viz-mx-FOa">
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" image="edit_icon.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="editBeerNameClicked:" destination="sMW-Q0-IUv" eventType="touchUpInside" id="J18-Wf-1eQ"/>
+                                        </connections>
+                                    </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3q8-JB-5E6">
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="155" id="f7T-tX-NTX"/>
-                                            <constraint firstAttribute="height" constant="30" id="gP5-ci-dle"/>
+                                            <constraint firstAttribute="width" constant="195" id="986-mv-5zA"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4jO-cp-I1P">
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" image="edit_icon.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="editBeerTypeClicked:" destination="sMW-Q0-IUv" eventType="touchUpInside" id="yOe-6B-a93"/>
+                                        </connections>
+                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yhk-AQ-r1Y">
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="195" id="l0g-dC-NXQ"/>
+                                            <constraint firstAttribute="height" constant="42" id="fTK-bL-QsA"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" size="button"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" title="Show Comments">
                                             <color key="titleColor" red="0.19607843137254902" green="0.30980392156862746" blue="0.52156862745098043" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -174,7 +212,6 @@
                                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="SPy-JW-9qg"/>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ntd-mg-Eh9">
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="42" id="sRL-lt-AJU"/>
                                             <constraint firstAttribute="width" constant="70" id="vl5-cF-lGR"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" size="button"/>
@@ -190,7 +227,7 @@
                                         </connections>
                                     </button>
                                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="mhX-JP-sBK"/>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" directionalLockEnabled="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="L9r-T7-KGg">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" directionalLockEnabled="YES" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="L9r-T7-KGg">
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="359" id="0f7-Bd-y2R"/>
@@ -224,26 +261,34 @@
                                     </tableView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="EQp-FF-px8" firstAttribute="leading" secondItem="psN-GK-mhh" secondAttribute="leading" constant="10" id="3QM-ZB-V6M"/>
+                                    <constraint firstItem="4jO-cp-I1P" firstAttribute="bottom" secondItem="3q8-JB-5E6" secondAttribute="bottom" type="default" id="1Lg-rs-GFr"/>
+                                    <constraint firstItem="aH4-gL-kmQ" firstAttribute="leading" secondItem="psN-GK-mhh" secondAttribute="leading" constant="50" id="1Ss-DI-tXr"/>
+                                    <constraint firstItem="Yhk-AQ-r1Y" firstAttribute="bottom" secondItem="ntd-mg-Eh9" secondAttribute="bottom" type="default" id="3E5-pm-Muc"/>
+                                    <constraint firstItem="viz-mx-FOa" firstAttribute="top" secondItem="psN-GK-mhh" secondAttribute="top" constant="28" id="4V7-vM-xPf"/>
                                     <constraint firstItem="o11-ZP-mqo" firstAttribute="top" secondItem="GBZ-5i-E2x" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="4rS-5v-CTj"/>
                                     <constraint firstItem="o11-ZP-mqo" firstAttribute="centerX" secondItem="ntd-mg-Eh9" secondAttribute="centerX" type="default" id="57b-8S-dA7"/>
                                     <constraint firstItem="L9r-T7-KGg" firstAttribute="leading" secondItem="psN-GK-mhh" secondAttribute="leading" type="default" id="5Qo-Zf-ToR"/>
+                                    <constraint firstItem="o11-ZP-mqo" firstAttribute="bottom" secondItem="4jO-cp-I1P" secondAttribute="bottom" type="default" id="6KC-xQ-DFY"/>
                                     <constraint firstItem="L9r-T7-KGg" firstAttribute="trailing" secondItem="psN-GK-mhh" secondAttribute="trailing" type="default" id="73c-7F-Ka4"/>
+                                    <constraint firstItem="aH4-gL-kmQ" firstAttribute="top" secondItem="psN-GK-mhh" secondAttribute="top" constant="50" id="BtZ-Kk-agp"/>
+                                    <constraint firstItem="EQp-FF-px8" firstAttribute="leading" secondItem="psN-GK-mhh" secondAttribute="leading" constant="10" id="ESl-fL-LzN"/>
                                     <constraint firstItem="EQp-FF-px8" firstAttribute="top" secondItem="psN-GK-mhh" secondAttribute="top" constant="10" id="Edf-SY-i90"/>
                                     <constraint firstItem="mhX-JP-sBK" firstAttribute="top" secondItem="psN-GK-mhh" secondAttribute="top" constant="123" id="Hj3-ed-UrU"/>
+                                    <constraint firstItem="OdH-mk-ejZ" firstAttribute="leading" secondItem="psN-GK-mhh" secondAttribute="leading" constant="15" id="IRA-NQ-dh3"/>
                                     <constraint firstItem="mhX-JP-sBK" firstAttribute="leading" secondItem="SPy-JW-9qg" secondAttribute="leading" type="default" id="Izx-BW-MTv"/>
-                                    <constraint firstItem="L9r-T7-KGg" firstAttribute="centerX" secondItem="psN-GK-mhh" secondAttribute="centerX" type="default" id="Lcp-FB-XuJ"/>
+                                    <constraint firstItem="L9r-T7-KGg" firstAttribute="centerX" secondItem="psN-GK-mhh" secondAttribute="centerX" type="default" id="Lo5-fo-LoY"/>
                                     <constraint firstItem="L9r-T7-KGg" firstAttribute="top" secondItem="psN-GK-mhh" secondAttribute="top" constant="166" id="MFL-Yg-pLC"/>
-                                    <constraint firstItem="SPy-JW-9qg" firstAttribute="top" secondItem="psN-GK-mhh" secondAttribute="top" constant="77" id="PSV-sk-fmI"/>
                                     <constraint firstAttribute="bottom" secondItem="L9r-T7-KGg" secondAttribute="bottom" constant="-70" id="QQh-jc-ueP"/>
                                     <constraint firstItem="3q8-JB-5E6" firstAttribute="leading" secondItem="EQp-FF-px8" secondAttribute="leading" type="default" id="Rhw-gE-gL5"/>
+                                    <constraint firstItem="Yhk-AQ-r1Y" firstAttribute="top" secondItem="psN-GK-mhh" secondAttribute="top" constant="110" id="TAd-DP-FOw"/>
                                     <constraint firstAttribute="trailing" secondItem="ntd-mg-Eh9" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="VA0-Mb-60e"/>
-                                    <constraint firstItem="ntd-mg-Eh9" firstAttribute="centerY" secondItem="OdH-mk-ejZ" secondAttribute="centerY" type="default" id="Vkf-qb-KDO"/>
-                                    <constraint firstItem="OdH-mk-ejZ" firstAttribute="leading" secondItem="psN-GK-mhh" secondAttribute="leading" constant="15" id="fga-9W-ju6"/>
-                                    <constraint firstItem="o11-ZP-mqo" firstAttribute="bottom" secondItem="3q8-JB-5E6" secondAttribute="bottom" type="default" id="h3T-yt-WTh"/>
+                                    <constraint firstItem="SPy-JW-9qg" firstAttribute="top" secondItem="psN-GK-mhh" secondAttribute="top" constant="77" id="VUs-aB-p7T"/>
+                                    <constraint firstItem="4jO-cp-I1P" firstAttribute="trailing" secondItem="3q8-JB-5E6" secondAttribute="trailing" type="default" id="VYr-wU-0xr"/>
+                                    <constraint firstItem="Yhk-AQ-r1Y" firstAttribute="trailing" secondItem="3q8-JB-5E6" secondAttribute="trailing" type="default" id="hLN-tr-6gb"/>
+                                    <constraint firstItem="viz-mx-FOa" firstAttribute="leading" secondItem="psN-GK-mhh" secondAttribute="leading" constant="281" id="j3X-ni-FlB"/>
                                     <constraint firstItem="Yhk-AQ-r1Y" firstAttribute="top" secondItem="ntd-mg-Eh9" secondAttribute="top" type="default" id="ji7-b7-KFg"/>
                                     <constraint firstItem="Yhk-AQ-r1Y" firstAttribute="leading" secondItem="3q8-JB-5E6" secondAttribute="leading" type="default" id="lo2-nn-Hom"/>
-                                    <constraint firstItem="Yhk-AQ-r1Y" firstAttribute="top" secondItem="psN-GK-mhh" secondAttribute="top" constant="110" id="sBV-5H-IY9"/>
+                                    <constraint firstItem="3q8-JB-5E6" firstAttribute="top" secondItem="4jO-cp-I1P" secondAttribute="top" type="default" id="sHu-zB-Zh7"/>
                                     <constraint firstItem="GBZ-5i-E2x" firstAttribute="top" secondItem="psN-GK-mhh" secondAttribute="top" constant="20" symbolic="YES" type="default" id="uLw-zc-TOo"/>
                                     <constraint firstItem="GBZ-5i-E2x" firstAttribute="leading" secondItem="psN-GK-mhh" secondAttribute="leading" constant="75" id="xAT-LD-tdW"/>
                                     <constraint firstItem="Yhk-AQ-r1Y" firstAttribute="centerY" secondItem="OdH-mk-ejZ" secondAttribute="centerY" type="default" id="y8k-Pm-HiQ"/>
@@ -270,6 +315,9 @@
                         <outlet property="activityFavoriteCheck" destination="SPy-JW-9qg" id="4eg-nt-4s9"/>
                         <outlet property="activityLikeCheck" destination="mhX-JP-sBK" id="uED-l6-clV"/>
                         <outlet property="btnComments" destination="Yhk-AQ-r1Y" id="deX-8X-bkt"/>
+                        <outlet property="btnEditBeerIcon" destination="aH4-gL-kmQ" id="9T3-Cl-T2K"/>
+                        <outlet property="btnEditBeerName" destination="viz-mx-FOa" id="KuO-Gm-c6U"/>
+                        <outlet property="btnEditBeerType" destination="4jO-cp-I1P" id="kot-l7-Cer"/>
                         <outlet property="btnFavorites" destination="o11-ZP-mqo" id="PHk-qe-uTN"/>
                         <outlet property="btnLike" destination="ntd-mg-Eh9" id="Ngo-7L-gee"/>
                         <outlet property="contentScroller" destination="psN-GK-mhh" id="OEG-ex-X25"/>
@@ -390,6 +438,162 @@
             </objects>
             <point key="canvasLocation" x="1992" y="-82"/>
         </scene>
+        <!--Edit Beer Name View Controller-->
+        <scene sceneID="pl0-Bi-S3U">
+            <objects>
+                <viewController storyboardIdentifier="EditBeerNameViewController" id="Th5-rU-bOB" customClass="EditBeerNameViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3hD-gz-bFE">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="bg_main.png" translatesAutoresizingMaskIntoConstraints="NO" id="IBV-GH-ZqI"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QBe-To-0CK">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="fieldNameValueChanged:" destination="Th5-rU-bOB" eventType="editingChanged" id="J3w-Fi-4po"/>
+                                    <outlet property="delegate" destination="Th5-rU-bOB" id="elT-u7-ydr"/>
+                                </connections>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="IBV-GH-ZqI" firstAttribute="bottom" secondItem="3hD-gz-bFE" secondAttribute="bottom" type="default" id="UbR-g1-qzC"/>
+                            <constraint firstAttribute="trailing" secondItem="QBe-To-0CK" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="YhP-5h-kmj"/>
+                            <constraint firstItem="IBV-GH-ZqI" firstAttribute="top" secondItem="3hD-gz-bFE" secondAttribute="top" type="default" id="aHr-va-67A"/>
+                            <constraint firstItem="IBV-GH-ZqI" firstAttribute="leading" secondItem="3hD-gz-bFE" secondAttribute="leading" type="default" id="eAa-bL-kaV"/>
+                            <constraint firstItem="IBV-GH-ZqI" firstAttribute="trailing" secondItem="3hD-gz-bFE" secondAttribute="trailing" type="default" id="lZD-rz-FH0"/>
+                            <constraint firstItem="QBe-To-0CK" firstAttribute="top" secondItem="3hD-gz-bFE" secondAttribute="top" constant="20" symbolic="YES" type="default" id="mQ9-VZ-l9l"/>
+                            <constraint firstItem="QBe-To-0CK" firstAttribute="leading" secondItem="3hD-gz-bFE" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="tHy-al-PsU"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="rqB-KD-ICa">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="Q4L-zZ-yf4">
+                            <connections>
+                                <action selector="cancelClicked:" destination="Th5-rU-bOB" id="fQI-M3-yhD"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="umM-Za-eQ1">
+                            <connections>
+                                <action selector="saveClicked:" destination="Th5-rU-bOB" id="iNS-zC-z4s"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="btnCancel" destination="Q4L-zZ-yf4" id="ew2-17-6o9"/>
+                        <outlet property="btnSave" destination="umM-Za-eQ1" id="3eH-gX-nCa"/>
+                        <outlet property="txtFieldName" destination="QBe-To-0CK" id="WDU-r0-1gm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="f3n-8H-nDR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2803" y="220"/>
+        </scene>
+        <!--Edit Beer Components View Controller-->
+        <scene sceneID="Dfl-Pj-FMm">
+            <objects>
+                <viewController storyboardIdentifier="EditBeerComponentsViewController" id="we8-vJ-cTP" customClass="EditBeerComponentsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4er-Mx-jKk">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="bg_main.png" translatesAutoresizingMaskIntoConstraints="NO" id="2Y3-sN-PEB"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cPr-Uq-bqW">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="fieldNameValueChanged:" destination="we8-vJ-cTP" eventType="editingChanged" id="2zA-fx-kSy"/>
+                                    <outlet property="delegate" destination="we8-vJ-cTP" id="6rx-z7-dwS"/>
+                                </connections>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="cPr-Uq-bqW" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="2Lp-ou-0Kz"/>
+                            <constraint firstItem="2Y3-sN-PEB" firstAttribute="top" secondItem="4er-Mx-jKk" secondAttribute="top" type="default" id="7GJ-Br-y2W"/>
+                            <constraint firstItem="2Y3-sN-PEB" firstAttribute="trailing" secondItem="4er-Mx-jKk" secondAttribute="trailing" type="default" id="FkR-yA-Rwq"/>
+                            <constraint firstItem="cPr-Uq-bqW" firstAttribute="leading" secondItem="4er-Mx-jKk" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Nkl-t6-MV8"/>
+                            <constraint firstItem="2Y3-sN-PEB" firstAttribute="bottom" secondItem="4er-Mx-jKk" secondAttribute="bottom" type="default" id="f32-9Z-NpX"/>
+                            <constraint firstItem="2Y3-sN-PEB" firstAttribute="leading" secondItem="4er-Mx-jKk" secondAttribute="leading" type="default" id="kpk-Us-XXK"/>
+                            <constraint firstItem="cPr-Uq-bqW" firstAttribute="top" secondItem="4er-Mx-jKk" secondAttribute="top" constant="20" symbolic="YES" type="default" id="wYs-3v-KoM"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="Kzu-XD-bok">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="7i4-bP-jY9">
+                            <connections>
+                                <action selector="cancelClicked:" destination="we8-vJ-cTP" id="xFM-eQ-rbm"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="snv-bP-l5w">
+                            <connections>
+                                <action selector="saveClicked:" destination="we8-vJ-cTP" id="hC4-GS-SCe"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="btnCancel" destination="7i4-bP-jY9" id="S7A-3O-JAs"/>
+                        <outlet property="btnSave" destination="snv-bP-l5w" id="LAF-dW-pDF"/>
+                        <outlet property="txtFieldName" destination="cPr-Uq-bqW" id="Txj-4f-3Mm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2Ae-dx-iah" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3164" y="214"/>
+        </scene>
+        <!--Edit Alcohol Percent View Controller-->
+        <scene sceneID="KbV-J8-ohh">
+            <objects>
+                <viewController storyboardIdentifier="EditAlcoholPercentViewController" id="lp6-zR-Oz7" customClass="EditAlcoholPercentViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KEU-si-tDj">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="bg_main.png" translatesAutoresizingMaskIntoConstraints="NO" id="rUZ-q3-5OF"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="J2q-VH-Hjr">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="fieldNameValueChanged:" destination="lp6-zR-Oz7" eventType="editingChanged" id="uIC-fE-jIu"/>
+                                    <outlet property="delegate" destination="lp6-zR-Oz7" id="gtA-5y-c0t"/>
+                                </connections>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="J2q-VH-Hjr" firstAttribute="top" secondItem="KEU-si-tDj" secondAttribute="top" constant="20" symbolic="YES" type="default" id="4RE-lf-Ryx"/>
+                            <constraint firstItem="J2q-VH-Hjr" firstAttribute="leading" secondItem="KEU-si-tDj" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="FHc-5h-sqR"/>
+                            <constraint firstItem="rUZ-q3-5OF" firstAttribute="top" secondItem="KEU-si-tDj" secondAttribute="top" type="default" id="Zki-ls-EOV"/>
+                            <constraint firstItem="rUZ-q3-5OF" firstAttribute="bottom" secondItem="KEU-si-tDj" secondAttribute="bottom" type="default" id="aKe-hN-Tls"/>
+                            <constraint firstItem="rUZ-q3-5OF" firstAttribute="leading" secondItem="KEU-si-tDj" secondAttribute="leading" type="default" id="nU0-8I-yCz"/>
+                            <constraint firstAttribute="trailing" secondItem="J2q-VH-Hjr" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="sdP-gJ-v3j"/>
+                            <constraint firstItem="rUZ-q3-5OF" firstAttribute="trailing" secondItem="KEU-si-tDj" secondAttribute="trailing" type="default" id="t4q-le-PUw"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="C2B-WI-MG5">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="HQP-GM-F1f">
+                            <connections>
+                                <action selector="cancelClicked:" destination="lp6-zR-Oz7" id="tec-Ah-aHX"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="ruQ-kl-oDF">
+                            <connections>
+                                <action selector="saveClicked:" destination="lp6-zR-Oz7" id="rC6-WD-37L"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="btnCancel" destination="HQP-GM-F1f" id="hTK-ao-v6R"/>
+                        <outlet property="btnSave" destination="ruQ-kl-oDF" id="252-uu-hV0"/>
+                        <outlet property="txtFieldName" destination="J2q-VH-Hjr" id="SUl-gm-fcT"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="WUI-hG-c5z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3519" y="224"/>
+        </scene>
         <!--Facebook Comments View Controller-->
         <scene sceneID="zbx-Mb-umA">
             <objects>
@@ -433,6 +637,110 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qs9-xn-jzH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2601" y="-747"/>
+        </scene>
+        <!--Edit Place Name View Controller-->
+        <scene sceneID="bu5-CT-YPd">
+            <objects>
+                <viewController storyboardIdentifier="EditPlaceNameViewController" id="TQo-a8-hSt" customClass="EditPlaceNameViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="QlB-In-dCg">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="bg_main.png" translatesAutoresizingMaskIntoConstraints="NO" id="QpJ-44-7c6"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MbC-f6-6d1">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="fieldNameValueChanged:" destination="TQo-a8-hSt" eventType="editingChanged" id="rw7-5y-63v"/>
+                                    <outlet property="delegate" destination="TQo-a8-hSt" id="gEc-bY-Tcx"/>
+                                </connections>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="QpJ-44-7c6" firstAttribute="bottom" secondItem="QlB-In-dCg" secondAttribute="bottom" type="default" id="C1r-hu-tli"/>
+                            <constraint firstItem="QpJ-44-7c6" firstAttribute="trailing" secondItem="QlB-In-dCg" secondAttribute="trailing" type="default" id="i8k-MO-4v2"/>
+                            <constraint firstAttribute="trailing" secondItem="MbC-f6-6d1" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="nhR-RV-9ks"/>
+                            <constraint firstItem="QpJ-44-7c6" firstAttribute="leading" secondItem="QlB-In-dCg" secondAttribute="leading" type="default" id="rq5-Z3-S0c"/>
+                            <constraint firstItem="QpJ-44-7c6" firstAttribute="top" secondItem="QlB-In-dCg" secondAttribute="top" type="default" id="sQL-A6-mbX"/>
+                            <constraint firstItem="MbC-f6-6d1" firstAttribute="leading" secondItem="QlB-In-dCg" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="smf-nM-Rm0"/>
+                            <constraint firstItem="MbC-f6-6d1" firstAttribute="top" secondItem="QlB-In-dCg" secondAttribute="top" constant="20" symbolic="YES" type="default" id="u9q-Ox-kJp"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="bNL-Jz-QLc">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="npI-mB-DTc">
+                            <connections>
+                                <action selector="cancelClicked:" destination="TQo-a8-hSt" id="Jfx-ZV-731"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="LR8-b7-Eo9">
+                            <connections>
+                                <action selector="saveClicked:" destination="TQo-a8-hSt" id="XLa-md-DPW"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="btnCancel" destination="npI-mB-DTc" id="KQQ-QT-Ayf"/>
+                        <outlet property="btnSave" destination="LR8-b7-Eo9" id="24H-eF-Lnl"/>
+                        <outlet property="txtFieldName" destination="MbC-f6-6d1" id="mpd-d6-lTg"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8jB-0R-FA7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3295" y="-750"/>
+        </scene>
+        <!--Edit Place Address View Controller-->
+        <scene sceneID="jf4-rX-jcs">
+            <objects>
+                <viewController storyboardIdentifier="EditPlaceAddressViewController" id="5Ny-xJ-KfI" customClass="EditPlaceAddressViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0H1-y4-bc5">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="bg_main.png" translatesAutoresizingMaskIntoConstraints="NO" id="glR-ub-caM"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uvP-sc-kMG">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="fieldNameValueChanged:" destination="5Ny-xJ-KfI" eventType="editingChanged" id="zFc-i8-WZe"/>
+                                    <outlet property="delegate" destination="5Ny-xJ-KfI" id="PD8-j1-mTh"/>
+                                </connections>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="glR-ub-caM" firstAttribute="trailing" secondItem="0H1-y4-bc5" secondAttribute="trailing" type="default" id="6ay-Sg-xUC"/>
+                            <constraint firstItem="uvP-sc-kMG" firstAttribute="top" secondItem="0H1-y4-bc5" secondAttribute="top" constant="20" symbolic="YES" type="default" id="NCh-2t-hTV"/>
+                            <constraint firstItem="uvP-sc-kMG" firstAttribute="leading" secondItem="0H1-y4-bc5" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Ru3-In-2Gl"/>
+                            <constraint firstItem="glR-ub-caM" firstAttribute="bottom" secondItem="0H1-y4-bc5" secondAttribute="bottom" type="default" id="X79-1m-thx"/>
+                            <constraint firstAttribute="trailing" secondItem="uvP-sc-kMG" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="lXo-Mc-SLT"/>
+                            <constraint firstItem="glR-ub-caM" firstAttribute="top" secondItem="0H1-y4-bc5" secondAttribute="top" type="default" id="tff-9J-2NA"/>
+                            <constraint firstItem="glR-ub-caM" firstAttribute="leading" secondItem="0H1-y4-bc5" secondAttribute="leading" type="default" id="yYa-O5-Uh0"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="XSk-Er-uAE">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="073-Tk-fpp">
+                            <connections>
+                                <action selector="cancelClicked:" destination="5Ny-xJ-KfI" id="v90-aL-pqv"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="A1e-W4-RT0">
+                            <connections>
+                                <action selector="saveClicked:" destination="5Ny-xJ-KfI" id="l0n-G0-Lun"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <connections>
+                        <outlet property="btnCancel" destination="073-Tk-fpp" id="9OO-Um-HIT"/>
+                        <outlet property="btnSave" destination="A1e-W4-RT0" id="NGQ-Q0-jFN"/>
+                        <outlet property="txtFieldName" destination="uvP-sc-kMG" id="5QU-3L-pYR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="t5X-iN-PQ6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3679" y="-750"/>
         </scene>
         <!--Search View Controller - Search-->
         <scene sceneID="13">
@@ -626,6 +934,19 @@
                                             <constraint firstAttribute="height" constant="60" id="b8w-1V-Jo9"/>
                                         </constraints>
                                     </imageView>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cvH-he-ZHn">
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" image="edit_icon.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="editPlaceIconClicked:" destination="bH2-zK-z05" eventType="touchUpInside" id="MWP-Py-xQO"/>
+                                        </connections>
+                                    </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hfT-Cn-XNU">
                                         <constraints>
                                             <constraint firstAttribute="width" constant="235" id="bO1-do-TR7"/>
@@ -635,19 +956,50 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IHc-mZ-JWR">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="31" id="8Ar-8m-5dF"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" image="edit_icon.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="editPlaceNameClicked:" destination="bH2-zK-z05" eventType="touchUpInside" id="o5N-o3-CMQ"/>
+                                        </connections>
+                                    </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="38a-v1-pRK">
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="155" id="jbQ-W7-jtg"/>
+                                            <constraint firstAttribute="width" constant="195" id="bfd-fD-fSt"/>
                                             <constraint firstAttribute="height" constant="30" id="key-F0-gFO"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R4Y-H1-fTo">
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="31" id="Qit-2a-KSO"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <state key="normal" image="edit_icon.png">
+                                            <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="highlighted">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="editPlaceAreaClicked:" destination="bH2-zK-z05" eventType="touchUpInside" id="dGc-mV-7ho"/>
+                                        </connections>
+                                    </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hBS-7T-b1N">
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="44" id="Pgf-iW-woG"/>
-                                            <constraint firstAttribute="width" constant="195" id="jyp-bh-qR6"/>
+                                            <constraint firstAttribute="height" constant="42" id="7Ah-Ht-NqL"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" title="Show Comments">
@@ -666,7 +1018,6 @@
                                     </activityIndicatorView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="338-PD-fV4">
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="42" id="3vw-Qv-8eE"/>
                                             <constraint firstAttribute="width" constant="70" id="kbE-ku-VNH"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
@@ -682,7 +1033,7 @@
                                         </connections>
                                     </button>
                                     <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="JwZ-MH-Qdv"/>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="HKF-g5-XRX">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="grouped" separatorStyle="singleLineEtched" allowsSelectionDuringEditing="YES" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" translatesAutoresizingMaskIntoConstraints="NO" id="HKF-g5-XRX">
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="210" id="IzD-8C-vXI"/>
@@ -717,24 +1068,32 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstItem="38a-v1-pRK" firstAttribute="top" secondItem="oRn-de-kFJ" secondAttribute="top" constant="75" id="0oz-r0-UaK"/>
+                                    <constraint firstItem="hBS-7T-b1N" firstAttribute="bottom" secondItem="338-PD-fV4" secondAttribute="bottom" type="default" id="5Uo-bw-cQi"/>
                                     <constraint firstAttribute="trailing" secondItem="338-PD-fV4" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="6ix-wE-Jai"/>
-                                    <constraint firstItem="2kg-o2-a3H" firstAttribute="leading" secondItem="oRn-de-kFJ" secondAttribute="leading" constant="15" id="9Xr-st-7IG"/>
-                                    <constraint firstItem="338-PD-fV4" firstAttribute="centerY" secondItem="2kg-o2-a3H" secondAttribute="centerY" type="default" id="AQm-S6-6JZ"/>
+                                    <constraint firstItem="cQy-eN-tyb" firstAttribute="top" secondItem="oRn-de-kFJ" secondAttribute="top" constant="10" id="7gN-rE-T4b"/>
                                     <constraint firstItem="HKF-g5-XRX" firstAttribute="trailing" secondItem="oRn-de-kFJ" secondAttribute="trailing" type="default" id="Biz-1Q-uoo"/>
                                     <constraint firstItem="HKF-g5-XRX" firstAttribute="centerX" secondItem="oRn-de-kFJ" secondAttribute="centerX" type="default" id="Bss-zc-FgS"/>
+                                    <constraint firstItem="cQy-eN-tyb" firstAttribute="leading" secondItem="38a-v1-pRK" secondAttribute="leading" type="default" id="FON-ef-fs9"/>
+                                    <constraint firstItem="hBS-7T-b1N" firstAttribute="top" secondItem="338-PD-fV4" secondAttribute="top" type="default" id="FOy-3P-wIl"/>
                                     <constraint firstItem="hfT-Cn-XNU" firstAttribute="top" secondItem="oRn-de-kFJ" secondAttribute="top" constant="20" symbolic="YES" type="default" id="HKE-oP-TX1"/>
                                     <constraint firstItem="JwZ-MH-Qdv" firstAttribute="top" secondItem="oRn-de-kFJ" secondAttribute="top" constant="123" id="I82-8Z-Yb2"/>
-                                    <constraint firstItem="cQy-eN-tyb" firstAttribute="top" secondItem="oRn-de-kFJ" secondAttribute="top" constant="10" id="Ka3-fH-tjX"/>
-                                    <constraint firstItem="hBS-7T-b1N" firstAttribute="top" secondItem="oRn-de-kFJ" secondAttribute="top" constant="110" id="MGB-G1-OB3"/>
+                                    <constraint firstItem="hBS-7T-b1N" firstAttribute="top" secondItem="oRn-de-kFJ" secondAttribute="top" constant="111" id="JnM-AT-eh1"/>
                                     <constraint firstAttribute="bottom" secondItem="HKF-g5-XRX" secondAttribute="bottom" constant="79" id="Okb-Da-dXN"/>
+                                    <constraint firstItem="hBS-7T-b1N" firstAttribute="centerY" secondItem="2kg-o2-a3H" secondAttribute="centerY" type="default" id="UI9-go-zCD"/>
+                                    <constraint firstItem="cvH-he-ZHn" firstAttribute="top" secondItem="oRn-de-kFJ" secondAttribute="top" constant="50" id="cFN-ef-dcq"/>
+                                    <constraint firstItem="cQy-eN-tyb" firstAttribute="leading" secondItem="oRn-de-kFJ" secondAttribute="leading" constant="10" id="efE-HV-ddK"/>
                                     <constraint firstItem="JwZ-MH-Qdv" firstAttribute="leading" secondItem="oRn-de-kFJ" secondAttribute="leading" constant="256" id="i4t-1a-AsI"/>
-                                    <constraint firstItem="38a-v1-pRK" firstAttribute="leading" secondItem="cQy-eN-tyb" secondAttribute="leading" type="default" id="jBc-AG-krG"/>
-                                    <constraint firstItem="cQy-eN-tyb" firstAttribute="leading" secondItem="oRn-de-kFJ" secondAttribute="leading" constant="10" id="kuj-jT-HSo"/>
-                                    <constraint firstItem="hBS-7T-b1N" firstAttribute="centerY" secondItem="2kg-o2-a3H" secondAttribute="centerY" type="default" id="n47-Xc-qCZ"/>
+                                    <constraint firstItem="cvH-he-ZHn" firstAttribute="leading" secondItem="oRn-de-kFJ" secondAttribute="leading" constant="50" id="jFm-S5-hUO"/>
+                                    <constraint firstItem="R4Y-H1-fTo" firstAttribute="trailing" secondItem="hBS-7T-b1N" secondAttribute="trailing" type="default" id="l0L-xT-trh"/>
                                     <constraint firstItem="HKF-g5-XRX" firstAttribute="leading" secondItem="oRn-de-kFJ" secondAttribute="leading" type="default" id="oQu-84-Gnt"/>
                                     <constraint firstItem="hfT-Cn-XNU" firstAttribute="leading" secondItem="oRn-de-kFJ" secondAttribute="leading" constant="75" id="pTg-mg-ZE0"/>
+                                    <constraint firstItem="R4Y-H1-fTo" firstAttribute="trailing" secondItem="38a-v1-pRK" secondAttribute="trailing" type="default" id="pgN-8R-16K"/>
                                     <constraint firstItem="hBS-7T-b1N" firstAttribute="leading" secondItem="38a-v1-pRK" secondAttribute="leading" type="default" id="q4G-V3-yfE"/>
+                                    <constraint firstItem="2kg-o2-a3H" firstAttribute="leading" secondItem="oRn-de-kFJ" secondAttribute="leading" constant="15" id="rGV-zF-xsY"/>
+                                    <constraint firstItem="IHc-mZ-JWR" firstAttribute="leading" secondItem="oRn-de-kFJ" secondAttribute="leading" constant="281" id="sUY-xt-kDQ"/>
+                                    <constraint firstItem="R4Y-H1-fTo" firstAttribute="top" secondItem="oRn-de-kFJ" secondAttribute="top" constant="76" id="w09-ne-Dzu"/>
                                     <constraint firstItem="HKF-g5-XRX" firstAttribute="top" secondItem="oRn-de-kFJ" secondAttribute="top" constant="166" id="x5Q-aP-iyt"/>
+                                    <constraint firstItem="IHc-mZ-JWR" firstAttribute="top" secondItem="oRn-de-kFJ" secondAttribute="top" constant="28" id="xzB-np-MJj"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -755,6 +1114,9 @@
                         <outlet property="activityCommentsLoad" destination="2kg-o2-a3H" id="uEc-xj-64D"/>
                         <outlet property="activityLikeCheck" destination="JwZ-MH-Qdv" id="WUg-nb-3YZ"/>
                         <outlet property="btnComments" destination="hBS-7T-b1N" id="QFU-m3-HqV"/>
+                        <outlet property="btnEditPlaceArea" destination="R4Y-H1-fTo" id="RLl-v8-MMR"/>
+                        <outlet property="btnEditPlaceIcon" destination="cvH-he-ZHn" id="RNS-ok-ufo"/>
+                        <outlet property="btnEditPlaceName" destination="IHc-mZ-JWR" id="tg1-oK-qf4"/>
                         <outlet property="btnLike" destination="338-PD-fV4" id="LkQ-XV-iYw"/>
                         <outlet property="contentScroller" destination="oRn-de-kFJ" id="HXq-33-47d"/>
                         <outlet property="imgPlaceIcon" destination="cQy-eN-tyb" id="u84-gR-TJM"/>
@@ -1202,7 +1564,7 @@
             <objects>
                 <viewController storyboardIdentifier="BeersViewController" id="r96-59-yWt" customClass="BeersViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="afA-Ta-GAB">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="bg_main.png" translatesAutoresizingMaskIntoConstraints="NO" id="1fa-nV-tYP"/>
@@ -1881,188 +2243,19 @@
         <image name="19-gear.png" width="26" height="26"/>
         <image name="88-beer-mug.png" width="22" height="27"/>
         <image name="bg_main.png" width="641" height="960"/>
+        <image name="edit_icon.png" width="30" height="30"/>
     </resources>
-    <classes>
-        <class className="AddEditAreaViewController" superclassName="SimpleAddEditViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddEditAreaViewController.h"/>
-        </class>
-        <class className="AddEditBeerInPlaceViewController" superclassName="SimpleAddEditViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddEditBeerInPlaceViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="lblBoxLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="tbSelection" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="AddEditBeerInPlacesViewController" superclassName="SimpleAddEditViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddEditBeerInPlacesViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="lblBoxLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="tbSelection" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="AddEditBeerTypeViewController" superclassName="SimpleAddEditViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddEditBeerTypeViewController.h"/>
-        </class>
-        <class className="AddEditBreweryViewController" superclassName="SimpleAddEditViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddEditBreweryViewController.h"/>
-        </class>
-        <class className="AddEditCountryViewController" superclassName="SimpleAddEditViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddEditCountryViewController.h"/>
-        </class>
-        <class className="AddEditPlaceTypeViewController" superclassName="SimpleAddEditViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/AddEditPlaceTypeViewController.h"/>
-        </class>
-        <class className="BaseSearchAndRefreshTableViewController" superclassName="PullToRefreshViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/BaseSearchAndRefreshTableViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="contributionAddClicked:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="action" name="contributionEditClicked:" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="barBtnAdd" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="barBtnEdit" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="buttomToolBar" candidateClass="UIToolbar"/>
-                <relationship kind="outlet" name="tableToButtomConstraint" candidateClass="NSLayoutConstraint"/>
-            </relationships>
-        </class>
-        <class className="BeerCategoriesViewController" superclassName="BaseSearchAndRefreshTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/BeerCategoriesViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="categorySegValueChanged:"/>
-                <relationship kind="outlet" name="segCategories" candidateClass="UISegmentedControl"/>
-            </relationships>
-        </class>
-        <class className="BeerDetailsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/BeerDetailsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="favoritesButtonClicked:"/>
-                <relationship kind="action" name="likeClicked:"/>
-                <relationship kind="outlet" name="activityCommentsLoad" candidateClass="UIActivityIndicatorView"/>
-                <relationship kind="outlet" name="activityFavoriteCheck" candidateClass="UIActivityIndicatorView"/>
-                <relationship kind="outlet" name="activityLikeCheck" candidateClass="UIActivityIndicatorView"/>
-                <relationship kind="outlet" name="btnComments" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="btnFavorites" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="btnLike" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="contentScroller" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="imgBeerIcon" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="lblBeerCategory" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="lblBeerName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="tbBeerProperties" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="BeerInPlacesViewController" superclassName="BaseSearchAndRefreshTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/BeerInPlacesViewController.h"/>
-        </class>
-        <class className="BeersInPlaceViewController" superclassName="BaseSearchAndRefreshTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/BeersInPlaceViewController.h"/>
-        </class>
-        <class className="BeersViewController" superclassName="BaseSearchAndRefreshTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/BeersViewController.h"/>
-        </class>
-        <class className="FBUserSettingsContainerViewController" superclassName="FBUserSettingsViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FBUserSettingsContainerViewController.h"/>
-        </class>
-        <class className="FBUserSettingsViewController" superclassName="FBViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FBUserSettingsViewController.h"/>
-        </class>
-        <class className="FBViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FBViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="cancelButton" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="delegate"/>
-                <relationship kind="outlet" name="doneButton" candidateClass="UIBarButtonItem"/>
-            </relationships>
-        </class>
-        <class className="FacebookCommentsView" superclassName="UIView">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FacebookCommentsView.h"/>
-            <relationships>
-                <relationship kind="outlet" name="delegate"/>
-            </relationships>
-        </class>
-        <class className="FacebookCommentsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FacebookCommentsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="doneClicked:"/>
-                <relationship kind="outlet" name="facebookCommentsView" candidateClass="FacebookCommentsView"/>
-            </relationships>
-        </class>
-        <class className="FavoriteBeersViewController" superclassName="BaseSearchAndRefreshTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/FavoriteBeersViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="favoriteListTypeChanged:forEvent:" candidateClass="UISegmentedControl"/>
-                <relationship kind="outlet" name="SegFavoriteListType" candidateClass="UISegmentedControl"/>
-            </relationships>
-        </class>
-        <class className="NSLayoutConstraint" superclassName="NSObject">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
-        </class>
-        <class className="PlaceAreasViewController" superclassName="BaseSearchAndRefreshTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlaceAreasViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="placeFilteringValueChanged:"/>
-                <relationship kind="outlet" name="segPlaceFiltering" candidateClass="UISegmentedControl"/>
-            </relationships>
-        </class>
-        <class className="PlaceDetailsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlaceDetailsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="likeClicked:"/>
-                <relationship kind="outlet" name="activityCommentsLoad" candidateClass="UIActivityIndicatorView"/>
-                <relationship kind="outlet" name="activityLikeCheck" candidateClass="UIActivityIndicatorView"/>
-                <relationship kind="outlet" name="btnComments" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="btnLike" candidateClass="UIButton"/>
-                <relationship kind="outlet" name="contentScroller" candidateClass="UIScrollView"/>
-                <relationship kind="outlet" name="imgPlaceIcon" candidateClass="UIImageView"/>
-                <relationship kind="outlet" name="lblPlaceArea" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="lblPlaceName" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="tbPlaceProperties" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="PlacesViewController" superclassName="BaseSearchAndRefreshTableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PlacesViewController.h"/>
-        </class>
-        <class className="PullToRefreshViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/PullToRefreshViewController.h"/>
-            <relationships>
-                <relationship kind="outlet" name="tableView" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="SearchViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SearchViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="segValueChanged:"/>
-                <relationship kind="outlet" name="searchBar" candidateClass="UISearchBar"/>
-                <relationship kind="outlet" name="segSearch" candidateClass="UISegmentedControl"/>
-            </relationships>
-        </class>
-        <class className="SettingsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="switchValueChanged:" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="tbSettings" candidateClass="UITableView"/>
-            </relationships>
-        </class>
-        <class className="SimpleAddEditViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SimpleAddEditViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="cancelClicked:"/>
-                <relationship kind="action" name="fieldNameValueChanged:"/>
-                <relationship kind="action" name="saveClicked:"/>
-                <relationship kind="outlet" name="btnCancel" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="btnSave" candidateClass="UIBarButtonItem"/>
-                <relationship kind="outlet" name="txtFieldName" candidateClass="UITextField"/>
-            </relationships>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="AHG-38-kl1"/>
+        <segue reference="woj-sx-4eM"/>
         <segue reference="tBD-v1-Z0u"/>
         <segue reference="58t-Gu-oJf"/>
-        <segue reference="WRN-vJ-ljt"/>
+        <segue reference="4T6-rQ-Bai"/>
+        <segue reference="AHG-38-kl1"/>
         <segue reference="yew-Ol-X7Y"/>
-        <segue reference="woj-sx-4eM"/>
     </inferredMetricsTieBreakers>
 </document>

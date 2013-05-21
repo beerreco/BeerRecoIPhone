@@ -10,6 +10,9 @@
 #import "FacebookCommentsViewController.h"
 #import "BeerInPlacesViewController.h"
 #import "BeersViewController.h"
+#import "EditBeerNameViewController.h"
+#import "EditBeerComponentsViewController.h"
+#import "EditAlcoholPercentViewController.h"
 
 @interface BeerDetailsViewController ()
 
@@ -43,6 +46,17 @@
     [self setup];
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [self updateCommentsButton];
+    
+    [self addFavoritesButton];
+    
+    [self addLikeButton];
+    
+    [self showHideContributionEditButon];
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -61,16 +75,33 @@
     [self setActivityLikeCheck:nil];
     [self setTbBeerProperties:nil];
     [self setContentScroller:nil];
+    [self setBtnEditBeerType:nil];
+    [self setBtnEditBeerIcon:nil];
     [super viewDidUnload];
 }
 
--(void)viewWillAppear:(BOOL)animated
+-(void)setEditing:(BOOL)editing animated:(BOOL)animated
 {
-    [self updateCommentsButton];
-    
-    [self addFavoritesButton];
-    
-    [self addLikeButton];
+    if (self.editing != editing)
+    {
+        [super setEditing:editing animated:animated];
+        
+        [self.tbBeerProperties setEditing:editing animated:animated];
+        
+        [self showBeerEditButtons:editing];
+        
+        if (editing)
+        {
+            [self.barBtnEdit setTitle:@"Done"];
+            [self.barBtnEdit setStyle:UIBarButtonItemStyleDone];
+            
+        }
+        else
+        {
+            [self.barBtnEdit setTitle:@"Edit"];
+            [self.barBtnEdit setStyle:UIBarButtonItemStyleBordered];
+        }
+    }
 }
 
 #pragma mark - Private Methods
@@ -79,12 +110,14 @@
 {
     self.navigationItem.title = self.beerView.beer.name;
     
-    [self.btnComments setBackgroundImage:[UIImage imageNamed:@"comments_button_bg"] forState:UIControlStateNormal];
-    self.btnComments.layer.cornerRadius = 10;
-    self.btnComments.clipsToBounds = YES;
-    self.btnComments.layer.borderWidth = 1;
-    self.btnComments.layer.borderColor = [[UIColor blackColor] CGColor];
+    [self addCommentsButton];
     
+    if (self.barBtnEdit == nil)
+    {
+        self.barBtnEdit = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStyleBordered target:self action:@selector(contributionEditClicked:)];
+    }
+    
+    [self showHideContributionEditButon];
     
     [self performSelector:@selector(adjustScrollViewerContentSize) withObject:nil afterDelay:0.1];
 }
@@ -102,6 +135,15 @@
 {
     self.contentScroller.contentSize =
     CGSizeMake(320, self.tbBeerProperties.frame.size.height + self.tbBeerProperties.frame.origin.y);
+}
+
+-(void)addCommentsButton
+{
+    [self.btnComments setBackgroundImage:[UIImage imageNamed:@"comments_button_bg"] forState:UIControlStateNormal];
+    self.btnComments.layer.cornerRadius = 10;
+    self.btnComments.clipsToBounds = YES;
+    self.btnComments.layer.borderWidth = 1;
+    self.btnComments.layer.borderColor = [[UIColor blackColor] CGColor];
 }
 
 -(void)updateCommentsButton
@@ -122,6 +164,43 @@
          [self.activityCommentsLoad stopAnimating];
              [self.btnComments setEnabled:YES];
      }];
+}
+
+-(void)showHideContributionEditButon
+{
+    if ([GeneralDataStore sharedDataStore].contributionAllowed)
+    {
+        [self.navigationItem setRightBarButtonItem:self.barBtnEdit animated:YES];
+    }
+    else
+    {
+        [self.navigationItem setRightBarButtonItem:nil animated:YES];
+        
+        if (self.editing)
+        {
+            [self setEditing:NO animated:YES];
+        }
+    }
+}
+
+-(void)showBeerEditButtons:(BOOL)show
+{
+    [self.btnEditBeerName setHidden:!show];
+    [self.btnEditBeerType setHidden:!show];
+    [self.btnEditBeerIcon setHidden:!show];
+}
+
+-(UIButton*)makeDetailDisclosureButton
+{
+    UIButton * button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    
+    [button setImage:[UIImage imageNamed:@"edit_icon"] forState:UIControlStateNormal];
+    
+    [button addTarget: self
+               action: @selector(accessoryButtonTapped:withEvent:)
+     forControlEvents: UIControlEventTouchUpInside];
+    
+    return button;
 }
 
 #pragma mark Like handling
@@ -320,6 +399,8 @@
     [self addFavoritesButton];
     
     [self addLikeButton];
+    
+    [self showHideContributionEditButon];
 }
 
 -(void)facebookLoggedOut:(NSNotification*)notification
@@ -327,6 +408,8 @@
     [self makeAddFavoritesButton];
     
     [self makeLikeButton];
+    
+    [self showHideContributionEditButon];
 }
 
 #pragma mark - Action Handlers
@@ -457,6 +540,48 @@
     }
 }
 
+- (void)contributionEditClicked:(UIBarButtonItem *)sender
+{
+    if (self.editing)
+	{
+		[self setEditing:NO animated:YES];
+	}
+	else
+	{
+		[self setEditing:YES animated:YES];
+	}
+}
+
+- (IBAction)editBeerNameClicked:(UIButton*)sender
+{
+    UINavigationController* navController = [[UINavigationController alloc] init];
+    
+    EditBeerNameViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"EditBeerNameViewController"];
+    
+    vc.editedItem = self.beerView.beer;
+    
+    [navController setViewControllers:@[vc]];
+    
+    [self presentModalViewController:navController animated:YES];
+}
+
+- (IBAction)editBeerTypeClicked:(UIButton*)sender
+{
+}
+
+- (IBAction)editBeerIconClicked:(UIButton *)sender
+{
+}
+
+- (void)accessoryButtonTapped:(UIControl*)button withEvent:(UIEvent*)event
+{
+    NSIndexPath * indexPath = [self.tbBeerProperties indexPathForRowAtPoint:[[[event touchesForView: button] anyObject] locationInView: self.tbBeerProperties]];
+    if ( indexPath == nil )
+        return;
+    
+    [self.tbBeerProperties.delegate tableView: self.tbBeerProperties accessoryButtonTappedForRowWithIndexPath: indexPath];
+}
+
 #pragma mark - Segue
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -542,7 +667,7 @@
     }
     
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-    [cell setEditingAccessoryType:UITableViewCellAccessoryNone];
+    [cell setEditingAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     [cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
     
     if (indexPath.section == 1)
@@ -556,8 +681,8 @@
     else if (indexPath.section == 0)
     {
         [cell setAccessoryType:UITableViewCellAccessoryNone];
-        [cell setEditingAccessoryType:UITableViewCellAccessoryNone];
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        [cell setEditingAccessoryView:[self makeDetailDisclosureButton]];
         
         if (indexPath.row == 0)
         {
@@ -573,11 +698,16 @@
         }
         else if (indexPath.row == 3)
         {
-            cell.textLabel.text = [NSString stringWithFormat:@"Alcohol Percentage: %@", self.beerView.beer.alchoholPrecent > 0 ?[NSString stringWithFormat:@"%.0f", self.beerView.beer.alchoholPrecent] : @"N/A"];
+            cell.textLabel.text = [NSString stringWithFormat:@"Alcohol Percentage: %@", self.beerView.beer.alchoholPrecent > 0 ?[NSString stringWithFormat:@"%.1f", self.beerView.beer.alchoholPrecent] : @"N/A"];
         }
     }
     
     return cell;
+}
+
+- (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return NO;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -587,7 +717,7 @@
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)aTableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return self.editing ? UITableViewCellEditingStyleDelete : UITableViewCellEditingStyleNone;
+    return UITableViewCellEditingStyleNone;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -606,6 +736,40 @@
 }
 
 #pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    UINavigationController* navController = [[UINavigationController alloc] init];
+    
+    if (indexPath.row == 0)
+    {
+        // Origin Country
+    }
+    else if (indexPath.row == 1)
+    {
+        // Brewery
+    }
+    else if (indexPath.row == 2)
+    {
+        // Components
+        EditBeerComponentsViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"EditBeerComponentsViewController"];
+        
+        vc.editedItem = self.beerView.beer;
+        
+        [navController setViewControllers:@[vc]];
+    }
+    else if (indexPath.row == 3)
+    {
+        // Alcohol perecent
+        EditAlcoholPercentViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"EditAlcoholPercentViewController"];
+        
+        vc.editedItem = self.beerView.beer;
+        
+        [navController setViewControllers:@[vc]];
+    }
+    
+    [self presentModalViewController:navController animated:YES];
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

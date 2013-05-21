@@ -9,6 +9,8 @@
 #import "PlaceDetailsViewController.h"
 #import "FacebookCommentsViewController.h"
 #import "BeersInPlaceViewController.h"
+#import "EditPlaceNameViewController.h"
+#import "EditPlaceAddressViewController.h"
 
 @interface PlaceDetailsViewController ()
 
@@ -66,17 +68,44 @@
     [self addLikeButton];
 }
 
+-(void)setEditing:(BOOL)editing animated:(BOOL)animated
+{
+    if (self.editing != editing)
+    {
+        [super setEditing:editing animated:animated];
+        
+        [self.tbPlaceProperties setEditing:editing animated:animated];
+        
+        [self showBeerEditButtons:editing];
+        
+        if (editing)
+        {
+            [self.barBtnEdit setTitle:@"Done"];
+            [self.barBtnEdit setStyle:UIBarButtonItemStyleDone];
+            
+        }
+        else
+        {
+            [self.barBtnEdit setTitle:@"Edit"];
+            [self.barBtnEdit setStyle:UIBarButtonItemStyleBordered];
+        }
+    }
+}
+
 #pragma mark - Private Methods
 
 -(void)visualSetup
 {
     self.navigationItem.title = self.placeView.place.name;
     
-    [self.btnComments setBackgroundImage:[UIImage imageNamed:@"comments_button_bg"] forState:UIControlStateNormal];
-    self.btnComments.layer.cornerRadius = 10;
-    self.btnComments.clipsToBounds = YES;
-    self.btnComments.layer.borderWidth = 1;
-    self.btnComments.layer.borderColor = [[UIColor blackColor] CGColor];
+    [self addCommentsButton];
+    
+    if (self.barBtnEdit == nil)
+    {
+        self.barBtnEdit = [[UIBarButtonItem alloc] initWithTitle:@"Edit" style:UIBarButtonItemStyleBordered target:self action:@selector(contributionEditClicked:)];
+    }
+    
+    [self showHideContributionEditButon];
     
     [self addLikeButton];
     
@@ -90,6 +119,15 @@
     
     NSString* imageUrl = [BeerRecoAPIClient getFullPathForFile:self.placeView.place.placeIconUrl];
     [self.imgPlaceIcon setImageWithURL:[NSURL URLWithString:imageUrl] placeholderImage:[UIImage imageNamed:@"place_icon_default"]];
+}
+
+-(void)addCommentsButton
+{
+    [self.btnComments setBackgroundImage:[UIImage imageNamed:@"comments_button_bg"] forState:UIControlStateNormal];
+    self.btnComments.layer.cornerRadius = 10;
+    self.btnComments.clipsToBounds = YES;
+    self.btnComments.layer.borderWidth = 1;
+    self.btnComments.layer.borderColor = [[UIColor blackColor] CGColor];
 }
 
 -(void)updateCommentsButton
@@ -115,6 +153,43 @@
 -(void)adjustScrollViewerContentSize
 {
     self.contentScroller.contentSize = CGSizeMake(320, self.tbPlaceProperties.frame.size.height + self.tbPlaceProperties.frame.origin.y);
+}
+
+-(void)showHideContributionEditButon
+{
+    if ([GeneralDataStore sharedDataStore].contributionAllowed)
+    {
+        [self.navigationItem setRightBarButtonItem:self.barBtnEdit animated:YES];
+    }
+    else
+    {
+        [self.navigationItem setRightBarButtonItem:nil animated:YES];
+        
+        if (self.editing)
+        {
+            [self setEditing:NO animated:YES];
+        }
+    }
+}
+
+-(void)showBeerEditButtons:(BOOL)show
+{
+    [self.btnEditPlaceName setHidden:!show];
+    [self.btnEditPlaceArea setHidden:!show];
+    [self.btnEditPlaceIcon setHidden:!show];
+}
+
+-(UIButton*)makeDetailDisclosureButton
+{
+    UIButton * button = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, 30, 30)];
+    
+    [button setImage:[UIImage imageNamed:@"edit_icon"] forState:UIControlStateNormal];
+    
+    [button addTarget: self
+               action: @selector(accessoryButtonTapped:withEvent:)
+     forControlEvents: UIControlEventTouchUpInside];
+    
+    return button;
 }
 
 #pragma mark Like handling
@@ -226,11 +301,15 @@
 -(void)facebookReceivedUser:(NSNotification*)notification
 {
     [self addLikeButton];
+    
+    [self showHideContributionEditButon];
 }
 
 -(void)facebookLoggedOut:(NSNotification*)notification
 {
     [self makeLikeButton];
+    
+    [self showHideContributionEditButon];
 }
 
 #pragma mark - Action Handlers
@@ -290,6 +369,50 @@
              }
          }];
     }
+}
+
+- (void)contributionEditClicked:(UIBarButtonItem *)sender
+{
+    if (self.editing)
+	{
+		[self setEditing:NO animated:YES];
+	}
+	else
+	{
+		[self setEditing:YES animated:YES];
+	}
+}
+
+- (IBAction)editPlaceNameClicked:(UIButton*)sender
+{
+    UINavigationController* navController = [[UINavigationController alloc] init];
+    
+    EditPlaceNameViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"EditPlaceNameViewController"];
+    
+    vc.editedItem = self.placeView.place;
+    
+    [navController setViewControllers:@[vc]];
+    
+    [self presentModalViewController:navController animated:YES];
+}
+
+- (IBAction)editPlaceAreaClicked:(UIButton*)sender
+{
+    
+}
+
+- (IBAction)editPlaceIconClicked:(UIButton *)sender
+{
+    
+}
+
+- (void)accessoryButtonTapped:(UIControl*)button withEvent:(UIEvent*)event
+{
+    NSIndexPath * indexPath = [self.tbPlaceProperties indexPathForRowAtPoint:[[[event touchesForView: button] anyObject] locationInView: self.tbPlaceProperties]];
+    if ( indexPath == nil )
+        return;
+    
+    [self.tbPlaceProperties.delegate tableView: self.tbPlaceProperties accessoryButtonTappedForRowWithIndexPath: indexPath];
 }
 
 #pragma mark - Segue
@@ -370,14 +493,14 @@
     }
     
     [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-    [cell setEditingAccessoryType:UITableViewCellAccessoryNone];
+    [cell setEditingAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
     [cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
     
     if (indexPath.section == 0)
     {
         [cell setAccessoryType:UITableViewCellAccessoryNone];
-        [cell setEditingAccessoryType:UITableViewCellAccessoryNone];
         [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+        [cell setEditingAccessoryView:[self makeDetailDisclosureButton]];
         
         if (indexPath.row == 0)
         {
@@ -401,9 +524,14 @@
     return 44;
 }
 
+- (BOOL)tableView:(UITableView *)tableView shouldIndentWhileEditingRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return NO;
+}
+
 - (UITableViewCellEditingStyle)tableView:(UITableView *)aTableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return self.editing ? UITableViewCellEditingStyleDelete : UITableViewCellEditingStyleNone;
+    return UITableViewCellEditingStyleNone;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -422,6 +550,27 @@
 }
 
 #pragma mark - UITableViewDelegate
+
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    UINavigationController* navController = [[UINavigationController alloc] init];
+    
+    if (indexPath.row == 0)
+    {
+        // Place Type
+    }
+    else if (indexPath.row == 1)
+    {
+        // Address
+        EditPlaceAddressViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"EditPlaceAddressViewController"];
+        
+        vc.editedItem = self.placeView.place;
+        
+        [navController setViewControllers:@[vc]];
+    }
+    
+    [self presentModalViewController:navController animated:YES];
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {

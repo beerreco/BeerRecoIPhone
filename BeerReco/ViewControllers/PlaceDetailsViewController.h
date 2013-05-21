@@ -26,6 +26,16 @@
 @property (weak, nonatomic) IBOutlet UITableView *tbPlaceProperties;
 @property (weak, nonatomic) IBOutlet UIScrollView *contentScroller;
 
+@property (nonatomic, strong) UIBarButtonItem* barBtnEdit;
+@property (weak, nonatomic) IBOutlet UIButton *btnEditPlaceName;
+@property (weak, nonatomic) IBOutlet UIButton *btnEditPlaceArea;
+@property (weak, nonatomic) IBOutlet UIButton *btnEditPlaceIcon;
+
 - (IBAction)likeClicked:(id)sender;
+
+- (void)contributionEditClicked:(UIBarButtonItem *)sender;
+- (IBAction)editPlaceNameClicked:(UIButton*)sender;
+- (IBAction)editPlaceAreaClicked:(UIButton*)sender;
+- (IBAction)editPlaceIconClicked:(UIButton *)sender;
 
 @end
