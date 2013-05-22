@@ -56,6 +56,14 @@
 		846A7234174C31D900C7B2F2 /* EditAlcoholPercentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846A7233174C31D800C7B2F2 /* EditAlcoholPercentViewController.m */; };
 		846A7237174C3A6D00C7B2F2 /* EditPlaceNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846A7236174C3A6D00C7B2F2 /* EditPlaceNameViewController.m */; };
 		846A723A174C3C6D00C7B2F2 /* EditPlaceAddressViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846A7239174C3C6D00C7B2F2 /* EditPlaceAddressViewController.m */; };
+		846A723E174C41D900C7B2F2 /* EditBeerIconViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846A723D174C41D900C7B2F2 /* EditBeerIconViewController.m */; };
+		846A7241174C4C4500C7B2F2 /* picker_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = 846A723F174C4C4500C7B2F2 /* picker_placeholder.png */; };
+		846A7242174C4C4500C7B2F2 /* picker_placeholder@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 846A7240174C4C4500C7B2F2 /* picker_placeholder@2x.png */; };
+		846A7245174C605D00C7B2F2 /* gallery_picker.png in Resources */ = {isa = PBXBuildFile; fileRef = 846A7243174C605D00C7B2F2 /* gallery_picker.png */; };
+		846A7246174C605D00C7B2F2 /* gallery_picker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 846A7244174C605D00C7B2F2 /* gallery_picker@2x.png */; };
+		846A7249174C633F00C7B2F2 /* camera_picker.png in Resources */ = {isa = PBXBuildFile; fileRef = 846A7247174C633F00C7B2F2 /* camera_picker.png */; };
+		846A724A174C633F00C7B2F2 /* camera_picker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 846A7248174C633F00C7B2F2 /* camera_picker@2x.png */; };
+		846A724D174C66DA00C7B2F2 /* EditPlaceIconViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846A724C174C66D900C7B2F2 /* EditPlaceIconViewController.m */; };
 		84A58FA3170C6AD400A46E9F /* BeerM.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A58FA2170C6AD400A46E9F /* BeerM.m */; };
 		84A58FAA170DAE4300A46E9F /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A58FA9170DAE4300A46E9F /* FacebookSDK.framework */; };
 		84A58FAC170DAE8800A46E9F /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 84A58FAB170DAE8800A46E9F /* FacebookSDKResources.bundle */; };
@@ -233,6 +241,16 @@
 		846A7236174C3A6D00C7B2F2 /* EditPlaceNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditPlaceNameViewController.m; path = ViewControllers/EditPlaceNameViewController.m; sourceTree = "<group>"; };
 		846A7238174C3C6D00C7B2F2 /* EditPlaceAddressViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditPlaceAddressViewController.h; path = ViewControllers/EditPlaceAddressViewController.h; sourceTree = "<group>"; };
 		846A7239174C3C6D00C7B2F2 /* EditPlaceAddressViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditPlaceAddressViewController.m; path = ViewControllers/EditPlaceAddressViewController.m; sourceTree = "<group>"; };
+		846A723C174C41D900C7B2F2 /* EditBeerIconViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditBeerIconViewController.h; path = ViewControllers/EditBeerIconViewController.h; sourceTree = "<group>"; };
+		846A723D174C41D900C7B2F2 /* EditBeerIconViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditBeerIconViewController.m; path = ViewControllers/EditBeerIconViewController.m; sourceTree = "<group>"; };
+		846A723F174C4C4500C7B2F2 /* picker_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = picker_placeholder.png; path = Resources/Images/picker_placeholder.png; sourceTree = "<group>"; };
+		846A7240174C4C4500C7B2F2 /* picker_placeholder@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "picker_placeholder@2x.png"; path = "Resources/Images/picker_placeholder@2x.png"; sourceTree = "<group>"; };
+		846A7243174C605D00C7B2F2 /* gallery_picker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = gallery_picker.png; path = Resources/Images/gallery_picker.png; sourceTree = "<group>"; };
+		846A7244174C605D00C7B2F2 /* gallery_picker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "gallery_picker@2x.png"; path = "Resources/Images/gallery_picker@2x.png"; sourceTree = "<group>"; };
+		846A7247174C633F00C7B2F2 /* camera_picker.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = camera_picker.png; path = Resources/Images/camera_picker.png; sourceTree = "<group>"; };
+		846A7248174C633F00C7B2F2 /* camera_picker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "camera_picker@2x.png"; path = "Resources/Images/camera_picker@2x.png"; sourceTree = "<group>"; };
+		846A724B174C66D900C7B2F2 /* EditPlaceIconViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditPlaceIconViewController.h; path = ViewControllers/EditPlaceIconViewController.h; sourceTree = "<group>"; };
+		846A724C174C66D900C7B2F2 /* EditPlaceIconViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditPlaceIconViewController.m; path = ViewControllers/EditPlaceIconViewController.m; sourceTree = "<group>"; };
 		84A58FA1170C6AD400A46E9F /* BeerM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeerM.h; path = Models/BeerM.h; sourceTree = "<group>"; };
 		84A58FA2170C6AD400A46E9F /* BeerM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BeerM.m; path = Models/BeerM.m; sourceTree = "<group>"; };
 		84A58FA7170DADF900A46E9F /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = /Users/admin/Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<absolute>"; };
@@ -532,6 +550,21 @@
 			name = FacebookWebPlugins;
 			sourceTree = "<group>";
 		};
+		846A723B174C406A00C7B2F2 /* Beer */ = {
+			isa = PBXGroup;
+			children = (
+				846A722C174C222F00C7B2F2 /* EditBeerNameViewController.h */,
+				846A722D174C222F00C7B2F2 /* EditBeerNameViewController.m */,
+				846A722F174C25B700C7B2F2 /* EditBeerComponentsViewController.h */,
+				846A7230174C25B700C7B2F2 /* EditBeerComponentsViewController.m */,
+				846A7232174C31D800C7B2F2 /* EditAlcoholPercentViewController.h */,
+				846A7233174C31D800C7B2F2 /* EditAlcoholPercentViewController.m */,
+				846A723C174C41D900C7B2F2 /* EditBeerIconViewController.h */,
+				846A723D174C41D900C7B2F2 /* EditBeerIconViewController.m */,
+			);
+			name = Beer;
+			sourceTree = "<group>";
+		};
 		84A58FBB1711D76E00A46E9F /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -546,18 +579,22 @@
 		84B58C6516DB8CEA0097CD67 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				844956C1172D8A1000A4690C /* FacebookCommentsViewController.h */,
+				844956C2172D8A1100A4690C /* FacebookCommentsViewController.m */,
 				84B58C7416DB8DC30097CD67 /* FavoriteBeersViewController.h */,
 				84B58C7516DB8DC30097CD67 /* FavoriteBeersViewController.m */,
-				84B58C7616DB8DC30097CD67 /* SearchViewController.h */,
-				84B58C7716DB8DC30097CD67 /* SearchViewController.m */,
+				84E5F1EB1745051200BFB703 /* AddEditBeerInPlacesViewController.h */,
+				84E5F1EC1745051300BFB703 /* AddEditBeerInPlacesViewController.m */,
+				84E5F1D21743C2F300BFB703 /* SimpleAddEditViewController.h */,
+				84E5F1D31743C2F300BFB703 /* SimpleAddEditViewController.m */,
+				84E5F193173C7DD100BFB703 /* BaseSearchAndRefreshTableViewController.h */,
+				84E5F194173C7DD100BFB703 /* BaseSearchAndRefreshTableViewController.m */,
 				84A58FBB1711D76E00A46E9F /* Settings */,
 				84D14A581715C9DD00F0660C /* Beers */,
 				84D14A571715C9BC00F0660C /* Places */,
 				844316D81721530200D227D2 /* LoadError */,
-				844956C1172D8A1000A4690C /* FacebookCommentsViewController.h */,
-				844956C2172D8A1100A4690C /* FacebookCommentsViewController.m */,
-				84E5F193173C7DD100BFB703 /* BaseSearchAndRefreshTableViewController.h */,
-				84E5F194173C7DD100BFB703 /* BaseSearchAndRefreshTableViewController.m */,
+				84B58C7616DB8DC30097CD67 /* SearchViewController.h */,
+				84B58C7716DB8DC30097CD67 /* SearchViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -575,6 +612,12 @@
 		84B58C6716DB8DA60097CD67 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				846A7247174C633F00C7B2F2 /* camera_picker.png */,
+				846A7248174C633F00C7B2F2 /* camera_picker@2x.png */,
+				846A7243174C605D00C7B2F2 /* gallery_picker.png */,
+				846A7244174C605D00C7B2F2 /* gallery_picker@2x.png */,
+				846A723F174C4C4500C7B2F2 /* picker_placeholder.png */,
+				846A7240174C4C4500C7B2F2 /* picker_placeholder@2x.png */,
 				84E5F1F1174A82EE00BFB703 /* edit_icon.png */,
 				84E5F1F2174A82EE00BFB703 /* edit_icon@2x.png */,
 				84E5F1CA1742F7AC00BFB703 /* comments_button_bg.png */,
@@ -840,24 +883,15 @@
 		84E5F1CE1743B21800BFB703 /* AddEdit */ = {
 			isa = PBXGroup;
 			children = (
+				846A723B174C406A00C7B2F2 /* Beer */,
 				84E5F1CF1743B25200BFB703 /* AddEditBeerTypeViewController.h */,
 				84E5F1D01743B25200BFB703 /* AddEditBeerTypeViewController.m */,
-				84E5F1D21743C2F300BFB703 /* SimpleAddEditViewController.h */,
-				84E5F1D31743C2F300BFB703 /* SimpleAddEditViewController.m */,
 				84E5F1D81743D95500BFB703 /* AddEditBreweryViewController.h */,
 				84E5F1D91743D95500BFB703 /* AddEditBreweryViewController.m */,
 				84E5F1DB1743D97100BFB703 /* AddEditCountryViewController.h */,
 				84E5F1DC1743D97100BFB703 /* AddEditCountryViewController.m */,
 				84E5F1DE1743D98900BFB703 /* AddEditBeerViewController.h */,
 				84E5F1DF1743D98A00BFB703 /* AddEditBeerViewController.m */,
-				84E5F1EB1745051200BFB703 /* AddEditBeerInPlacesViewController.h */,
-				84E5F1EC1745051300BFB703 /* AddEditBeerInPlacesViewController.m */,
-				846A722C174C222F00C7B2F2 /* EditBeerNameViewController.h */,
-				846A722D174C222F00C7B2F2 /* EditBeerNameViewController.m */,
-				846A722F174C25B700C7B2F2 /* EditBeerComponentsViewController.h */,
-				846A7230174C25B700C7B2F2 /* EditBeerComponentsViewController.m */,
-				846A7232174C31D800C7B2F2 /* EditAlcoholPercentViewController.h */,
-				846A7233174C31D800C7B2F2 /* EditAlcoholPercentViewController.m */,
 			);
 			name = AddEdit;
 			sourceTree = "<group>";
@@ -877,6 +911,8 @@
 				846A7236174C3A6D00C7B2F2 /* EditPlaceNameViewController.m */,
 				846A7238174C3C6D00C7B2F2 /* EditPlaceAddressViewController.h */,
 				846A7239174C3C6D00C7B2F2 /* EditPlaceAddressViewController.m */,
+				846A724B174C66D900C7B2F2 /* EditPlaceIconViewController.h */,
+				846A724C174C66D900C7B2F2 /* EditPlaceIconViewController.m */,
 			);
 			name = AddEdit;
 			sourceTree = "<group>";
@@ -985,6 +1021,12 @@
 				84E5F1CD1742F7AC00BFB703 /* comments_button_bg@2x.png in Resources */,
 				84E5F1F3174A82EE00BFB703 /* edit_icon.png in Resources */,
 				84E5F1F4174A82EE00BFB703 /* edit_icon@2x.png in Resources */,
+				846A7241174C4C4500C7B2F2 /* picker_placeholder.png in Resources */,
+				846A7242174C4C4500C7B2F2 /* picker_placeholder@2x.png in Resources */,
+				846A7245174C605D00C7B2F2 /* gallery_picker.png in Resources */,
+				846A7246174C605D00C7B2F2 /* gallery_picker@2x.png in Resources */,
+				846A7249174C633F00C7B2F2 /* camera_picker.png in Resources */,
+				846A724A174C633F00C7B2F2 /* camera_picker@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1121,6 +1163,8 @@
 				846A7234174C31D900C7B2F2 /* EditAlcoholPercentViewController.m in Sources */,
 				846A7237174C3A6D00C7B2F2 /* EditPlaceNameViewController.m in Sources */,
 				846A723A174C3C6D00C7B2F2 /* EditPlaceAddressViewController.m in Sources */,
+				846A723E174C41D900C7B2F2 /* EditBeerIconViewController.m in Sources */,
+				846A724D174C66DA00C7B2F2 /* EditPlaceIconViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -10,6 +10,7 @@
 #import "FacebookCommentsViewController.h"
 #import "BeersInPlaceViewController.h"
 #import "EditPlaceNameViewController.h"
+#import "EditPlaceIconViewController.h"
 #import "EditPlaceAddressViewController.h"
 
 @interface PlaceDetailsViewController ()
@@ -403,7 +404,15 @@
 
 - (IBAction)editPlaceIconClicked:(UIButton *)sender
 {
+    UINavigationController* navController = [[UINavigationController alloc] init];
     
+    EditPlaceIconViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"EditPlaceIconViewController"];
+    
+    vc.editedItem = self.placeView.place;
+    
+    [navController setViewControllers:@[vc]];
+    
+    [self presentModalViewController:navController animated:YES];
 }
 
 - (void)accessoryButtonTapped:(UIControl*)button withEvent:(UIEvent*)event

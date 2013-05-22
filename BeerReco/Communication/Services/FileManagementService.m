@@ -14,21 +14,30 @@
 #define QueryParam_ImageOf @"imageOf"
 #define QueryParam_ItemId @"itemId"
 
-#define ImageOfBeer @"beer"
-
 @implementation FileManagementService
 
--(void)uploadFile:(void (^)(NSString* filePath, NSError *error))onComplete
+-(void)uploadFile:(UIImage*)imageFile ofEntity:(NSString*)imageOf onComplete:(void (^)(NSString* filePath, NSError *error))onComplete
 {
-    NSString* fileName = @"beerreco_icon.png";
+    NSString* fileName = @"beerreco.png";
     
-    NSDictionary* params = @{QueryParam_FileName:fileName,QueryParam_ImageOf: ImageOfBeer, QueryParam_ItemId: [NSString uuid]};
+    NSDictionary* params = @{QueryParam_FileName:fileName,QueryParam_ImageOf: imageOf, QueryParam_ItemId: [NSString uuid]};
     
     NSURL *baseUrl = [NSURL URLWithString:[NSString stringWithFormat:@"%@%@", BaseURL_FileServer, FileUploadService]];
     
     AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:baseUrl];
     
-    NSData *imageData = UIImagePNGRepresentation([UIImage imageNamed:fileName]);
+    UIImage* scaledImage = [self image:imageFile ByScalingToSize:CGSizeMake(120, 120)];
+    
+    if (scaledImage == nil)
+    {
+        if (onComplete)
+        {
+            onComplete(nil, [NSError errorWithDomain:@"" code:-1 userInfo:nil]);
+            return;
+        }
+    }
+    
+    NSData *imageData = UIImagePNGRepresentation(scaledImage);
     
     NSMutableURLRequest *request = [httpClient multipartFormRequestWithMethod:@"POST" path:nil parameters:params constructingBodyWithBlock: ^(id <AFMultipartFormData>formData)
     {
@@ -43,6 +52,7 @@
     
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
     {
+        NSLog(@"%@", operation.responseString);
         if (onComplete)
         {
             onComplete(operation.responseString, nil);
@@ -56,6 +66,43 @@
     }];
     
     [httpClient enqueueHTTPRequestOperation:operation];
+}
+
+- (UIImage *)image:(UIImage*)sourceImage ByScalingToSize:(CGSize)targetSize
+{    
+    UIImage *newImage = nil;
+    
+    //   CGSize imageSize = sourceImage.size;
+    //   CGFloat width = imageSize.width;
+    //   CGFloat height = imageSize.height;
+    
+    CGFloat targetWidth = targetSize.width;
+    CGFloat targetHeight = targetSize.height;
+    
+    //   CGFloat scaleFactor = 0.0;
+    CGFloat scaledWidth = targetWidth;
+    CGFloat scaledHeight = targetHeight;
+    
+    CGPoint thumbnailPoint = CGPointMake(0.0,0.0);
+    
+    // this is actually the interesting part:
+    
+    UIGraphicsBeginImageContext(targetSize);
+    
+    CGRect thumbnailRect = CGRectZero;
+    thumbnailRect.origin = thumbnailPoint;
+    thumbnailRect.size.width  = scaledWidth;
+    thumbnailRect.size.height = scaledHeight;
+    
+    [sourceImage drawInRect:thumbnailRect];
+    
+    newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    if(newImage == nil) NSLog(@"could not scale image");
+    
+    
+    return newImage ;
 }
 
 @end

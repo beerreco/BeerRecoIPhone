@@ -8,8 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+#define ImageOfPlace @"place"
+#define ImageOfBeer @"beer"
+
 @interface FileManagementService : NSObject
 
--(void)uploadFile:(void (^)(NSString* filePath, NSError *error))onComplete;
+-(void)uploadFile:(UIImage*)imageFile ofEntity:(NSString*)imageOf onComplete:(void (^)(NSString* filePath, NSError *error))onComplete;
 
 @end

@@ -11,6 +11,7 @@
 #import "BeerInPlacesViewController.h"
 #import "BeersViewController.h"
 #import "EditBeerNameViewController.h"
+#import "EditBeerIconViewController.h"
 #import "EditBeerComponentsViewController.h"
 #import "EditAlcoholPercentViewController.h"
 
@@ -571,6 +572,15 @@
 
 - (IBAction)editBeerIconClicked:(UIButton *)sender
 {
+    UINavigationController* navController = [[UINavigationController alloc] init];
+    
+    EditBeerIconViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"EditBeerIconViewController"];
+    
+    vc.editedItem = self.beerView.beer;
+    
+    [navController setViewControllers:@[vc]];
+    
+    [self presentModalViewController:navController animated:YES];
 }
 
 - (void)accessoryButtonTapped:(UIControl*)button withEvent:(UIEvent*)event
