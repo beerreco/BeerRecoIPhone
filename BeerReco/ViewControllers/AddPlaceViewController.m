@@ -1,18 +1,18 @@
 //
-//  AddEditBeerViewController.m
+//  AddEditPlaceViewController.m
 //  BeerReco
 //
 //  Created by RLemberg on 5/15/13.
 //  Copyright (c) 2013 Colman. All rights reserved.
 //
 
-#import "AddEditBeerViewController.h"
+#import "AddPlaceViewController.h"
 
-@interface AddEditBeerViewController ()
+@interface AddPlaceViewController ()
 
 @end
 
-@implementation AddEditBeerViewController
+@implementation AddPlaceViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

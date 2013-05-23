@@ -22,4 +22,6 @@
 
 -(void)updateBeerType:(FieldUpdateDataM*)fieldUpdateData onComplete:(void (^)(NSError *error))onComplete;
 
+-(void)deleteBeerType:(NSString*)beerTypeId onComplete:(void (^)(NSError *error))onComplete;
+
 @end

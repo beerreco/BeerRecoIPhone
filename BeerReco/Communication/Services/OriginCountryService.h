@@ -21,4 +21,6 @@
 
 -(void)updateOriginCountry:(FieldUpdateDataM*)fieldUpdateData  onComplete:(void (^)(NSError *error))onComplete;
 
+-(void)deleteOriginCountry:(NSString*)countryId onComplete:(void (^)(NSError *error))onComplete;
+
 @end

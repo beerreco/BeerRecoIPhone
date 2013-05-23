@@ -20,4 +20,6 @@
 
 -(void)updateBrewery:(FieldUpdateDataM*)fieldUpdateData  onComplete:(void (^)(NSError *error))onComplete;
 
+-(void)deleteBrewery:(NSString*)breweryId onComplete:(void (^)(NSError *error))onComplete;
+
 @end

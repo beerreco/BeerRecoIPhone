@@ -48,9 +48,7 @@
 #pragma mark - Virtual Methods
 
 -(void)innerVisualSetup
-{
-    [self.imgNewIcon setImage:[UIImage imageNamed:@"picker_placeholder"]];
-    
+{   
     self.viewTitle = @"Beer Icon";
     self.textFieldPlaceHolder = @"Beer Icon";
     

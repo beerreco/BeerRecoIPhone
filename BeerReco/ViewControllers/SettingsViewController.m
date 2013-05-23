@@ -254,6 +254,7 @@
         backgroud.layer.borderColor = [[UIColor grayColor] CGColor];
         
         cell.backgroundView = backgroud;
+        cell.backgroundColor = [UIColor clearColor];
         cell.textLabel.backgroundColor = [UIColor clearColor];
     }
     

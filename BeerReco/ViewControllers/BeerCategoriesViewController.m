@@ -11,7 +11,7 @@
 #import "AddEditBeerTypeViewController.h"
 #import "AddEditBreweryViewController.h"
 #import "AddEditCountryViewController.h"
-#import "AddEditBeerViewController.h"
+#import "AddBeerViewController.h"
 
 @interface BeerCategoriesViewController ()
 
@@ -398,7 +398,7 @@
     }
     else if (self.segCategories.selectedSegmentIndex == 3)
     {
-        AddEditBeerViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"AddEditBeerViewController"];
+        AddBeerViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"AddBeerViewController"];
         
         [navController setViewControllers:@[vc]];
     }

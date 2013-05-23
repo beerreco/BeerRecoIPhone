@@ -10,7 +10,7 @@
 #import "PlacesViewController.h"
 #import "AddEditAreaViewController.h"
 #import "AddEditPlaceTypeViewController.h"
-#import "AddEditPlaceViewController.h"
+#import "AddPlaceViewController.h"
 
 @interface PlaceAreasViewController ()
 
@@ -340,7 +340,7 @@
     }
     else if (self.segPlaceFiltering.selectedSegmentIndex == 2)
     {
-        AddEditPlaceViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"AddEditPlaceViewController"];
+        AddPlaceViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"AddEditPlaceViewController"];
         
         [navController setViewControllers:@[vc]];
     }

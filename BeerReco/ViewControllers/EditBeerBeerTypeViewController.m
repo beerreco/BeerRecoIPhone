@@ -278,6 +278,7 @@
         backgroud.layer.borderColor = [[UIColor grayColor] CGColor];
         
         cell.backgroundView = backgroud;
+        cell.backgroundColor = [UIColor clearColor];
         cell.textLabel.backgroundColor = [UIColor clearColor];
     }
 
@@ -317,6 +318,8 @@
             cell.textLabel.text = @"Create New";
             [cell.textLabel setEnabled:NO];
             
+            cell.backgroundView = nil;
+            
             self.lblNew = cell.textLabel;
         }
         else if (indexPath.row == 2)
@@ -326,6 +329,8 @@
                 self.txtFieldName = (UITextField*)[cell viewWithTag:666];
                 [self.txtFieldName addTarget:self action:@selector(fieldNameValueChanged:) forControlEvents:UIControlEventEditingChanged];
             }
+            
+            cell.backgroundView = nil;
             
             [self.txtFieldName setEnabled:self.switchControl.on];
         }

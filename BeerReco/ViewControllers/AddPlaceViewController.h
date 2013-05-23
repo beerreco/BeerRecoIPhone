@@ -1,5 +1,5 @@
 //
-//  AddEditBeerViewController.h
+//  AddEditPlaceViewController.h
 //  BeerReco
 //
 //  Created by RLemberg on 5/15/13.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AddEditBeerViewController : UIViewController
+@interface AddPlaceViewController : UIViewController
 
 @end

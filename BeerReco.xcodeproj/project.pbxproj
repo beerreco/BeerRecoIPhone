@@ -156,9 +156,9 @@
 		84E5F1D71743D44100BFB703 /* FieldUpdateDataM.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E5F1D61743D44000BFB703 /* FieldUpdateDataM.m */; };
 		84E5F1DA1743D95600BFB703 /* AddEditBreweryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E5F1D91743D95500BFB703 /* AddEditBreweryViewController.m */; };
 		84E5F1DD1743D97100BFB703 /* AddEditCountryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E5F1DC1743D97100BFB703 /* AddEditCountryViewController.m */; };
-		84E5F1E01743D98A00BFB703 /* AddEditBeerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E5F1DF1743D98A00BFB703 /* AddEditBeerViewController.m */; };
+		84E5F1E01743D98A00BFB703 /* AddBeerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E5F1DF1743D98A00BFB703 /* AddBeerViewController.m */; };
 		84E5F1E41743D9A700BFB703 /* AddEditPlaceTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E5F1E31743D9A700BFB703 /* AddEditPlaceTypeViewController.m */; };
-		84E5F1E71743D9B800BFB703 /* AddEditPlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E5F1E61743D9B800BFB703 /* AddEditPlaceViewController.m */; };
+		84E5F1E71743D9B800BFB703 /* AddPlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E5F1E61743D9B800BFB703 /* AddPlaceViewController.m */; };
 		84E5F1EA1743D9C900BFB703 /* AddEditAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E5F1E91743D9C900BFB703 /* AddEditAreaViewController.m */; };
 		84E5F1ED1745051400BFB703 /* AddEditBeerInPlacesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E5F1EC1745051300BFB703 /* AddEditBeerInPlacesViewController.m */; };
 		84E5F1F0174523ED00BFB703 /* AddEditBeerInPlaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 84E5F1EF174523ED00BFB703 /* AddEditBeerInPlaceViewController.m */; };
@@ -415,12 +415,12 @@
 		84E5F1D91743D95500BFB703 /* AddEditBreweryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddEditBreweryViewController.m; path = ViewControllers/AddEditBreweryViewController.m; sourceTree = "<group>"; };
 		84E5F1DB1743D97100BFB703 /* AddEditCountryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddEditCountryViewController.h; path = ViewControllers/AddEditCountryViewController.h; sourceTree = "<group>"; };
 		84E5F1DC1743D97100BFB703 /* AddEditCountryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddEditCountryViewController.m; path = ViewControllers/AddEditCountryViewController.m; sourceTree = "<group>"; };
-		84E5F1DE1743D98900BFB703 /* AddEditBeerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddEditBeerViewController.h; path = ViewControllers/AddEditBeerViewController.h; sourceTree = "<group>"; };
-		84E5F1DF1743D98A00BFB703 /* AddEditBeerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddEditBeerViewController.m; path = ViewControllers/AddEditBeerViewController.m; sourceTree = "<group>"; };
+		84E5F1DE1743D98900BFB703 /* AddBeerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddBeerViewController.h; path = ViewControllers/AddBeerViewController.h; sourceTree = "<group>"; };
+		84E5F1DF1743D98A00BFB703 /* AddBeerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddBeerViewController.m; path = ViewControllers/AddBeerViewController.m; sourceTree = "<group>"; };
 		84E5F1E21743D9A700BFB703 /* AddEditPlaceTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddEditPlaceTypeViewController.h; path = ViewControllers/AddEditPlaceTypeViewController.h; sourceTree = "<group>"; };
 		84E5F1E31743D9A700BFB703 /* AddEditPlaceTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddEditPlaceTypeViewController.m; path = ViewControllers/AddEditPlaceTypeViewController.m; sourceTree = "<group>"; };
-		84E5F1E51743D9B800BFB703 /* AddEditPlaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddEditPlaceViewController.h; path = ViewControllers/AddEditPlaceViewController.h; sourceTree = "<group>"; };
-		84E5F1E61743D9B800BFB703 /* AddEditPlaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddEditPlaceViewController.m; path = ViewControllers/AddEditPlaceViewController.m; sourceTree = "<group>"; };
+		84E5F1E51743D9B800BFB703 /* AddPlaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddPlaceViewController.h; path = ViewControllers/AddPlaceViewController.h; sourceTree = "<group>"; };
+		84E5F1E61743D9B800BFB703 /* AddPlaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddPlaceViewController.m; path = ViewControllers/AddPlaceViewController.m; sourceTree = "<group>"; };
 		84E5F1E81743D9C900BFB703 /* AddEditAreaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddEditAreaViewController.h; path = ViewControllers/AddEditAreaViewController.h; sourceTree = "<group>"; };
 		84E5F1E91743D9C900BFB703 /* AddEditAreaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddEditAreaViewController.m; path = ViewControllers/AddEditAreaViewController.m; sourceTree = "<group>"; };
 		84E5F1EB1745051200BFB703 /* AddEditBeerInPlacesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddEditBeerInPlacesViewController.h; path = ViewControllers/AddEditBeerInPlacesViewController.h; sourceTree = "<group>"; };
@@ -928,8 +928,8 @@
 				84E5F1D91743D95500BFB703 /* AddEditBreweryViewController.m */,
 				84E5F1DB1743D97100BFB703 /* AddEditCountryViewController.h */,
 				84E5F1DC1743D97100BFB703 /* AddEditCountryViewController.m */,
-				84E5F1DE1743D98900BFB703 /* AddEditBeerViewController.h */,
-				84E5F1DF1743D98A00BFB703 /* AddEditBeerViewController.m */,
+				84E5F1DE1743D98900BFB703 /* AddBeerViewController.h */,
+				84E5F1DF1743D98A00BFB703 /* AddBeerViewController.m */,
 			);
 			name = AddEdit;
 			sourceTree = "<group>";
@@ -940,8 +940,8 @@
 				846A7257174D8EFE00C7B2F2 /* Place */,
 				84E5F1E21743D9A700BFB703 /* AddEditPlaceTypeViewController.h */,
 				84E5F1E31743D9A700BFB703 /* AddEditPlaceTypeViewController.m */,
-				84E5F1E51743D9B800BFB703 /* AddEditPlaceViewController.h */,
-				84E5F1E61743D9B800BFB703 /* AddEditPlaceViewController.m */,
+				84E5F1E51743D9B800BFB703 /* AddPlaceViewController.h */,
+				84E5F1E61743D9B800BFB703 /* AddPlaceViewController.m */,
 				84E5F1E81743D9C900BFB703 /* AddEditAreaViewController.h */,
 				84E5F1E91743D9C900BFB703 /* AddEditAreaViewController.m */,
 				84E5F1EE174523EC00BFB703 /* AddEditBeerInPlaceViewController.h */,
@@ -1185,9 +1185,9 @@
 				84E5F1D71743D44100BFB703 /* FieldUpdateDataM.m in Sources */,
 				84E5F1DA1743D95600BFB703 /* AddEditBreweryViewController.m in Sources */,
 				84E5F1DD1743D97100BFB703 /* AddEditCountryViewController.m in Sources */,
-				84E5F1E01743D98A00BFB703 /* AddEditBeerViewController.m in Sources */,
+				84E5F1E01743D98A00BFB703 /* AddBeerViewController.m in Sources */,
 				84E5F1E41743D9A700BFB703 /* AddEditPlaceTypeViewController.m in Sources */,
-				84E5F1E71743D9B800BFB703 /* AddEditPlaceViewController.m in Sources */,
+				84E5F1E71743D9B800BFB703 /* AddPlaceViewController.m in Sources */,
 				84E5F1EA1743D9C900BFB703 /* AddEditAreaViewController.m in Sources */,
 				84E5F1ED1745051400BFB703 /* AddEditBeerInPlacesViewController.m in Sources */,
 				84E5F1F0174523ED00BFB703 /* AddEditBeerInPlaceViewController.m in Sources */,

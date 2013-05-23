@@ -15,6 +15,7 @@
 
 #define PathParam_Add @"add"
 #define PathParam_Update @"update"
+#define PathParam_Delete @"delete"
 
 #define QueryParam_PlaceID @"placeId"
 #define QueryParam_PlaceType @"placeType"
@@ -140,6 +141,35 @@
     NSString* path = [NSString stringWithFormat:@"%@/%@", ServicePath_PlaceTypes, PathParam_Update];
     
     [[BeerRecoAPIClient sharedClient] putPath:path parameters:params success:^(AFHTTPRequestOperation *operation, id JSON)
+     {
+         if (onComplete)
+         {
+             onComplete(nil);
+         }
+     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         if (onComplete)
+         {
+             onComplete(error);
+         }
+     }];
+}
+
+-(void)deletePlaceType:(NSString*)placeTypeId onComplete:(void (^)(NSError *error))onComplete
+{
+    if ([NSString isNullOrEmpty:placeTypeId])
+    {
+        if (onComplete)
+        {
+            onComplete([NSError errorWithDomain:@"" code:-1 userInfo:nil]);
+        }
+        
+        return;
+    }
+    
+    NSString* path = [NSString stringWithFormat:@"%@/%@/%@", ServicePath_PlaceTypes, PathParam_Delete, placeTypeId];
+    
+    [[BeerRecoAPIClient sharedClient] deletePath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id JSON)
      {
          if (onComplete)
          {

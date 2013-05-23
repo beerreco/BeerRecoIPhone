@@ -20,4 +20,6 @@
 
 -(void)updatePlaceType:(FieldUpdateDataM*)fieldUpdateData onComplete:(void (^)(NSError *error))onComplete;
 
+-(void)deletePlaceType:(NSString*)placeTypeId onComplete:(void (^)(NSError *error))onComplete;
+
 @end

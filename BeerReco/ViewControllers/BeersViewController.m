@@ -8,6 +8,8 @@
 
 #import "BeersViewController.h"
 
+#import "AddBeerViewController.h"
+
 @interface BeersViewController ()
 
 @end
@@ -233,6 +235,17 @@
             beerDetailsViewController.beerView = beerView;
         }
     }
+}
+
+-(void)addNewItem
+{
+    UINavigationController* navController = [[UINavigationController alloc] init];
+    
+    AddBeerViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"AddBeerViewController"];
+    
+    [navController setViewControllers:@[vc]];
+    
+    [self presentModalViewController:navController animated:YES];
 }
 
 @end
