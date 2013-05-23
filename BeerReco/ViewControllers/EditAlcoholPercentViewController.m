@@ -47,7 +47,7 @@
     
     if (self.editedItem)
     {
-        self.previousValue = [NSString stringWithFormat:@"%.1f", self.editedItem.alchoholPrecent];
+        self.previousValue = [NSString stringWithFormat:@"%.1f", self.editedItem.alcoholPercent];
     }
     
     [self.txtFieldName setKeyboardType:UIKeyboardTypeDecimalPad];
@@ -62,7 +62,7 @@
 {
     double newValue = [self.txtFieldName.text doubleValue];
     
-    return self.editedItem.alchoholPrecent != newValue;
+    return self.editedItem.alcoholPercent != newValue;
 }
 
 -(BOOL)innerValidateEditedTextField:(id)sender
@@ -94,8 +94,8 @@
     {
         FieldUpdateDataM* fieldUpdateData = [[FieldUpdateDataM alloc] init];
         fieldUpdateData.originalObjectId = self.editedItem.id;
-        fieldUpdateData.editedFieldName = @"alchoholPrecent";
-        fieldUpdateData.oldValue = [NSString stringWithFormat:@"%.1f", self.editedItem.alchoholPrecent];
+        fieldUpdateData.editedFieldName = @"alcoholPercent";
+        fieldUpdateData.oldValue = [NSString stringWithFormat:@"%.1f", self.editedItem.alcoholPercent];
         fieldUpdateData.suggestedValue = object;
         
         [[ComServices sharedComServices].beersService updateBeer:fieldUpdateData onComplete:^(NSError *error)

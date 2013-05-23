@@ -56,7 +56,7 @@
     
     if (self.editedItem)
     {
-        self.previousValue = [NSString stringWithFormat:@"%.2f", self.editedItem.beerInPlace.price];
+        self.previousValue = [NSString stringWithFormat:@"%.1f", self.editedItem.beerInPlace.price];
     }
     
     [self.txtFieldName setKeyboardType:UIKeyboardTypeDecimalPad];
@@ -89,7 +89,7 @@
     if (isValid && times == 1)
     {
         NSString* floatPart = [parts objectAtIndex:1];
-        isValid &= floatPart.length < 3;
+        isValid &= floatPart.length < 2;
     }
     
     return isValid;
@@ -102,7 +102,7 @@
         FieldUpdateDataM* fieldUpdateData = [[FieldUpdateDataM alloc] init];
         fieldUpdateData.originalObjectId = self.editedItem.beerInPlace.id;
         fieldUpdateData.editedFieldName = @"price";
-        fieldUpdateData.oldValue = [NSString stringWithFormat:@"%.2f", self.editedItem.beerInPlace.price];
+        fieldUpdateData.oldValue = [NSString stringWithFormat:@"%.1f", self.editedItem.beerInPlace.price];
         fieldUpdateData.suggestedValue = object;
         
         [[ComServices sharedComServices].placesService updateBeerInPlace:fieldUpdateData onComplete:^(NSError *error)

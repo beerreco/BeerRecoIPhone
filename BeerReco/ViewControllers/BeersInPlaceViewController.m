@@ -118,7 +118,7 @@
         
         if (beerInPlaceView.beerInPlace.price > 0)
         {
-            details = [details stringByAppendingFormat:@"Price: %.0f", beerInPlaceView.beerInPlace.price];
+            details = [details stringByAppendingFormat:@"Price: %.1f", beerInPlaceView.beerInPlace.price];
         }
         else
         {

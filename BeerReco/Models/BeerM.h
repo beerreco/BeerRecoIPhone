@@ -19,7 +19,7 @@
 @property (nonatomic, strong) NSString *originCountryId;
 @property (nonatomic, strong) NSString *breweryId;
 @property (nonatomic, strong) NSString *madeOf;
-@property (nonatomic) float alchoholPrecent;
+@property (nonatomic) float alcoholPercent;
 @property (nonatomic, strong) NSString *beerTypeId;
 @property (nonatomic, strong) NSString *beerIconUrl;
 

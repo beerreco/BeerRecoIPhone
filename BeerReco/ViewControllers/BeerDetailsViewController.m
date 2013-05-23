@@ -720,7 +720,7 @@
         }
         else if (indexPath.row == 3)
         {
-            cell.textLabel.text = [NSString stringWithFormat:@"Alcohol Percentage: %@", self.beerView.beer.alchoholPrecent > 0 ?[NSString stringWithFormat:@"%.1f", self.beerView.beer.alchoholPrecent] : @"N/A"];
+            cell.textLabel.text = [NSString stringWithFormat:@"Alcohol Percentage: %@", self.beerView.beer.alcoholPercent > 0 ?[NSString stringWithFormat:@"%.1f", self.beerView.beer.alcoholPercent] : @"N/A"];
         }
     }
     

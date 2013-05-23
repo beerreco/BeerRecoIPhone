@@ -76,7 +76,7 @@
     {
         FieldUpdateDataM* fieldUpdateData = [[FieldUpdateDataM alloc] init];
         fieldUpdateData.originalObjectId = self.editedItem.id;
-        fieldUpdateData.editedFieldName = @"madeof";
+        fieldUpdateData.editedFieldName = @"madeOf";
         fieldUpdateData.oldValue = self.editedItem.madeOf;
         fieldUpdateData.suggestedValue = object;
         

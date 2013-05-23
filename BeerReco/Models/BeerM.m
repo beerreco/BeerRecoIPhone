@@ -15,7 +15,7 @@
 #define PropertyName_BreweryId @"breweryId"
 #define PropertyName_MadeOf @"madeOf"
 #define PropertyName_BeerTypeId @"beerTypeId"
-#define PropertyName_AlchoholPrecent @"alchoholPrecent"
+#define PropertyName_AlcoholPercent @"alcoholPercent"
 #define PropertyName_BeerIconUrl @"beerIconUrl"
 
 @implementation BeerM
@@ -29,7 +29,7 @@
 @synthesize breweryId = _breweryId;
 @synthesize madeOf = _madeOf;
 @synthesize beerTypeId = _beerTypeId;
-@synthesize alchoholPrecent = _alchoholPrecent;
+@synthesize alcoholPercent = _alchoholPrecent;
 @synthesize beerIconUrl = _beerIconUrl;
 
 #pragma mark - Instance Methods
@@ -53,7 +53,7 @@
     self.originCountryId = [[json valueForKeyPath:@"originCountryId"] stringValue];
     self.breweryId = [[json valueForKeyPath:@"breweryId"] stringValue];
     self.madeOf = [[json valueForKeyPath:@"madeOf"] stringValue];
-    self.alchoholPrecent = [[json valueForKeyPath:@"alchoholPrecent"] floatValue];
+    self.alcoholPercent = [[json valueForKeyPath:@"alcoholPercent"] floatValue];
     self.beerTypeId = [[[json valueForKeyPath:@"beerTypeId"] stringValue] URLEncodedString];
     
     self.beerIconUrl = [[[json valueForKeyPath:@"beerIconUrl"] stringValue] URLEncodedString];
@@ -101,10 +101,10 @@
         [propertyDict setObject:self.beerTypeId forKey:PropertyName_BeerTypeId];
     }
     
-    if (self.alchoholPrecent != 0)
+    if (self.alcoholPercent != 0)
     {
-        NSNumber* num = [NSNumber numberWithFloat:self.alchoholPrecent];
-        [propertyDict setObject:num forKey:PropertyName_AlchoholPrecent];
+        NSNumber* num = [NSNumber numberWithFloat:self.alcoholPercent];
+        [propertyDict setObject:num forKey:PropertyName_AlcoholPercent];
     }
     
     if (![NSString isNullOrEmpty:self.beerIconUrl])
