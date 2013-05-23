@@ -58,6 +58,24 @@
         
         self.navigationItem.title = @"Beer Selection";
     }
+    else if (self.beerTypeSelectionMode)
+    {
+        self.navigationItem.titleView = nil;
+        
+        self.navigationItem.title = @"Beer Type Selection";
+    }
+    else if (self.originCountrySelectionMode)
+    {
+        self.navigationItem.titleView = nil;
+        
+        self.navigationItem.title = @"Origin Country Selection";
+    }
+    else if (self.brewerySelectionMode)
+    {
+        self.navigationItem.titleView = nil;
+        
+        self.navigationItem.title = @"Brewery Selection";
+    }
     else
     {
         self.navigationItem.title = @"Beer Categories";
@@ -72,12 +90,15 @@
 
 -(BOOL)canShowContributionToolBar
 {
-    return self.beerSelectionMode ? NO : YES;
+    return self.beerSelectionMode ||
+    self.beerTypeSelectionMode ||
+    self.brewerySelectionMode ||
+    self.originCountrySelectionMode ? NO : YES;
 }
 
 -(void)loadCurrentData
 {
-    if (self.segCategories && self.segCategories.selectedSegmentIndex == 0)
+    if ((self.segCategories && self.segCategories.selectedSegmentIndex == 0) || self.beerTypeSelectionMode)
     {
         [[ComServices sharedComServices].beerTypesService getAllBeerTypes:^(NSMutableArray *beerTypes, NSError *error)
         {            
@@ -91,7 +112,7 @@
              }
          }];
     }
-    else if (self.segCategories && self.segCategories.selectedSegmentIndex == 1)
+    else if ((self.segCategories && self.segCategories.selectedSegmentIndex == 1) || self.originCountrySelectionMode)
     {
         [[ComServices sharedComServices].originCountryService getAllOriginCountries:^(NSMutableArray *countries, NSError *error)
          {
@@ -105,7 +126,7 @@
              }
          }];
     }
-    else if (self.segCategories && self.segCategories.selectedSegmentIndex == 2)
+    else if ((self.segCategories && self.segCategories.selectedSegmentIndex == 2) || self.brewerySelectionMode)
     {
         [[ComServices sharedComServices].breweryService getAllBreweries:^(NSMutableArray *breweries, NSError *error)
          {            
@@ -166,7 +187,10 @@
 
 -(void)setupCell:(UITableViewCell*)cell forIndexPath:(NSIndexPath *)indexPath withObject:(id)object
 {
-    if (self.beerSelectionMode)
+    if (self.beerSelectionMode ||
+        self.beerTypeSelectionMode ||
+        self.brewerySelectionMode ||
+        self.originCountrySelectionMode)
     {
         [cell setAccessoryType:UITableViewCellAccessoryNone];
         [cell setEditingAccessoryType:UITableViewCellAccessoryNone];
@@ -279,6 +303,24 @@
     if (self.beerSelectionMode)
     {
         [self.beerSelectionDelegate selectedBeer:object];
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else if (self.beerTypeSelectionMode)
+    {
+        [self.beerTypeSelectionDelegate selectedBeerType:object];
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else if (self.originCountrySelectionMode)
+    {
+        [self.originCountrySelectionDelegate selectedOriginCountry:object];
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else if (self.brewerySelectionMode)
+    {
+        [self.brewerySelectionDelegate selectedBrewery:object];
         
         [self.navigationController popViewControllerAnimated:YES];
     }

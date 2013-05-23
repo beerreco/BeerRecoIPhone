@@ -12,6 +12,8 @@
 #import "EditPlaceNameViewController.h"
 #import "EditPlaceIconViewController.h"
 #import "EditPlaceAddressViewController.h"
+#import "EditPlaceTypeViewController.h"
+#import "EditPlaceAreaViewController.h"
 
 @interface PlaceDetailsViewController ()
 
@@ -399,7 +401,16 @@
 
 - (IBAction)editPlaceAreaClicked:(UIButton*)sender
 {
+    UINavigationController* navController = [[UINavigationController alloc] init];
     
+    EditPlaceAreaViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"EditPlaceAreaViewController"];
+    
+    vc.editedItem = self.placeView;
+    
+    [navController setViewControllers:@[vc]];
+    
+    [self presentModalViewController:navController animated:YES];
+
 }
 
 - (IBAction)editPlaceIconClicked:(UIButton *)sender
@@ -567,6 +578,11 @@
     if (indexPath.row == 0)
     {
         // Place Type
+        EditPlaceTypeViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"EditPlaceTypeViewController"];
+        
+        vc.editedItem = self.placeView;
+        
+        [navController setViewControllers:@[vc]];
     }
     else if (indexPath.row == 1)
     {

@@ -57,6 +57,18 @@
         
         self.navigationItem.title = @"Place Selection";
     }
+    else if (self.placeTypeSelectionMode)
+    {
+        self.navigationItem.titleView = nil;
+        
+        self.navigationItem.title = @"Place Type Selection";
+    }
+    else if (self.areaSelectionMode)
+    {
+        self.navigationItem.titleView = nil;
+        
+        self.navigationItem.title = @"Area Selection";
+    }
     else
     {
         self.navigationItem.title = @"Place Categories";
@@ -71,17 +83,21 @@
 
 -(BOOL)canShowContributionToolBar
 {
-    return self.placeSelectionMode || self.segPlaceFiltering.selectedSegmentIndex == 0 ? NO : YES;
+    return self.placeSelectionMode ||
+    self.placeTypeSelectionMode ||
+    self.areaSelectionMode ||
+    self.segPlaceFiltering.selectedSegmentIndex == 0 ? NO : YES;
 }
 
 -(BOOL)shouldSortItemsList
 {
-    return self.segPlaceFiltering && self.segPlaceFiltering.selectedSegmentIndex == 0 ? NO : YES;
+    return self.areaSelectionMode ||
+    (self.segPlaceFiltering && self.segPlaceFiltering.selectedSegmentIndex == 0) ? NO : YES;
 }
 
 -(void)loadCurrentData
 {
-    if (self.segPlaceFiltering && self.segPlaceFiltering.selectedSegmentIndex == 0)
+    if ((self.segPlaceFiltering && self.segPlaceFiltering.selectedSegmentIndex == 0) || self.areaSelectionMode)
     {
         [[ComServices sharedComServices].areasService getAllAreas:^(NSMutableArray *areas, NSError *error)
          {
@@ -95,7 +111,7 @@
              }
          }];
     }
-    else if (self.segPlaceFiltering &&self.segPlaceFiltering.selectedSegmentIndex == 1)
+    else if ((self.segPlaceFiltering &&self.segPlaceFiltering.selectedSegmentIndex == 1) || self.placeTypeSelectionMode)
     {
         [[ComServices sharedComServices].placeTypeService getAllPlaceTypes:^(NSMutableArray *placeTypes, NSError *error)
         {   
@@ -159,7 +175,9 @@
 
 -(void)setupCell:(UITableViewCell*)cell forIndexPath:(NSIndexPath *)indexPath withObject:(id)object
 {
-    if (self.placeSelectionMode)
+    if (self.placeSelectionMode ||
+        self.placeTypeSelectionMode ||
+        self.areaSelectionMode)
     {
         [cell setAccessoryType:UITableViewCellAccessoryNone];
         [cell setEditingAccessoryType:UITableViewCellAccessoryNone];
@@ -246,6 +264,18 @@
     if (self.placeSelectionMode)
     {
         [self.placeSelectionDelegate selectedPlace:object];
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else if (self.placeTypeSelectionMode)
+    {
+        [self.placeTypeSelectionDelegate selectedPlaceType:object];
+        
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    else if (self.areaSelectionMode)
+    {
+        [self.areaSelectionDelegate selectedArea:object];
         
         [self.navigationController popViewControllerAnimated:YES];
     }

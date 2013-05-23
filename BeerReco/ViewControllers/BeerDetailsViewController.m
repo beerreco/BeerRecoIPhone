@@ -14,6 +14,9 @@
 #import "EditBeerIconViewController.h"
 #import "EditBeerComponentsViewController.h"
 #import "EditAlcoholPercentViewController.h"
+#import "EditBeerBeerTypeViewController.h"
+#import "EditBeerBreweryViewController.h"
+#import "EditBeerCountryViewController.h"
 
 @interface BeerDetailsViewController ()
 
@@ -568,6 +571,15 @@
 
 - (IBAction)editBeerTypeClicked:(UIButton*)sender
 {
+    UINavigationController* navController = [[UINavigationController alloc] init];
+    
+    EditBeerBeerTypeViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"EditBeerTypeViewController"];
+    
+    vc.editedItem = self.beerView;
+    
+    [navController setViewControllers:@[vc]];
+    
+    [self presentModalViewController:navController animated:YES];
 }
 
 - (IBAction)editBeerIconClicked:(UIButton *)sender
@@ -754,10 +766,20 @@
     if (indexPath.row == 0)
     {
         // Origin Country
+        EditBeerCountryViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"EditBeerCountryViewController"];
+        
+        vc.editedItem = self.beerView;
+        
+        [navController setViewControllers:@[vc]];
     }
     else if (indexPath.row == 1)
     {
         // Brewery
+        EditBeerBreweryViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"EditBeerBreweryViewController"];
+        
+        vc.editedItem = self.beerView;
+        
+        [navController setViewControllers:@[vc]];
     }
     else if (indexPath.row == 2)
     {

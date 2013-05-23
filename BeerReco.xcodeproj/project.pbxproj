@@ -64,6 +64,11 @@
 		846A7249174C633F00C7B2F2 /* camera_picker.png in Resources */ = {isa = PBXBuildFile; fileRef = 846A7247174C633F00C7B2F2 /* camera_picker.png */; };
 		846A724A174C633F00C7B2F2 /* camera_picker@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 846A7248174C633F00C7B2F2 /* camera_picker@2x.png */; };
 		846A724D174C66DA00C7B2F2 /* EditPlaceIconViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846A724C174C66D900C7B2F2 /* EditPlaceIconViewController.m */; };
+		846A7250174D406900C7B2F2 /* EditBeerBeerTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846A724F174D406800C7B2F2 /* EditBeerBeerTypeViewController.m */; };
+		846A7253174D82E700C7B2F2 /* EditBeerBreweryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846A7252174D82E700C7B2F2 /* EditBeerBreweryViewController.m */; };
+		846A7256174D847D00C7B2F2 /* EditBeerCountryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846A7255174D847C00C7B2F2 /* EditBeerCountryViewController.m */; };
+		846A725A174D8F5C00C7B2F2 /* EditPlaceAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846A7259174D8F5C00C7B2F2 /* EditPlaceAreaViewController.m */; };
+		846A725D174D8F7E00C7B2F2 /* EditPlaceTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846A725C174D8F7E00C7B2F2 /* EditPlaceTypeViewController.m */; };
 		84A58FA3170C6AD400A46E9F /* BeerM.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A58FA2170C6AD400A46E9F /* BeerM.m */; };
 		84A58FAA170DAE4300A46E9F /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A58FA9170DAE4300A46E9F /* FacebookSDK.framework */; };
 		84A58FAC170DAE8800A46E9F /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 84A58FAB170DAE8800A46E9F /* FacebookSDKResources.bundle */; };
@@ -251,6 +256,16 @@
 		846A7248174C633F00C7B2F2 /* camera_picker@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "camera_picker@2x.png"; path = "Resources/Images/camera_picker@2x.png"; sourceTree = "<group>"; };
 		846A724B174C66D900C7B2F2 /* EditPlaceIconViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditPlaceIconViewController.h; path = ViewControllers/EditPlaceIconViewController.h; sourceTree = "<group>"; };
 		846A724C174C66D900C7B2F2 /* EditPlaceIconViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditPlaceIconViewController.m; path = ViewControllers/EditPlaceIconViewController.m; sourceTree = "<group>"; };
+		846A724E174D406800C7B2F2 /* EditBeerBeerTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditBeerBeerTypeViewController.h; path = ViewControllers/EditBeerBeerTypeViewController.h; sourceTree = "<group>"; };
+		846A724F174D406800C7B2F2 /* EditBeerBeerTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditBeerBeerTypeViewController.m; path = ViewControllers/EditBeerBeerTypeViewController.m; sourceTree = "<group>"; };
+		846A7251174D82E600C7B2F2 /* EditBeerBreweryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditBeerBreweryViewController.h; path = ViewControllers/EditBeerBreweryViewController.h; sourceTree = "<group>"; };
+		846A7252174D82E700C7B2F2 /* EditBeerBreweryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditBeerBreweryViewController.m; path = ViewControllers/EditBeerBreweryViewController.m; sourceTree = "<group>"; };
+		846A7254174D847B00C7B2F2 /* EditBeerCountryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditBeerCountryViewController.h; path = ViewControllers/EditBeerCountryViewController.h; sourceTree = "<group>"; };
+		846A7255174D847C00C7B2F2 /* EditBeerCountryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditBeerCountryViewController.m; path = ViewControllers/EditBeerCountryViewController.m; sourceTree = "<group>"; };
+		846A7258174D8F5C00C7B2F2 /* EditPlaceAreaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditPlaceAreaViewController.h; path = ViewControllers/EditPlaceAreaViewController.h; sourceTree = "<group>"; };
+		846A7259174D8F5C00C7B2F2 /* EditPlaceAreaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditPlaceAreaViewController.m; path = ViewControllers/EditPlaceAreaViewController.m; sourceTree = "<group>"; };
+		846A725B174D8F7E00C7B2F2 /* EditPlaceTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditPlaceTypeViewController.h; path = ViewControllers/EditPlaceTypeViewController.h; sourceTree = "<group>"; };
+		846A725C174D8F7E00C7B2F2 /* EditPlaceTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditPlaceTypeViewController.m; path = ViewControllers/EditPlaceTypeViewController.m; sourceTree = "<group>"; };
 		84A58FA1170C6AD400A46E9F /* BeerM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeerM.h; path = Models/BeerM.h; sourceTree = "<group>"; };
 		84A58FA2170C6AD400A46E9F /* BeerM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BeerM.m; path = Models/BeerM.m; sourceTree = "<group>"; };
 		84A58FA7170DADF900A46E9F /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = /Users/admin/Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<absolute>"; };
@@ -561,8 +576,31 @@
 				846A7233174C31D800C7B2F2 /* EditAlcoholPercentViewController.m */,
 				846A723C174C41D900C7B2F2 /* EditBeerIconViewController.h */,
 				846A723D174C41D900C7B2F2 /* EditBeerIconViewController.m */,
+				846A724E174D406800C7B2F2 /* EditBeerBeerTypeViewController.h */,
+				846A724F174D406800C7B2F2 /* EditBeerBeerTypeViewController.m */,
+				846A7251174D82E600C7B2F2 /* EditBeerBreweryViewController.h */,
+				846A7252174D82E700C7B2F2 /* EditBeerBreweryViewController.m */,
+				846A7254174D847B00C7B2F2 /* EditBeerCountryViewController.h */,
+				846A7255174D847C00C7B2F2 /* EditBeerCountryViewController.m */,
 			);
 			name = Beer;
+			sourceTree = "<group>";
+		};
+		846A7257174D8EFE00C7B2F2 /* Place */ = {
+			isa = PBXGroup;
+			children = (
+				846A724B174C66D900C7B2F2 /* EditPlaceIconViewController.h */,
+				846A724C174C66D900C7B2F2 /* EditPlaceIconViewController.m */,
+				846A7238174C3C6D00C7B2F2 /* EditPlaceAddressViewController.h */,
+				846A7239174C3C6D00C7B2F2 /* EditPlaceAddressViewController.m */,
+				846A7235174C3A6D00C7B2F2 /* EditPlaceNameViewController.h */,
+				846A7236174C3A6D00C7B2F2 /* EditPlaceNameViewController.m */,
+				846A7258174D8F5C00C7B2F2 /* EditPlaceAreaViewController.h */,
+				846A7259174D8F5C00C7B2F2 /* EditPlaceAreaViewController.m */,
+				846A725B174D8F7E00C7B2F2 /* EditPlaceTypeViewController.h */,
+				846A725C174D8F7E00C7B2F2 /* EditPlaceTypeViewController.m */,
+			);
+			name = Place;
 			sourceTree = "<group>";
 		};
 		84A58FBB1711D76E00A46E9F /* Settings */ = {
@@ -899,6 +937,7 @@
 		84E5F1E11743D99100BFB703 /* AddEdit */ = {
 			isa = PBXGroup;
 			children = (
+				846A7257174D8EFE00C7B2F2 /* Place */,
 				84E5F1E21743D9A700BFB703 /* AddEditPlaceTypeViewController.h */,
 				84E5F1E31743D9A700BFB703 /* AddEditPlaceTypeViewController.m */,
 				84E5F1E51743D9B800BFB703 /* AddEditPlaceViewController.h */,
@@ -907,12 +946,6 @@
 				84E5F1E91743D9C900BFB703 /* AddEditAreaViewController.m */,
 				84E5F1EE174523EC00BFB703 /* AddEditBeerInPlaceViewController.h */,
 				84E5F1EF174523ED00BFB703 /* AddEditBeerInPlaceViewController.m */,
-				846A7235174C3A6D00C7B2F2 /* EditPlaceNameViewController.h */,
-				846A7236174C3A6D00C7B2F2 /* EditPlaceNameViewController.m */,
-				846A7238174C3C6D00C7B2F2 /* EditPlaceAddressViewController.h */,
-				846A7239174C3C6D00C7B2F2 /* EditPlaceAddressViewController.m */,
-				846A724B174C66D900C7B2F2 /* EditPlaceIconViewController.h */,
-				846A724C174C66D900C7B2F2 /* EditPlaceIconViewController.m */,
 			);
 			name = AddEdit;
 			sourceTree = "<group>";
@@ -1165,6 +1198,11 @@
 				846A723A174C3C6D00C7B2F2 /* EditPlaceAddressViewController.m in Sources */,
 				846A723E174C41D900C7B2F2 /* EditBeerIconViewController.m in Sources */,
 				846A724D174C66DA00C7B2F2 /* EditPlaceIconViewController.m in Sources */,
+				846A7250174D406900C7B2F2 /* EditBeerBeerTypeViewController.m in Sources */,
+				846A7253174D82E700C7B2F2 /* EditBeerBreweryViewController.m in Sources */,
+				846A7256174D847D00C7B2F2 /* EditBeerCountryViewController.m in Sources */,
+				846A725A174D8F5C00C7B2F2 /* EditPlaceAreaViewController.m in Sources */,
+				846A725D174D8F7E00C7B2F2 /* EditPlaceTypeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
