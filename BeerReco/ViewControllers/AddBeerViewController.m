@@ -422,8 +422,12 @@
 
 -(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
 {
-    self.selectedIcon = [info objectForKey:UIImagePickerControllerOriginalImage];
+    UIImage* img = [info objectForKey:UIImagePickerControllerOriginalImage];
     
+    UIImage* resizedImge = [[ComServices sharedComServices].fileManagementService image:img ByScalingToSize:CGSizeMake(60, 60)];
+    
+    self.selectedIcon = resizedImge;
+
     [self.imgBeerIcon setImage:self.selectedIcon];
     
     [self dismissViewControllerAnimated:YES completion:^{
@@ -631,9 +635,6 @@
                 
                 cell.textLabel.backgroundColor = [UIColor clearColor];
             }
-
-            [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-            [cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
             
             if (self.selectedBeerType)
             {
@@ -646,10 +647,20 @@
             
             if (self.btnClearBeerType == nil)
             {
-                self.btnClearBeerType = (UIButton*)[cell viewWithTag:666];
+                UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+                button.frame = CGRectMake(0, 0, 47, 25);
+                [button setTitle:@"Clear" forState:UIControlStateNormal];
+                
+                self.btnClearBeerType = button;
                 [self.btnClearBeerType setHidden:YES];
                 [self.btnClearBeerType addTarget:self action:@selector(clearBeerTypeClicked:) forControlEvents:UIControlEventTouchUpInside];
             }
+            
+            [cell setAccessoryType:self.selectedBeerType ? UITableViewCellAccessoryDetailDisclosureButton : UITableViewCellAccessoryDisclosureIndicator];
+            
+            cell.accessoryView = self.selectedBeerType ? self.btnClearBeerType : nil;
+            
+            [cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
             
             self.lblSelectedBeerType = cell.textLabel;
         }
@@ -696,9 +707,6 @@
                 
                 cell.textLabel.backgroundColor = [UIColor clearColor];
             }
-
-            [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
-            [cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
             
             if (self.selectedCountry)
             {
@@ -711,10 +719,20 @@
             
             if (self.btnClearCountry == nil)
             {
-                self.btnClearCountry = (UIButton*)[cell viewWithTag:666];
+                UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+                button.frame = CGRectMake(0, 0, 47, 25);
+                [button setTitle:@"Clear" forState:UIControlStateNormal];
+                
+                self.btnClearCountry = button;
                 [self.btnClearCountry setHidden:YES];
                 [self.btnClearCountry addTarget:self action:@selector(clearCountryClicked:) forControlEvents:UIControlEventTouchUpInside];
             }
+            
+            [cell setAccessoryType:self.selectedCountry ? UITableViewCellAccessoryDetailDisclosureButton : UITableViewCellAccessoryDisclosureIndicator];
+            
+            cell.accessoryView = self.selectedCountry ? self.btnClearCountry : nil;
+            
+            [cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
             
             self.lblSelectedCountry = cell.textLabel;
         }
@@ -776,10 +794,20 @@
             
             if (self.btnClearBrewery == nil)
             {
-                self.btnClearBrewery = (UIButton*)[cell viewWithTag:666];
+                UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+                button.frame = CGRectMake(0, 0, 47, 25);
+                [button setTitle:@"Clear" forState:UIControlStateNormal];
+                
+                self.btnClearBrewery = button;
                 [self.btnClearBrewery setHidden:YES];
                 [self.btnClearBrewery addTarget:self action:@selector(clearBreweryClicked:) forControlEvents:UIControlEventTouchUpInside];
             }
+            
+            [cell setAccessoryType:self.selectedBrewery ? UITableViewCellAccessoryDetailDisclosureButton : UITableViewCellAccessoryDisclosureIndicator];
+            
+            cell.accessoryView = self.selectedBrewery ? self.btnClearBrewery : nil;
+            
+            [cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
             
             self.lblSelectedBrewery = cell.textLabel;
         }
@@ -814,7 +842,7 @@
         {
             self.txtComponents = (UITextField*)[cell viewWithTag:666];
             self.txtComponents.delegate = self;
-            [self.txtComponents addTarget:self action:@selector(txtComponents:) forControlEvents:UIControlEventEditingChanged];
+            [self.txtComponents addTarget:self action:@selector(txtComponentsValueChanged:) forControlEvents:UIControlEventEditingChanged];
         }
     }
     else if (indexPath.section == 6)
@@ -966,8 +994,10 @@
              }
          }];
     }
-    
-    [self addBeerTypeToBeer];
+    else
+    {
+        [self addBeerTypeToBeer];
+    }
 }
 
 -(void)addBeerTypeToBeer
@@ -1098,8 +1128,12 @@
              msg = @"Beer was added and awaits admin's approval";
              result = 666;
          }
-         
-         [super showSaveResult:result withMessage:msg];
+        
+        if (self.createdBeer)
+        {
+            self.createdBeer = nil;
+            [super showSaveResult:result withMessage:msg];
+        }
      }];
 }
 

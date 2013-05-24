@@ -97,6 +97,9 @@
 
 -(void)loadCurrentData
 {
+    [self.segPlaceFiltering setEnabled:NO];
+    [self.segPlaceFiltering setUserInteractionEnabled:NO];
+    
     if ((self.segPlaceFiltering && self.segPlaceFiltering.selectedSegmentIndex == 0) || self.areaSelectionMode)
     {
         [[ComServices sharedComServices].areasService getAllAreas:^(NSMutableArray *areas, NSError *error)
@@ -109,6 +112,9 @@
              {
                  [self showErrorView];
              }
+             
+             [self.segPlaceFiltering setEnabled:YES];
+             [self.segPlaceFiltering setUserInteractionEnabled:YES];
          }];
     }
     else if ((self.segPlaceFiltering &&self.segPlaceFiltering.selectedSegmentIndex == 1) || self.placeTypeSelectionMode)
@@ -124,6 +130,9 @@
                  [self showErrorView];
              }
          }];
+        
+        [self.segPlaceFiltering setEnabled:YES];
+        [self.segPlaceFiltering setUserInteractionEnabled:YES];
     }
     else if ((self.segPlaceFiltering && self.segPlaceFiltering.selectedSegmentIndex == 2) ||
              self.placeSelectionMode)
@@ -139,6 +148,9 @@
                  [self showErrorView];
              }
          }];
+        
+        [self.segPlaceFiltering setEnabled:YES];
+        [self.segPlaceFiltering setUserInteractionEnabled:YES];
     }
 }
 

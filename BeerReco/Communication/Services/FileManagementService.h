@@ -14,5 +14,6 @@
 @interface FileManagementService : NSObject
 
 -(void)uploadFile:(UIImage*)imageFile ofEntity:(NSString*)imageOf onComplete:(void (^)(NSString* filePath, NSError *error))onComplete;
+- (UIImage *)image:(UIImage*)sourceImage ByScalingToSize:(CGSize)targetSize;
 
 @end

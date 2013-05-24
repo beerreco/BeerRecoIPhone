@@ -123,6 +123,9 @@
 
 -(void)loadCurrentData
 {
+    [self.SegFavoriteListType setEnabled:NO];
+    [self.SegFavoriteListType setUserInteractionEnabled:NO];
+    
     if (self.SegFavoriteListType.selectedSegmentIndex == 0)
     {
         [self.navigationItem setLeftBarButtonItem:nil];
@@ -142,6 +145,9 @@
              {
                  [self showErrorView];
              }
+             
+             [self.SegFavoriteListType setEnabled:YES];
+             [self.SegFavoriteListType setUserInteractionEnabled:YES];
          }];
     }
     else
@@ -158,6 +164,9 @@
              {
                  [self showErrorView];
              }
+             
+             [self.SegFavoriteListType setEnabled:YES];
+             [self.SegFavoriteListType setUserInteractionEnabled:YES];
          }];
     }
 }

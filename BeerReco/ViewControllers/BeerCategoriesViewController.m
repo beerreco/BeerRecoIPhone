@@ -98,6 +98,9 @@
 
 -(void)loadCurrentData
 {
+    [self.segCategories setEnabled:NO];
+    [self.segCategories setUserInteractionEnabled:NO];
+    
     if ((self.segCategories && self.segCategories.selectedSegmentIndex == 0) || self.beerTypeSelectionMode)
     {
         [[ComServices sharedComServices].beerTypesService getAllBeerTypes:^(NSMutableArray *beerTypes, NSError *error)
@@ -110,6 +113,9 @@
              {
                  [self showErrorView];
              }
+            
+            [self.segCategories setEnabled:YES];
+            [self.segCategories setUserInteractionEnabled:YES];
          }];
     }
     else if ((self.segCategories && self.segCategories.selectedSegmentIndex == 1) || self.originCountrySelectionMode)
@@ -124,6 +130,9 @@
              {
                  [self showErrorView];
              }
+             
+             [self.segCategories setEnabled:YES];
+             [self.segCategories setUserInteractionEnabled:YES];
          }];
     }
     else if ((self.segCategories && self.segCategories.selectedSegmentIndex == 2) || self.brewerySelectionMode)
@@ -138,6 +147,9 @@
              {
                  [self showErrorView];
              }
+             
+             [self.segCategories setEnabled:YES];
+             [self.segCategories setUserInteractionEnabled:YES];
          }];
     }
     else if ((self.segCategories && self.segCategories.selectedSegmentIndex == 3) || self.beerSelectionMode)
@@ -152,6 +164,9 @@
              {
                  [self showErrorView];
              }
+             
+             [self.segCategories setEnabled:YES];
+             [self.segCategories setUserInteractionEnabled:YES];
          }];
     }
 }

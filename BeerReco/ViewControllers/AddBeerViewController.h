@@ -23,13 +23,13 @@
 @property (weak, nonatomic) UIImageView *imgBeerIcon;
 @property (weak, nonatomic) UIButton *btnGallery;
 @property (weak, nonatomic) UIButton *btnCamera;
-@property (weak, nonatomic) UIButton *btnClearBeerType;
+@property (strong, nonatomic) UIButton *btnClearBeerType;
 @property (weak, nonatomic) UISwitch *switchBeerType;
 @property (weak, nonatomic) UITextField *txtNewBeerType;
-@property (weak, nonatomic) UIButton *btnClearCountry;
+@property (strong, nonatomic) UIButton *btnClearCountry;
 @property (weak, nonatomic) UISwitch *switchCountry;
 @property (weak, nonatomic) UITextField *txtNewCountry;
-@property (weak, nonatomic) UIButton *btnClearBrewery;
+@property (strong, nonatomic) UIButton *btnClearBrewery;
 @property (weak, nonatomic) UISwitch *switchNewBrewery;
 @property (weak, nonatomic) UITextField *txtNewBrewery;
 @property (weak, nonatomic) UITextField *txtComponents;
@@ -49,6 +49,5 @@
 - (void)txtNewBreweryValueChanged:(id)sender;
 - (void)txtComponentsValueChanged:(id)sender;
 - (void)txtAlcoholValueChanged:(id)sender;
-
 
 @end

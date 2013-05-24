@@ -262,9 +262,13 @@
     {
         [cell.textLabel setText:@"Facebook"];
         [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleBlue];
     }
     else if (indexPath.section == 1)
     {
+        [cell setAccessoryType:UITableViewCellAccessoryNone];
+        [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
+
         UILabel* label = (UILabel*)[cell viewWithTag:0];
         if (label)
         {
