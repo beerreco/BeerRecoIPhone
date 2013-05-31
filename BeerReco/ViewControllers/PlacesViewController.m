@@ -7,6 +7,7 @@
 //
 
 #import "PlacesViewController.h"
+#import "AddPlaceViewController.h"
 
 @interface PlacesViewController ()
 
@@ -177,6 +178,17 @@
             placeDetailsViewController.placeView = placeView;
         }
     }
+}
+
+-(void)addNewItem
+{
+    UINavigationController* navController = [[UINavigationController alloc] init];
+    
+    AddPlaceViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"AddPlaceViewController"];
+    
+    [navController setViewControllers:@[vc]];
+    
+    [self presentModalViewController:navController animated:YES];
 }
 
 @end

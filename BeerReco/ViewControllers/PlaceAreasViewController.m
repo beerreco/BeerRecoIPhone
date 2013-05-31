@@ -267,6 +267,12 @@
         
         [navController setViewControllers:@[vc]];
     }
+    else if (self.segPlaceFiltering.selectedSegmentIndex == 2)
+    {
+        AddPlaceViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"AddPlaceViewController"];
+        
+        [navController setViewControllers:@[vc]];
+    }
     
     [self presentModalViewController:navController animated:YES];
 }
@@ -352,7 +358,7 @@
     }
     else if (self.segPlaceFiltering.selectedSegmentIndex == 2)
     {
-        AddPlaceViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"AddEditPlaceViewController"];
+        AddPlaceViewController* vc = [self.storyboard instantiateViewControllerWithIdentifier:@"AddPlaceViewController"];
         
         [navController setViewControllers:@[vc]];
     }
