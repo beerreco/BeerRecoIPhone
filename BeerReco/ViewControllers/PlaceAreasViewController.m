@@ -129,10 +129,10 @@
              {
                  [self showErrorView];
              }
+            
+            [self.segPlaceFiltering setEnabled:YES];
+            [self.segPlaceFiltering setUserInteractionEnabled:YES];
          }];
-        
-        [self.segPlaceFiltering setEnabled:YES];
-        [self.segPlaceFiltering setUserInteractionEnabled:YES];
     }
     else if ((self.segPlaceFiltering && self.segPlaceFiltering.selectedSegmentIndex == 2) ||
              self.placeSelectionMode)
@@ -147,10 +147,10 @@
              {
                  [self showErrorView];
              }
+             
+             [self.segPlaceFiltering setEnabled:YES];
+             [self.segPlaceFiltering setUserInteractionEnabled:YES];
          }];
-        
-        [self.segPlaceFiltering setEnabled:YES];
-        [self.segPlaceFiltering setUserInteractionEnabled:YES];
     }
 }
 
