@@ -69,6 +69,7 @@
 		846A7256174D847D00C7B2F2 /* EditBeerCountryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846A7255174D847C00C7B2F2 /* EditBeerCountryViewController.m */; };
 		846A725A174D8F5C00C7B2F2 /* EditPlaceAreaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846A7259174D8F5C00C7B2F2 /* EditPlaceAreaViewController.m */; };
 		846A725D174D8F7E00C7B2F2 /* EditPlaceTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846A725C174D8F7E00C7B2F2 /* EditPlaceTypeViewController.m */; };
+		846A7260175F4E8700C7B2F2 /* BaseEntityM.m in Sources */ = {isa = PBXBuildFile; fileRef = 846A725F175F4E8700C7B2F2 /* BaseEntityM.m */; };
 		84A58FA3170C6AD400A46E9F /* BeerM.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A58FA2170C6AD400A46E9F /* BeerM.m */; };
 		84A58FAA170DAE4300A46E9F /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A58FA9170DAE4300A46E9F /* FacebookSDK.framework */; };
 		84A58FAC170DAE8800A46E9F /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 84A58FAB170DAE8800A46E9F /* FacebookSDKResources.bundle */; };
@@ -266,6 +267,8 @@
 		846A7259174D8F5C00C7B2F2 /* EditPlaceAreaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditPlaceAreaViewController.m; path = ViewControllers/EditPlaceAreaViewController.m; sourceTree = "<group>"; };
 		846A725B174D8F7E00C7B2F2 /* EditPlaceTypeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditPlaceTypeViewController.h; path = ViewControllers/EditPlaceTypeViewController.h; sourceTree = "<group>"; };
 		846A725C174D8F7E00C7B2F2 /* EditPlaceTypeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditPlaceTypeViewController.m; path = ViewControllers/EditPlaceTypeViewController.m; sourceTree = "<group>"; };
+		846A725E175F4E8600C7B2F2 /* BaseEntityM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BaseEntityM.h; path = Models/BaseEntityM.h; sourceTree = "<group>"; };
+		846A725F175F4E8700C7B2F2 /* BaseEntityM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseEntityM.m; path = Models/BaseEntityM.m; sourceTree = "<group>"; };
 		84A58FA1170C6AD400A46E9F /* BeerM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeerM.h; path = Models/BeerM.h; sourceTree = "<group>"; };
 		84A58FA2170C6AD400A46E9F /* BeerM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BeerM.m; path = Models/BeerM.m; sourceTree = "<group>"; };
 		84A58FA7170DADF900A46E9F /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = /Users/admin/Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<absolute>"; };
@@ -771,6 +774,8 @@
 				84E5F1A91742855200BFB703 /* PlaceTypeM.m */,
 				84E5F1D51743D43F00BFB703 /* FieldUpdateDataM.h */,
 				84E5F1D61743D44000BFB703 /* FieldUpdateDataM.m */,
+				846A725E175F4E8600C7B2F2 /* BaseEntityM.h */,
+				846A725F175F4E8700C7B2F2 /* BaseEntityM.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -1203,6 +1208,7 @@
 				846A7256174D847D00C7B2F2 /* EditBeerCountryViewController.m in Sources */,
 				846A725A174D8F5C00C7B2F2 /* EditPlaceAreaViewController.m in Sources */,
 				846A725D174D8F7E00C7B2F2 /* EditPlaceTypeViewController.m in Sources */,
+				846A7260175F4E8700C7B2F2 /* BaseEntityM.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

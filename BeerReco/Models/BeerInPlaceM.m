@@ -8,36 +8,24 @@
 
 #import "BeerInPlaceM.h"
 
-#define PropertyName_Id @"id"
-#define PropertyName_Name @"name"
 #define PropertyName_BeerId @"beerId"
 #define PropertyName_PlaceId @"placeId"
 #define PropertyName_Price @"price"
 
 @implementation BeerInPlaceM
 
-@synthesize id = _id;
-@synthesize name = _name;
-@synthesize creationDate = _creationDate;
-@synthesize updateDate = _updateDate;
 @synthesize beerId = _beerId;
 @synthesize placeId = _placeId;
 @synthesize price = _price;
 
 -(id)initWithJson:(NSDictionary*)json
 {
-    self = [super init];
+    self = [super initWithJson:json];
     
     if (!self || json == nil || [json isKindOfClass:([NSNull class])])
     {
         return nil;
     }
-    
-    self.id = [[json valueForKeyPath:@"id"] stringValue];
-    self.name = [[json valueForKeyPath:@"name"] stringValue];
-    
-    self.creationDate = [NSDateFormatter getDateFromWindowsTimestamp:[json valueForKeyPath:@"creationDate"]];
-    self.updateDate = [NSDateFormatter getDateFromWindowsTimestamp:[json valueForKeyPath:@"updateDate"]];
     
     self.beerId = [[json valueForKeyPath:@"beerId"] stringValue];
     self.placeId = [[json valueForKeyPath:@"placeId"] stringValue];
@@ -51,16 +39,7 @@
 
 -(NSDictionary*)ToDictionary
 {
-    NSMutableDictionary* propertyDict = [[NSMutableDictionary alloc] init];
-    if (![NSString isNullOrEmpty:self.id])
-    {
-        [propertyDict setObject:self.id forKey:PropertyName_Id];
-    }
-    
-    if (![NSString isNullOrEmpty:self.name])
-    {
-        [propertyDict setObject:self.name forKey:PropertyName_Name];
-    }
+    NSMutableDictionary* propertyDict = [super ToDictionary];
     
     if (![NSString isNullOrEmpty:self.beerId])
     {

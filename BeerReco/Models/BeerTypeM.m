@@ -8,30 +8,16 @@
 
 #import "BeerTypeM.h"
 
-#define PropertyName_Id @"id"
-#define PropertyName_Name @"name"
-
 @implementation BeerTypeM
-
-@synthesize id = _id;
-@synthesize name = _name;
-@synthesize creationDate = _creationDate;
-@synthesize updateDate = _updateDate;
 
 -(id)initWithJson:(NSDictionary*)json
 {
-    self = [super init];
+    self = [super initWithJson:json];
     
     if (!self || json == nil || [json isKindOfClass:([NSNull class])])
     {
         return nil;
     }
-    
-    self.id = [[json valueForKeyPath:@"id"] stringValue];
-    self.name = [[json valueForKeyPath:@"name"] stringValue];
-    
-    self.creationDate = [NSDateFormatter getDateFromWindowsTimestamp:[json valueForKeyPath:@"creationDate"]];
-    self.updateDate = [NSDateFormatter getDateFromWindowsTimestamp:[json valueForKeyPath:@"updateDate"]];
     
     return self;
 }
@@ -40,16 +26,7 @@
 
 -(NSDictionary*)ToDictionary
 {
-    NSMutableDictionary* propertyDict = [[NSMutableDictionary alloc] init];
-    if (![NSString isNullOrEmpty:self.id])
-    {
-        [propertyDict setObject:self.id forKey:PropertyName_Id];
-    }
-    
-    if (![NSString isNullOrEmpty:self.name])
-    {
-        [propertyDict setObject:self.name forKey:PropertyName_Name];
-    }
+    NSMutableDictionary* propertyDict = [super ToDictionary];
     
     return propertyDict;
 }

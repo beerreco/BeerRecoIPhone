@@ -8,13 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "BeerTypeM.h"
+#import "BaseEntityM.h"
 
-@interface BeerM : NSObject
+@interface BeerM : BaseEntityM
 
-@property (nonatomic, strong) NSString *id;
-@property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSDate *creationDate;
-@property (nonatomic, strong) NSDate *updateDate;
 @property (nonatomic, strong) NSString *drinkType;
 @property (nonatomic, strong) NSString *originCountryId;
 @property (nonatomic, strong) NSString *breweryId;

@@ -7,13 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BaseEntityM.h"
 
-@interface BreweryM : NSObject
-
-@property (nonatomic, strong) NSString *id;
-@property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSDate *creationDate;
-@property (nonatomic, strong) NSDate *updateDate;
+@interface BreweryM : BaseEntityM
 
 -(id)initWithJson:(NSDictionary*)json;
 -(NSDictionary*)ToDictionary;

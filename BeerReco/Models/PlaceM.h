@@ -7,13 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BaseEntityM.h"
 
-@interface PlaceM : NSObject
+@interface PlaceM : BaseEntityM
 
-@property (nonatomic, strong) NSString *id;
-@property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSDate *creationDate;
-@property (nonatomic, strong) NSDate *updateDate;
 @property (nonatomic, strong) NSString *type;
 @property (nonatomic, strong) NSString *areaId;
 @property (nonatomic, strong) NSString *placeTypeId;

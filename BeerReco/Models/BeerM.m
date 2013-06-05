@@ -8,8 +8,6 @@
 
 #import "BeerM.h"
 
-#define PropertyName_Id @"id"
-#define PropertyName_Name @"name"
 #define PropertyName_DrinkType @"drinkType"
 #define PropertyName_OriginCountryId @"originCountryId"
 #define PropertyName_BreweryId @"breweryId"
@@ -20,10 +18,6 @@
 
 @implementation BeerM
 
-@synthesize id = _id;
-@synthesize name = _name;
-@synthesize creationDate = _creationDate;
-@synthesize updateDate = _updateDate;
 @synthesize drinkType = _drinkType;
 @synthesize originCountryId = _originCountryId;
 @synthesize breweryId = _breweryId;
@@ -36,18 +30,12 @@
 
 -(id)initWithJson:(NSDictionary*)json
 {
-    self = [super init];
+    self = [super initWithJson:json];
     
     if (!self || json == nil || [json isKindOfClass:([NSNull class])])
     {
         return nil;
     }
-    
-    self.id = [[json valueForKeyPath:@"id"] stringValue];
-    self.name = [[json valueForKeyPath:@"name"] stringValue];
-    
-    self.creationDate = [NSDateFormatter getDateFromWindowsTimestamp:[json valueForKeyPath:@"creationDate"]];
-    self.updateDate = [NSDateFormatter getDateFromWindowsTimestamp:[json valueForKeyPath:@"updateDate"]];
         
     self.drinkType = [[json valueForKeyPath:@"drinkType"] stringValue];
     self.originCountryId = [[json valueForKeyPath:@"originCountryId"] stringValue];
@@ -65,16 +53,7 @@
 
 -(NSDictionary*)ToDictionary
 {
-    NSMutableDictionary* propertyDict = [[NSMutableDictionary alloc] init];
-    if (![NSString isNullOrEmpty:self.id])
-    {
-        [propertyDict setObject:self.id forKey:PropertyName_Id];
-    }
-    
-    if (![NSString isNullOrEmpty:self.name])
-    {
-        [propertyDict setObject:self.name forKey:PropertyName_Name];
-    }
+    NSMutableDictionary* propertyDict = [super ToDictionary];
     
     if (![NSString isNullOrEmpty:self.drinkType])
     {

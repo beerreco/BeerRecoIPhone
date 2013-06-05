@@ -8,12 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface PlaceTypeM : NSObject
+#import "BaseEntityM.h"
 
-@property (nonatomic, strong) NSString *id;
-@property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSDate *creationDate;
-@property (nonatomic, strong) NSDate *updateDate;
+@interface PlaceTypeM : BaseEntityM
 
 -(id)initWithJson:(NSDictionary*)json;
 -(NSDictionary*)ToDictionary;
