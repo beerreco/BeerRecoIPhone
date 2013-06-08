@@ -74,7 +74,7 @@
     
     [[BeerRecoAPIClient sharedClient] getPath:path parameters:nil success:^(AFHTTPRequestOperation *operation, id JSON)
      {
-         NSArray *itemsFromResponse = [JSON valueForKeyPath:ResultPath_Items];
+         NSArray *itemsFromResponse = [JSON valueForKeyPath:ResultPath_Beers];
          NSMutableArray *mutableItems = [NSMutableArray arrayWithCapacity:[itemsFromResponse count]];
          for (NSDictionary *json in itemsFromResponse)
          {
