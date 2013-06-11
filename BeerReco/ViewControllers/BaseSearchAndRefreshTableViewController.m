@@ -11,6 +11,7 @@
 @interface BaseSearchAndRefreshTableViewController ()
 
 @property (nonatomic, strong) UIBarButtonItem* barBtnShowSearch;
+@property (nonatomic) BOOL lastSelectionFiltered;
 
 @end
 
@@ -344,7 +345,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     id object;
-    if (sender == self.searchDisplayController.searchResultsTableView)
+    if (self.lastSelectionFiltered)
     {
         NSIndexPath *indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
         object = [self.filteredItemArray objectAtIndex:indexPath.row];
@@ -478,10 +479,12 @@
     if (tableView == self.searchDisplayController.searchResultsTableView)
 	{
         object = [self.filteredItemArray objectAtIndex:indexPath.row];
+        self.lastSelectionFiltered = YES;
     }
 	else
 	{
         object = [self.itemsArray objectAtIndex:indexPath.row];
+        self.lastSelectionFiltered = NO;
     }
     
     [self tableItemSelected:indexPath withObject:object];
