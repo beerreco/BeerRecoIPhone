@@ -51,6 +51,9 @@
 		844956DD173BFACB00A4690C /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 844956CD1732A31500A4690C /* Default@2x.png */; };
 		844956DE173BFAD000A4690C /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 844956CF1732A31A00A4690C /* Default-568h@2x.png */; };
 		844956E1173C1B6D00A4690C /* OriginCountryService.m in Sources */ = {isa = PBXBuildFile; fileRef = 844956E0173C1B6D00A4690C /* OriginCountryService.m */; };
+		84601F1C178B3ECC000C6FCB /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84601F1B178B3ECC000C6FCB /* CoreLocation.framework */; };
+		84601F1E178B3ED2000C6FCB /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84601F1D178B3ED2000C6FCB /* AddressBook.framework */; };
+		84601F20178B3F44000C6FCB /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84601F1F178B3F44000C6FCB /* MapKit.framework */; };
 		846A722E174C222F00C7B2F2 /* EditBeerNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846A722D174C222F00C7B2F2 /* EditBeerNameViewController.m */; };
 		846A7231174C25B700C7B2F2 /* EditBeerComponentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846A7230174C25B700C7B2F2 /* EditBeerComponentsViewController.m */; };
 		846A7234174C31D900C7B2F2 /* EditAlcoholPercentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846A7233174C31D800C7B2F2 /* EditAlcoholPercentViewController.m */; };
@@ -237,6 +240,9 @@
 		844956DA173BF8BF00A4690C /* CountryM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CountryM.m; path = Models/CountryM.m; sourceTree = "<group>"; };
 		844956DF173C1B6B00A4690C /* OriginCountryService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = OriginCountryService.h; path = Communication/Services/OriginCountryService.h; sourceTree = "<group>"; };
 		844956E0173C1B6D00A4690C /* OriginCountryService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = OriginCountryService.m; path = Communication/Services/OriginCountryService.m; sourceTree = "<group>"; };
+		84601F1B178B3ECC000C6FCB /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		84601F1D178B3ED2000C6FCB /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		84601F1F178B3F44000C6FCB /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		846A722C174C222F00C7B2F2 /* EditBeerNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditBeerNameViewController.h; path = ViewControllers/EditBeerNameViewController.h; sourceTree = "<group>"; };
 		846A722D174C222F00C7B2F2 /* EditBeerNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EditBeerNameViewController.m; path = ViewControllers/EditBeerNameViewController.m; sourceTree = "<group>"; };
 		846A722F174C25B700C7B2F2 /* EditBeerComponentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EditBeerComponentsViewController.h; path = ViewControllers/EditBeerComponentsViewController.h; sourceTree = "<group>"; };
@@ -439,6 +445,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84601F20178B3F44000C6FCB /* MapKit.framework in Frameworks */,
+				84601F1E178B3ED2000C6FCB /* AddressBook.framework in Frameworks */,
+				84601F1C178B3ECC000C6FCB /* CoreLocation.framework in Frameworks */,
 				84A58FB4170DAECB00A46E9F /* Social.framework in Frameworks */,
 				84A58FB2170DAEC300A46E9F /* Accounts.framework in Frameworks */,
 				84A58FB0170DAEBC00A46E9F /* AdSupport.framework in Frameworks */,
@@ -462,6 +471,9 @@
 		84377F0316D92B9400B44D99 = {
 			isa = PBXGroup;
 			children = (
+				84601F1F178B3F44000C6FCB /* MapKit.framework */,
+				84601F1D178B3ED2000C6FCB /* AddressBook.framework */,
+				84601F1B178B3ECC000C6FCB /* CoreLocation.framework */,
 				844956CF1732A31A00A4690C /* Default-568h@2x.png */,
 				844956CD1732A31500A4690C /* Default@2x.png */,
 				844956CB1732A31100A4690C /* Default.png */,
@@ -1333,8 +1345,8 @@
 					"-lsqlite3.0",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "990F12D5-7225-4E66-A4FF-54463D591974";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "990F12D5-7225-4E66-A4FF-54463D591974";
+				PROVISIONING_PROFILE = "CAA72559-A190-48BA-AA91-64EF861F21F3";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CAA72559-A190-48BA-AA91-64EF861F21F3";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1362,8 +1374,8 @@
 					"-lsqlite3.0",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "990F12D5-7225-4E66-A4FF-54463D591974";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "990F12D5-7225-4E66-A4FF-54463D591974";
+				PROVISIONING_PROFILE = "CAA72559-A190-48BA-AA91-64EF861F21F3";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CAA72559-A190-48BA-AA91-64EF861F21F3";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

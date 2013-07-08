@@ -6,6 +6,10 @@
 //  Copyright (c) 2013 Colman. All rights reserved.
 //
 
+#import <AddressBook/AddressBook.h>
+#import <CoreLocation/CoreLocation.h>
+#import <MapKit/MapKit.h>
+
 #import "PlaceDetailsViewController.h"
 #import "FacebookCommentsViewController.h"
 #import "BeersInPlaceViewController.h"
@@ -18,6 +22,8 @@
 @interface PlaceDetailsViewController ()
 
 @property (nonatomic, strong) MBProgressHUD* HUD;
+
+@property (nonatomic, strong) MKMapItem* mapItem;
 
 @end
 
@@ -193,6 +199,84 @@
      forControlEvents: UIControlEventTouchUpInside];
     
     return button;
+}
+
+#pragma mark - Location Handling
+
+-(void)getLocationOfPlaceOnMap
+{
+    if (self.HUD == nil)
+    {
+        self.HUD = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+        self.HUD.delegate = self;
+        self.HUD.dimBackground = YES;
+    }
+    
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    NSString* fullAddress = [NSString stringWithString:self.placeView.place.address];
+    
+    NSRange isRange = [fullAddress rangeOfString:@"israel" options:NSCaseInsensitiveSearch];
+    if(isRange.location == NSNotFound)
+    {
+        fullAddress = [NSString stringWithFormat:@"%@, Israel", fullAddress];
+    }
+    
+    [geocoder geocodeAddressString:fullAddress
+                 completionHandler:^(NSArray *placemarks, NSError *error)
+     {
+         if (error)
+         {
+             NSLog(@"Geocode failed with error: %@", error);
+             
+             self.mapItem = nil;
+             
+             UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Place Location"
+                                                             message:@"Place location could not be found"
+                                                            delegate:nil
+                                                   cancelButtonTitle:@"OK"
+                                                   otherButtonTitles:nil];
+             
+             [self.HUD hide:YES];
+             [alert show];
+             
+             return;
+         }
+         
+         if(placemarks && placemarks.count > 0)
+         {
+             CLPlacemark *placemark = placemarks[0];
+             CLLocation *location = placemark.location;
+             CLLocationCoordinate2D coords = location.coordinate;
+             
+             NSLog(@"Latitude = %f, Longitude = %f",
+                   coords.latitude, coords.longitude);
+             
+             
+             NSDictionary *addressDict = @{(NSString *)kABPersonAddressStreetKey: fullAddress};
+             
+             MKPlacemark *place = [[MKPlacemark alloc]
+                                   initWithCoordinate:coords addressDictionary:addressDict];
+             
+             self.mapItem = [[MKMapItem alloc]initWithPlacemark:place];
+             
+             UIAlertView* alert = [[UIAlertView alloc] initWithTitle:@"Place Location"
+                                                             message:@"See place location on map"
+                                                            delegate:self
+                                                   cancelButtonTitle:@"Cancel"
+                                                   otherButtonTitles:@"OK", nil];
+             
+             [self.HUD hide:YES];
+             [alert show];
+         }
+     }];
+}
+
+-(void)goToPlaceOnMap
+{
+    if (self.mapItem)
+    {
+        [self.mapItem openInMapsWithLaunchOptions:nil];
+    }
 }
 
 #pragma mark Like handling
@@ -529,6 +613,7 @@
         }
         else if (indexPath.row == 1)
         {
+            [cell setAccessoryType:UITableViewCellAccessoryDisclosureIndicator];
             cell.textLabel.text = [NSString stringWithFormat:@"Address: %@", self.placeView.place.address];
         }
     }
@@ -600,6 +685,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if (indexPath.section == 0 && indexPath.row == 1)
+    {
+        [self getLocationOfPlaceOnMap];
+    }
     if (indexPath.section == 1)
     {
         [self performSegueWithIdentifier:@"BeersInPlaceSegue" sender:nil];
@@ -610,6 +699,16 @@
 
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+}
+
+#pragma mark - UIAlert Delegate
+
+- (void)alertView:(UIAlertView *)alertView didDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex == 1)
+    {
+        [self goToPlaceOnMap];
+    }
 }
 
 @end

@@ -11,7 +11,7 @@
 #import "PlaceViewM.h"
 #import "MBProgressHUD.h"
 
-@interface PlaceDetailsViewController : UIViewController <MBProgressHUDDelegate>
+@interface PlaceDetailsViewController : UIViewController <MBProgressHUDDelegate, UIAlertViewDelegate>
 
 @property (nonatomic, strong) PlaceViewM* placeView;
 
