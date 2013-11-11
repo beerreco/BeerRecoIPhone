@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		65506D9D18317D08009A9B20 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65506D9C18317D08009A9B20 /* Images.xcassets */; };
+		65506DE5183191FE009A9B20 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65506D99183176B2009A9B20 /* FacebookSDK.framework */; };
+		65506DE918319295009A9B20 /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 65506DE718319295009A9B20 /* FacebookSDKResources.bundle */; };
+		65506DEA18319295009A9B20 /* FBUserSettingsViewResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 65506DE818319295009A9B20 /* FBUserSettingsViewResources.bundle */; };
 		84377F1016D92B9400B44D99 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84377F0F16D92B9400B44D99 /* UIKit.framework */; };
 		84377F1216D92B9400B44D99 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84377F1116D92B9400B44D99 /* Foundation.framework */; };
 		84377F1416D92B9400B44D99 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84377F1316D92B9400B44D99 /* CoreGraphics.framework */; };
@@ -74,9 +78,6 @@
 		846A725D174D8F7E00C7B2F2 /* EditPlaceTypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 846A725C174D8F7E00C7B2F2 /* EditPlaceTypeViewController.m */; };
 		846A7260175F4E8700C7B2F2 /* BaseEntityM.m in Sources */ = {isa = PBXBuildFile; fileRef = 846A725F175F4E8700C7B2F2 /* BaseEntityM.m */; };
 		84A58FA3170C6AD400A46E9F /* BeerM.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A58FA2170C6AD400A46E9F /* BeerM.m */; };
-		84A58FAA170DAE4300A46E9F /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A58FA9170DAE4300A46E9F /* FacebookSDK.framework */; };
-		84A58FAC170DAE8800A46E9F /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 84A58FAB170DAE8800A46E9F /* FacebookSDKResources.bundle */; };
-		84A58FAE170DAEA800A46E9F /* FBUserSettingsViewResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 84A58FAD170DAEA800A46E9F /* FBUserSettingsViewResources.bundle */; };
 		84A58FB0170DAEBC00A46E9F /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A58FAF170DAEBC00A46E9F /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		84A58FB2170DAEC300A46E9F /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A58FB1170DAEC300A46E9F /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		84A58FB4170DAECB00A46E9F /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84A58FB3170DAECB00A46E9F /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -171,6 +172,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		65506D99183176B2009A9B20 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
+		65506D9C18317D08009A9B20 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		65506DE718319295009A9B20 /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = FacebookSDKResources.bundle; path = ../../FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle; sourceTree = "<group>"; };
+		65506DE818319295009A9B20 /* FBUserSettingsViewResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FBUserSettingsViewResources.bundle; path = ../../FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FBUserSettingsViewResources.bundle; sourceTree = "<group>"; };
 		84377F0C16D92B9400B44D99 /* BeerReco.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeerReco.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84377F0F16D92B9400B44D99 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		84377F1116D92B9400B44D99 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -277,10 +282,6 @@
 		846A725F175F4E8700C7B2F2 /* BaseEntityM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BaseEntityM.m; path = Models/BaseEntityM.m; sourceTree = "<group>"; };
 		84A58FA1170C6AD400A46E9F /* BeerM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BeerM.h; path = Models/BeerM.h; sourceTree = "<group>"; };
 		84A58FA2170C6AD400A46E9F /* BeerM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BeerM.m; path = Models/BeerM.m; sourceTree = "<group>"; };
-		84A58FA7170DADF900A46E9F /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = /Users/admin/Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<absolute>"; };
-		84A58FA9170DAE4300A46E9F /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../../Users/admin/Documents/FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
-		84A58FAB170DAE8800A46E9F /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = ../../../Users/admin/Documents/FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FacebookSDKResources.bundle; sourceTree = "<group>"; };
-		84A58FAD170DAEA800A46E9F /* FBUserSettingsViewResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FBUserSettingsViewResources.bundle; path = ../../../Users/admin/Documents/FacebookSDK/FacebookSDK.framework/Versions/A/Resources/FBUserSettingsViewResources.bundle; sourceTree = "<group>"; };
 		84A58FAF170DAEBC00A46E9F /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		84A58FB1170DAEC300A46E9F /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		84A58FB3170DAECB00A46E9F /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
@@ -445,6 +446,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65506DE5183191FE009A9B20 /* FacebookSDK.framework in Frameworks */,
 				84601F20178B3F44000C6FCB /* MapKit.framework in Frameworks */,
 				84601F1E178B3ED2000C6FCB /* AddressBook.framework in Frameworks */,
 				84601F1C178B3ECC000C6FCB /* CoreLocation.framework in Frameworks */,
@@ -461,7 +463,6 @@
 				84377F1416D92B9400B44D99 /* CoreGraphics.framework in Frameworks */,
 				84377F1216D92B9400B44D99 /* Foundation.framework in Frameworks */,
 				84B58CA016DB8E540097CD67 /* libFlurry.a in Frameworks */,
-				84A58FAA170DAE4300A46E9F /* FacebookSDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -502,13 +503,12 @@
 		84377F0E16D92B9400B44D99 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				65506DE718319295009A9B20 /* FacebookSDKResources.bundle */,
+				65506DE818319295009A9B20 /* FBUserSettingsViewResources.bundle */,
+				65506D99183176B2009A9B20 /* FacebookSDK.framework */,
 				84A58FB3170DAECB00A46E9F /* Social.framework */,
 				84A58FB1170DAEC300A46E9F /* Accounts.framework */,
 				84A58FAF170DAEBC00A46E9F /* AdSupport.framework */,
-				84A58FA7170DADF900A46E9F /* FacebookSDK.framework */,
-				84A58FAD170DAEA800A46E9F /* FBUserSettingsViewResources.bundle */,
-				84A58FAB170DAE8800A46E9F /* FacebookSDKResources.bundle */,
-				84A58FA9170DAE4300A46E9F /* FacebookSDK.framework */,
 				84B58CBC16DBA4930097CD67 /* Crashlytics.framework */,
 				84B58CB716DB92590097CD67 /* CoreData.framework */,
 				84B58CB516DB92530097CD67 /* SystemConfiguration.framework */,
@@ -534,6 +534,7 @@
 				84377F1F16D92B9400B44D99 /* AppDelegate.m */,
 				84B58C7A16DB8DC80097CD67 /* Views */,
 				84B58C6516DB8CEA0097CD67 /* ViewControllers */,
+				65506D9C18317D08009A9B20 /* Images.xcassets */,
 				84377F1616D92B9400B44D99 /* Supporting Files */,
 			);
 			path = BeerReco;
@@ -998,6 +999,11 @@
 			attributes = {
 				LastUpgradeCheck = 0460;
 				ORGANIZATIONNAME = Colman;
+				TargetAttributes = {
+					84377F0B16D92B9400B44D99 = {
+						DevelopmentTeam = GWH4DWD7B8;
+					};
+				};
 			};
 			buildConfigurationList = 84377F0716D92B9400B44D99 /* Build configuration list for PBXProject "BeerReco" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1034,8 +1040,6 @@
 				84B58CDC16DD0A8E0097CD67 /* whiteArrow.png in Resources */,
 				84B58CDD16DD0A8E0097CD67 /* whiteArrow@2x.png in Resources */,
 				84B58CF416DD45820097CD67 /* Localizable.strings in Resources */,
-				84A58FAC170DAE8800A46E9F /* FacebookSDKResources.bundle in Resources */,
-				84A58FAE170DAEA800A46E9F /* FBUserSettingsViewResources.bundle in Resources */,
 				844316D7172152FB00D227D2 /* LoadErrorViewController.xib in Resources */,
 				844316DB17215EBC00D227D2 /* weihenstephaner_hefe_icon.png in Resources */,
 				844316E21721893C00D227D2 /* beerreco_icon.png in Resources */,
@@ -1052,14 +1056,17 @@
 				844956D81732C27300A4690C /* splash_screen3.png in Resources */,
 				844956DC173BFAC500A4690C /* Default.png in Resources */,
 				844956DD173BFACB00A4690C /* Default@2x.png in Resources */,
+				65506D9D18317D08009A9B20 /* Images.xcassets in Resources */,
 				844956DE173BFAD000A4690C /* Default-568h@2x.png in Resources */,
 				84E5F1BA1742E46200BFB703 /* add_to_fav.png in Resources */,
 				84E5F1BB1742E46200BFB703 /* add_to_fav@2x.png in Resources */,
+				65506DEA18319295009A9B20 /* FBUserSettingsViewResources.bundle in Resources */,
 				84E5F1BC1742E46200BFB703 /* beer_icon_default.png in Resources */,
 				84E5F1BD1742E46200BFB703 /* beer_icon_default@2x.png in Resources */,
 				84E5F1BE1742E46200BFB703 /* like_beer.png in Resources */,
 				84E5F1BF1742E46200BFB703 /* like_beer@2x.png in Resources */,
 				84E5F1C01742E46200BFB703 /* place_icon_default.png in Resources */,
+				65506DE918319295009A9B20 /* FacebookSDKResources.bundle in Resources */,
 				84E5F1C11742E46200BFB703 /* place_icon_default@2x.png in Resources */,
 				84E5F1C21742E46200BFB703 /* remove_from_fav.png in Resources */,
 				84E5F1C31742E46200BFB703 /* remove_from_fav@2x.png in Resources */,
@@ -1325,17 +1332,20 @@
 		84377F3B16D92B9400B44D99 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Rony Paikin (HQK8M76JR6)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Rony Paikin (HQK8M76JR6)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
 					/Users/admin/Documents/FacebookSDK,
+					/Users/ronylemberg/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BeerReco/BeerReco-Prefix.pch";
 				INFOPLIST_FILE = "BeerReco/BeerReco-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Flurry\"",
@@ -1345,8 +1355,8 @@
 					"-lsqlite3.0",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "CAA72559-A190-48BA-AA91-64EF861F21F3";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CAA72559-A190-48BA-AA91-64EF861F21F3";
+				PROVISIONING_PROFILE = "08CF0DFE-B632-474A-A997-EE1A2F1DE44F";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "08CF0DFE-B632-474A-A997-EE1A2F1DE44F";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1354,17 +1364,20 @@
 		84377F3C16D92B9400B44D99 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_IDENTITY = "iPhone Developer: Rony Paikin (HQK8M76JR6)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Rony Paikin (HQK8M76JR6)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(SRCROOT)\"",
+					"$(SRCROOT)",
 					/Users/admin/Documents/FacebookSDK,
+					/Users/ronylemberg/Documents/FacebookSDK,
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BeerReco/BeerReco-Prefix.pch";
 				INFOPLIST_FILE = "BeerReco/BeerReco-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/Flurry\"",
@@ -1374,8 +1387,8 @@
 					"-lsqlite3.0",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "CAA72559-A190-48BA-AA91-64EF861F21F3";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "CAA72559-A190-48BA-AA91-64EF861F21F3";
+				PROVISIONING_PROFILE = "08CF0DFE-B632-474A-A997-EE1A2F1DE44F";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "08CF0DFE-B632-474A-A997-EE1A2F1DE44F";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
